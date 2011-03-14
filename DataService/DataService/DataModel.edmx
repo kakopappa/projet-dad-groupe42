@@ -1,0 +1,694 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DADModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="DADModelStoreContainer">
+          <EntitySet Name="ADRESSE_CLIENT" EntityType="DADModel.Store.ADRESSE_CLIENT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="APPARTIENT" EntityType="DADModel.Store.APPARTIENT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CATEGORIE" EntityType="DADModel.Store.CATEGORIE" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="CLIENT" EntityType="DADModel.Store.CLIENT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="COMMANDE_CLIENT" EntityType="DADModel.Store.COMMANDE_CLIENT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="COMMANDE_FOURNISSEUR" EntityType="DADModel.Store.COMMANDE_FOURNISSEUR" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="COMMANDER" EntityType="DADModel.Store.COMMANDER" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="FOURNISSEUR" EntityType="DADModel.Store.FOURNISSEUR" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PRODUIT" EntityType="DADModel.Store.PRODUIT" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ADRESSE_CLIENT_CLIENT" Association="DADModel.Store.FK_ADRESSE_CLIENT_CLIENT">
+            <End Role="CLIENT" EntitySet="CLIENT" />
+            <End Role="ADRESSE_CLIENT" EntitySet="ADRESSE_CLIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_APPARTIENT_CATEGORIE" Association="DADModel.Store.FK_APPARTIENT_CATEGORIE">
+            <End Role="CATEGORIE" EntitySet="CATEGORIE" />
+            <End Role="APPARTIENT" EntitySet="APPARTIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_APPARTIENT_PRODUIT" Association="DADModel.Store.FK_APPARTIENT_PRODUIT">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="APPARTIENT" EntitySet="APPARTIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATEGORIE_CATEGORIE" Association="DADModel.Store.FK_CATEGORIE_CATEGORIE">
+            <End Role="CATEGORIE" EntitySet="CATEGORIE" />
+            <End Role="CATEGORIE1" EntitySet="CATEGORIE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_CLIENT_ADRESSE_CLIENT" Association="DADModel.Store.FK_COMMANDE_CLIENT_ADRESSE_CLIENT">
+            <End Role="ADRESSE_CLIENT" EntitySet="ADRESSE_CLIENT" />
+            <End Role="COMMANDE_CLIENT" EntitySet="COMMANDE_CLIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_CLIENT_CLIENT" Association="DADModel.Store.FK_COMMANDE_CLIENT_CLIENT">
+            <End Role="CLIENT" EntitySet="CLIENT" />
+            <End Role="COMMANDE_CLIENT" EntitySet="COMMANDE_CLIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT" Association="DADModel.Store.FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT">
+            <End Role="COMMANDE_CLIENT" EntitySet="COMMANDE_CLIENT" />
+            <End Role="COMMANDE_FOURNISSEUR" EntitySet="COMMANDE_FOURNISSEUR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" Association="DADModel.Store.FK_COMMANDE_FOURNISSEUR_FOURNISSEUR">
+            <End Role="FOURNISSEUR" EntitySet="FOURNISSEUR" />
+            <End Role="COMMANDE_FOURNISSEUR" EntitySet="COMMANDE_FOURNISSEUR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDER_COMMANDE_FOURNISSEUR" Association="DADModel.Store.FK_COMMANDER_COMMANDE_FOURNISSEUR">
+            <End Role="COMMANDE_FOURNISSEUR" EntitySet="COMMANDE_FOURNISSEUR" />
+            <End Role="COMMANDER" EntitySet="COMMANDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDER_PRODUIT" Association="DADModel.Store.FK_COMMANDER_PRODUIT">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="COMMANDER" EntitySet="COMMANDER" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ADRESSE_CLIENT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_client" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="adresse" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ville" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="code_postal" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="pays" Type="nchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="APPARTIENT">
+          <Key>
+            <PropertyRef Name="id_produit" />
+            <PropertyRef Name="id_categorie" />
+          </Key>
+          <Property Name="id_produit" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_categorie" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORIE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_parent" Type="uniqueidentifier" />
+          <Property Name="nom" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CLIENT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="nom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="prenom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="COMMANDE_CLIENT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_client" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_adresse" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="prix_total" Type="smallmoney" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMMANDE_FOURNISSEUR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_fournisseur" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_commande_client" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="date_generation" Type="datetime" Nullable="false" />
+          <Property Name="date_validation" Type="datetime" />
+          <Property Name="date_expedition" Type="datetime" />
+          <Property Name="date_reception" Type="datetime" />
+          <Property Name="duree_expedition_estimee" Type="numeric" />
+          <Property Name="prix_total" Type="smallmoney" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMMANDER">
+          <Key>
+            <PropertyRef Name="id_commande_fournisseur" />
+            <PropertyRef Name="id_produit" />
+          </Key>
+          <Property Name="id_commande_fournisseur" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_produit" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="quantite" Type="numeric" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FOURNISSEUR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="nom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="phone" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="adresse" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ville" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="code_postal" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PRODUIT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="reference" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="nom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="marque" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="id_fournisseur" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="prix" Type="smallmoney" Nullable="false" />
+          <Property Name="stock" Type="numeric" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_ADRESSE_CLIENT_CLIENT">
+          <End Role="CLIENT" Type="DADModel.Store.CLIENT" Multiplicity="1" />
+          <End Role="ADRESSE_CLIENT" Type="DADModel.Store.ADRESSE_CLIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="ADRESSE_CLIENT">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_APPARTIENT_CATEGORIE">
+          <End Role="CATEGORIE" Type="DADModel.Store.CATEGORIE" Multiplicity="1" />
+          <End Role="APPARTIENT" Type="DADModel.Store.APPARTIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="APPARTIENT">
+              <PropertyRef Name="id_categorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_APPARTIENT_PRODUIT">
+          <End Role="PRODUIT" Type="DADModel.Store.PRODUIT" Multiplicity="1" />
+          <End Role="APPARTIENT" Type="DADModel.Store.APPARTIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="APPARTIENT">
+              <PropertyRef Name="id_produit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CATEGORIE_CATEGORIE">
+          <End Role="CATEGORIE" Type="DADModel.Store.CATEGORIE" Multiplicity="0..1" />
+          <End Role="CATEGORIE1" Type="DADModel.Store.CATEGORIE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORIE">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CATEGORIE1">
+              <PropertyRef Name="id_parent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDE_CLIENT_ADRESSE_CLIENT">
+          <End Role="ADRESSE_CLIENT" Type="DADModel.Store.ADRESSE_CLIENT" Multiplicity="1" />
+          <End Role="COMMANDE_CLIENT" Type="DADModel.Store.COMMANDE_CLIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ADRESSE_CLIENT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="COMMANDE_CLIENT">
+              <PropertyRef Name="id_adresse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDE_CLIENT_CLIENT">
+          <End Role="CLIENT" Type="DADModel.Store.CLIENT" Multiplicity="1" />
+          <End Role="COMMANDE_CLIENT" Type="DADModel.Store.COMMANDE_CLIENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="COMMANDE_CLIENT">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT">
+          <End Role="COMMANDE_CLIENT" Type="DADModel.Store.COMMANDE_CLIENT" Multiplicity="1" />
+          <End Role="COMMANDE_FOURNISSEUR" Type="DADModel.Store.COMMANDE_FOURNISSEUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMANDE_CLIENT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="COMMANDE_FOURNISSEUR">
+              <PropertyRef Name="id_commande_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDE_FOURNISSEUR_FOURNISSEUR">
+          <End Role="FOURNISSEUR" Type="DADModel.Store.FOURNISSEUR" Multiplicity="1" />
+          <End Role="COMMANDE_FOURNISSEUR" Type="DADModel.Store.COMMANDE_FOURNISSEUR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FOURNISSEUR">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="COMMANDE_FOURNISSEUR">
+              <PropertyRef Name="id_fournisseur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDER_COMMANDE_FOURNISSEUR">
+          <End Role="COMMANDE_FOURNISSEUR" Type="DADModel.Store.COMMANDE_FOURNISSEUR" Multiplicity="1" />
+          <End Role="COMMANDER" Type="DADModel.Store.COMMANDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMANDE_FOURNISSEUR">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="COMMANDER">
+              <PropertyRef Name="id_commande_fournisseur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDER_PRODUIT">
+          <End Role="PRODUIT" Type="DADModel.Store.PRODUIT" Multiplicity="1" />
+          <End Role="COMMANDER" Type="DADModel.Store.COMMANDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="COMMANDER">
+              <PropertyRef Name="id_produit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DADModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="DADEntities">
+          <EntitySet Name="ADRESSE_CLIENT" EntityType="DADModel.ADRESSE_CLIENT" />
+          <EntitySet Name="CATEGORIE" EntityType="DADModel.CATEGORIE" />
+          <EntitySet Name="CLIENT" EntityType="DADModel.CLIENT" />
+          <EntitySet Name="COMMANDE_CLIENT" EntityType="DADModel.COMMANDE_CLIENT" />
+          <EntitySet Name="COMMANDE_FOURNISSEUR" EntityType="DADModel.COMMANDE_FOURNISSEUR" />
+          <EntitySet Name="COMMANDER" EntityType="DADModel.COMMANDER" />
+          <EntitySet Name="FOURNISSEUR" EntityType="DADModel.FOURNISSEUR" />
+          <EntitySet Name="PRODUIT" EntityType="DADModel.PRODUIT" />
+          <AssociationSet Name="FK_ADRESSE_CLIENT_CLIENT" Association="DADModel.FK_ADRESSE_CLIENT_CLIENT">
+            <End Role="CLIENT" EntitySet="CLIENT" />
+            <End Role="ADRESSE_CLIENT" EntitySet="ADRESSE_CLIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_CLIENT_ADRESSE_CLIENT" Association="DADModel.FK_COMMANDE_CLIENT_ADRESSE_CLIENT">
+            <End Role="ADRESSE_CLIENT" EntitySet="ADRESSE_CLIENT" />
+            <End Role="COMMANDE_CLIENT" EntitySet="COMMANDE_CLIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CATEGORIE_CATEGORIE" Association="DADModel.FK_CATEGORIE_CATEGORIE">
+            <End Role="CATEGORIE" EntitySet="CATEGORIE" />
+            <End Role="CATEGORIE1" EntitySet="CATEGORIE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_CLIENT_CLIENT" Association="DADModel.FK_COMMANDE_CLIENT_CLIENT">
+            <End Role="CLIENT" EntitySet="CLIENT" />
+            <End Role="COMMANDE_CLIENT" EntitySet="COMMANDE_CLIENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT" Association="DADModel.FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT">
+            <End Role="COMMANDE_CLIENT" EntitySet="COMMANDE_CLIENT" />
+            <End Role="COMMANDE_FOURNISSEUR" EntitySet="COMMANDE_FOURNISSEUR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" Association="DADModel.FK_COMMANDE_FOURNISSEUR_FOURNISSEUR">
+            <End Role="FOURNISSEUR" EntitySet="FOURNISSEUR" />
+            <End Role="COMMANDE_FOURNISSEUR" EntitySet="COMMANDE_FOURNISSEUR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDER_COMMANDE_FOURNISSEUR" Association="DADModel.FK_COMMANDER_COMMANDE_FOURNISSEUR">
+            <End Role="COMMANDE_FOURNISSEUR" EntitySet="COMMANDE_FOURNISSEUR" />
+            <End Role="COMMANDER" EntitySet="COMMANDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMMANDER_PRODUIT" Association="DADModel.FK_COMMANDER_PRODUIT">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="COMMANDER" EntitySet="COMMANDER" />
+          </AssociationSet>
+          <AssociationSet Name="APPARTIENT" Association="DADModel.APPARTIENT">
+            <End Role="CATEGORIE" EntitySet="CATEGORIE" />
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ADRESSE_CLIENT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="adresse" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ville" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="code_postal" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="pays" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="CLIENT" Relationship="DADModel.FK_ADRESSE_CLIENT_CLIENT" FromRole="ADRESSE_CLIENT" ToRole="CLIENT" />
+          <NavigationProperty Name="COMMANDE_CLIENT" Relationship="DADModel.FK_COMMANDE_CLIENT_ADRESSE_CLIENT" FromRole="ADRESSE_CLIENT" ToRole="COMMANDE_CLIENT" />
+        </EntityType>
+        <EntityType Name="CATEGORIE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="CATEGORIE1" Relationship="DADModel.FK_CATEGORIE_CATEGORIE" FromRole="CATEGORIE" ToRole="CATEGORIE1" />
+          <NavigationProperty Name="CATEGORIE2" Relationship="DADModel.FK_CATEGORIE_CATEGORIE" FromRole="CATEGORIE1" ToRole="CATEGORIE" />
+          <NavigationProperty Name="PRODUIT" Relationship="DADModel.APPARTIENT" FromRole="CATEGORIE" ToRole="PRODUIT" />
+        </EntityType>
+        <EntityType Name="CLIENT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="prenom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="ADRESSE_CLIENT" Relationship="DADModel.FK_ADRESSE_CLIENT_CLIENT" FromRole="CLIENT" ToRole="ADRESSE_CLIENT" />
+          <NavigationProperty Name="COMMANDE_CLIENT" Relationship="DADModel.FK_COMMANDE_CLIENT_CLIENT" FromRole="CLIENT" ToRole="COMMANDE_CLIENT" />
+        </EntityType>
+        <EntityType Name="COMMANDE_CLIENT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="prix_total" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <NavigationProperty Name="ADRESSE_CLIENT" Relationship="DADModel.FK_COMMANDE_CLIENT_ADRESSE_CLIENT" FromRole="COMMANDE_CLIENT" ToRole="ADRESSE_CLIENT" />
+          <NavigationProperty Name="CLIENT" Relationship="DADModel.FK_COMMANDE_CLIENT_CLIENT" FromRole="COMMANDE_CLIENT" ToRole="CLIENT" />
+          <NavigationProperty Name="COMMANDE_FOURNISSEUR" Relationship="DADModel.FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT" FromRole="COMMANDE_CLIENT" ToRole="COMMANDE_FOURNISSEUR" />
+        </EntityType>
+        <EntityType Name="COMMANDE_FOURNISSEUR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="date_generation" Type="DateTime" Nullable="false" />
+          <Property Name="date_validation" Type="DateTime" />
+          <Property Name="date_expedition" Type="DateTime" />
+          <Property Name="date_reception" Type="DateTime" />
+          <Property Name="duree_expedition_estimee" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="prix_total" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <NavigationProperty Name="COMMANDE_CLIENT" Relationship="DADModel.FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT" FromRole="COMMANDE_FOURNISSEUR" ToRole="COMMANDE_CLIENT" />
+          <NavigationProperty Name="FOURNISSEUR" Relationship="DADModel.FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" FromRole="COMMANDE_FOURNISSEUR" ToRole="FOURNISSEUR" />
+          <NavigationProperty Name="COMMANDER" Relationship="DADModel.FK_COMMANDER_COMMANDE_FOURNISSEUR" FromRole="COMMANDE_FOURNISSEUR" ToRole="COMMANDER" />
+        </EntityType>
+        <EntityType Name="COMMANDER">
+          <Key>
+            <PropertyRef Name="id_commande_fournisseur" />
+            <PropertyRef Name="id_produit" />
+          </Key>
+          <Property Name="id_commande_fournisseur" Type="Guid" Nullable="false" />
+          <Property Name="id_produit" Type="Guid" Nullable="false" />
+          <Property Name="quantite" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="COMMANDE_FOURNISSEUR" Relationship="DADModel.FK_COMMANDER_COMMANDE_FOURNISSEUR" FromRole="COMMANDER" ToRole="COMMANDE_FOURNISSEUR" />
+          <NavigationProperty Name="PRODUIT" Relationship="DADModel.FK_COMMANDER_PRODUIT" FromRole="COMMANDER" ToRole="PRODUIT" />
+        </EntityType>
+        <EntityType Name="FOURNISSEUR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="phone" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="adresse" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ville" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="code_postal" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="COMMANDE_FOURNISSEUR" Relationship="DADModel.FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" FromRole="FOURNISSEUR" ToRole="COMMANDE_FOURNISSEUR" />
+        </EntityType>
+        <EntityType Name="PRODUIT">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="reference" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="nom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="marque" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="id_fournisseur" Type="Guid" Nullable="false" />
+          <Property Name="prix" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="stock" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="COMMANDER" Relationship="DADModel.FK_COMMANDER_PRODUIT" FromRole="PRODUIT" ToRole="COMMANDER" />
+          <NavigationProperty Name="CATEGORIE" Relationship="DADModel.APPARTIENT" FromRole="PRODUIT" ToRole="CATEGORIE" />
+        </EntityType>
+        <Association Name="FK_ADRESSE_CLIENT_CLIENT">
+          <End Role="CLIENT" Type="DADModel.CLIENT" Multiplicity="1" />
+          <End Role="ADRESSE_CLIENT" Type="DADModel.ADRESSE_CLIENT" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_COMMANDE_CLIENT_ADRESSE_CLIENT">
+          <End Role="ADRESSE_CLIENT" Type="DADModel.ADRESSE_CLIENT" Multiplicity="1" />
+          <End Role="COMMANDE_CLIENT" Type="DADModel.COMMANDE_CLIENT" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_CATEGORIE_CATEGORIE">
+          <End Role="CATEGORIE" Type="DADModel.CATEGORIE" Multiplicity="0..1" />
+          <End Role="CATEGORIE1" Type="DADModel.CATEGORIE" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_COMMANDE_CLIENT_CLIENT">
+          <End Role="CLIENT" Type="DADModel.CLIENT" Multiplicity="1" />
+          <End Role="COMMANDE_CLIENT" Type="DADModel.COMMANDE_CLIENT" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT">
+          <End Role="COMMANDE_CLIENT" Type="DADModel.COMMANDE_CLIENT" Multiplicity="1" />
+          <End Role="COMMANDE_FOURNISSEUR" Type="DADModel.COMMANDE_FOURNISSEUR" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_COMMANDE_FOURNISSEUR_FOURNISSEUR">
+          <End Role="FOURNISSEUR" Type="DADModel.FOURNISSEUR" Multiplicity="1" />
+          <End Role="COMMANDE_FOURNISSEUR" Type="DADModel.COMMANDE_FOURNISSEUR" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_COMMANDER_COMMANDE_FOURNISSEUR">
+          <End Role="COMMANDE_FOURNISSEUR" Type="DADModel.COMMANDE_FOURNISSEUR" Multiplicity="1" />
+          <End Role="COMMANDER" Type="DADModel.COMMANDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMMANDE_FOURNISSEUR">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="COMMANDER">
+              <PropertyRef Name="id_commande_fournisseur" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMMANDER_PRODUIT">
+          <End Role="PRODUIT" Type="DADModel.PRODUIT" Multiplicity="1" />
+          <End Role="COMMANDER" Type="DADModel.COMMANDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="COMMANDER">
+              <PropertyRef Name="id_produit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="APPARTIENT">
+          <End Role="CATEGORIE" Type="DADModel.CATEGORIE" Multiplicity="*" />
+          <End Role="PRODUIT" Type="DADModel.PRODUIT" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="DADModelStoreContainer" CdmEntityContainer="DADEntities">
+          <EntitySetMapping Name="ADRESSE_CLIENT"><EntityTypeMapping TypeName="DADModel.ADRESSE_CLIENT"><MappingFragment StoreEntitySet="ADRESSE_CLIENT">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="adresse" ColumnName="adresse" />
+            <ScalarProperty Name="ville" ColumnName="ville" />
+            <ScalarProperty Name="code_postal" ColumnName="code_postal" />
+            <ScalarProperty Name="pays" ColumnName="pays" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CATEGORIE"><EntityTypeMapping TypeName="DADModel.CATEGORIE"><MappingFragment StoreEntitySet="CATEGORIE">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="nom" ColumnName="nom" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="CLIENT"><EntityTypeMapping TypeName="DADModel.CLIENT"><MappingFragment StoreEntitySet="CLIENT">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="nom" ColumnName="nom" />
+            <ScalarProperty Name="prenom" ColumnName="prenom" />
+            <ScalarProperty Name="phone" ColumnName="phone" />
+            <ScalarProperty Name="email" ColumnName="email" />
+            <ScalarProperty Name="password" ColumnName="password" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="COMMANDE_CLIENT"><EntityTypeMapping TypeName="DADModel.COMMANDE_CLIENT"><MappingFragment StoreEntitySet="COMMANDE_CLIENT">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="date" ColumnName="date" />
+            <ScalarProperty Name="prix_total" ColumnName="prix_total" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="COMMANDE_FOURNISSEUR"><EntityTypeMapping TypeName="DADModel.COMMANDE_FOURNISSEUR"><MappingFragment StoreEntitySet="COMMANDE_FOURNISSEUR">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="date_generation" ColumnName="date_generation" />
+            <ScalarProperty Name="date_validation" ColumnName="date_validation" />
+            <ScalarProperty Name="date_expedition" ColumnName="date_expedition" />
+            <ScalarProperty Name="date_reception" ColumnName="date_reception" />
+            <ScalarProperty Name="duree_expedition_estimee" ColumnName="duree_expedition_estimee" />
+            <ScalarProperty Name="prix_total" ColumnName="prix_total" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="COMMANDER"><EntityTypeMapping TypeName="DADModel.COMMANDER"><MappingFragment StoreEntitySet="COMMANDER">
+            <ScalarProperty Name="id_commande_fournisseur" ColumnName="id_commande_fournisseur" />
+            <ScalarProperty Name="id_produit" ColumnName="id_produit" />
+            <ScalarProperty Name="quantite" ColumnName="quantite" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="FOURNISSEUR"><EntityTypeMapping TypeName="DADModel.FOURNISSEUR"><MappingFragment StoreEntitySet="FOURNISSEUR">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="nom" ColumnName="nom" />
+            <ScalarProperty Name="email" ColumnName="email" />
+            <ScalarProperty Name="phone" ColumnName="phone" />
+            <ScalarProperty Name="password" ColumnName="password" />
+            <ScalarProperty Name="adresse" ColumnName="adresse" />
+            <ScalarProperty Name="ville" ColumnName="ville" />
+            <ScalarProperty Name="code_postal" ColumnName="code_postal" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PRODUIT"><EntityTypeMapping TypeName="DADModel.PRODUIT"><MappingFragment StoreEntitySet="PRODUIT">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="reference" ColumnName="reference" />
+            <ScalarProperty Name="nom" ColumnName="nom" />
+            <ScalarProperty Name="marque" ColumnName="marque" />
+            <ScalarProperty Name="id_fournisseur" ColumnName="id_fournisseur" />
+            <ScalarProperty Name="prix" ColumnName="prix" />
+            <ScalarProperty Name="stock" ColumnName="stock" />
+            <ScalarProperty Name="description" ColumnName="description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="FK_ADRESSE_CLIENT_CLIENT" TypeName="DADModel.FK_ADRESSE_CLIENT_CLIENT" StoreEntitySet="ADRESSE_CLIENT">
+            <EndProperty Name="CLIENT">
+              <ScalarProperty Name="id" ColumnName="id_client" />
+            </EndProperty>
+            <EndProperty Name="ADRESSE_CLIENT">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_COMMANDE_CLIENT_ADRESSE_CLIENT" TypeName="DADModel.FK_COMMANDE_CLIENT_ADRESSE_CLIENT" StoreEntitySet="COMMANDE_CLIENT">
+            <EndProperty Name="ADRESSE_CLIENT">
+              <ScalarProperty Name="id" ColumnName="id_adresse" />
+            </EndProperty>
+            <EndProperty Name="COMMANDE_CLIENT">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_CATEGORIE_CATEGORIE" TypeName="DADModel.FK_CATEGORIE_CATEGORIE" StoreEntitySet="CATEGORIE">
+            <EndProperty Name="CATEGORIE">
+              <ScalarProperty Name="id" ColumnName="id_parent" />
+            </EndProperty>
+            <EndProperty Name="CATEGORIE1">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <Condition ColumnName="id_parent" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_COMMANDE_CLIENT_CLIENT" TypeName="DADModel.FK_COMMANDE_CLIENT_CLIENT" StoreEntitySet="COMMANDE_CLIENT">
+            <EndProperty Name="CLIENT">
+              <ScalarProperty Name="id" ColumnName="id_client" />
+            </EndProperty>
+            <EndProperty Name="COMMANDE_CLIENT">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT" TypeName="DADModel.FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT" StoreEntitySet="COMMANDE_FOURNISSEUR">
+            <EndProperty Name="COMMANDE_CLIENT">
+              <ScalarProperty Name="id" ColumnName="id_commande_client" />
+            </EndProperty>
+            <EndProperty Name="COMMANDE_FOURNISSEUR">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" TypeName="DADModel.FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" StoreEntitySet="COMMANDE_FOURNISSEUR">
+            <EndProperty Name="FOURNISSEUR">
+              <ScalarProperty Name="id" ColumnName="id_fournisseur" />
+            </EndProperty>
+            <EndProperty Name="COMMANDE_FOURNISSEUR">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_COMMANDER_COMMANDE_FOURNISSEUR" TypeName="DADModel.FK_COMMANDER_COMMANDE_FOURNISSEUR" StoreEntitySet="COMMANDER">
+            <EndProperty Name="COMMANDE_FOURNISSEUR">
+              <ScalarProperty Name="id" ColumnName="id_commande_fournisseur" />
+            </EndProperty>
+            <EndProperty Name="COMMANDER">
+              <ScalarProperty Name="id_commande_fournisseur" ColumnName="id_commande_fournisseur" />
+              <ScalarProperty Name="id_produit" ColumnName="id_produit" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_COMMANDER_PRODUIT" TypeName="DADModel.FK_COMMANDER_PRODUIT" StoreEntitySet="COMMANDER">
+            <EndProperty Name="PRODUIT">
+              <ScalarProperty Name="id" ColumnName="id_produit" />
+            </EndProperty>
+            <EndProperty Name="COMMANDER">
+              <ScalarProperty Name="id_commande_fournisseur" ColumnName="id_commande_fournisseur" />
+              <ScalarProperty Name="id_produit" ColumnName="id_produit" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="APPARTIENT" TypeName="DADModel.APPARTIENT" StoreEntitySet="APPARTIENT">
+            <EndProperty Name="CATEGORIE">
+              <ScalarProperty Name="id" ColumnName="id_categorie" />
+            </EndProperty>
+            <EndProperty Name="PRODUIT">
+              <ScalarProperty Name="id" ColumnName="id_produit" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DataModel">
+        <EntityTypeShape EntityType="DADModel.ADRESSE_CLIENT" Width="1.5" PointX="3" PointY="1.25" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="DADModel.CATEGORIE" Width="1.5" PointX="6" PointY="6.875" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="DADModel.CLIENT" Width="1.5" PointX="0.75" PointY="1.125" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="DADModel.COMMANDE_CLIENT" Width="1.5" PointX="5.25" PointY="1.375" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DADModel.COMMANDE_FOURNISSEUR" Width="1.5" PointX="7.5" PointY="1" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="DADModel.COMMANDER" Width="1.5" PointX="9.75" PointY="1.5" Height="1.9802864583333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="DADModel.FOURNISSEUR" Width="1.5" PointX="4.125" PointY="4.375" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="DADModel.PRODUIT" Width="1.5" PointX="8.25" PointY="6.625" Height="2.9417936197916674" IsExpanded="true" />
+        <AssociationConnector Association="DADModel.FK_ADRESSE_CLIENT_CLIENT" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.4324446614583328" />
+          <ConnectorPoint PointX="3" PointY="2.4324446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="DADModel.FK_COMMANDE_CLIENT_ADRESSE_CLIENT" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="2.4612939453125" />
+          <ConnectorPoint PointX="5.25" PointY="2.4612939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="DADModel.FK_CATEGORIE_CATEGORIE" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.5319230769230767" PointY="8.8552864583333317" />
+          <ConnectorPoint PointX="6.5319230769230767" PointY="9.1052864583333317" />
+          <ConnectorPoint PointX="6.9784615384615378" PointY="9.1052864583333317" />
+          <ConnectorPoint PointX="6.9784615384615378" PointY="8.8552864583333317" />
+        </AssociationConnector>
+        <AssociationConnector Association="DADModel.FK_COMMANDE_CLIENT_CLIENT" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="3.6821907552083335" />
+          <ConnectorPoint PointX="2.625" PointY="4.0571907552083335" />
+          <ConnectorPoint PointX="2.625" PointY="3.9225878906249996" />
+          <ConnectorPoint PointX="4.875" PointY="3.9225878906249996" />
+          <ConnectorPoint PointX="5.25" PointY="3.5475878906249996" />
+        </AssociationConnector>
+        <AssociationConnector Association="DADModel.FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="2.4612939453125" />
+          <ConnectorPoint PointX="7.5" PointY="2.4612939453125" />
+        </AssociationConnector>
+        <AssociationConnector Association="DADModel.FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.625" PointY="5.46875" />
+          <ConnectorPoint PointX="7.84375" PointY="5.46875" />
+          <ConnectorPoint PointX="7.84375" PointY="3.9417936197916656" />
+        </AssociationConnector>
+        <AssociationConnector Association="DADModel.FK_COMMANDER_COMMANDE_FOURNISSEUR" ManuallyRouted="false">
+          <ConnectorPoint PointX="9" PointY="2.4901432291666663" />
+          <ConnectorPoint PointX="9.75" PointY="2.4901432291666663" />
+        </AssociationConnector>
+        <AssociationConnector Association="DADModel.FK_COMMANDER_PRODUIT" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.75" PointY="8.0958968098958337" />
+          <ConnectorPoint PointX="10.53125" PointY="8.0958968098958337" />
+          <ConnectorPoint PointX="10.53125" PointY="3.4802864583333326" />
+        </AssociationConnector>
+        <AssociationConnector Association="DADModel.APPARTIENT" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="7.8651432291666659" />
+          <ConnectorPoint PointX="8.25" PointY="7.8651432291666659" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
