@@ -3,5 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
+    	<StackPanel Margin="8,57,8,8" Orientation="Horizontal">
+    		<Button Content="Button" Width="75"/>
+    		<Button Content="Button" Width="75"/>
+    	</StackPanel>
     </Grid>
 </Window>
