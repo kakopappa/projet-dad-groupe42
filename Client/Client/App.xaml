@@ -11,6 +11,9 @@
                 <ResourceDictionary Source="Resources/Generic.xaml" />
                 <ResourceDictionary Source="Resources/Animations.xaml" />
                 <ResourceDictionary Source="Resources/Headings.xaml" />
+                <ResourceDictionary Source="Resources/Scrollbar.xaml" />
+                <ResourceDictionary Source="Resources/Scrollviewer.xaml" />
+                <ResourceDictionary Source="Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -12,22 +12,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Client
+namespace Client.Controls
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour PanControl.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class PanControl : UserControl
     {
-        public MainWindow()
+        public PanControl()
         {
             InitializeComponent();
+            Loaded += new RoutedEventHandler(PanControl_Loaded);
         }
 
-        //private void panViewer_MouseMove(object sender, MouseEventArgs e)
-        //{
-        //    Point m = Mouse.GetPosition(this.panViewer);
-        //    panViewer.ScrollToHorizontalOffset(m.X * (homeStackPanel.ActualWidth - panViewer.ActualWidth) / panViewer.ActualWidth);
-        //}
+        void PanControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
