@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DADModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+      <Schema Namespace="DADModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="DADModelStoreContainer">
-          <EntitySet Name="ADRESSE_CLIENT" EntityType="DADModel.Store.ADRESSE_CLIENT" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="APPARTIENT" EntityType="DADModel.Store.APPARTIENT" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CATEGORIE" EntityType="DADModel.Store.CATEGORIE" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CLIENT" EntityType="DADModel.Store.CLIENT" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="COMMANDE_CLIENT" EntityType="DADModel.Store.COMMANDE_CLIENT" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="COMMANDE_FOURNISSEUR" EntityType="DADModel.Store.COMMANDE_FOURNISSEUR" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="COMMANDER" EntityType="DADModel.Store.COMMANDER" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="FOURNISSEUR" EntityType="DADModel.Store.FOURNISSEUR" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="PRODUIT" EntityType="DADModel.Store.PRODUIT" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ADRESSE_CLIENT" EntityType="DADModel.Store.ADRESSE_CLIENT" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="APPARTIENT" EntityType="DADModel.Store.APPARTIENT" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CATEGORIE" EntityType="DADModel.Store.CATEGORIE" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="CLIENT" EntityType="DADModel.Store.CLIENT" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="COMMANDE_CLIENT" EntityType="DADModel.Store.COMMANDE_CLIENT" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="COMMANDE_FOURNISSEUR" EntityType="DADModel.Store.COMMANDE_FOURNISSEUR" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="COMMANDER" EntityType="DADModel.Store.COMMANDER" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="FOURNISSEUR" EntityType="DADModel.Store.FOURNISSEUR" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="PRODUIT" EntityType="DADModel.Store.PRODUIT" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
           <AssociationSet Name="FK_ADRESSE_CLIENT_CLIENT" Association="DADModel.Store.FK_ADRESSE_CLIENT_CLIENT">
             <End Role="CLIENT" EntitySet="CLIENT" />
             <End Role="ADRESSE_CLIENT" EntitySet="ADRESSE_CLIENT" />
@@ -277,7 +277,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DADModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+      <Schema Namespace="DADModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="DADEntities">
           <EntitySet Name="ADRESSE_CLIENT" EntityType="DADModel.ADRESSE_CLIENT" />
           <EntitySet Name="CATEGORIE" EntityType="DADModel.CATEGORIE" />
@@ -481,7 +481,7 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DADModelStoreContainer" CdmEntityContainer="DADEntities">
           <EntitySetMapping Name="ADRESSE_CLIENT"><EntityTypeMapping TypeName="DADModel.ADRESSE_CLIENT"><MappingFragment StoreEntitySet="ADRESSE_CLIENT">
             <ScalarProperty Name="id" ColumnName="id" />
@@ -621,7 +621,7 @@
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
