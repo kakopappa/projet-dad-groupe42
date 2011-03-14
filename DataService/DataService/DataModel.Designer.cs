@@ -26,6 +26,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDE_FOURNISSEUR_FOURNISSEUR", "FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataService.FOURNISSEUR), "COMMANDE_FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.COMMANDE_FOURNISSEUR))]
 [assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDER_COMMANDE_FOURNISSEUR", "COMMANDE_FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataService.COMMANDE_FOURNISSEUR), "COMMANDER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.COMMANDER), true)]
 [assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDER_PRODUIT", "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataService.PRODUIT), "COMMANDER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.COMMANDER), true)]
+[assembly: EdmRelationshipAttribute("DADModel", "FK_PRODUIT_FOURNISSEUR", "FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataService.FOURNISSEUR), "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.PRODUIT))]
 [assembly: EdmRelationshipAttribute("DADModel", "APPARTIENT", "CATEGORIE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.CATEGORIE), "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.PRODUIT))]
 
 #endregion
@@ -1857,6 +1858,28 @@ namespace DataService
                 }
             }
         }
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DADModel", "FK_PRODUIT_FOURNISSEUR", "PRODUIT")]
+        public EntityCollection<PRODUIT> PRODUIT
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<PRODUIT>("DADModel.FK_PRODUIT_FOURNISSEUR", "PRODUIT");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<PRODUIT>("DADModel.FK_PRODUIT_FOURNISSEUR", "PRODUIT", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -1878,17 +1901,15 @@ namespace DataService
         /// <param name="reference">Valeur initiale de la propriété reference.</param>
         /// <param name="nom">Valeur initiale de la propriété nom.</param>
         /// <param name="marque">Valeur initiale de la propriété marque.</param>
-        /// <param name="id_fournisseur">Valeur initiale de la propriété id_fournisseur.</param>
         /// <param name="prix">Valeur initiale de la propriété prix.</param>
         /// <param name="stock">Valeur initiale de la propriété stock.</param>
-        public static PRODUIT CreatePRODUIT(global::System.Guid id, global::System.String reference, global::System.String nom, global::System.String marque, global::System.Guid id_fournisseur, global::System.Decimal prix, global::System.Decimal stock)
+        public static PRODUIT CreatePRODUIT(global::System.Guid id, global::System.String reference, global::System.String nom, global::System.String marque, global::System.Decimal prix, global::System.Decimal stock)
         {
             PRODUIT pRODUIT = new PRODUIT();
             pRODUIT.id = id;
             pRODUIT.reference = reference;
             pRODUIT.nom = nom;
             pRODUIT.marque = marque;
-            pRODUIT.id_fournisseur = id_fournisseur;
             pRODUIT.prix = prix;
             pRODUIT.stock = stock;
             return pRODUIT;
@@ -2001,30 +2022,6 @@ namespace DataService
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid id_fournisseur
-        {
-            get
-            {
-                return _id_fournisseur;
-            }
-            set
-            {
-                Onid_fournisseurChanging(value);
-                ReportPropertyChanging("id_fournisseur");
-                _id_fournisseur = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("id_fournisseur");
-                Onid_fournisseurChanged();
-            }
-        }
-        private global::System.Guid _id_fournisseur;
-        partial void Onid_fournisseurChanging(global::System.Guid value);
-        partial void Onid_fournisseurChanged();
-    
-        /// <summary>
-        /// Aucune documentation sur les métadonnées n'est disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.Decimal prix
         {
             get
@@ -2114,6 +2111,44 @@ namespace DataService
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<COMMANDER>("DADModel.FK_COMMANDER_PRODUIT", "COMMANDER", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DADModel", "FK_PRODUIT_FOURNISSEUR", "FOURNISSEUR")]
+        public FOURNISSEUR FOURNISSEUR
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FOURNISSEUR>("DADModel.FK_PRODUIT_FOURNISSEUR", "FOURNISSEUR").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FOURNISSEUR>("DADModel.FK_PRODUIT_FOURNISSEUR", "FOURNISSEUR").Value = value;
+            }
+        }
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<FOURNISSEUR> FOURNISSEURReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<FOURNISSEUR>("DADModel.FK_PRODUIT_FOURNISSEUR", "FOURNISSEUR");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FOURNISSEUR>("DADModel.FK_PRODUIT_FOURNISSEUR", "FOURNISSEUR", value);
                 }
             }
         }
