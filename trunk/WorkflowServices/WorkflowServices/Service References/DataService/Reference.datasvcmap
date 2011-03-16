@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="51d83b4a-7adb-414d-841a-1135312c2660" xmlns="urn:schemas-microsoft-com:xml-dataservicemap">
+  <MetadataSources>
+    <MetadataSource Address="http://nanaki-sandbox:8080/DataService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.edmx" MetadataType="Edmx" ID="6f3879d5-8dfe-454c-ac05-98f5d68d984a" SourceId="1" SourceUrl="http://nanaki-sandbox:8080/DataService.svc" />
+  </Metadata>
+  <Extensions />
+</ReferenceGroup>
