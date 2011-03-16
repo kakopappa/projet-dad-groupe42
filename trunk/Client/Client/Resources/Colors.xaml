@@ -1,6 +1,25 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    
+    <Color x:Key="ThemeWhiteColor">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="ThemeWhiteColorBrush" Color="{StaticResource ThemeWhiteColor}" />
+
+    <Color x:Key="ThemeBlackColor">#FF000000</Color>
+    <SolidColorBrush x:Key="ThemeBlackColorBrush" Color="{StaticResource ThemeBlackColor}" />
+    
+    <Color x:Key="BgColor">#FF00A9DA</Color>
+    <SolidColorBrush x:Key="BgColorBrush" Color="{StaticResource BgColor}" />
+
+    <Color x:Key="BgColorWhite">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="BgColorWhiteBrush" Color="{StaticResource BgColorWhite}" />
+    
+    <Color x:Key="ZunePanElementTitleColor">#FF96E5FF</Color>
+    <SolidColorBrush x:Key="ZunePanElementTitleColorBrush" Color="{StaticResource ZunePanElementTitleColor}" />
+    
+    <Color x:Key="ZuneMenuColor">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="ZuneMenuColorBrush" Color="{StaticResource ZuneMenuColor}" />
+    
     <!--
     Theme colors
     -->

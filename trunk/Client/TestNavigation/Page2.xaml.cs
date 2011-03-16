@@ -12,22 +12,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Client.Controls
+namespace TestNavigation
 {
     /// <summary>
-    /// Logique d'interaction pour PanControl.xaml
+    /// Logique d'interaction pour Page2.xaml
     /// </summary>
-    public partial class PanControl : UserControl
+    public partial class Page2 : Page
     {
-        public PanControl()
+        public Page2()
         {
             InitializeComponent();
-            Loaded += new RoutedEventHandler(PanControl_Loaded);
-        }
-
-        void PanControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            
         }
     }
 }

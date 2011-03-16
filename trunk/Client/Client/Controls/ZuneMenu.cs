@@ -11,7 +11,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace Client.Controls
 {
@@ -41,41 +40,29 @@ namespace Client.Controls
     /// Étape 2)
     /// Utilisez à présent votre contrôle dans le fichier XAML.
     ///
-    ///     <MyNamespace:ZunePanControl/>
+    ///     <MyNamespace:ZuneMenu/>
     ///
     /// </summary>
-    public class ZunePanControl : ItemsControl
+    public class ZuneMenu : ItemsControl
     {
-        private ScrollViewer scrollViewer;
-        private StackPanel stackPanel;
-
-        static ZunePanControl()
+        static ZuneMenu()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(ZunePanControl), new FrameworkPropertyMetadata(typeof(ZunePanControl)));
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(ZuneMenu), new FrameworkPropertyMetadata(typeof(ZuneMenu)));
         }
 
-        public ZunePanControl()
+        public void SetCurrentPage(ZuneMenuElement currentEle)
         {
-            this.Loaded += new RoutedEventHandler(ZunePanControl_Loaded);
-            this.MouseMove += new MouseEventHandler(ZunePanControl_MouseMove);
-        }
-
-        void ZunePanControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.scrollViewer = (ScrollViewer)this.Template.FindName("scrollViewer", this);
-            this.stackPanel = (StackPanel)this.Template.FindName("stackPanel", this);
-        }
-
-        void ZunePanControl_MouseMove(object sender, MouseEventArgs e)
-        {
-            Point mousePosition = Mouse.GetPosition(this);
-            this.scrollViewer.Dispatcher.BeginInvoke(
-                DispatcherPriority.Normal,
-                new Action(() =>
-                    {
-                        this.scrollViewer.ScrollToHorizontalOffset(
-                            mousePosition.X * (this.stackPanel.ActualWidth - this.scrollViewer.ActualWidth) / this.scrollViewer.ActualWidth);
-                    }));
+            foreach(ZuneMenuElement item in Items)
+            {
+                if (item == currentEle)
+                {
+                    item.IsMenuSelected = true;
+                }
+                else
+                {
+                    item.IsMenuSelected = false;
+                }
+            }
         }
     }
 }
