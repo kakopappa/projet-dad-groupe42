@@ -69,7 +69,7 @@
           <Property Name="adresse" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ville" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="code_postal" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="pays" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="pays" Type="nchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="APPARTIENT">
           <Key>
@@ -143,6 +143,7 @@
           <Property Name="adresse" Type="nvarchar(max)" Nullable="false" />
           <Property Name="ville" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="code_postal" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="pays" Type="nchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="PRODUIT">
           <Key>
@@ -351,7 +352,7 @@
           <Property Type="String" Name="adresse" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ville" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="code_postal" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="pays" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="pays" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="CLIENT" Relationship="DADModel.FK_ADRESSE_CLIENT_CLIENT" FromRole="ADRESSE_CLIENT" ToRole="CLIENT" />
           <NavigationProperty Name="COMMANDE_CLIENT" Relationship="DADModel.FK_COMMANDE_CLIENT_ADRESSE_CLIENT" FromRole="ADRESSE_CLIENT" ToRole="COMMANDE_CLIENT" />
         </EntityType>
@@ -427,6 +428,7 @@
           <Property Type="String" Name="adresse" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ville" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="code_postal" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="pays" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="COMMANDE_FOURNISSEUR" Relationship="DADModel.FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" FromRole="FOURNISSEUR" ToRole="COMMANDE_FOURNISSEUR" />
           <NavigationProperty Name="PRODUIT" Relationship="DADModel.FK_PRODUIT_FOURNISSEUR" FromRole="FOURNISSEUR" ToRole="PRODUIT" />
         </EntityType>
@@ -572,6 +574,7 @@
           <EntitySetMapping Name="FOURNISSEUR">
             <EntityTypeMapping TypeName="DADModel.FOURNISSEUR">
               <MappingFragment StoreEntitySet="FOURNISSEUR">
+                <ScalarProperty Name="pays" ColumnName="pays" />
                 <ScalarProperty Name="code_postal" ColumnName="code_postal" />
                 <ScalarProperty Name="ville" ColumnName="ville" />
                 <ScalarProperty Name="adresse" ColumnName="adresse" />
@@ -682,59 +685,73 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="DataModel">
-        <EntityTypeShape EntityType="DADModel.ADRESSE_CLIENT" Width="1.75" PointX="3" PointY="2.875" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="DADModel.CATEGORIE" Width="1.5" PointX="13.125" PointY="1" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="DADModel.CLIENT" Width="1.5" PointX="0.5" PointY="5.75" Height="2.5571907552083388" />
-        <EntityTypeShape EntityType="DADModel.COMMANDE_CLIENT" Width="2" PointX="0.75" PointY="0.75" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="DADModel.COMMANDE_FOURNISSEUR" Width="2.25" PointX="5.25" PointY="0.75" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="DADModel.COMMANDER" Width="1.5" PointX="8.375" PointY="1.625" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="DADModel.FOURNISSEUR" Width="1.5" PointX="5.75" PointY="4.75" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="DADModel.PRODUIT" Width="1.5" PointX="10.625" PointY="0.875" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="DADModel.ADRESSE_CLIENT" Width="1.5" PointX="1.5" PointY="9" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="DADModel.CATEGORIE" Width="1.5" PointX="3.75" PointY="0.875" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="DADModel.CLIENT" Width="1.5" PointX="1.5" PointY="13" Height="2.5571907552083317" />
+        <EntityTypeShape EntityType="DADModel.COMMANDE_CLIENT" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="DADModel.COMMANDE_FOURNISSEUR" Width="1.5" PointX="3" PointY="4.375" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="DADModel.COMMANDER" Width="1.5" PointX="8.25" PointY="4.875" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="DADModel.FOURNISSEUR" Width="1.5" PointX="0.75" PointY="4.25" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="DADModel.PRODUIT" Width="1.5" PointX="6" PointY="4.375" Height="2.9417936197916674" />
         <AssociationConnector Association="DADModel.FK_ADRESSE_CLIENT_CLIENT" >
-          <ConnectorPoint PointX="2" PointY="7.0285953776041694" />
-          <ConnectorPoint PointX="3.875" PointY="7.0285953776041694" />
-          <ConnectorPoint PointX="3.875" PointY="5.2398893229166674" />
+          <ConnectorPoint PointX="2.25" PointY="13" />
+          <ConnectorPoint PointX="2.25" PointY="11.364889322916667" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_COMMANDE_CLIENT_ADRESSE_CLIENT" >
-          <ConnectorPoint PointX="3.875" PointY="2.875" />
-          <ConnectorPoint PointX="3.875" PointY="2.371272222656251" />
-          <ConnectorPoint PointX="2.75" PointY="2.371272222656251" />
+          <ConnectorPoint PointX="2.5937505" PointY="9" />
+          <ConnectorPoint PointX="2.5937505" PointY="1.8362939453125016" />
+          <ConnectorPoint PointX="2.25" PointY="1.8362939453125016" />
         </AssociationConnector>
-        <AssociationConnector Association="DADModel.FK_CATEGORIE_CATEGORIE" ManuallyRouted="true" >
-          <ConnectorPoint PointX="14.000229207537769" PointY="2.9802864583333388" />
-          <ConnectorPoint PointX="14.000229207537769" PointY="3.3552864583333388" />
-          <ConnectorPoint PointX="15" PointY="3.3552864583333388" />
-          <ConnectorPoint PointX="15" PointY="1.9701391707251084" />
-          <ConnectorPoint PointX="14.625" PointY="1.9701391707251084" />
+        <AssociationConnector Association="DADModel.FK_CATEGORIE_CATEGORIE" >
+          <ConnectorPoint PointX="4.2819230769230767" PointY="2.8552864583333317" />
+          <ConnectorPoint PointX="4.2819230769230767" PointY="3.1052864583333317" />
+          <ConnectorPoint PointX="4.7284615384615378" PointY="3.1052864583333317" />
+          <ConnectorPoint PointX="4.7284615384615378" PointY="2.8552864583333317" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_COMMANDE_CLIENT_CLIENT" >
-          <ConnectorPoint PointX="1.375" PointY="5.75" />
-          <ConnectorPoint PointX="1.375" PointY="2.9225878906250031" />
+          <ConnectorPoint PointX="1.5011528461538464" PointY="13" />
+          <ConnectorPoint PointX="1.1261528461538468" PointY="12.625" />
+          <ConnectorPoint PointX="0.375" PointY="12.625" />
+          <ConnectorPoint PointX="0.375" PointY="3.2975878906250031" />
+          <ConnectorPoint PointX="0.75" PointY="2.9225878906250031" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT" >
-          <ConnectorPoint PointX="2.75" PointY="1.8050414453125008" />
-          <ConnectorPoint PointX="5.25" PointY="1.8050414453125008" />
+          <ConnectorPoint PointX="2.25" PointY="0.78125" />
+          <ConnectorPoint PointX="3.34375" PointY="0.78125" />
+          <ConnectorPoint PointX="3.34375" PointY="4.375" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" >
-          <ConnectorPoint PointX="6.5" PointY="4.75" />
-          <ConnectorPoint PointX="6.5" PointY="3.6917936197916674" />
+          <ConnectorPoint PointX="2.25" PointY="5.8458968098958337" />
+          <ConnectorPoint PointX="2.5104171666666666" PointY="5.8458968098958328" />
+          <ConnectorPoint PointX="2.6770838333333336" PointY="5.8458968098958337" />
+          <ConnectorPoint PointX="3" PointY="5.8458968098958337" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_COMMANDER_COMMANDE_FOURNISSEUR" >
-          <ConnectorPoint PointX="7.5" PointY="2.6151432291666694" />
-          <ConnectorPoint PointX="8.375" PointY="2.6151432291666694" />
+          <ConnectorPoint PointX="3.75" PointY="7.3167936197916674" />
+          <ConnectorPoint PointX="3.75" PointY="7.5667936197916674" />
+          <ConnectorPoint PointX="5.666666666666667" PointY="7.5667936197916665" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="7.5667936197916674" />
+          <ConnectorPoint PointX="7.875" PointY="7.5667936197916674" />
+          <ConnectorPoint PointX="7.875" PointY="5.8651432291666694" />
+          <ConnectorPoint PointX="8.25" PointY="5.8651432291666694" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_COMMANDER_PRODUIT" >
-          <ConnectorPoint PointX="10.625" PointY="2.6151432291666694" />
-          <ConnectorPoint PointX="9.875" PointY="2.6151432291666694" />
+          <ConnectorPoint PointX="7.5" PointY="5.3075716145833347" />
+          <ConnectorPoint PointX="8.25" PointY="5.3075716145833347" />
         </AssociationConnector>
-        <AssociationConnector Association="DADModel.FK_PRODUIT_FOURNISSEUR" ManuallyRouted="false" >
-          <ConnectorPoint PointX="7.25" PointY="6.4427937491081622" />
-          <ConnectorPoint PointX="11.375" PointY="6.4427937491081622" />
-          <ConnectorPoint PointX="11.375" PointY="3.8167936197916674" />
+        <AssociationConnector Association="DADModel.FK_PRODUIT_FOURNISSEUR" >
+          <ConnectorPoint PointX="2.25" PointY="7.3217863597756461" />
+          <ConnectorPoint PointX="2.5348249349011214" PointY="7.6066112946767683" />
+          <ConnectorPoint PointX="2.6526760650988788" PointY="7.7244624248745266" />
+          <ConnectorPoint PointX="2.9375" PointY="8.009286359775647" />
+          <ConnectorPoint PointX="2.9375" PointY="7.6917936197916674" />
+          <ConnectorPoint PointX="5.625" PointY="7.6917936197916674" />
+          <ConnectorPoint PointX="6" PointY="7.3167936197916674" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.APPARTIENT" >
-          <ConnectorPoint PointX="13.125" PointY="1.9901432291666694" />
-          <ConnectorPoint PointX="12.125" PointY="1.9901432291666694" />
+          <ConnectorPoint PointX="5.25" PointY="1.8651432291666659" />
+          <ConnectorPoint PointX="6.75" PointY="1.8651432291666659" />
+          <ConnectorPoint PointX="6.75" PointY="4.375" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

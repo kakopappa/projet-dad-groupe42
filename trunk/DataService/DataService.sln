@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataService", "DataService\DataService.csproj", "{B719D5D3-F8B9-40F7-824C-8705045CFBAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataServiceClient", "DataServiceClient\DataServiceClient.csproj", "{AE3F29C9-20DD-4DA2-A2F0-697C728E3DE7}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -17,6 +19,10 @@ Global
 		{B719D5D3-F8B9-40F7-824C-8705045CFBAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B719D5D3-F8B9-40F7-824C-8705045CFBAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B719D5D3-F8B9-40F7-824C-8705045CFBAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE3F29C9-20DD-4DA2-A2F0-697C728E3DE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE3F29C9-20DD-4DA2-A2F0-697C728E3DE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE3F29C9-20DD-4DA2-A2F0-697C728E3DE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE3F29C9-20DD-4DA2-A2F0-697C728E3DE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
