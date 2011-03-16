@@ -19,4 +19,72 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="{x:Type local:ZunePanElement}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ZunePanElement}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid Width="{TemplateBinding Width}" Margin="8,0,8,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="45"/>
+                                <RowDefinition Height="0.842*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0" Margin="8,0" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="32" FontFamily="Segoe WP" Foreground="{DynamicResource ZunePanElementTitleColorBrush}"><Run Language="fr-fr" Text="{TemplateBinding Title}"/></TextBlock>
+                            <ContentPresenter Width="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="1" Margin="8,0,16,0" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Opacity" Value="0.7" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="1" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type local:ZuneMenu}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ZuneMenu}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <StackPanel Margin="8,0,8,0" IsItemsHost="True" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:ZuneMenuElement}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ZuneMenuElement}">
+                    <Grid Margin="0,0,10,0">
+                        <Rectangle Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Fill="Transparent" />
+                        <ContentPresenter />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontFamily" Value="Segoe WP Light" />
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="Opacity" Value="0.45" />
+        <Setter Property="Width" Value="Auto" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="0.8" />
+            </Trigger>
+            <DataTrigger 
+                Binding="{Binding Path=IsMenuSelected, RelativeSource={RelativeSource Self}}"
+                Value="True">
+                <Setter Property="Opacity" Value="1.0" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

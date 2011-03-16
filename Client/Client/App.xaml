@@ -6,9 +6,11 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/TextBox.xaml" />
+                <ResourceDictionary Source="Resources/Buttons.xaml" />
                 <ResourceDictionary Source="Resources/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Blue.xaml" />
                 <ResourceDictionary Source="Resources/Generic.xaml" />
+                <ResourceDictionary Source="Resources/Geometry.xaml" />
                 <ResourceDictionary Source="Resources/Animations.xaml" />
                 <ResourceDictionary Source="Resources/Headings.xaml" />
                 <ResourceDictionary Source="Resources/Scrollbar.xaml" />

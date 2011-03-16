@@ -1,11 +1,11 @@
-﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Client.Controls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ee="http://schemas.microsoft.com/expression/2010/effects" mc:Ignorable="d"
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:Client.Controls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ee="http://schemas.microsoft.com/expression/2010/effects" xmlns:ChooseForMe="clr-namespace:ChooseForMe" mc:Ignorable="d"
         x:Class="Client.MainWindow"
-        Title="MainWindow" Height="537.25" Width="725" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}">
-    <Grid Margin="8" Background="#FF5FB7FB">
+        Title="MainWindow" Height="537.25" Width="700" AllowsTransparency="True" WindowStyle="None" Background="{x:Null}" PreviewMouseMove="ResetCursor">
+	<Grid Name="rootGrid" Margin="8" Background="{DynamicResource BgColorBrush}">
     	<Grid.Effect>
     		<DropShadowEffect ShadowDepth="0" Direction="0" BlurRadius="10"/>
     	</Grid.Effect>
-        <Path Data="M116.5624,0 L675.23193,399.87979 399.21033,785.50806 374.29462,775.17188 C149.89621,676.79859 -3.4448548E-06,498.77014 5.0248971E-13,295.4823 -5.2493032E-06,188.99817 41.127979,89.444659 112.54825,4.6395087 z" Margin="-42.086,-443.596,75.854,179.338" Opacity="0.04" RenderTransformOrigin="1.1513229537194,0.376167113107255" Stretch="Fill" StrokeThickness="44" Fill="Black">
+        <Path Name="yoo1" Data="M99.776114,0 L642.9256,388.77124 373.52331,765.15161 360.43643,759.51379 C144.34634,661.14044 3.5450066E-06,483.11194 0,279.82397 2.1233016E-06,179.99507 34.809287,86.257515 95.830092,5.052958 z" Fill="Black" Margin="-42.086,-427.938,83.16,184.036" Opacity="0.04" RenderTransformOrigin="1.16440624383649,0.365710518319432" Stretch="Fill" StrokeThickness="44">
     		<Path.RenderTransform>
     			<TransformGroup>
     				<ScaleTransform/>
@@ -15,13 +15,22 @@
     			</TransformGroup>
     		</Path.RenderTransform>
     	</Path>
-        <Path Data="M0,0 L709.49999,0 709.49999,221.55008 707.67053,224.51259 C641.96685,327.84949 513.82195,398 366.49999,398 199.08868,398 56.441134,307.41309 2.0437186,180.48082 L0,175.52326 z" Fill="White" Margin="-0.5,0.25,0,123" Opacity="0.145" Stretch="Fill" StrokeThickness="44" />
-        <local:ZunePanControl Margin="8,88,8,123" Background="#00000000" Visibility="Hidden">
-            <Button Content="Button" Width="212"/>
-            <Button Content="Button" Width="224"/>
-            <Button Content="Button" Width="176"/>
-            <Button Content="Button" Width="176"/>
-            <Button Content="Button" Width="176"/>
-        </local:ZunePanControl>
+        <Path Name="yoo2" Data="M0,0 L709.49999,0 709.49999,221.55008 707.67053,224.51259 C641.96685,327.84949 513.82195,398 366.49999,398 199.08868,398 56.441134,307.41309 2.0437186,180.48082 L0,175.52326 z" Fill="White" Margin="-0.5,0.25,0,123" Opacity="0.145" Stretch="Fill" StrokeThickness="44" />
+        <!-- Frame and frame -->
+        <Frame ClipToBounds="true" Name="frame" JournalOwnership="UsesParentJournal" Margin="0,81,0,0" />
+        
+    	<local:ZuneMenu x:Name="menu" Height="41" VerticalAlignment="Top" Margin="0,36,0,0">
+            <local:ZuneMenuElement Foreground="White" Content="accueil" NavigateTo="Client.Pages.Home" />
+            <local:ZuneMenuElement Foreground="White" Content="catalogue" NavigateTo="Client.Pages.Catalog" />
+        </local:ZuneMenu>
+        <ChooseForMe:MetroTitleChrome x:Name="chrome" Foreground="White" WindowTitle="APPLICATION" Margin="-0.5,1,0,0" VerticalAlignment="Top" d:LayoutOverrides="Width, Height"/>
+    	<Rectangle PreviewMouseDown="Resize" MouseMove="DisplayResizeCursor" x:Name="bottom" Fill="Transparent" Height="2" Margin="5,0" VerticalAlignment="Bottom"/>
+    	<Rectangle PreviewMouseDown="Resize" MouseMove="DisplayResizeCursor" x:Name="bottomLeft" Fill="Transparent" HorizontalAlignment="Left" Height="5" Margin="0" VerticalAlignment="Bottom" Width="5"/>
+    	<Rectangle PreviewMouseDown="Resize" MouseMove="DisplayResizeCursor" x:Name="bottomRight" Fill="Transparent" HorizontalAlignment="Right" Height="5" Margin="0" VerticalAlignment="Bottom" Width="5"/>
+    	<Rectangle PreviewMouseDown="Resize" MouseMove="DisplayResizeCursor" x:Name="top" Fill="Transparent" Height="2" Margin="5,0" VerticalAlignment="Top"/>
+    	<Rectangle PreviewMouseDown="Resize" MouseMove="DisplayResizeCursor" x:Name="topLeft" Fill="Transparent" Height="5" Margin="0" VerticalAlignment="Top" Width="5" HorizontalAlignment="Left"/>
+    	<Rectangle PreviewMouseDown="Resize" MouseMove="DisplayResizeCursor" x:Name="topRight" Fill="Transparent" Height="5" Margin="0" VerticalAlignment="Top" Width="5" HorizontalAlignment="Right"/>
+    	<Rectangle PreviewMouseDown="Resize" MouseMove="DisplayResizeCursor" x:Name="left" Fill="Transparent" Margin="0,5" Width="2" HorizontalAlignment="Left"/>
+    	<Rectangle PreviewMouseDown="Resize" MouseMove="DisplayResizeCursor" x:Name="right" Fill="Transparent" Margin="0,5" Width="2" HorizontalAlignment="Right"/>
     </Grid>
 </Window>
