@@ -57,7 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataServiceClientsvc.svc" />
+    <Content Include="DataServiceClient.svc" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -72,8 +72,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DataServiceClientsvc.svc.cs">
-      <DependentUpon>DataServiceClientsvc.svc</DependentUpon>
+    <Compile Include="DataServiceClient.svc.cs">
+      <DependentUpon>DataServiceClient.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
