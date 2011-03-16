@@ -738,7 +738,8 @@ namespace DataServiceClient
         /// <param name="prenom">Valeur initiale de la propriété prenom.</param>
         /// <param name="phone">Valeur initiale de la propriété phone.</param>
         /// <param name="email">Valeur initiale de la propriété email.</param>
-        public static CLIENT CreateCLIENT(global::System.Guid id, global::System.String nom, global::System.String prenom, global::System.String phone, global::System.String email)
+        /// <param name="password">Valeur initiale de la propriété password.</param>
+        public static CLIENT CreateCLIENT(global::System.Guid id, global::System.String nom, global::System.String prenom, global::System.String phone, global::System.String email, global::System.String password)
         {
             CLIENT cLIENT = new CLIENT();
             cLIENT.id = id;
@@ -746,6 +747,7 @@ namespace DataServiceClient
             cLIENT.prenom = prenom;
             cLIENT.phone = phone;
             cLIENT.email = email;
+            cLIENT.password = password;
             return cLIENT;
         }
 
@@ -880,7 +882,7 @@ namespace DataServiceClient
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        private global::System.String password
+        public global::System.String password
         {
             get
             {
@@ -1772,19 +1774,23 @@ namespace DataServiceClient
         /// <param name="nom">Valeur initiale de la propriété nom.</param>
         /// <param name="email">Valeur initiale de la propriété email.</param>
         /// <param name="phone">Valeur initiale de la propriété phone.</param>
+        /// <param name="password">Valeur initiale de la propriété password.</param>
         /// <param name="adresse">Valeur initiale de la propriété adresse.</param>
         /// <param name="ville">Valeur initiale de la propriété ville.</param>
         /// <param name="code_postal">Valeur initiale de la propriété code_postal.</param>
-        public static FOURNISSEUR CreateFOURNISSEUR(global::System.Guid id, global::System.String nom, global::System.String email, global::System.String phone, global::System.String adresse, global::System.String ville, global::System.String code_postal)
+        /// <param name="pays">Valeur initiale de la propriété pays.</param>
+        public static FOURNISSEUR CreateFOURNISSEUR(global::System.Guid id, global::System.String nom, global::System.String email, global::System.String phone, global::System.String password, global::System.String adresse, global::System.String ville, global::System.String code_postal, global::System.String pays)
         {
             FOURNISSEUR fOURNISSEUR = new FOURNISSEUR();
             fOURNISSEUR.id = id;
             fOURNISSEUR.nom = nom;
             fOURNISSEUR.email = email;
             fOURNISSEUR.phone = phone;
+            fOURNISSEUR.password = password;
             fOURNISSEUR.adresse = adresse;
             fOURNISSEUR.ville = ville;
             fOURNISSEUR.code_postal = code_postal;
+            fOURNISSEUR.pays = pays;
             return fOURNISSEUR;
         }
 
@@ -1895,7 +1901,7 @@ namespace DataServiceClient
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        private global::System.String password
+        public global::System.String password
         {
             get
             {
@@ -1985,6 +1991,30 @@ namespace DataServiceClient
         private global::System.String _code_postal;
         partial void Oncode_postalChanging(global::System.String value);
         partial void Oncode_postalChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String pays
+        {
+            get
+            {
+                return _pays;
+            }
+            set
+            {
+                OnpaysChanging(value);
+                ReportPropertyChanging("pays");
+                _pays = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("pays");
+                OnpaysChanged();
+            }
+        }
+        private global::System.String _pays;
+        partial void OnpaysChanging(global::System.String value);
+        partial void OnpaysChanged();
 
         #endregion
     
