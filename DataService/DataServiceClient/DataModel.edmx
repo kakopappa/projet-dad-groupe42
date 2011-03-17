@@ -14,6 +14,7 @@
           <EntitySet Name="COMMANDE_FOURNISSEUR" EntityType="DADModel.Store.COMMANDE_FOURNISSEUR" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="COMMANDER" EntityType="DADModel.Store.COMMANDER" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="FOURNISSEUR" EntityType="DADModel.Store.FOURNISSEUR" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="IMAGE" EntityType="DADModel.Store.IMAGE" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="PRODUIT" EntityType="DADModel.Store.PRODUIT" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_ADRESSE_CLIENT_CLIENT" Association="DADModel.Store.FK_ADRESSE_CLIENT_CLIENT">
             <End Role="CLIENT" EntitySet="CLIENT" />
@@ -55,6 +56,10 @@
             <End Role="PRODUIT" EntitySet="PRODUIT" />
             <End Role="COMMANDER" EntitySet="COMMANDER" />
           </AssociationSet>
+          <AssociationSet Name="FK_IMAGE_PRODUIT" Association="DADModel.Store.FK_IMAGE_PRODUIT">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="IMAGE" EntitySet="IMAGE" />
+          </AssociationSet>
           <AssociationSet Name="FK_PRODUIT_FOURNISSEUR" Association="DADModel.Store.FK_PRODUIT_FOURNISSEUR">
             <End Role="FOURNISSEUR" EntitySet="FOURNISSEUR" />
             <End Role="PRODUIT" EntitySet="PRODUIT" />
@@ -86,6 +91,7 @@
           <Property Name="id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="id_parent" Type="uniqueidentifier" />
           <Property Name="nom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="valide" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CLIENT">
           <Key>
@@ -145,6 +151,16 @@
           <Property Name="code_postal" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="pays" Type="nchar" Nullable="false" MaxLength="50" />
         </EntityType>
+        <EntityType Name="IMAGE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id_produit" Type="uniqueidentifier" />
+          <Property Name="url" Type="nvarchar" MaxLength="100" />
+          <Property Name="img_hauteur" Type="numeric" />
+          <Property Name="img_largeur" Type="numeric" />
+        </EntityType>
         <EntityType Name="PRODUIT">
           <Key>
             <PropertyRef Name="id" />
@@ -157,6 +173,7 @@
           <Property Name="prix" Type="smallmoney" Nullable="false" />
           <Property Name="stock" Type="numeric" Nullable="false" />
           <Property Name="description" Type="nvarchar(max)" />
+          <Property Name="disponible" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_ADRESSE_CLIENT_CLIENT">
           <End Role="CLIENT" Type="DADModel.Store.CLIENT" Multiplicity="1" />
@@ -278,6 +295,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_IMAGE_PRODUIT">
+          <End Role="PRODUIT" Type="DADModel.Store.PRODUIT" Multiplicity="0..1" />
+          <End Role="IMAGE" Type="DADModel.Store.IMAGE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUIT">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="IMAGE">
+              <PropertyRef Name="id_produit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PRODUIT_FOURNISSEUR">
           <End Role="FOURNISSEUR" Type="DADModel.Store.FOURNISSEUR" Multiplicity="1" />
           <End Role="PRODUIT" Type="DADModel.Store.PRODUIT" Multiplicity="*" />
@@ -302,6 +331,7 @@
           <EntitySet Name="COMMANDE_FOURNISSEUR" EntityType="DADModel.COMMANDE_FOURNISSEUR" />
           <EntitySet Name="COMMANDER" EntityType="DADModel.COMMANDER" />
           <EntitySet Name="FOURNISSEUR" EntityType="DADModel.FOURNISSEUR" />
+          <EntitySet Name="IMAGE" EntityType="DADModel.IMAGE" />
           <EntitySet Name="PRODUIT" EntityType="DADModel.PRODUIT" />
           <AssociationSet Name="FK_ADRESSE_CLIENT_CLIENT" Association="DADModel.FK_ADRESSE_CLIENT_CLIENT">
             <End Role="CLIENT" EntitySet="CLIENT" />
@@ -339,6 +369,10 @@
             <End Role="FOURNISSEUR" EntitySet="FOURNISSEUR" />
             <End Role="PRODUIT" EntitySet="PRODUIT" />
           </AssociationSet>
+          <AssociationSet Name="FK_IMAGE_PRODUIT" Association="DADModel.FK_IMAGE_PRODUIT">
+            <End Role="PRODUIT" EntitySet="PRODUIT" />
+            <End Role="IMAGE" EntitySet="IMAGE" />
+          </AssociationSet>
           <AssociationSet Name="APPARTIENT" Association="DADModel.APPARTIENT">
             <End Role="CATEGORIE" EntitySet="CATEGORIE" />
             <End Role="PRODUIT" EntitySet="PRODUIT" />
@@ -349,7 +383,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Guid" Name="id" Nullable="false" />
-          <Property Type="Guid" Name="id_client" Nullable="false" />
           <Property Type="String" Name="adresse" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ville" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="code_postal" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -362,8 +395,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Guid" Name="id" Nullable="false" />
-          <Property Type="Guid" Name="id_parent" />
           <Property Type="String" Name="nom" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="valide" Nullable="false" />
           <NavigationProperty Name="CATEGORIE1" Relationship="DADModel.FK_CATEGORIE_CATEGORIE" FromRole="CATEGORIE" ToRole="CATEGORIE1" />
           <NavigationProperty Name="CATEGORIE2" Relationship="DADModel.FK_CATEGORIE_CATEGORIE" FromRole="CATEGORIE1" ToRole="CATEGORIE" />
           <NavigationProperty Name="PRODUIT" Relationship="DADModel.APPARTIENT" FromRole="CATEGORIE" ToRole="PRODUIT" />
@@ -386,8 +419,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Guid" Name="id" Nullable="false" />
-          <Property Type="Guid" Name="id_client" Nullable="false" />
-          <Property Type="Guid" Name="id_adresse" Nullable="false" />
           <Property Type="DateTime" Name="date" Nullable="false" />
           <Property Type="Decimal" Name="prix_total" Nullable="false" Precision="10" Scale="4" />
           <NavigationProperty Name="ADRESSE_CLIENT" Relationship="DADModel.FK_COMMANDE_CLIENT_ADRESSE_CLIENT" FromRole="COMMANDE_CLIENT" ToRole="ADRESSE_CLIENT" />
@@ -399,8 +430,6 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Guid" Name="id" Nullable="false" />
-          <Property Type="Guid" Name="id_fournisseur" Nullable="false" />
-          <Property Type="Guid" Name="id_commande_client" Nullable="false" />
           <Property Type="DateTime" Name="date_generation" Nullable="false" />
           <Property Type="DateTime" Name="date_validation" />
           <Property Type="DateTime" Name="date_expedition" />
@@ -438,6 +467,16 @@
           <NavigationProperty Name="COMMANDE_FOURNISSEUR" Relationship="DADModel.FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" FromRole="FOURNISSEUR" ToRole="COMMANDE_FOURNISSEUR" />
           <NavigationProperty Name="PRODUIT" Relationship="DADModel.FK_PRODUIT_FOURNISSEUR" FromRole="FOURNISSEUR" ToRole="PRODUIT" />
         </EntityType>
+        <EntityType Name="IMAGE">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Guid" Name="id" Nullable="false" />
+          <Property Type="String" Name="url" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="img_hauteur" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="img_largeur" Precision="18" Scale="0" />
+          <NavigationProperty Name="PRODUIT" Relationship="DADModel.FK_IMAGE_PRODUIT" FromRole="IMAGE" ToRole="PRODUIT" />
+        </EntityType>
         <EntityType Name="PRODUIT">
           <Key>
             <PropertyRef Name="id" />
@@ -446,85 +485,38 @@
           <Property Type="String" Name="reference" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="nom" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="marque" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Guid" Name="id_fournisseur" Nullable="false" />
           <Property Type="Decimal" Name="prix" Nullable="false" Precision="10" Scale="4" />
           <Property Type="Decimal" Name="stock" Nullable="false" Precision="18" Scale="0" />
           <Property Type="String" Name="description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="disponible" Nullable="false" />
           <NavigationProperty Name="COMMANDER" Relationship="DADModel.FK_COMMANDER_PRODUIT" FromRole="PRODUIT" ToRole="COMMANDER" />
           <NavigationProperty Name="FOURNISSEUR" Relationship="DADModel.FK_PRODUIT_FOURNISSEUR" FromRole="PRODUIT" ToRole="FOURNISSEUR" />
+          <NavigationProperty Name="IMAGE" Relationship="DADModel.FK_IMAGE_PRODUIT" FromRole="PRODUIT" ToRole="IMAGE" />
           <NavigationProperty Name="CATEGORIE" Relationship="DADModel.APPARTIENT" FromRole="PRODUIT" ToRole="CATEGORIE" />
         </EntityType>
         <Association Name="FK_ADRESSE_CLIENT_CLIENT">
           <End Type="DADModel.CLIENT" Role="CLIENT" Multiplicity="1" />
           <End Type="DADModel.ADRESSE_CLIENT" Role="ADRESSE_CLIENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CLIENT">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="ADRESSE_CLIENT">
-              <PropertyRef Name="id_client" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK_COMMANDE_CLIENT_ADRESSE_CLIENT">
           <End Type="DADModel.ADRESSE_CLIENT" Role="ADRESSE_CLIENT" Multiplicity="1" />
           <End Type="DADModel.COMMANDE_CLIENT" Role="COMMANDE_CLIENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ADRESSE_CLIENT">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="COMMANDE_CLIENT">
-              <PropertyRef Name="id_adresse" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK_CATEGORIE_CATEGORIE">
           <End Type="DADModel.CATEGORIE" Role="CATEGORIE" Multiplicity="0..1" />
           <End Type="DADModel.CATEGORIE" Role="CATEGORIE1" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CATEGORIE">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="CATEGORIE1">
-              <PropertyRef Name="id_parent" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK_COMMANDE_CLIENT_CLIENT">
           <End Type="DADModel.CLIENT" Role="CLIENT" Multiplicity="1" />
           <End Type="DADModel.COMMANDE_CLIENT" Role="COMMANDE_CLIENT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CLIENT">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="COMMANDE_CLIENT">
-              <PropertyRef Name="id_client" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT">
           <End Type="DADModel.COMMANDE_CLIENT" Role="COMMANDE_CLIENT" Multiplicity="1" />
           <End Type="DADModel.COMMANDE_FOURNISSEUR" Role="COMMANDE_FOURNISSEUR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="COMMANDE_CLIENT">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="COMMANDE_FOURNISSEUR">
-              <PropertyRef Name="id_commande_client" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK_COMMANDE_FOURNISSEUR_FOURNISSEUR">
           <End Type="DADModel.FOURNISSEUR" Role="FOURNISSEUR" Multiplicity="1" />
           <End Type="DADModel.COMMANDE_FOURNISSEUR" Role="COMMANDE_FOURNISSEUR" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FOURNISSEUR">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="COMMANDE_FOURNISSEUR">
-              <PropertyRef Name="id_fournisseur" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="FK_COMMANDER_COMMANDE_FOURNISSEUR">
           <End Type="DADModel.COMMANDE_FOURNISSEUR" Role="COMMANDE_FOURNISSEUR" Multiplicity="1" />
@@ -553,14 +545,10 @@
         <Association Name="FK_PRODUIT_FOURNISSEUR">
           <End Type="DADModel.FOURNISSEUR" Role="FOURNISSEUR" Multiplicity="1" />
           <End Type="DADModel.PRODUIT" Role="PRODUIT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FOURNISSEUR">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PRODUIT">
-              <PropertyRef Name="id_fournisseur" />
-            </Dependent>
-          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_IMAGE_PRODUIT">
+          <End Type="DADModel.PRODUIT" Role="PRODUIT" Multiplicity="0..1" />
+          <End Type="DADModel.IMAGE" Role="IMAGE" Multiplicity="*" />
         </Association>
         <Association Name="APPARTIENT">
           <End Type="DADModel.CATEGORIE" Role="CATEGORIE" Multiplicity="*" />
@@ -579,7 +567,6 @@
                 <ScalarProperty Name="code_postal" ColumnName="code_postal" />
                 <ScalarProperty Name="ville" ColumnName="ville" />
                 <ScalarProperty Name="adresse" ColumnName="adresse" />
-                <ScalarProperty Name="id_client" ColumnName="id_client" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -587,8 +574,8 @@
           <EntitySetMapping Name="CATEGORIE">
             <EntityTypeMapping TypeName="DADModel.CATEGORIE">
               <MappingFragment StoreEntitySet="CATEGORIE">
+                <ScalarProperty Name="valide" ColumnName="valide" />
                 <ScalarProperty Name="nom" ColumnName="nom" />
-                <ScalarProperty Name="id_parent" ColumnName="id_parent" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -610,8 +597,6 @@
               <MappingFragment StoreEntitySet="COMMANDE_CLIENT">
                 <ScalarProperty Name="prix_total" ColumnName="prix_total" />
                 <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="id_adresse" ColumnName="id_adresse" />
-                <ScalarProperty Name="id_client" ColumnName="id_client" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -625,8 +610,6 @@
                 <ScalarProperty Name="date_expedition" ColumnName="date_expedition" />
                 <ScalarProperty Name="date_validation" ColumnName="date_validation" />
                 <ScalarProperty Name="date_generation" ColumnName="date_generation" />
-                <ScalarProperty Name="id_commande_client" ColumnName="id_commande_client" />
-                <ScalarProperty Name="id_fournisseur" ColumnName="id_fournisseur" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -655,13 +638,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="IMAGE">
+            <EntityTypeMapping TypeName="DADModel.IMAGE">
+              <MappingFragment StoreEntitySet="IMAGE">
+                <ScalarProperty Name="img_largeur" ColumnName="img_largeur" />
+                <ScalarProperty Name="img_hauteur" ColumnName="img_hauteur" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PRODUIT">
             <EntityTypeMapping TypeName="DADModel.PRODUIT">
               <MappingFragment StoreEntitySet="PRODUIT">
+                <ScalarProperty Name="disponible" ColumnName="disponible" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="stock" ColumnName="stock" />
                 <ScalarProperty Name="prix" ColumnName="prix" />
-                <ScalarProperty Name="id_fournisseur" ColumnName="id_fournisseur" />
                 <ScalarProperty Name="marque" ColumnName="marque" />
                 <ScalarProperty Name="nom" ColumnName="nom" />
                 <ScalarProperty Name="reference" ColumnName="reference" />
@@ -669,6 +662,72 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="FK_ADRESSE_CLIENT_CLIENT" TypeName="DADModel.FK_ADRESSE_CLIENT_CLIENT" StoreEntitySet="ADRESSE_CLIENT">
+            <EndProperty Name="ADRESSE_CLIENT">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <EndProperty Name="CLIENT">
+              <ScalarProperty Name="id" ColumnName="id_client" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_COMMANDE_CLIENT_ADRESSE_CLIENT" TypeName="DADModel.FK_COMMANDE_CLIENT_ADRESSE_CLIENT" StoreEntitySet="COMMANDE_CLIENT">
+            <EndProperty Name="COMMANDE_CLIENT">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <EndProperty Name="ADRESSE_CLIENT">
+              <ScalarProperty Name="id" ColumnName="id_adresse" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_CATEGORIE_CATEGORIE" TypeName="DADModel.FK_CATEGORIE_CATEGORIE" StoreEntitySet="CATEGORIE">
+            <EndProperty Name="CATEGORIE1">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <EndProperty Name="CATEGORIE">
+              <ScalarProperty Name="id" ColumnName="id_parent" />
+            </EndProperty>
+            <Condition ColumnName="id_parent" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_COMMANDE_CLIENT_CLIENT" TypeName="DADModel.FK_COMMANDE_CLIENT_CLIENT" StoreEntitySet="COMMANDE_CLIENT">
+            <EndProperty Name="COMMANDE_CLIENT">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <EndProperty Name="CLIENT">
+              <ScalarProperty Name="id" ColumnName="id_client" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT" TypeName="DADModel.FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT" StoreEntitySet="COMMANDE_FOURNISSEUR">
+            <EndProperty Name="COMMANDE_FOURNISSEUR">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <EndProperty Name="COMMANDE_CLIENT">
+              <ScalarProperty Name="id" ColumnName="id_commande_client" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" TypeName="DADModel.FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" StoreEntitySet="COMMANDE_FOURNISSEUR">
+            <EndProperty Name="COMMANDE_FOURNISSEUR">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <EndProperty Name="FOURNISSEUR">
+              <ScalarProperty Name="id" ColumnName="id_fournisseur" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_PRODUIT_FOURNISSEUR" TypeName="DADModel.FK_PRODUIT_FOURNISSEUR" StoreEntitySet="PRODUIT">
+            <EndProperty Name="PRODUIT">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <EndProperty Name="FOURNISSEUR">
+              <ScalarProperty Name="id" ColumnName="id_fournisseur" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK_IMAGE_PRODUIT" TypeName="DADModel.FK_IMAGE_PRODUIT" StoreEntitySet="IMAGE">
+            <EndProperty Name="IMAGE">
+              <ScalarProperty Name="id" ColumnName="id" />
+            </EndProperty>
+            <EndProperty Name="PRODUIT">
+              <ScalarProperty Name="id" ColumnName="id_produit" />
+            </EndProperty>
+            <Condition ColumnName="id_produit" IsNull="false" />
+          </AssociationSetMapping>
           <AssociationSetMapping Name="APPARTIENT" TypeName="DADModel.APPARTIENT" StoreEntitySet="APPARTIENT">
             <EndProperty Name="PRODUIT">
               <ScalarProperty Name="id" ColumnName="id_produit" />
@@ -692,74 +751,72 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="DataModel">
-        <EntityTypeShape EntityType="DADModel.ADRESSE_CLIENT" Width="1.5" PointX="1.5" PointY="9.375" Height="2.5571907552083388" />
-        <EntityTypeShape EntityType="DADModel.CATEGORIE" Width="1.5" PointX="3.75" PointY="1" Height="2.1725878906250031" />
-        <EntityTypeShape EntityType="DADModel.CLIENT" Width="1.5" PointX="1.5" PointY="13.375" Height="2.5571907552083388" />
-        <EntityTypeShape EntityType="DADModel.COMMANDE_CLIENT" Width="1.5" PointX="0.75" PointY="0.75" Height="2.5571907552083317" />
-        <EntityTypeShape EntityType="DADModel.COMMANDE_FOURNISSEUR" Width="1.5" PointX="3" PointY="4.375" Height="3.3263964843750067" />
-        <EntityTypeShape EntityType="DADModel.COMMANDER" Width="1.5" PointX="8.25" PointY="5" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="DADModel.FOURNISSEUR" Width="1.5" PointX="0.75" PointY="4.5" Height="3.1340950520833388" />
-        <EntityTypeShape EntityType="DADModel.PRODUIT" Width="1.5" PointX="6" PointY="4.5" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="DADModel.ADRESSE_CLIENT" Width="1.5" PointX="1.5" PointY="9" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="DADModel.CATEGORIE" Width="1.5" PointX="3.75" PointY="0.75" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="DADModel.CLIENT" Width="1.5" PointX="1.5" PointY="13" Height="2.5571907552083246" />
+        <EntityTypeShape EntityType="DADModel.COMMANDE_CLIENT" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="DADModel.COMMANDE_FOURNISSEUR" Width="1.5" PointX="11.625" PointY="0.5" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="DADModel.COMMANDER" Width="1.5" PointX="8.25" PointY="1.875" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="DADModel.FOURNISSEUR" Width="1.5" PointX="12.375" PointY="3.875" Height="3.1340950520833246" />
+        <EntityTypeShape EntityType="DADModel.IMAGE" Width="1.5" PointX="8.25" PointY="4.875" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="DADModel.PRODUIT" Width="1.5" PointX="6" PointY="4.125" Height="3.3263964843749818" />
         <AssociationConnector Association="DADModel.FK_ADRESSE_CLIENT_CLIENT" >
-          <ConnectorPoint PointX="2.25" PointY="13.375" />
-          <ConnectorPoint PointX="2.25" PointY="11.932190755208339" />
+          <ConnectorPoint PointX="2.25" PointY="13" />
+          <ConnectorPoint PointX="2.25" PointY="11.364889322916667" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_COMMANDE_CLIENT_ADRESSE_CLIENT" >
-          <ConnectorPoint PointX="2.5937505" PointY="9.375" />
-          <ConnectorPoint PointX="2.5937505" PointY="2.0285953776041659" />
-          <ConnectorPoint PointX="2.25" PointY="2.0285953776041659" />
+          <ConnectorPoint PointX="1.875" PointY="9" />
+          <ConnectorPoint PointX="1.875" PointY="2.9225878906249818" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_CATEGORIE_CATEGORIE" >
-          <ConnectorPoint PointX="4.2819230769230767" PointY="3.1725878906250031" />
-          <ConnectorPoint PointX="4.2819230769230767" PointY="3.4225878906250031" />
-          <ConnectorPoint PointX="4.7284615384615378" PointY="3.4225878906250031" />
-          <ConnectorPoint PointX="4.7284615384615378" PointY="3.1725878906250031" />
+          <ConnectorPoint PointX="4.2819230769230767" PointY="2.9225878906249818" />
+          <ConnectorPoint PointX="4.2819230769230767" PointY="3.1725878906249818" />
+          <ConnectorPoint PointX="4.7284615384615378" PointY="3.1725878906249818" />
+          <ConnectorPoint PointX="4.7284615384615378" PointY="2.9225878906249818" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_COMMANDE_CLIENT_CLIENT" >
-          <ConnectorPoint PointX="1.5011528461538464" PointY="13.375" />
-          <ConnectorPoint PointX="1.1261528461538468" PointY="13" />
-          <ConnectorPoint PointX="0.375" PointY="13" />
-          <ConnectorPoint PointX="0.375" PointY="3.6821907552083317" />
-          <ConnectorPoint PointX="0.75" PointY="3.3071907552083317" />
+          <ConnectorPoint PointX="1.5" PointY="14.278595377604162" />
+          <ConnectorPoint PointX="1.1249995" PointY="14.278595377604162" />
+          <ConnectorPoint PointX="1.1249995" PointY="2.9225878906249818" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT" >
-          <ConnectorPoint PointX="2.25" PointY="0.84375" />
-          <ConnectorPoint PointX="3.34375" PointY="0.84375" />
-          <ConnectorPoint PointX="3.34375" PointY="4.375" />
+          <ConnectorPoint PointX="2.25" PointY="0.75115284615384614" />
+          <ConnectorPoint PointX="2.625" PointY="0.37615284615384592" />
+          <ConnectorPoint PointX="2.625" PointY="0.125" />
+          <ConnectorPoint PointX="11.25" PointY="0.125" />
+          <ConnectorPoint PointX="11.625" PointY="0.5" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" >
-          <ConnectorPoint PointX="2.25" PointY="6.0670475260416694" />
-          <ConnectorPoint PointX="2.5104171666666666" PointY="6.0670475260416685" />
-          <ConnectorPoint PointX="2.6770838333333336" PointY="6.0670475260416694" />
-          <ConnectorPoint PointX="3" PointY="6.0670475260416694" />
+          <ConnectorPoint PointX="12.75" PointY="3.875" />
+          <ConnectorPoint PointX="12.75" PointY="3.4417936197916674" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_COMMANDER_COMMANDE_FOURNISSEUR" >
-          <ConnectorPoint PointX="4.5" PointY="4.40625" />
-          <ConnectorPoint PointX="6.666666666666667" PointY="4.4062499999999991" />
-          <ConnectorPoint PointX="6.833333333333333" PointY="4.40625" />
-          <ConnectorPoint PointX="9" PointY="4.40625" />
-          <ConnectorPoint PointX="9" PointY="5" />
+          <ConnectorPoint PointX="11.625" PointY="2.6583968098958337" />
+          <ConnectorPoint PointX="9.75" PointY="2.6583968098958337" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_COMMANDER_PRODUIT" >
-          <ConnectorPoint PointX="7.5" PointY="5.9901432291666694" />
-          <ConnectorPoint PointX="8.25" PointY="5.9901432291666694" />
+          <ConnectorPoint PointX="6.75" PointY="4.125" />
+          <ConnectorPoint PointX="6.75" PointY="2.6632160872395829" />
+          <ConnectorPoint PointX="8.25" PointY="2.6632160872395829" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.FK_PRODUIT_FOURNISSEUR" >
-          <ConnectorPoint PointX="2.25" PointY="7.6340950520833388" />
-          <ConnectorPoint PointX="2.6249999999999858" PointY="8.0090950520833246" />
-          <ConnectorPoint PointX="5.625" PointY="8.0090950520833246" />
-          <ConnectorPoint PointX="6" PointY="7.6340950520833246" />
+          <ConnectorPoint PointX="12.375" PointY="4.46875" />
+          <ConnectorPoint PointX="7.5" PointY="4.46875" />
+        </AssociationConnector>
+        <AssociationConnector Association="DADModel.FK_IMAGE_PRODUIT" >
+          <ConnectorPoint PointX="7.5" PointY="5.8651432291666765" />
+          <ConnectorPoint PointX="8.25" PointY="5.8651432291666765" />
         </AssociationConnector>
         <AssociationConnector Association="DADModel.APPARTIENT" >
-          <ConnectorPoint PointX="5.25" PointY="2.0862939453125016" />
-          <ConnectorPoint PointX="6.75" PointY="2.0862939453125016" />
-          <ConnectorPoint PointX="6.75" PointY="4.5" />
+          <ConnectorPoint PointX="5.0204832692307688" PointY="2.9225878906249818" />
+          <ConnectorPoint PointX="5.0204832692307688" PointY="4.1718725000000063" />
+          <ConnectorPoint PointX="6" PointY="4.1718725000000063" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

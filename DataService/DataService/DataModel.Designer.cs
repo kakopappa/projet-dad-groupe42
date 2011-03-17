@@ -27,6 +27,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDER_COMMANDE_FOURNISSEUR", "COMMANDE_FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataService.COMMANDE_FOURNISSEUR), "COMMANDER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.COMMANDER), true)]
 [assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDER_PRODUIT", "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataService.PRODUIT), "COMMANDER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.COMMANDER), true)]
 [assembly: EdmRelationshipAttribute("DADModel", "FK_PRODUIT_FOURNISSEUR", "FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataService.FOURNISSEUR), "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.PRODUIT))]
+[assembly: EdmRelationshipAttribute("DADModel", "FK_IMAGE_PRODUIT", "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DataService.PRODUIT), "IMAGE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.IMAGE))]
 [assembly: EdmRelationshipAttribute("DADModel", "APPARTIENT", "CATEGORIE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.CATEGORIE), "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.PRODUIT))]
 
 #endregion
@@ -191,6 +192,22 @@ namespace DataService
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
+        public ObjectSet<IMAGE> IMAGE
+        {
+            get
+            {
+                if ((_IMAGE == null))
+                {
+                    _IMAGE = base.CreateObjectSet<IMAGE>("IMAGE");
+                }
+                return _IMAGE;
+            }
+        }
+        private ObjectSet<IMAGE> _IMAGE;
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
         public ObjectSet<PRODUIT> PRODUIT
         {
             get
@@ -261,6 +278,14 @@ namespace DataService
         public void AddToFOURNISSEUR(FOURNISSEUR fOURNISSEUR)
         {
             base.AddObject("FOURNISSEUR", fOURNISSEUR);
+        }
+    
+        /// <summary>
+        /// Méthode déconseillée pour ajouter un nouvel objet à l'EntitySet IMAGE. Utilisez la méthode .Add de la propriété ObjectSet&lt;T&gt; associée à la place.
+        /// </summary>
+        public void AddToIMAGE(IMAGE iMAGE)
+        {
+            base.AddObject("IMAGE", iMAGE);
         }
     
         /// <summary>
@@ -516,11 +541,13 @@ namespace DataService
         /// </summary>
         /// <param name="id">Valeur initiale de la propriété id.</param>
         /// <param name="nom">Valeur initiale de la propriété nom.</param>
-        public static CATEGORIE CreateCATEGORIE(global::System.Guid id, global::System.String nom)
+        /// <param name="valide">Valeur initiale de la propriété valide.</param>
+        public static CATEGORIE CreateCATEGORIE(global::System.Guid id, global::System.String nom, global::System.Boolean valide)
         {
             CATEGORIE cATEGORIE = new CATEGORIE();
             cATEGORIE.id = id;
             cATEGORIE.nom = nom;
+            cATEGORIE.valide = valide;
             return cATEGORIE;
         }
 
@@ -577,6 +604,30 @@ namespace DataService
         private global::System.String _nom;
         partial void OnnomChanging(global::System.String value);
         partial void OnnomChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean valide
+        {
+            get
+            {
+                return _valide;
+            }
+            set
+            {
+                OnvalideChanging(value);
+                ReportPropertyChanging("valide");
+                _valide = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("valide");
+                OnvalideChanged();
+            }
+        }
+        private global::System.Boolean _valide;
+        partial void OnvalideChanging(global::System.Boolean value);
+        partial void OnvalideChanged();
 
         #endregion
     
@@ -1913,6 +1964,174 @@ namespace DataService
     /// <summary>
     /// Aucune documentation sur les métadonnées n'est disponible.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DADModel", Name="IMAGE")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class IMAGE : EntityObject
+    {
+        #region Méthode de fabrique
+    
+        /// <summary>
+        /// Créez un nouvel objet IMAGE.
+        /// </summary>
+        /// <param name="id">Valeur initiale de la propriété id.</param>
+        public static IMAGE CreateIMAGE(global::System.Guid id)
+        {
+            IMAGE iMAGE = new IMAGE();
+            iMAGE.id = id;
+            return iMAGE;
+        }
+
+        #endregion
+        #region Propriétés primitives
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Guid _id;
+        partial void OnidChanging(global::System.Guid value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String url
+        {
+            get
+            {
+                return _url;
+            }
+            set
+            {
+                OnurlChanging(value);
+                ReportPropertyChanging("url");
+                _url = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("url");
+                OnurlChanged();
+            }
+        }
+        private global::System.String _url;
+        partial void OnurlChanging(global::System.String value);
+        partial void OnurlChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> img_hauteur
+        {
+            get
+            {
+                return _img_hauteur;
+            }
+            set
+            {
+                Onimg_hauteurChanging(value);
+                ReportPropertyChanging("img_hauteur");
+                _img_hauteur = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("img_hauteur");
+                Onimg_hauteurChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _img_hauteur;
+        partial void Onimg_hauteurChanging(Nullable<global::System.Decimal> value);
+        partial void Onimg_hauteurChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> img_largeur
+        {
+            get
+            {
+                return _img_largeur;
+            }
+            set
+            {
+                Onimg_largeurChanging(value);
+                ReportPropertyChanging("img_largeur");
+                _img_largeur = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("img_largeur");
+                Onimg_largeurChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _img_largeur;
+        partial void Onimg_largeurChanging(Nullable<global::System.Decimal> value);
+        partial void Onimg_largeurChanged();
+
+        #endregion
+    
+        #region Propriétés de navigation
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DADModel", "FK_IMAGE_PRODUIT", "PRODUIT")]
+        public PRODUIT PRODUIT
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRODUIT>("DADModel.FK_IMAGE_PRODUIT", "PRODUIT").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRODUIT>("DADModel.FK_IMAGE_PRODUIT", "PRODUIT").Value = value;
+            }
+        }
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<PRODUIT> PRODUITReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRODUIT>("DADModel.FK_IMAGE_PRODUIT", "PRODUIT");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PRODUIT>("DADModel.FK_IMAGE_PRODUIT", "PRODUIT", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// Aucune documentation sur les métadonnées n'est disponible.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="DADModel", Name="PRODUIT")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -1929,7 +2148,8 @@ namespace DataService
         /// <param name="marque">Valeur initiale de la propriété marque.</param>
         /// <param name="prix">Valeur initiale de la propriété prix.</param>
         /// <param name="stock">Valeur initiale de la propriété stock.</param>
-        public static PRODUIT CreatePRODUIT(global::System.Guid id, global::System.String reference, global::System.String nom, global::System.String marque, global::System.Decimal prix, global::System.Decimal stock)
+        /// <param name="disponible">Valeur initiale de la propriété disponible.</param>
+        public static PRODUIT CreatePRODUIT(global::System.Guid id, global::System.String reference, global::System.String nom, global::System.String marque, global::System.Decimal prix, global::System.Decimal stock, global::System.Boolean disponible)
         {
             PRODUIT pRODUIT = new PRODUIT();
             pRODUIT.id = id;
@@ -1938,6 +2158,7 @@ namespace DataService
             pRODUIT.marque = marque;
             pRODUIT.prix = prix;
             pRODUIT.stock = stock;
+            pRODUIT.disponible = disponible;
             return pRODUIT;
         }
 
@@ -2114,6 +2335,30 @@ namespace DataService
         private global::System.String _description;
         partial void OndescriptionChanging(global::System.String value);
         partial void OndescriptionChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean disponible
+        {
+            get
+            {
+                return _disponible;
+            }
+            set
+            {
+                OndisponibleChanging(value);
+                ReportPropertyChanging("disponible");
+                _disponible = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("disponible");
+                OndisponibleChanged();
+            }
+        }
+        private global::System.Boolean _disponible;
+        partial void OndisponibleChanging(global::System.Boolean value);
+        partial void OndisponibleChanged();
 
         #endregion
     
@@ -2175,6 +2420,28 @@ namespace DataService
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FOURNISSEUR>("DADModel.FK_PRODUIT_FOURNISSEUR", "FOURNISSEUR", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DADModel", "FK_IMAGE_PRODUIT", "IMAGE")]
+        public EntityCollection<IMAGE> IMAGE
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<IMAGE>("DADModel.FK_IMAGE_PRODUIT", "IMAGE");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<IMAGE>("DADModel.FK_IMAGE_PRODUIT", "IMAGE", value);
                 }
             }
         }

@@ -18,15 +18,16 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region Métadonnées de relation EDM
 
-[assembly: EdmRelationshipAttribute("DADModel", "FK_ADRESSE_CLIENT_CLIENT", "CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.CLIENT), "ADRESSE_CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.ADRESSE_CLIENT), true)]
-[assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDE_CLIENT_ADRESSE_CLIENT", "ADRESSE_CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.ADRESSE_CLIENT), "COMMANDE_CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.COMMANDE_CLIENT), true)]
-[assembly: EdmRelationshipAttribute("DADModel", "FK_CATEGORIE_CATEGORIE", "CATEGORIE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DataServiceClient.CATEGORIE), "CATEGORIE1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.CATEGORIE), true)]
-[assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDE_CLIENT_CLIENT", "CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.CLIENT), "COMMANDE_CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.COMMANDE_CLIENT), true)]
-[assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT", "COMMANDE_CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.COMMANDE_CLIENT), "COMMANDE_FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.COMMANDE_FOURNISSEUR), true)]
-[assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDE_FOURNISSEUR_FOURNISSEUR", "FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.FOURNISSEUR), "COMMANDE_FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.COMMANDE_FOURNISSEUR), true)]
+[assembly: EdmRelationshipAttribute("DADModel", "FK_ADRESSE_CLIENT_CLIENT", "CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.CLIENT), "ADRESSE_CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.ADRESSE_CLIENT))]
+[assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDE_CLIENT_ADRESSE_CLIENT", "ADRESSE_CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.ADRESSE_CLIENT), "COMMANDE_CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.COMMANDE_CLIENT))]
+[assembly: EdmRelationshipAttribute("DADModel", "FK_CATEGORIE_CATEGORIE", "CATEGORIE", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DataServiceClient.CATEGORIE), "CATEGORIE1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.CATEGORIE))]
+[assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDE_CLIENT_CLIENT", "CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.CLIENT), "COMMANDE_CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.COMMANDE_CLIENT))]
+[assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDE_FOURNISSEUR_COMMANDE_CLIENT", "COMMANDE_CLIENT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.COMMANDE_CLIENT), "COMMANDE_FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.COMMANDE_FOURNISSEUR))]
+[assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDE_FOURNISSEUR_FOURNISSEUR", "FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.FOURNISSEUR), "COMMANDE_FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.COMMANDE_FOURNISSEUR))]
 [assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDER_COMMANDE_FOURNISSEUR", "COMMANDE_FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.COMMANDE_FOURNISSEUR), "COMMANDER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.COMMANDER), true)]
 [assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDER_PRODUIT", "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.PRODUIT), "COMMANDER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.COMMANDER), true)]
-[assembly: EdmRelationshipAttribute("DADModel", "FK_PRODUIT_FOURNISSEUR", "FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.FOURNISSEUR), "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.PRODUIT), true)]
+[assembly: EdmRelationshipAttribute("DADModel", "FK_PRODUIT_FOURNISSEUR", "FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataServiceClient.FOURNISSEUR), "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.PRODUIT))]
+[assembly: EdmRelationshipAttribute("DADModel", "FK_IMAGE_PRODUIT", "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DataServiceClient.PRODUIT), "IMAGE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.IMAGE))]
 [assembly: EdmRelationshipAttribute("DADModel", "APPARTIENT", "CATEGORIE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.CATEGORIE), "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataServiceClient.PRODUIT))]
 
 #endregion
@@ -194,6 +195,22 @@ namespace DataServiceClient
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
+        public ObjectSet<IMAGE> IMAGE
+        {
+            get
+            {
+                if ((_IMAGE == null))
+                {
+                    _IMAGE = base.CreateObjectSet<IMAGE>("IMAGE");
+                }
+                return _IMAGE;
+            }
+        }
+        private ObjectSet<IMAGE> _IMAGE;
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
         public ObjectSet<PRODUIT> PRODUIT
         {
             get
@@ -267,6 +284,14 @@ namespace DataServiceClient
         }
     
         /// <summary>
+        /// Méthode déconseillée pour ajouter un nouvel objet à l'EntitySet IMAGE. Utilisez la méthode .Add de la propriété ObjectSet&lt;T&gt; associée à la place.
+        /// </summary>
+        public void AddToIMAGE(IMAGE iMAGE)
+        {
+            base.AddObject("IMAGE", iMAGE);
+        }
+    
+        /// <summary>
         /// Méthode déconseillée pour ajouter un nouvel objet à l'EntitySet PRODUIT. Utilisez la méthode .Add de la propriété ObjectSet&lt;T&gt; associée à la place.
         /// </summary>
         public void AddToPRODUIT(PRODUIT pRODUIT)
@@ -296,16 +321,14 @@ namespace DataServiceClient
         /// Créez un nouvel objet ADRESSE_CLIENT.
         /// </summary>
         /// <param name="id">Valeur initiale de la propriété id.</param>
-        /// <param name="id_client">Valeur initiale de la propriété id_client.</param>
         /// <param name="adresse">Valeur initiale de la propriété adresse.</param>
         /// <param name="ville">Valeur initiale de la propriété ville.</param>
         /// <param name="code_postal">Valeur initiale de la propriété code_postal.</param>
         /// <param name="pays">Valeur initiale de la propriété pays.</param>
-        public static ADRESSE_CLIENT CreateADRESSE_CLIENT(global::System.Guid id, global::System.Guid id_client, global::System.String adresse, global::System.String ville, global::System.String code_postal, global::System.String pays)
+        public static ADRESSE_CLIENT CreateADRESSE_CLIENT(global::System.Guid id, global::System.String adresse, global::System.String ville, global::System.String code_postal, global::System.String pays)
         {
             ADRESSE_CLIENT aDRESSE_CLIENT = new ADRESSE_CLIENT();
             aDRESSE_CLIENT.id = id;
-            aDRESSE_CLIENT.id_client = id_client;
             aDRESSE_CLIENT.adresse = adresse;
             aDRESSE_CLIENT.ville = ville;
             aDRESSE_CLIENT.code_postal = code_postal;
@@ -342,30 +365,6 @@ namespace DataServiceClient
         private global::System.Guid _id;
         partial void OnidChanging(global::System.Guid value);
         partial void OnidChanged();
-    
-        /// <summary>
-        /// Aucune documentation sur les métadonnées n'est disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Guid id_client
-        {
-            get
-            {
-                return _id_client;
-            }
-            set
-            {
-                Onid_clientChanging(value);
-                ReportPropertyChanging("id_client");
-                _id_client = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("id_client");
-                Onid_clientChanged();
-            }
-        }
-        private global::System.Guid _id_client;
-        partial void Onid_clientChanging(global::System.Guid value);
-        partial void Onid_clientChanged();
     
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
@@ -545,11 +544,13 @@ namespace DataServiceClient
         /// </summary>
         /// <param name="id">Valeur initiale de la propriété id.</param>
         /// <param name="nom">Valeur initiale de la propriété nom.</param>
-        public static CATEGORIE CreateCATEGORIE(global::System.Guid id, global::System.String nom)
+        /// <param name="valide">Valeur initiale de la propriété valide.</param>
+        public static CATEGORIE CreateCATEGORIE(global::System.Guid id, global::System.String nom, global::System.Boolean valide)
         {
             CATEGORIE cATEGORIE = new CATEGORIE();
             cATEGORIE.id = id;
             cATEGORIE.nom = nom;
+            cATEGORIE.valide = valide;
             return cATEGORIE;
         }
 
@@ -586,30 +587,6 @@ namespace DataServiceClient
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Guid> id_parent
-        {
-            get
-            {
-                return _id_parent;
-            }
-            set
-            {
-                Onid_parentChanging(value);
-                ReportPropertyChanging("id_parent");
-                _id_parent = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("id_parent");
-                Onid_parentChanged();
-            }
-        }
-        private Nullable<global::System.Guid> _id_parent;
-        partial void Onid_parentChanging(Nullable<global::System.Guid> value);
-        partial void Onid_parentChanged();
-    
-        /// <summary>
-        /// Aucune documentation sur les métadonnées n'est disponible.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String nom
@@ -630,6 +607,30 @@ namespace DataServiceClient
         private global::System.String _nom;
         partial void OnnomChanging(global::System.String value);
         partial void OnnomChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean valide
+        {
+            get
+            {
+                return _valide;
+            }
+            set
+            {
+                OnvalideChanging(value);
+                ReportPropertyChanging("valide");
+                _valide = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("valide");
+                OnvalideChanged();
+            }
+        }
+        private global::System.Boolean _valide;
+        partial void OnvalideChanging(global::System.Boolean value);
+        partial void OnvalideChanged();
 
         #endregion
     
@@ -966,16 +967,12 @@ namespace DataServiceClient
         /// Créez un nouvel objet COMMANDE_CLIENT.
         /// </summary>
         /// <param name="id">Valeur initiale de la propriété id.</param>
-        /// <param name="id_client">Valeur initiale de la propriété id_client.</param>
-        /// <param name="id_adresse">Valeur initiale de la propriété id_adresse.</param>
         /// <param name="date">Valeur initiale de la propriété date.</param>
         /// <param name="prix_total">Valeur initiale de la propriété prix_total.</param>
-        public static COMMANDE_CLIENT CreateCOMMANDE_CLIENT(global::System.Guid id, global::System.Guid id_client, global::System.Guid id_adresse, global::System.DateTime date, global::System.Decimal prix_total)
+        public static COMMANDE_CLIENT CreateCOMMANDE_CLIENT(global::System.Guid id, global::System.DateTime date, global::System.Decimal prix_total)
         {
             COMMANDE_CLIENT cOMMANDE_CLIENT = new COMMANDE_CLIENT();
             cOMMANDE_CLIENT.id = id;
-            cOMMANDE_CLIENT.id_client = id_client;
-            cOMMANDE_CLIENT.id_adresse = id_adresse;
             cOMMANDE_CLIENT.date = date;
             cOMMANDE_CLIENT.prix_total = prix_total;
             return cOMMANDE_CLIENT;
@@ -1010,54 +1007,6 @@ namespace DataServiceClient
         private global::System.Guid _id;
         partial void OnidChanging(global::System.Guid value);
         partial void OnidChanged();
-    
-        /// <summary>
-        /// Aucune documentation sur les métadonnées n'est disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Guid id_client
-        {
-            get
-            {
-                return _id_client;
-            }
-            set
-            {
-                Onid_clientChanging(value);
-                ReportPropertyChanging("id_client");
-                _id_client = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("id_client");
-                Onid_clientChanged();
-            }
-        }
-        private global::System.Guid _id_client;
-        partial void Onid_clientChanging(global::System.Guid value);
-        partial void Onid_clientChanged();
-    
-        /// <summary>
-        /// Aucune documentation sur les métadonnées n'est disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Guid id_adresse
-        {
-            get
-            {
-                return _id_adresse;
-            }
-            set
-            {
-                Onid_adresseChanging(value);
-                ReportPropertyChanging("id_adresse");
-                _id_adresse = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("id_adresse");
-                Onid_adresseChanged();
-            }
-        }
-        private global::System.Guid _id_adresse;
-        partial void Onid_adresseChanging(global::System.Guid value);
-        partial void Onid_adresseChanged();
     
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
@@ -1226,16 +1175,12 @@ namespace DataServiceClient
         /// Créez un nouvel objet COMMANDE_FOURNISSEUR.
         /// </summary>
         /// <param name="id">Valeur initiale de la propriété id.</param>
-        /// <param name="id_fournisseur">Valeur initiale de la propriété id_fournisseur.</param>
-        /// <param name="id_commande_client">Valeur initiale de la propriété id_commande_client.</param>
         /// <param name="date_generation">Valeur initiale de la propriété date_generation.</param>
         /// <param name="prix_total">Valeur initiale de la propriété prix_total.</param>
-        public static COMMANDE_FOURNISSEUR CreateCOMMANDE_FOURNISSEUR(global::System.Guid id, global::System.Guid id_fournisseur, global::System.Guid id_commande_client, global::System.DateTime date_generation, global::System.Decimal prix_total)
+        public static COMMANDE_FOURNISSEUR CreateCOMMANDE_FOURNISSEUR(global::System.Guid id, global::System.DateTime date_generation, global::System.Decimal prix_total)
         {
             COMMANDE_FOURNISSEUR cOMMANDE_FOURNISSEUR = new COMMANDE_FOURNISSEUR();
             cOMMANDE_FOURNISSEUR.id = id;
-            cOMMANDE_FOURNISSEUR.id_fournisseur = id_fournisseur;
-            cOMMANDE_FOURNISSEUR.id_commande_client = id_commande_client;
             cOMMANDE_FOURNISSEUR.date_generation = date_generation;
             cOMMANDE_FOURNISSEUR.prix_total = prix_total;
             return cOMMANDE_FOURNISSEUR;
@@ -1270,54 +1215,6 @@ namespace DataServiceClient
         private global::System.Guid _id;
         partial void OnidChanging(global::System.Guid value);
         partial void OnidChanged();
-    
-        /// <summary>
-        /// Aucune documentation sur les métadonnées n'est disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Guid id_fournisseur
-        {
-            get
-            {
-                return _id_fournisseur;
-            }
-            set
-            {
-                Onid_fournisseurChanging(value);
-                ReportPropertyChanging("id_fournisseur");
-                _id_fournisseur = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("id_fournisseur");
-                Onid_fournisseurChanged();
-            }
-        }
-        private global::System.Guid _id_fournisseur;
-        partial void Onid_fournisseurChanging(global::System.Guid value);
-        partial void Onid_fournisseurChanged();
-    
-        /// <summary>
-        /// Aucune documentation sur les métadonnées n'est disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Guid id_commande_client
-        {
-            get
-            {
-                return _id_commande_client;
-            }
-            set
-            {
-                Onid_commande_clientChanging(value);
-                ReportPropertyChanging("id_commande_client");
-                _id_commande_client = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("id_commande_client");
-                Onid_commande_clientChanged();
-            }
-        }
-        private global::System.Guid _id_commande_client;
-        partial void Onid_commande_clientChanging(global::System.Guid value);
-        partial void Onid_commande_clientChanged();
     
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
@@ -2070,6 +1967,174 @@ namespace DataServiceClient
     /// <summary>
     /// Aucune documentation sur les métadonnées n'est disponible.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="DADModel", Name="IMAGE")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class IMAGE : EntityObject
+    {
+        #region Méthode de fabrique
+    
+        /// <summary>
+        /// Créez un nouvel objet IMAGE.
+        /// </summary>
+        /// <param name="id">Valeur initiale de la propriété id.</param>
+        public static IMAGE CreateIMAGE(global::System.Guid id)
+        {
+            IMAGE iMAGE = new IMAGE();
+            iMAGE.id = id;
+            return iMAGE;
+        }
+
+        #endregion
+        #region Propriétés primitives
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Guid _id;
+        partial void OnidChanging(global::System.Guid value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String url
+        {
+            get
+            {
+                return _url;
+            }
+            set
+            {
+                OnurlChanging(value);
+                ReportPropertyChanging("url");
+                _url = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("url");
+                OnurlChanged();
+            }
+        }
+        private global::System.String _url;
+        partial void OnurlChanging(global::System.String value);
+        partial void OnurlChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> img_hauteur
+        {
+            get
+            {
+                return _img_hauteur;
+            }
+            set
+            {
+                Onimg_hauteurChanging(value);
+                ReportPropertyChanging("img_hauteur");
+                _img_hauteur = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("img_hauteur");
+                Onimg_hauteurChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _img_hauteur;
+        partial void Onimg_hauteurChanging(Nullable<global::System.Decimal> value);
+        partial void Onimg_hauteurChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> img_largeur
+        {
+            get
+            {
+                return _img_largeur;
+            }
+            set
+            {
+                Onimg_largeurChanging(value);
+                ReportPropertyChanging("img_largeur");
+                _img_largeur = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("img_largeur");
+                Onimg_largeurChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _img_largeur;
+        partial void Onimg_largeurChanging(Nullable<global::System.Decimal> value);
+        partial void Onimg_largeurChanged();
+
+        #endregion
+    
+        #region Propriétés de navigation
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DADModel", "FK_IMAGE_PRODUIT", "PRODUIT")]
+        public PRODUIT PRODUIT
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRODUIT>("DADModel.FK_IMAGE_PRODUIT", "PRODUIT").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRODUIT>("DADModel.FK_IMAGE_PRODUIT", "PRODUIT").Value = value;
+            }
+        }
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<PRODUIT> PRODUITReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<PRODUIT>("DADModel.FK_IMAGE_PRODUIT", "PRODUIT");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<PRODUIT>("DADModel.FK_IMAGE_PRODUIT", "PRODUIT", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// Aucune documentation sur les métadonnées n'est disponible.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="DADModel", Name="PRODUIT")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -2084,19 +2149,19 @@ namespace DataServiceClient
         /// <param name="reference">Valeur initiale de la propriété reference.</param>
         /// <param name="nom">Valeur initiale de la propriété nom.</param>
         /// <param name="marque">Valeur initiale de la propriété marque.</param>
-        /// <param name="id_fournisseur">Valeur initiale de la propriété id_fournisseur.</param>
         /// <param name="prix">Valeur initiale de la propriété prix.</param>
         /// <param name="stock">Valeur initiale de la propriété stock.</param>
-        public static PRODUIT CreatePRODUIT(global::System.Guid id, global::System.String reference, global::System.String nom, global::System.String marque, global::System.Guid id_fournisseur, global::System.Decimal prix, global::System.Decimal stock)
+        /// <param name="disponible">Valeur initiale de la propriété disponible.</param>
+        public static PRODUIT CreatePRODUIT(global::System.Guid id, global::System.String reference, global::System.String nom, global::System.String marque, global::System.Decimal prix, global::System.Decimal stock, global::System.Boolean disponible)
         {
             PRODUIT pRODUIT = new PRODUIT();
             pRODUIT.id = id;
             pRODUIT.reference = reference;
             pRODUIT.nom = nom;
             pRODUIT.marque = marque;
-            pRODUIT.id_fournisseur = id_fournisseur;
             pRODUIT.prix = prix;
             pRODUIT.stock = stock;
+            pRODUIT.disponible = disponible;
             return pRODUIT;
         }
 
@@ -2207,30 +2272,6 @@ namespace DataServiceClient
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid id_fournisseur
-        {
-            get
-            {
-                return _id_fournisseur;
-            }
-            set
-            {
-                Onid_fournisseurChanging(value);
-                ReportPropertyChanging("id_fournisseur");
-                _id_fournisseur = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("id_fournisseur");
-                Onid_fournisseurChanged();
-            }
-        }
-        private global::System.Guid _id_fournisseur;
-        partial void Onid_fournisseurChanging(global::System.Guid value);
-        partial void Onid_fournisseurChanged();
-    
-        /// <summary>
-        /// Aucune documentation sur les métadonnées n'est disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.Decimal prix
         {
             get
@@ -2297,6 +2338,30 @@ namespace DataServiceClient
         private global::System.String _description;
         partial void OndescriptionChanging(global::System.String value);
         partial void OndescriptionChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean disponible
+        {
+            get
+            {
+                return _disponible;
+            }
+            set
+            {
+                OndisponibleChanging(value);
+                ReportPropertyChanging("disponible");
+                _disponible = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("disponible");
+                OndisponibleChanged();
+            }
+        }
+        private global::System.Boolean _disponible;
+        partial void OndisponibleChanging(global::System.Boolean value);
+        partial void OndisponibleChanged();
 
         #endregion
     
@@ -2358,6 +2423,28 @@ namespace DataServiceClient
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<FOURNISSEUR>("DADModel.FK_PRODUIT_FOURNISSEUR", "FOURNISSEUR", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("DADModel", "FK_IMAGE_PRODUIT", "IMAGE")]
+        public EntityCollection<IMAGE> IMAGE
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<IMAGE>("DADModel.FK_IMAGE_PRODUIT", "IMAGE");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<IMAGE>("DADModel.FK_IMAGE_PRODUIT", "IMAGE", value);
                 }
             }
         }
