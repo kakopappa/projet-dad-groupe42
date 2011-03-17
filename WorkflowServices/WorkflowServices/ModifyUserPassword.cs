@@ -7,21 +7,22 @@ using WorkflowServices.DataService;
 
 namespace WorkflowServices
 {
-    public enum CheckIfPasswordMatchResult
+    public enum ModifyPasswordState
     {
         SERVICE_ERROR,
         DATA_ERROR,
-        MATCH,
-        NOT_MATCH,
-        NOT_TESTED
+        EXIST,
+        NOT_EXIST,
+        NOT_EXECUTED,
+        EXECUTED
     }
 
-    public sealed class CheckIfPasswordMatch : CodeActivity
+    public sealed class ModifyUserPassword : CodeActivity
     {
         // Définir un argument d'entrée d'activité de type string
         public InArgument<string> Password { get; set; }
         public InArgument<Guid> UserGuid { get; set; }
-        public OutArgument<CheckIfPasswordMatchResult> Match { set; get; }
+        public OutArgument<ModifyPasswordState> State { get; set; }
 
         // Si votre activité retourne une valeur, dérivez de CodeActivity<TResult>
         // et retournez la valeur à partir de la méthode Execute.
@@ -30,24 +31,35 @@ namespace WorkflowServices
             // Obtenir la valeur runtime de l'argument d'entrée Text
             string password = context.GetValue(this.Password);
             Guid guid = context.GetValue(this.UserGuid);
-            CheckIfPasswordMatchResult result = CheckIfPasswordMatchResult.NOT_TESTED;
+            ModifyPasswordState state = ModifyPasswordState.NOT_EXECUTED;
             try
             {
                 var ctx = new DADEntities(new Uri(Properties.Settings.Default.DataService));
                 ctx.IgnoreResourceNotFoundException = true;
-                var user = (from c in ctx.CLIENT
-                            where c.id == guid
-                            select c).First();
-                if (user != null)
-                    result = user.password == password ? CheckIfPasswordMatchResult.MATCH : CheckIfPasswordMatchResult.NOT_MATCH;
+
+                var qry = (from c in ctx.CLIENT
+                           where c.id == guid
+                           select c).FirstOrDefault<CLIENT>();
+
+                if (qry != null)
+                {
+                    state = ModifyPasswordState.EXIST;
+                    qry.password = password;
+
+                    ctx.UpdateObject(qry);
+                    ctx.SaveChanges(System.Data.Services.Client.SaveChangesOptions.Batch);
+                    state = ModifyPasswordState.EXECUTED;
+                }
                 else
-                    result = CheckIfPasswordMatchResult.SERVICE_ERROR;
+                {
+                    state = ModifyPasswordState.NOT_EXIST;
+                }
             }
             catch (Exception)
             {
-                result = CheckIfPasswordMatchResult.DATA_ERROR;
+                state = ModifyPasswordState.DATA_ERROR;
             }
-            context.SetValue(this.Match, result);
+            context.SetValue<ModifyPasswordState>(State, state);
         }
     }
 }

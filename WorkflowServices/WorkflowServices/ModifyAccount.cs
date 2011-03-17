@@ -60,7 +60,7 @@ namespace WorkflowServices
                     state = ModifyAccountDataState.NOT_EXIST;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 state = ModifyAccountDataState.DATA_ERROR;
             }
