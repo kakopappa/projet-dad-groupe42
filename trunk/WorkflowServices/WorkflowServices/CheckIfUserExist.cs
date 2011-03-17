@@ -33,13 +33,19 @@ namespace WorkflowServices
             try
             {
                 var ctx = new DADEntities(new Uri(Properties.Settings.Default.DataService));
-                var qry = from c in ctx.CLIENT
+                var qry = (from c in ctx.CLIENT
                           where c.email == identifier
-                          select c;
-                result = qry.ToList<CLIENT>().Count > 0 ? CheckIfUserExistResult.EXIST : CheckIfUserExistResult.NOT_EXIST;
-                guid = qry.ToList<CLIENT>()[0].id;
+                          select c).Count<CLIENT>();
+                result = qry > 0 ? CheckIfUserExistResult.EXIST : CheckIfUserExistResult.NOT_EXIST;
+                if (result == CheckIfUserExistResult.EXIST)
+                {
+                    var client = (from c in ctx.CLIENT
+                               where c.email == identifier
+                               select c).Single<CLIENT>();
+                    guid = client.id;
+                }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 result = CheckIfUserExistResult.DATA_ERROR;
             }

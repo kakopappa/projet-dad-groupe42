@@ -64,14 +64,14 @@
           </p1:Sequence>
           <p1:If Condition="[passwordMatch = CheckIfPasswordMatchResult.MATCH]" sap:VirtualizedContainerService.HintSize="464,450">
             <p1:If.Then>
-              <p1:Sequence DisplayName="Guid Send" sap:VirtualizedContainerService.HintSize="306,344">
+              <p1:Sequence DisplayName="Guid Send" sap:VirtualizedContainerService.HintSize="277,344">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg3:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg3:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <Receive x:Name="__ReferenceID2" DisplayName="GetGuid" sap:VirtualizedContainerService.HintSize="255,90" OperationName="GuidRequest" ServiceContractName="p:IService" />
-                <SendReply Request="{x:Reference __ReferenceID2}" DisplayName="SendReplyToReceive" sap:VirtualizedContainerService.HintSize="255,90">
+                <SendReply Request="{x:Reference __ReferenceID2}" DisplayName="SendGuid" sap:VirtualizedContainerService.HintSize="255,90">
                   <SendMessageContent DeclaredMessageType="s:Guid">
                     <p1:InArgument x:TypeArguments="s:Guid">[guid]</p1:InArgument>
                   </SendMessageContent>

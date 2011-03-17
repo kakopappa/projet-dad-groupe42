@@ -1,0 +1,53 @@
+﻿<WorkflowService mc:Ignorable="sap" ConfigurationName="AccountCreation" sap:VirtualizedContainerService.HintSize="230,230" Name="AccountCreation" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://tempuri.org/" xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:ssa="clr-namespace:System.ServiceModel.Activities;assembly=System.ServiceModel.Activities" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:w="clr-namespace:WorkflowServices;assembly=WorkflowServices" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p1:Sequence DisplayName="Account Creation" sad:XamlDebuggerXmlReader.FileName="G:\Projects\projet-dad-groupe42\WorkflowServices\WorkflowServices\AccountCreation.xamlx" sap:VirtualizedContainerService.HintSize="486,958" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+    <p1:Sequence.Variables>
+      <p1:Variable x:TypeArguments="w:CheckIfUserExistResult" Default="[CheckIfUserExistResult.NOT_TESTED]" Name="userExist" />
+      <p1:Variable x:TypeArguments="x:String" Default="[String.Empty]" Name="nom" />
+      <p1:Variable x:TypeArguments="x:String" Default="[String.Empty]" Name="prenom" />
+      <p1:Variable x:TypeArguments="x:String" Default="[String.Empty]" Name="email" />
+      <p1:Variable x:TypeArguments="x:String" Default="[String.Empty]" Name="phone" />
+      <p1:Variable x:TypeArguments="x:String" Default="[String.Empty]" Name="password" />
+    </p1:Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg3:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Receive x:Name="__ReferenceID0" CanCreateInstance="True" DisplayName="ReceiveAccountData" sap:VirtualizedContainerService.HintSize="464,90" OperationName="CreateAccount" ServiceContractName="p:IService">
+      <ReceiveParametersContent>
+        <p1:OutArgument x:TypeArguments="x:String" x:Key="Prenom">[prenom]</p1:OutArgument>
+        <p1:OutArgument x:TypeArguments="x:String" x:Key="Nom">[nom]</p1:OutArgument>
+        <p1:OutArgument x:TypeArguments="x:String" x:Key="Email">[email]</p1:OutArgument>
+        <p1:OutArgument x:TypeArguments="x:String" x:Key="Phone">[phone]</p1:OutArgument>
+        <p1:OutArgument x:TypeArguments="x:String" x:Key="Password">[password]</p1:OutArgument>
+      </ReceiveParametersContent>
+    </Receive>
+    <w:CheckIfUserExist UserGuid="{x:Null}" Exist="[userExist]" sap:VirtualizedContainerService.HintSize="464,22" Identifier="[email]" />
+    <SendReply Request="{x:Reference __ReferenceID0}" DisplayName="SendResult" sap:VirtualizedContainerService.HintSize="464,90">
+      <SendParametersContent>
+        <p1:InArgument x:TypeArguments="w:CheckIfUserExistResult" x:Key="UserExist">[userExist]</p1:InArgument>
+      </SendParametersContent>
+    </SendReply>
+    <p1:If Condition="[userExist = CheckIfUserExistResult.NOT_EXIST]" DisplayName="If User Not Exist" sap:VirtualizedContainerService.HintSize="464,512">
+      <p1:If.Then>
+        <p1:Sequence DisplayName="Creation" sap:VirtualizedContainerService.HintSize="306,406">
+          <p1:Sequence.Variables>
+            <p1:Variable x:TypeArguments="s:Guid" Default="[System.Guid.Empty]" Name="guid" />
+          </p1:Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <w:CreateUser Email="[email]" sap:VirtualizedContainerService.HintSize="255,22" Nom="[nom]" Password="[password]" Phone="[phone]" Prenom="[prenom]" UserGuid="[guid]" />
+          <Receive x:Name="__ReferenceID1" DisplayName="GetGuid" sap:VirtualizedContainerService.HintSize="255,90" OperationName="GuidRequest" ServiceContractName="p:IService" />
+          <SendReply Request="{x:Reference __ReferenceID1}" DisplayName="SendGuid" sap:VirtualizedContainerService.HintSize="255,90">
+            <SendMessageContent DeclaredMessageType="s:Guid">
+              <p1:InArgument x:TypeArguments="s:Guid">[guid]</p1:InArgument>
+            </SendMessageContent>
+          </SendReply>
+        </p1:Sequence>
+      </p1:If.Then>
+    </p1:If>
+  </p1:Sequence>
+</WorkflowService>

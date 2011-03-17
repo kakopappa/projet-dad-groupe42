@@ -26,7 +26,7 @@ namespace WorkflowServices.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://nanaki-sandbox:8080/DataService.svc")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://172.16.255.216:8080/DataService.svc")]
         public string DataService {
             get {
                 return ((string)(this["DataService"]));
