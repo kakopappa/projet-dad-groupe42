@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Nom du fichier d'origine :
-// Date de génération : 16/03/2011 10:05:04
+// Date de génération : 17/03/2011 15:08:28
 namespace WorkflowServices.DataService
 {
     
@@ -178,6 +178,23 @@ namespace WorkflowServices.DataService
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         private global::System.Data.Services.Client.DataServiceQuery<FOURNISSEUR> _FOURNISSEUR;
         /// <summary>
+        /// Il n'existe aucun commentaire pour IMAGE dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Data.Services.Client.DataServiceQuery<IMAGE> IMAGE
+        {
+            get
+            {
+                if ((this._IMAGE == null))
+                {
+                    this._IMAGE = base.CreateQuery<IMAGE>("IMAGE");
+                }
+                return this._IMAGE;
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Data.Services.Client.DataServiceQuery<IMAGE> _IMAGE;
+        /// <summary>
         /// Il n'existe aucun commentaire pour PRODUIT dans le schéma.
         /// </summary>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -249,6 +266,14 @@ namespace WorkflowServices.DataService
         public void AddToFOURNISSEUR(FOURNISSEUR fOURNISSEUR)
         {
             base.AddObject("FOURNISSEUR", fOURNISSEUR);
+        }
+        /// <summary>
+        /// Il n'existe aucun commentaire pour IMAGE dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public void AddToIMAGE(IMAGE iMAGE)
+        {
+            base.AddObject("IMAGE", iMAGE);
         }
         /// <summary>
         /// Il n'existe aucun commentaire pour PRODUIT dans le schéma.
@@ -444,12 +469,14 @@ namespace WorkflowServices.DataService
         /// </summary>
         /// <param name="ID">Valeur initiale de id.</param>
         /// <param name="nom">Valeur initiale de nom.</param>
+        /// <param name="valide">Valeur initiale de valide.</param>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static CATEGORIE CreateCATEGORIE(global::System.Guid ID, string nom)
+        public static CATEGORIE CreateCATEGORIE(global::System.Guid ID, string nom, bool valide)
         {
             CATEGORIE cATEGORIE = new CATEGORIE();
             cATEGORIE.id = ID;
             cATEGORIE.nom = nom;
+            cATEGORIE.valide = valide;
             return cATEGORIE;
         }
         /// <summary>
@@ -494,6 +521,27 @@ namespace WorkflowServices.DataService
         private string _nom;
         partial void OnnomChanging(string value);
         partial void OnnomChanged();
+        /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété valide dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool valide
+        {
+            get
+            {
+                return this._valide;
+            }
+            set
+            {
+                this.OnvalideChanging(value);
+                this._valide = value;
+                this.OnvalideChanged();
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _valide;
+        partial void OnvalideChanging(bool value);
+        partial void OnvalideChanged();
         /// <summary>
         /// Il n'existe aucun commentaire pour CATEGORIE1 dans le schéma.
         /// </summary>
@@ -1260,8 +1308,9 @@ namespace WorkflowServices.DataService
         /// <param name="adresse">Valeur initiale de adresse.</param>
         /// <param name="ville">Valeur initiale de ville.</param>
         /// <param name="code_postal">Valeur initiale de code_postal.</param>
+        /// <param name="pays">Valeur initiale de pays.</param>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static FOURNISSEUR CreateFOURNISSEUR(global::System.Guid ID, string nom, string email, string phone, string password, string adresse, string ville, string code_postal)
+        public static FOURNISSEUR CreateFOURNISSEUR(global::System.Guid ID, string nom, string email, string phone, string password, string adresse, string ville, string code_postal, string pays)
         {
             FOURNISSEUR fOURNISSEUR = new FOURNISSEUR();
             fOURNISSEUR.id = ID;
@@ -1272,6 +1321,7 @@ namespace WorkflowServices.DataService
             fOURNISSEUR.adresse = adresse;
             fOURNISSEUR.ville = ville;
             fOURNISSEUR.code_postal = code_postal;
+            fOURNISSEUR.pays = pays;
             return fOURNISSEUR;
         }
         /// <summary>
@@ -1443,6 +1493,27 @@ namespace WorkflowServices.DataService
         partial void Oncode_postalChanging(string value);
         partial void Oncode_postalChanged();
         /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété pays dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string pays
+        {
+            get
+            {
+                return this._pays;
+            }
+            set
+            {
+                this.OnpaysChanging(value);
+                this._pays = value;
+                this.OnpaysChanged();
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _pays;
+        partial void OnpaysChanging(string value);
+        partial void OnpaysChanged();
+        /// <summary>
         /// Il n'existe aucun commentaire pour COMMANDE_FOURNISSEUR dans le schéma.
         /// </summary>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -1484,6 +1555,128 @@ namespace WorkflowServices.DataService
         private global::System.Collections.ObjectModel.Collection<PRODUIT> _PRODUIT = new global::System.Collections.ObjectModel.Collection<PRODUIT>();
     }
     /// <summary>
+    /// Il n'existe aucun commentaire pour DADModel.IMAGE dans le schéma.
+    /// </summary>
+    /// <KeyProperties>
+    /// id
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("id")]
+    public partial class IMAGE
+    {
+        /// <summary>
+        /// Créez un nouvel objet IMAGE.
+        /// </summary>
+        /// <param name="ID">Valeur initiale de id.</param>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static IMAGE CreateIMAGE(global::System.Guid ID)
+        {
+            IMAGE iMAGE = new IMAGE();
+            iMAGE.id = ID;
+            return iMAGE;
+        }
+        /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété id dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Guid id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                this.OnidChanging(value);
+                this._id = value;
+                this.OnidChanged();
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Guid _id;
+        partial void OnidChanging(global::System.Guid value);
+        partial void OnidChanged();
+        /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété url dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string url
+        {
+            get
+            {
+                return this._url;
+            }
+            set
+            {
+                this.OnurlChanging(value);
+                this._url = value;
+                this.OnurlChanged();
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _url;
+        partial void OnurlChanging(string value);
+        partial void OnurlChanged();
+        /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété img_hauteur dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<decimal> img_hauteur
+        {
+            get
+            {
+                return this._img_hauteur;
+            }
+            set
+            {
+                this.Onimg_hauteurChanging(value);
+                this._img_hauteur = value;
+                this.Onimg_hauteurChanged();
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<decimal> _img_hauteur;
+        partial void Onimg_hauteurChanging(global::System.Nullable<decimal> value);
+        partial void Onimg_hauteurChanged();
+        /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété img_largeur dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<decimal> img_largeur
+        {
+            get
+            {
+                return this._img_largeur;
+            }
+            set
+            {
+                this.Onimg_largeurChanging(value);
+                this._img_largeur = value;
+                this.Onimg_largeurChanged();
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<decimal> _img_largeur;
+        partial void Onimg_largeurChanging(global::System.Nullable<decimal> value);
+        partial void Onimg_largeurChanged();
+        /// <summary>
+        /// Il n'existe aucun commentaire pour PRODUIT dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public PRODUIT PRODUIT
+        {
+            get
+            {
+                return this._PRODUIT;
+            }
+            set
+            {
+                this._PRODUIT = value;
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private PRODUIT _PRODUIT;
+    }
+    /// <summary>
     /// Il n'existe aucun commentaire pour DADModel.PRODUIT dans le schéma.
     /// </summary>
     /// <KeyProperties>
@@ -1501,8 +1694,9 @@ namespace WorkflowServices.DataService
         /// <param name="marque">Valeur initiale de marque.</param>
         /// <param name="prix">Valeur initiale de prix.</param>
         /// <param name="stock">Valeur initiale de stock.</param>
+        /// <param name="disponible">Valeur initiale de disponible.</param>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static PRODUIT CreatePRODUIT(global::System.Guid ID, string reference, string nom, string marque, decimal prix, decimal stock)
+        public static PRODUIT CreatePRODUIT(global::System.Guid ID, string reference, string nom, string marque, decimal prix, decimal stock, bool disponible)
         {
             PRODUIT pRODUIT = new PRODUIT();
             pRODUIT.id = ID;
@@ -1511,6 +1705,7 @@ namespace WorkflowServices.DataService
             pRODUIT.marque = marque;
             pRODUIT.prix = prix;
             pRODUIT.stock = stock;
+            pRODUIT.disponible = disponible;
             return pRODUIT;
         }
         /// <summary>
@@ -1661,6 +1856,27 @@ namespace WorkflowServices.DataService
         partial void OndescriptionChanging(string value);
         partial void OndescriptionChanged();
         /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété disponible dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool disponible
+        {
+            get
+            {
+                return this._disponible;
+            }
+            set
+            {
+                this.OndisponibleChanging(value);
+                this._disponible = value;
+                this.OndisponibleChanged();
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _disponible;
+        partial void OndisponibleChanging(bool value);
+        partial void OndisponibleChanged();
+        /// <summary>
         /// Il n'existe aucun commentaire pour COMMANDER dans le schéma.
         /// </summary>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -1697,6 +1913,26 @@ namespace WorkflowServices.DataService
         }
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         private FOURNISSEUR _FOURNISSEUR;
+        /// <summary>
+        /// Il n'existe aucun commentaire pour IMAGE dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Collections.ObjectModel.Collection<IMAGE> IMAGE
+        {
+            get
+            {
+                return this._IMAGE;
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    this._IMAGE = value;
+                }
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Collections.ObjectModel.Collection<IMAGE> _IMAGE = new global::System.Collections.ObjectModel.Collection<IMAGE>();
         /// <summary>
         /// Il n'existe aucun commentaire pour CATEGORIE dans le schéma.
         /// </summary>

@@ -7,7 +7,6 @@ using WorkflowServices.DataService;
 
 namespace WorkflowServices
 {
-
     public enum ModifyAccountDataState
     {
         SERVICE_ERROR,
