@@ -55,6 +55,7 @@
     <Compile Include="CheckIfUserExist.cs" />
     <Compile Include="CreateFournisseur.cs" />
     <Compile Include="CreateUser.cs" />
+    <Compile Include="ItemVerification.cs" />
     <Compile Include="ModifyAccount.cs" />
     <Compile Include="ModifyFournisseur.cs" />
     <Compile Include="ModifyUserPassword.cs" />
@@ -68,6 +69,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.datasvcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Service\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +98,9 @@
     <Content Include="ChangeAccountPassword.xamlx">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="AddInCartVerificationItem.xamlx">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -100,7 +109,24 @@
       <Generator>DataServiceClientGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\Service\Service.disco" />
+    <None Include="Service References\Service\configuration91.svcinfo" />
+    <None Include="Service References\Service\configuration.svcinfo" />
+    <None Include="Service References\Service\Reference.svcmap">
+      <Generator>Xaml Activity Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Web.config" />
+    <None Include="Service References\Service\Service.wsdl" />
+    <None Include="Service References\Service\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -112,6 +138,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\DataService\service.edmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <XamlAppDef Include="Service References\Service\WorkflowServices.Service.Workflow.CreateSession.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+      <SubType>Designer</SubType>
+    </XamlAppDef>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
