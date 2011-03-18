@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="35" Background="Transparent"
+             mc:Ignorable="d" Height="40" Background="Transparent"
              x:Name="metroTitleChrome"
              Loaded="UserControl_Loaded">
 	<UserControl.Resources>		
@@ -20,6 +20,10 @@
 				</Trigger>
 			</Style.Triggers>
 		</Style>
+		
+		<Style x:Key="RawButtonOpaqueStyle" TargetType="{x:Type Button}">
+			<Setter Property="Template" Value="{DynamicResource RawButtonTemplate}" />
+		</Style>
 	</UserControl.Resources>
 	
     <Grid x:Name="userControlGrid" MouseLeftButtonDown="userControlGrid_MouseLeftButtonDown" Background="Transparent" SnapsToDevicePixels="True">
@@ -31,17 +35,31 @@
 			<RowDefinition />
 		</Grid.RowDefinitions>
 
-        <Label Background="Transparent" HorizontalAlignment="Stretch" MouseDoubleClick="windowTitle_MouseDoubleClick" Grid.Column="0" Grid.Row="0" x:Name="windowTitle" Content="{Binding ElementName=metroTitleChrome, Path=WindowTitle}" Margin="8,3.75,8,0" Foreground="{DynamicResource ThemeWhiteColorBrush}" Opacity="0.5" FontSize="9.333" Height="22.413" VerticalAlignment="Top"/>
+        <Label Background="Transparent" HorizontalAlignment="Left" MouseDoubleClick="windowTitle_MouseDoubleClick" Grid.Column="0" Grid.Row="0" x:Name="windowTitle" Content="{Binding ElementName=metroTitleChrome, Path=WindowTitle}" Margin="8,3.75,0,0" Foreground="{DynamicResource ThemeWhiteColorBrush}" Opacity="0.5" FontSize="9.333" Height="22.413" VerticalAlignment="Top"/>
 
-        <Button x:Name="btnMinimize" Click="btnMinimize_Click" Style="{StaticResource RawButtonStyle}" Focusable="False" Grid.Column="1" Grid.Row="0" Margin="0,8,40,0" Height="12" Width="12" VerticalAlignment="Top" d:LayoutOverrides="Width, Height" HorizontalAlignment="Right">
+        <Button x:Name="btnMinimize" Click="btnMinimize_Click" Style="{StaticResource RawButtonStyle}" Focusable="False" Grid.Column="1" Grid.Row="0" Margin="0,8,40,0" Height="12" Width="12" VerticalAlignment="Top" d:LayoutOverrides="Width, Height" HorizontalAlignment="Right" Background="Transparent">
     		<Path x:Name="pathMin" Data="{DynamicResource PathMinimize}" Fill="{DynamicResource ThemeWhiteColorBrush}" Height="2" Margin="0,0,0,1.492" Stretch="Fill" VerticalAlignment="Bottom" Width="8"/>
-    	</Button>
-		<Button x:Name="btnMaximize" Click="btnMaximize_Click" Style="{StaticResource RawButtonStyle}" Focusable="False" Grid.Column="1" Grid.Row="0" Margin="0,8,24,0" Height="12" Width="12" VerticalAlignment="Top" d:LayoutOverrides="Width, Height" HorizontalAlignment="Right">
+		</Button>
+		<Button x:Name="btnMaximize" Click="btnMaximize_Click" Style="{StaticResource RawButtonStyle}" Focusable="False" Grid.Column="1" Grid.Row="0" Margin="0,8,24,0" Height="12" Width="12" VerticalAlignment="Top" d:LayoutOverrides="Width, Height" HorizontalAlignment="Right" Background="Transparent">
             <Path x:Name="pathMaxRes" Data="{DynamicResource PathMaximize}" Stretch="Fill" StrokeThickness="0.5" Fill="{DynamicResource ThemeWhiteColorBrush}" Width="9" Height="9" />
     	</Button>
-        <Button x:Name="btnClose" Click="btnClose_Click" Style="{StaticResource RawButtonStyle}" Focusable="False" Grid.Column="1" Grid.Row="0" Margin="0,8,8,0" Width="12" Height="12" VerticalAlignment="Top" d:LayoutOverrides="Width, Height, HorizontalMargin" HorizontalAlignment="Right">
+        <Button x:Name="btnClose" Click="btnClose_Click" Style="{StaticResource RawButtonStyle}" Focusable="False" Grid.Column="1" Grid.Row="0" Margin="0,8,8,0" Width="12" Height="12" VerticalAlignment="Top" d:LayoutOverrides="Width, Height, HorizontalMargin" HorizontalAlignment="Right" Background="Transparent">
             <Path x:Name="pathClose" Data="{DynamicResource PathClose}" Stretch="Fill" StrokeThickness="0.5" Fill="{DynamicResource ThemeWhiteColorBrush}" Width="9" Height="9" />
     	</Button>
+        <Grid x:Name="plusGrid" Margin="0,0,8,0" Width="142" HorizontalAlignment="Right">
+        	<Grid.ColumnDefinitions>
+        		<ColumnDefinition Width="0.648*"/>
+        		<ColumnDefinition Width="0.352*"/>
+        	</Grid.ColumnDefinitions>
+        	<Grid.RowDefinitions>
+        		<RowDefinition />
+        	</Grid.RowDefinitions>
+            <Button Name="signin" Click="signin_Click" Style="{StaticResource RawButtonStyle}" Foreground="{DynamicResource ThemeWhiteColorBrush}" Content="SE CONNECTER" Margin="0,5.364,0,15.127" Background="{x:Null}" HorizontalAlignment="Right" FontFamily="Segoe WP Semibold" d:LayoutOverrides="Height" />
+        	<Button Name="pseudo" Click="pseudo_Click" Style="{StaticResource RawButtonStyle}" Foreground="{DynamicResource ThemeWhiteColorBrush}" Content="" Margin="0,5.364,0,15.127" Background="{x:Null}" HorizontalAlignment="Right" FontFamily="Segoe WP Semibold" d:LayoutOverrides="Height" Visibility="Hidden" />
+            <Button Name="signup" Style="{StaticResource RawButtonStyle}" Foreground="{DynamicResource ThemeWhiteColorBrush}" Content="S'ENREGISTRER" Background="{x:Null}" HorizontalAlignment="Right" FontFamily="Segoe WP" FontSize="10" VerticalAlignment="Bottom" Margin="0,0,0,6.5"/>
+        	<Button Name="logout" Click="logout_Click" Style="{StaticResource RawButtonStyle}" Foreground="{DynamicResource ThemeWhiteColorBrush}" Content="DECONNEXION" Background="{x:Null}" HorizontalAlignment="Right" FontFamily="Segoe WP" FontSize="10" VerticalAlignment="Bottom" Margin="0,0,0,6.5" Visibility="Hidden"/>
+        	<Button Style="{StaticResource RawButtonOpaqueStyle}" VerticalContentAlignment="Center" Content="" Grid.Column="1" Background="{DynamicResource BgColorBrush}" Height="41" VerticalAlignment="Bottom" Width="40" HorizontalAlignment="Right"/>
+        </Grid>
             
     </Grid>
 </UserControl>

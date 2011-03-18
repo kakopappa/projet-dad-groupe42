@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{8A68C55D-88A8-4BB9-879C-998F1DDD27EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNavigation", "TestNavigation\TestNavigation.csproj", "{C3062012-65FA-4E09-8402-633C02947BBC}"
-EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -19,10 +17,6 @@ Global
 		{8A68C55D-88A8-4BB9-879C-998F1DDD27EE}.Debug|x86.Build.0 = Debug|x86
 		{8A68C55D-88A8-4BB9-879C-998F1DDD27EE}.Release|x86.ActiveCfg = Release|x86
 		{8A68C55D-88A8-4BB9-879C-998F1DDD27EE}.Release|x86.Build.0 = Release|x86
-		{C3062012-65FA-4E09-8402-633C02947BBC}.Debug|x86.ActiveCfg = Debug|x86
-		{C3062012-65FA-4E09-8402-633C02947BBC}.Debug|x86.Build.0 = Debug|x86
-		{C3062012-65FA-4E09-8402-633C02947BBC}.Release|x86.ActiveCfg = Release|x86
-		{C3062012-65FA-4E09-8402-633C02947BBC}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

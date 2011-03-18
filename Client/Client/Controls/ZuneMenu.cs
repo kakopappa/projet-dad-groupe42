@@ -50,6 +50,10 @@ namespace Client.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ZuneMenu), new FrameworkPropertyMetadata(typeof(ZuneMenu)));
         }
 
+        /// <summary>
+        /// Définit la page en cours pour la surbrillance
+        /// </summary>
+        /// <param name="currentEle"></param>
         public void SetCurrentPage(ZuneMenuElement currentEle)
         {
             foreach(ZuneMenuElement item in Items)

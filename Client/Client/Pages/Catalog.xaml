@@ -6,7 +6,43 @@
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="700"
 	  Title="Catalog"
-      Loaded="Page_Loaded">
+      Opacity="0"
+      Initialized="Page_Initialized">
+    <Page.Resources>
+        <Style x:Key="CatItem" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border Name="Border">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="Border" Property="Background" Value="{DynamicResource BgColorBrush}" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="false" />
+                                    <Condition Property="IsMouseOver" Value="true" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Border" Property="Background" Value="LightGray" />
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        <DataTemplate x:Key="CatTemplate">
+            <Grid>
+                <Border BorderThickness="5">
+                    <TextBlock Text="{Binding Path=nom}" />
+                </Border>
+            </Grid>
+        </DataTemplate>
+        
+    </Page.Resources>
     <Page.RenderTransform>
         <TransformGroup>
             <ScaleTransform/>
@@ -15,13 +51,11 @@
             <TranslateTransform/>
         </TransformGroup>
     </Page.RenderTransform>
-    <Page.Triggers>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard Storyboard="{StaticResource MetroFadeSlide}"/>
-        </EventTrigger>
-    </Page.Triggers>
     
-    <Grid Margin="8,0,8,0">
-        <ListBox x:Name="listCat" HorizontalAlignment="Left" Margin="0,8" Width="151"/>
+    <Grid Name="rootGrid" Margin="8,0,8,0">
+        <ListBox BorderThickness="1" BorderBrush="{DynamicResource MetroTextBoxBorder}" x:Name="listCat"
+                 ItemContainerStyle="{StaticResource CatItem}"
+                 ItemTemplate="{StaticResource CatTemplate}" HorizontalContentAlignment="Stretch" 
+                 HorizontalAlignment="Left" Margin="8,8,0,8" Width="151"/>
     </Grid>
 </Page>
