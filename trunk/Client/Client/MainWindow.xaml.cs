@@ -16,6 +16,9 @@ using System.Runtime.InteropServices;
 using Client.Pages;
 using Client.Controls;
 using System.Windows.Threading;
+using System.Data.Services.Client;
+using System.Threading;
+using Client.Core;
 
 namespace Client
 {
@@ -34,6 +37,9 @@ namespace Client
         private HwndSource hwndSource;
         private WindowTheme currentTheme = WindowTheme.White;
         public static MainWindow instance;
+
+        public Connection Connection { get; set; }
+        public DataServiceClient.CLIENT Client { get; set; }
 
         public static MainWindow GetMe()
         {
@@ -56,7 +62,88 @@ namespace Client
         {
             InitializeComponent();
             MainWindow.instance = this;
+            this.Connection = new Connection();
+            this.Loaded += new RoutedEventHandler(MainWindow_Loaded);
+            this.Connection.Success += new Events.ObjectEventHandler(Connection_Success);
             this.SourceInitialized += new EventHandler(InitializeWindowSource);
+            this.Closing += new System.ComponentModel.CancelEventHandler(MainWindow_Closing);
+        }
+
+        /// <summary>
+        /// Au chargement de la fenêtre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if(Properties.Settings.Default.AutoConnect)
+            {
+                this.Connection.WrongCredentials += new EventHandler(Connection_Error);
+                this.Connection.ServiceErrors += new EventHandler(Connection_Error);
+                this.progressBar.Visibility = Visibility.Visible;
+                ThreadPool.QueueUserWorkItem((state) =>
+                    {
+                        this.Connection.Connect(
+                            Properties.Settings.Default.ClientMail,
+                            Properties.Settings.Default.ClientPassword);
+
+                        this.Connection.WrongCredentials -= Connection_Error;
+                        this.Connection.ServiceErrors -= Connection_Error;
+                    });
+            }
+        }
+
+        /// <summary>
+        /// Problème de connexion avec autoconnect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void Connection_Error(object sender, EventArgs e)
+        {
+            Dispatcher.BeginInvoke(
+                DispatcherPriority.Normal,
+                new Action(() =>
+                    {
+                        this.progressBar.Visibility = Visibility.Hidden;
+                    }));
+
+            Console.WriteLine("Erreur de connexion");
+        }
+
+        /// <summary>
+        /// Succès de la connexion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void Connection_Success(object sender, Events.ObjectEventArgs e)
+        {
+            ThreadPool.QueueUserWorkItem((state) =>
+                {
+                    DataServiceClient.DADEntities ctx = new DataServiceClient.DADEntities(new Uri(Properties.Settings.Default.DataServiceClient));
+                    ctx.IgnoreResourceNotFoundException = true;
+                    
+                    this.Client = (from c in ctx.CLIENT
+                                 where c.id == (Guid)e.Data
+                                 select c).Single();
+
+                    Dispatcher.BeginInvoke(
+                        DispatcherPriority.Normal,
+                        new Action(() =>
+                            {
+                                this.progressBar.Visibility = Visibility.Hidden;
+                                this.chrome.LoadUserInfo();
+                            }));
+                });
+        }
+
+        /// <summary>
+        /// Fermeture de la fenêtre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Properties.Settings.Default.Save();
         }
 
         private void InitializeWindowSource(object sender, EventArgs e)
@@ -179,7 +266,9 @@ namespace Client
                                     }
                                     this.rootGrid.SetResourceReference(BackgroundProperty, "BgColorWhiteBrush");
                                     this.chrome.SetWindowTheme(theme);
+                                    this.menuRectangle.SetResourceReference(Shape.FillProperty, "BgColorBrush");
                                     this.yoo1.Visibility = Visibility.Hidden;
+                                    this.progressBar.SetResourceReference(ForegroundProperty, "BgColorBrush");
                                 }));
                         break;
 
@@ -194,7 +283,9 @@ namespace Client
                                     }
                                     this.rootGrid.SetResourceReference(BackgroundProperty, "BgColorBrush");
                                     this.chrome.SetWindowTheme(theme);
+                                    this.menuRectangle.SetResourceReference(Shape.FillProperty, "BgColorWhiteBrush");
                                     this.yoo1.Visibility = Visibility.Visible;
+                                    this.progressBar.SetResourceReference(ForegroundProperty, "BgColorWhiteBrush");
                                 })
                             );
                         break;
@@ -202,6 +293,45 @@ namespace Client
             }
 
             this.currentTheme = theme;
+        }
+
+        /// <summary>
+        /// Lorsque la fenêtre est chargée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.home.Dispatcher.BeginInvoke(
+                DispatcherPriority.Normal,
+                new Action(() =>
+                    {
+                        this.home.NavigateToPage();
+                    }));
+        }
+
+        /// <summary>
+        /// Charge un client dans un thread séparé
+        /// </summary>
+        /// <param name="id"></param>
+        public void LoadClient(Guid id)
+        {
+            Dispatcher.BeginInvoke(
+                DispatcherPriority.Normal,
+                new Action(() =>
+                    {
+                        this.progressBar.Visibility = Visibility.Visible;
+                    }));
+
+            ThreadPool.QueueUserWorkItem((state) =>
+                {
+                    Dispatcher.BeginInvoke(
+                        DispatcherPriority.Normal,
+                        new Action(() =>
+                        {
+                            this.progressBar.Visibility = Visibility.Hidden;
+                        }));
+                });
         }
     }
 }

@@ -54,18 +54,31 @@ namespace Client.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ZunePanControl), new FrameworkPropertyMetadata(typeof(ZunePanControl)));
         }
 
+        /// <summary>
+        /// Initialise les event handlers
+        /// </summary>
         public ZunePanControl()
         {
             this.Loaded += new RoutedEventHandler(ZunePanControl_Loaded);
             this.MouseMove += new MouseEventHandler(ZunePanControl_MouseMove);
         }
 
+        /// <summary>
+        /// Au chargement
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void ZunePanControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.scrollViewer = (ScrollViewer)this.Template.FindName("scrollViewer", this);
             this.stackPanel = (StackPanel)this.Template.FindName("stackPanel", this);
         }
 
+        /// <summary>
+        /// Lorsque la souris bouge
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void ZunePanControl_MouseMove(object sender, MouseEventArgs e)
         {
             Point mousePosition = Mouse.GetPosition(this);

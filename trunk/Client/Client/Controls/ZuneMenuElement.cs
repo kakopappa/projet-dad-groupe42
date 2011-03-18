@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Client.Controls
 {
@@ -53,13 +54,19 @@ namespace Client.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ZuneMenuElement), new FrameworkPropertyMetadata(typeof(ZuneMenuElement)));
         }
 
+        /// <summary>
+        /// Initialise les event handlers
+        /// </summary>
         public ZuneMenuElement()
         {
             this.Click += new RoutedEventHandler(ZuneMenuElement_Click);
             this.Loaded += new RoutedEventHandler(ZuneMenuElement_Loaded);
         }
 
-        void ZuneMenuElement_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Navigue jusqu'à la page spécifiée par le MenuElement
+        /// </summary>
+        public void NavigateToPage()
         {
             if (this.frame != null && !this.IsMenuSelected)
             {
@@ -70,13 +77,44 @@ namespace Client.Controls
             }
         }
 
+        /// <summary>
+        /// Lors d'un clic, navigue vers la page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void ZuneMenuElement_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.frame != null && !this.IsMenuSelected)
+            {
+                Type t = Type.GetType(NavigateTo);
+                object obj = Activator.CreateInstance(t);
+                this.Dispatcher.BeginInvoke(
+                    DispatcherPriority.Normal,
+                    new Action(() =>
+                        {
+                            this.frame.Navigate(obj);
+                        }));
+                this.frame.Navigated += new NavigatedEventHandler(frame_Navigated);
+            }
+        }
+
+        /// <summary>
+        /// Au chargement
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void ZuneMenuElement_Loaded(object sender, RoutedEventArgs e)
         {
             // Ne plait pas à expression blend
-            //this.frame = MainWindow.GetMe().frame;
+            this.frame = MainWindow.GetMe().frame;
             this.menu = (ZuneMenu)this.Parent;
         }
 
+        /// <summary>
+        /// Lorsqu'une navigation s'est terminée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void frame_Navigated(object sender, NavigationEventArgs e)
         {
             this.menu.SetCurrentPage(this);
@@ -98,6 +136,9 @@ namespace Client.Controls
             set { SetValue(NavigateToProperty, value); }
         }
 
+        /// <summary>
+        /// Utilisé pour les DataTriggers
+        /// </summary>
         public bool IsMenuSelected
         {
             get { return (bool)GetValue(IsMenuSelectedProperty); }

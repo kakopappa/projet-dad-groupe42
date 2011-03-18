@@ -25,6 +25,11 @@ namespace Client.Pages
             this.Loaded += new RoutedEventHandler(Page_Loaded);
         }
 
+        /// <summary>
+        /// Au chargement de la page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             MainWindow.GetMe().SetWindowTheme(WindowTheme.White);
