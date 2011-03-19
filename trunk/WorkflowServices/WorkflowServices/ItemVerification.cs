@@ -4,18 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Activities;
 using WorkflowServices.DataService;
+using WorkflowServices.Service;
 
 namespace WorkflowServices
 {
-    public enum ItemState
-    {
-        OK = 0,
-        UNAVAILABLE = 1,
-        UNKNOW = 2,
-        INSUFFICIENT = 3,
-        NOT_VERIFIED = 4
-    }
-
     public sealed class ItemVerification : CodeActivity
     {
         // Définir un argument d'entrée d'activité de type string
@@ -30,6 +22,7 @@ namespace WorkflowServices
             // Obtenir la valeur runtime de l'argument d'entrée Text
             Guid itemID = context.GetValue(this.ItemID);
             Int32 quantity = context.GetValue(this.Quantity);
+            
             ItemState state = ItemState.NOT_VERIFIED;
             try
             {

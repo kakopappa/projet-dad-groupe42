@@ -109,22 +109,22 @@
       <Generator>DataServiceClientGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\Service\Service.disco" />
     <None Include="Service References\Service\configuration91.svcinfo" />
     <None Include="Service References\Service\configuration.svcinfo" />
     <None Include="Service References\Service\Reference.svcmap">
       <Generator>Xaml Activity Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Service References\Service\Service1.disco" />
     <Content Include="Web.config" />
-    <None Include="Service References\Service\Service.wsdl" />
-    <None Include="Service References\Service\Service.xsd">
+    <None Include="Service References\Service\Service1.wsdl" />
+    <None Include="Service References\Service\Service3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service1.xsd">
+    <None Include="Service References\Service\Service31.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Service\Service2.xsd">
+    <None Include="Service References\Service\Service32.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -144,6 +144,34 @@
   </ItemGroup>
   <ItemGroup>
     <XamlAppDef Include="Service References\Service\WorkflowServices.Service.Workflow.CreateSession.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+      <SubType>Designer</SubType>
+    </XamlAppDef>
+  </ItemGroup>
+  <ItemGroup>
+    <XamlAppDef Include="Service References\Service\WorkflowServices.Service.Workflow.GetUserID.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+      <SubType>Designer</SubType>
+    </XamlAppDef>
+  </ItemGroup>
+  <ItemGroup>
+    <XamlAppDef Include="Service References\Service\WorkflowServices.Service.Workflow.GetSessionType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+      <SubType>Designer</SubType>
+    </XamlAppDef>
+  </ItemGroup>
+  <ItemGroup>
+    <XamlAppDef Include="Service References\Service\WorkflowServices.Service.Workflow.ChangeItemAvailability.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+      <SubType>Designer</SubType>
+    </XamlAppDef>
+  </ItemGroup>
+  <ItemGroup>
+    <XamlAppDef Include="Service References\Service\WorkflowServices.Service.Workflow.RemoveCartContent.xaml">
       <Generator>MSBuild:Compile</Generator>
       <DependentUpon>Reference.svcmap</DependentUpon>
       <SubType>Designer</SubType>
