@@ -46,17 +46,26 @@ namespace SessionService
 
         public static void RemoveSession(Session session)
         {
-            switch (session.Type)
+            try
             {
-                case UserType.CLIENT :
-                    try
-                    {
-                        ((IClient)session.User).Disconnected();
-                    }
-                    catch
-                    {
-                    }
-                    break;
+                ((IUser)session.User).Disconnected();
+            }
+            catch
+            {
+            }
+            foreach (Guid sessionID in session.InChatWith)
+            {
+                try
+                {
+                    var qry = (from Session s in Instance
+                                  where s.SessionID == sessionID
+                                  select s).FirstOrDefault<Session>();
+                    qry.InChatWith.Remove(session.SessionID);
+                    ((IUser)qry.User).ChatNotification(session.UserID, string.Empty, ChatState.DISCONNECTED);
+                }
+                catch
+                {
+                }
             }
             Instance.Remove(session);
         }
