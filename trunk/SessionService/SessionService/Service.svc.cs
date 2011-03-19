@@ -9,13 +9,23 @@ using System.Text;
 namespace SessionService
 {
     [ServiceBehavior(Name = "Service", InstanceContextMode = InstanceContextMode.Single, ConcurrencyMode = ConcurrencyMode.Multiple)]
-    public class Service : IServiceClient, IServiceWorkflow
+    public class Service : IServiceClient, IServiceWorkflow, IServiceFournisseur, IServiceAdministrator
     {
-        public bool Activate(Guid sessionID, Guid userID)
+        public bool ActivateClient(Guid sessionID, Guid userID)
+        {
+            return this.Activate(sessionID, userID);
+        }
+
+        public bool ActivateFournisseur(Guid sessionID, Guid userID)
+        {
+            return this.Activate(sessionID, userID);
+        }
+
+        private bool Activate(Guid sessionID, Guid userID)
         {
             Session session = (from Session s in Sessions.Instance
-                            where s.SessionID == sessionID && s.UserID == userID && s.Active == false
-                            select s).FirstOrDefault<Session>();
+                               where s.SessionID == sessionID && s.UserID == userID && s.Active == false
+                               select s).FirstOrDefault<Session>();
             if (session != null)
             {
                 session.Active = true;
@@ -23,8 +33,8 @@ namespace SessionService
                 session.User = OperationContext.Current.GetCallbackChannel<IClient>();
                 return true;
             }
-            else 
-            return false;
+            else
+                return false;
         }
 
         public ItemState AddItemInCart(Guid sessionID, Guid itemID, int quantity)
@@ -138,6 +148,11 @@ namespace SessionService
             }
         }
 
+        public bool RemoveCartContentClient(Guid sessionID)
+        {
+            return this.RemoveCartContent(sessionID);
+        }
+
         public bool RemoveCartContent(Guid sessionID)
         {
             var session = (from Session s in Sessions.Instance
@@ -150,6 +165,96 @@ namespace SessionService
                 return true;
             }
             return false;
+        }
+
+        public Guid Connect()
+        {
+            var qry = (from Session s in Sessions.Instance
+                       where s.Type == UserType.ADMINISTRATOR
+                       select s).FirstOrDefault<Session>();
+
+            if (qry != null)
+            {
+                Sessions.RemoveSession(qry);
+            }
+
+            Session session = new Session(Guid.Empty, UserType.ADMINISTRATOR);
+            session.User = OperationContext.Current.GetCallbackChannel<IAdministrator>();
+            session.LastActivity = DateTime.Now;
+            Sessions.Instance.Add(session);
+            return session.SessionID;
+        }
+
+        public Guid GetUserID(Guid sessionID)
+        {
+            Session session = (from Session s in Sessions.Instance
+                               where s.SessionID == sessionID
+                               select s).FirstOrDefault<Session>();
+
+            if (session != null)
+            {
+                session.LastActivity = DateTime.Now;
+                return session.UserID;
+            }
+            return Guid.Empty;
+        }
+
+        public bool ChatUpdateClient(Guid sessionID, Guid correspondentID, ChatState state, string message)
+        {
+            return this.ChatUpdate(sessionID, correspondentID, state, message);
+        }
+
+        public bool ChatUpdateFournisseur(Guid sessionID, Guid correspondentID, ChatState state, string message)
+        {
+            return this.ChatUpdate(sessionID, correspondentID, state, message);
+        }
+
+        public bool ChatUpdateAdministrator(Guid sessionID, Guid correspondentID, ChatState state, string message)
+        {
+            return this.ChatUpdate(sessionID, correspondentID, state, message);
+        }
+
+        private bool ChatUpdate(Guid sessionID, Guid correspondentID, ChatState state, string message)
+        {
+            var user = (from Session s in Sessions.Instance
+                        where s.SessionID == sessionID
+                        select s).FirstOrDefault<Session>();
+
+            var correspondent = (from Session s in Sessions.Instance
+                                 where s.UserID == correspondentID
+                                 select s).FirstOrDefault<Session>();
+
+            if (user != null && correspondent != null)
+            {
+                if (!user.InChatWith.Contains(correspondent.SessionID) && state == ChatState.MESSAGED)
+                    user.InChatWith.Add(correspondent.SessionID);
+                try
+                {
+                    ((IUser)correspondent.User).ChatNotification(user.UserID, message, state);
+                }
+                catch
+                {
+                    return false;
+                }
+                if (state != ChatState.MESSAGED)
+                    user.InChatWith.Remove(correspondent.SessionID);
+                return true;
+            }
+            return false;
+        }
+
+        public UserType GetSessionType(Guid sessionID)
+        {
+            Session session = (from Session s in Sessions.Instance
+                               where s.SessionID == sessionID
+                               select s).FirstOrDefault<Session>();
+
+            if (session != null)
+            {
+                session.LastActivity = DateTime.Now;
+                return session.Type;
+            }
+            return UserType.UNKNOW;
         }
     }
 }

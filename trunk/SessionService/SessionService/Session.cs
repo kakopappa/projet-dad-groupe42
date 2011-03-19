@@ -8,6 +8,7 @@ namespace SessionService
     public class Session
     {
         private List<CartEntrie> cartEntries;
+        private List<Guid> inChatWith;
         private Guid sessionID;
         private Guid userID;
         private UserType type;
@@ -92,6 +93,14 @@ namespace SessionService
             }
         }
 
+        public List<Guid> InChatWith
+        {
+            get
+            {
+                return this.inChatWith;
+            }
+        }
+
         public Session(Guid userID, UserType type)
         {
             this.userID = userID;
@@ -101,6 +110,7 @@ namespace SessionService
             this.lastActivity = DateTime.MinValue;
             this.active = false;
             this.cartEntries = new List<CartEntrie>();
+            this.inChatWith = new List<Guid>();
         }
     }
 }
