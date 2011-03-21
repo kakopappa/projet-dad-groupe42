@@ -28,7 +28,7 @@
   </wsdl:message>
   <wsdl:message name="IService_GuidRequest_InputMessage" />
   <wsdl:message name="IService_GuidRequest_OutputMessage">
-    <wsdl:part xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/" name="guid" element="q3:guid" />
+    <wsdl:part name="parameters" element="tns:GuidRequestResponse" />
   </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="GetUserIdentifier">

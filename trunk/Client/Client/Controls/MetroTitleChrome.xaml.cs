@@ -199,7 +199,7 @@ namespace ChooseForMe
         /// <param name="e"></param>
         private void signin_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.GetMe().frame.Navigate(new SigninAndUp());
+            MainWindow.GetMe().menu.MeinFrame.Navigate(new SigninAndUp(SignFocus.SIGNIN));
         }
 
         /// <summary>
@@ -220,7 +220,17 @@ namespace ChooseForMe
         /// <param name="e"></param>
         private void pseudo_Click(object sender, RoutedEventArgs e)
         {
-            // TODO: Charger la page de profil
+            MainWindow.GetMe().menu.MeinFrame.Navigate(new Profile());
+        }
+
+        /// <summary>
+        /// Enregistrement d'un nouvel utilisateur
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void signup_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.GetMe().menu.MeinFrame.Navigate(new SigninAndUp(SignFocus.SIGNUP));
         }
     }
 }

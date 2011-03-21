@@ -106,7 +106,7 @@ namespace Client.Controls
         void ZuneMenuElement_Loaded(object sender, RoutedEventArgs e)
         {
             // Ne plait pas à expression blend
-            this.frame = MainWindow.GetMe().frame;
+            this.frame = ((ZuneMenu)this.Parent).MeinFrame;
             this.menu = (ZuneMenu)this.Parent;
         }
 

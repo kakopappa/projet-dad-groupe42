@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:p="clr-namespace:Client.Properties"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="700"
-	Title="SigninAndUp">
+      d:DesignHeight="500" d:DesignWidth="700"
+	Title="SigninAndUp" Background="White">    
     <Page.RenderTransform>
         <TransformGroup>
             <ScaleTransform/>
@@ -26,24 +26,31 @@
     		<ColumnDefinition Width="0.5*"/>
     		<ColumnDefinition Width="0.5*"/>
     	</Grid.ColumnDefinitions>
-    	<StackPanel x:Name="siPanel" Margin="8,0,90,0">
+    	<StackPanel x:Name="siPanel" Focusable="True" Margin="8,0,90,0">
     		<TextBlock TextWrapping="Wrap" Margin="0" d:LayoutOverrides="Width" Style="{DynamicResource MainLabel}"><Run Language="fr-fr" Text="adresse email"/></TextBlock>
             <TextBox x:Name="siMail" Text="{Binding Source={x:Static p:Settings.Default}, Path=ClientMail, Mode=TwoWay}" TextWrapping="Wrap" Margin="0,5,0,0" />
             <TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0,15,0,0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="mot de passe"/></TextBlock>
-            <PasswordBox x:Name="siPassword" Password="passworddeoufdelamortquitue" Margin="0,5,0,0"/>
+            <PasswordBox x:Name="siPassword" Margin="0,5,0,0"/>
     		<CheckBox x:Name="siAutoConnect" IsChecked="{Binding Source={x:Static p:Settings.Default}, Path=AutoConnect, Mode=TwoWay}" Content="me connecter automatiquement" HorizontalAlignment="Right" BorderThickness="1" Margin="0,15,0,0"/>
     		<Button Style="{DynamicResource MetroButton_large}" Click="siConnect_Click" x:Name="siConnect" Content="connexion" HorizontalAlignment="Right" Margin="0,15,0,0" Width="67.837"/>
     		<TextBlock x:Name="siInfoBox" TextAlignment="Right" TextWrapping="Wrap" Margin="0,15,0,0"/>
     	</StackPanel>
-    	<StackPanel x:Name="suPanel" Margin="0,0,98,0" Grid.Column="1">
-            <TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="nom"/></TextBlock>
-    		<TextBox x:Name="suNom" Margin="0,5,0,0" />
-            <TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0,15,0,0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="prénom"/></TextBlock>
-    		<TextBox x:Name="suPrenom" Margin="0,5,0,0"/>
-            <TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0,15,0,0"><Run Language="fr-fr" Text="email"/></TextBlock>
-            <TextBox TextWrapping="Wrap" Margin="0,5,0,0"/>
-    		<Button Style="{DynamicResource MetroButton_large}" Click="suCreate_Click"  x:Name="suCreate" Content="créer un compte" HorizontalAlignment="Right" Margin="0,15,0,0" Width="102.837"/>
-    		<TextBlock x:Name="suInfoBox" TextAlignment="Right" TextWrapping="Wrap" Margin="0,15,0,0"/>
-    	</StackPanel>
+        <ScrollViewer x:Name="suPanel" Margin="21.667,0,56.333,0" Grid.Column="1">
+    	    <StackPanel Margin="0,0,20,0">
+                <TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="nom"/></TextBlock>
+    		    <TextBox x:Name="suNom" Margin="0,5,0,0" />
+                <TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0,15,0,0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="prénom"/></TextBlock>
+    		    <TextBox x:Name="suPrenom" Margin="0,5,0,0"/>
+                <TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0,15,0,0"><Run Language="fr-fr" Text="email"/></TextBlock>
+                <TextBox TextWrapping="Wrap" Margin="0,5,0,0"/>
+                <TextBlock TextWrapping="Wrap" Margin="0,15,0,0" Style="{DynamicResource MainLabel}"><Run Language="fr-fr" Text="téléphone"/></TextBlock>
+                <TextBox x:Name="suPhone" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                <TextBlock TextWrapping="Wrap" Margin="0,15,0,0" Style="{DynamicResource MainLabel}"><Run Language="fr-fr" Text="mot de passe"/></TextBlock>
+                <PasswordBox x:Name="suPassword" Margin="0,5,0,0"/>
+    		    <Button Style="{DynamicResource MetroButton_large}" Click="suCreate_Click"  x:Name="suCreate" Content="créer un compte" HorizontalAlignment="Right" Margin="0,15,0,0" Width="102.837"/>
+    		    <TextBlock x:Name="suInfoBox" TextAlignment="Right" TextWrapping="Wrap" Margin="0,15,0,0"/>
+    	    </StackPanel>
+        </ScrollViewer>
+        <Path Grid.Column="1" Data="M352,3 L352,500.16999" HorizontalAlignment="Left" Margin="0" Stretch="Fill" Stroke="#FFEBE7E7" Width="3" StrokeThickness="4"/>
     </Grid>
 </Page>

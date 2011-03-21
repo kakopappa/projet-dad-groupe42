@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Nom du fichier d'origine :
-// Date de génération : 18/03/2011 08:39:47
+// Date de génération : 21/03/2011 15:18:42
 namespace Client.DataServiceClient
 {
     
@@ -302,8 +302,9 @@ namespace Client.DataServiceClient
         /// <param name="ville">Valeur initiale de ville.</param>
         /// <param name="code_postal">Valeur initiale de code_postal.</param>
         /// <param name="pays">Valeur initiale de pays.</param>
+        /// <param name="supprime">Valeur initiale de supprime.</param>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static ADRESSE_CLIENT CreateADRESSE_CLIENT(global::System.Guid ID, string adresse, string ville, string code_postal, string pays)
+        public static ADRESSE_CLIENT CreateADRESSE_CLIENT(global::System.Guid ID, string adresse, string ville, string code_postal, string pays, bool supprime)
         {
             ADRESSE_CLIENT aDRESSE_CLIENT = new ADRESSE_CLIENT();
             aDRESSE_CLIENT.id = ID;
@@ -311,6 +312,7 @@ namespace Client.DataServiceClient
             aDRESSE_CLIENT.ville = ville;
             aDRESSE_CLIENT.code_postal = code_postal;
             aDRESSE_CLIENT.pays = pays;
+            aDRESSE_CLIENT.supprime = supprime;
             return aDRESSE_CLIENT;
         }
         /// <summary>
@@ -423,6 +425,28 @@ namespace Client.DataServiceClient
         private string _pays;
         partial void OnpaysChanging(string value);
         partial void OnpaysChanged();
+        /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété supprime dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool supprime
+        {
+            get
+            {
+                return this._supprime;
+            }
+            set
+            {
+                this.OnsupprimeChanging(value);
+                this._supprime = value;
+                this.OnsupprimeChanged();
+                this.OnPropertyChanged("supprime");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _supprime;
+        partial void OnsupprimeChanging(bool value);
+        partial void OnsupprimeChanged();
         /// <summary>
         /// Il n'existe aucun commentaire pour CLIENT dans le schéma.
         /// </summary>
@@ -1397,8 +1421,9 @@ namespace Client.DataServiceClient
         /// <param name="ville">Valeur initiale de ville.</param>
         /// <param name="code_postal">Valeur initiale de code_postal.</param>
         /// <param name="pays">Valeur initiale de pays.</param>
+        /// <param name="supprime">Valeur initiale de supprime.</param>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static FOURNISSEUR CreateFOURNISSEUR(global::System.Guid ID, string nom, string email, string phone, string password, string adresse, string ville, string code_postal, string pays)
+        public static FOURNISSEUR CreateFOURNISSEUR(global::System.Guid ID, string nom, string email, string phone, string password, string adresse, string ville, string code_postal, string pays, bool supprime)
         {
             FOURNISSEUR fOURNISSEUR = new FOURNISSEUR();
             fOURNISSEUR.id = ID;
@@ -1410,6 +1435,7 @@ namespace Client.DataServiceClient
             fOURNISSEUR.ville = ville;
             fOURNISSEUR.code_postal = code_postal;
             fOURNISSEUR.pays = pays;
+            fOURNISSEUR.supprime = supprime;
             return fOURNISSEUR;
         }
         /// <summary>
@@ -1611,6 +1637,28 @@ namespace Client.DataServiceClient
         partial void OnpaysChanging(string value);
         partial void OnpaysChanged();
         /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété supprime dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool supprime
+        {
+            get
+            {
+                return this._supprime;
+            }
+            set
+            {
+                this.OnsupprimeChanging(value);
+                this._supprime = value;
+                this.OnsupprimeChanged();
+                this.OnPropertyChanged("supprime");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _supprime;
+        partial void OnsupprimeChanging(bool value);
+        partial void OnsupprimeChanged();
+        /// <summary>
         /// Il n'existe aucun commentaire pour COMMANDE_FOURNISSEUR dans le schéma.
         /// </summary>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
@@ -1671,11 +1719,17 @@ namespace Client.DataServiceClient
         /// Créez un nouvel objet IMAGE.
         /// </summary>
         /// <param name="ID">Valeur initiale de id.</param>
+        /// <param name="url">Valeur initiale de url.</param>
+        /// <param name="img_hauteur">Valeur initiale de img_hauteur.</param>
+        /// <param name="img_largeur">Valeur initiale de img_largeur.</param>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static IMAGE CreateIMAGE(global::System.Guid ID)
+        public static IMAGE CreateIMAGE(global::System.Guid ID, string url, decimal img_hauteur, decimal img_largeur)
         {
             IMAGE iMAGE = new IMAGE();
             iMAGE.id = ID;
+            iMAGE.url = url;
+            iMAGE.img_hauteur = img_hauteur;
+            iMAGE.img_largeur = img_largeur;
             return iMAGE;
         }
         /// <summary>
@@ -1726,7 +1780,7 @@ namespace Client.DataServiceClient
         /// Il n'existe aucun commentaire pour la propriété img_hauteur dans le schéma.
         /// </summary>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Nullable<decimal> img_hauteur
+        public decimal img_hauteur
         {
             get
             {
@@ -1741,14 +1795,14 @@ namespace Client.DataServiceClient
             }
         }
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Nullable<decimal> _img_hauteur;
-        partial void Onimg_hauteurChanging(global::System.Nullable<decimal> value);
+        private decimal _img_hauteur;
+        partial void Onimg_hauteurChanging(decimal value);
         partial void Onimg_hauteurChanged();
         /// <summary>
         /// Il n'existe aucun commentaire pour la propriété img_largeur dans le schéma.
         /// </summary>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public global::System.Nullable<decimal> img_largeur
+        public decimal img_largeur
         {
             get
             {
@@ -1763,8 +1817,8 @@ namespace Client.DataServiceClient
             }
         }
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        private global::System.Nullable<decimal> _img_largeur;
-        partial void Onimg_largeurChanging(global::System.Nullable<decimal> value);
+        private decimal _img_largeur;
+        partial void Onimg_largeurChanging(decimal value);
         partial void Onimg_largeurChanged();
         /// <summary>
         /// Il n'existe aucun commentaire pour PRODUIT dans le schéma.
@@ -1815,8 +1869,9 @@ namespace Client.DataServiceClient
         /// <param name="prix">Valeur initiale de prix.</param>
         /// <param name="stock">Valeur initiale de stock.</param>
         /// <param name="disponible">Valeur initiale de disponible.</param>
+        /// <param name="supprime">Valeur initiale de supprime.</param>
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
-        public static PRODUIT CreatePRODUIT(global::System.Guid ID, string reference, string nom, string marque, decimal prix, decimal stock, bool disponible)
+        public static PRODUIT CreatePRODUIT(global::System.Guid ID, string reference, string nom, string marque, decimal prix, decimal stock, bool disponible, bool supprime)
         {
             PRODUIT pRODUIT = new PRODUIT();
             pRODUIT.id = ID;
@@ -1826,6 +1881,7 @@ namespace Client.DataServiceClient
             pRODUIT.prix = prix;
             pRODUIT.stock = stock;
             pRODUIT.disponible = disponible;
+            pRODUIT.supprime = supprime;
             return pRODUIT;
         }
         /// <summary>
@@ -2004,6 +2060,28 @@ namespace Client.DataServiceClient
         private bool _disponible;
         partial void OndisponibleChanging(bool value);
         partial void OndisponibleChanged();
+        /// <summary>
+        /// Il n'existe aucun commentaire pour la propriété supprime dans le schéma.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public bool supprime
+        {
+            get
+            {
+                return this._supprime;
+            }
+            set
+            {
+                this.OnsupprimeChanging(value);
+                this._supprime = value;
+                this.OnsupprimeChanged();
+                this.OnPropertyChanged("supprime");
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private bool _supprime;
+        partial void OnsupprimeChanging(bool value);
+        partial void OnsupprimeChanged();
         /// <summary>
         /// Il n'existe aucun commentaire pour COMMANDER dans le schéma.
         /// </summary>

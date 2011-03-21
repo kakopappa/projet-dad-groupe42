@@ -66,6 +66,9 @@
     <Compile Include="Core\Connection.cs" />
     <Compile Include="Events\ObjectEventArgs.cs" />
     <Compile Include="Events\UIEventArgs.cs" />
+    <Compile Include="Pages\Profile.xaml.cs">
+      <DependentUpon>Profile.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\SigninAndUp.xaml.cs">
       <DependentUpon>SigninAndUp.xaml</DependentUpon>
     </Compile>
@@ -73,6 +76,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.datasvcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\Service\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\WorkflowConnection\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -85,6 +93,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Home.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Profile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,6 +215,22 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="Service References\DataServiceClient\service.edmx" />
+    <None Include="Service References\Service\Client.Service.ItemState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Service\Client.Service.UserType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Service\Service.wsdl" />
+    <None Include="Service References\Service\Service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Service\Service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\WorkflowConnection\Client.WorkflowConnection.GetUserIdentifierResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -235,6 +263,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Service\" />
     <WCFMetadataStorage Include="Service References\WorkflowConnection\" />
   </ItemGroup>
   <ItemGroup>
@@ -248,6 +277,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WorkflowConnection\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Service\Service.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Service\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Service\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Service\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

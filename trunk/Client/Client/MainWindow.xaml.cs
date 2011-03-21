@@ -19,6 +19,8 @@ using System.Windows.Threading;
 using System.Data.Services.Client;
 using System.Threading;
 using Client.Core;
+using System.ServiceModel;
+using Client.Service;
 
 namespace Client
 {
@@ -31,7 +33,7 @@ namespace Client
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, CustomerCallback
     {
         private const int WM_SYSCOMMAND = 0x112;
         private HwndSource hwndSource;
@@ -40,6 +42,8 @@ namespace Client
 
         public Connection Connection { get; set; }
         public DataServiceClient.CLIENT Client { get; set; }
+        public Guid SessionId { get; set; }
+        public CustomerClient MeinService { get; set; }
 
         public static MainWindow GetMe()
         {
@@ -63,6 +67,7 @@ namespace Client
             InitializeComponent();
             MainWindow.instance = this;
             this.Connection = new Connection();
+            this.MeinService = new CustomerClient(new InstanceContext(this));
             this.Loaded += new RoutedEventHandler(MainWindow_Loaded);
             this.Connection.Success += new Events.ObjectEventHandler(Connection_Success);
             this.SourceInitialized += new EventHandler(InitializeWindowSource);
@@ -117,14 +122,28 @@ namespace Client
         /// <param name="e"></param>
         void Connection_Success(object sender, Events.ObjectEventArgs e)
         {
+
             ThreadPool.QueueUserWorkItem((state) =>
                 {
                     DataServiceClient.DADEntities ctx = new DataServiceClient.DADEntities(new Uri(Properties.Settings.Default.DataServiceClient));
                     ctx.IgnoreResourceNotFoundException = true;
-                    
+
+                    // Pouet le session id
+                    this.SessionId = ((Guid[])e.Data)[1];
+
                     this.Client = (from c in ctx.CLIENT
-                                 where c.id == (Guid)e.Data
+                                   where c.id == ((Guid[])e.Data)[0]
                                  select c).Single();
+
+                    // Active la session
+                    try
+                    {
+                        bool activateProperlyDone = this.MeinService.ActivateClient(this.SessionId, this.Client.id);
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Erreur d'activation du compte");
+                    }
 
                     Dispatcher.BeginInvoke(
                         DispatcherPriority.Normal,
@@ -333,5 +352,29 @@ namespace Client
                         }));
                 });
         }
+
+        #region ClientCallback Membres
+
+        public void CartNotification(Guid itemID, int newQuantity, Client.Service.ItemState state)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OrderNotification(Guid orderID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Disconnected()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ChatNotification(Guid correspondentID, string message, Client.Service.ChatState state)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
