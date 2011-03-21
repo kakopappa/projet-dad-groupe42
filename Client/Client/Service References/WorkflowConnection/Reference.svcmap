@@ -22,10 +22,10 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="Connection.xsd" MetadataType="Schema" ID="cd02c6f1-723c-431b-89cd-1f062dbf3b85" SourceId="1" SourceUrl="http://172.16.255.216:1337/Connection.xamlx?xsd=xsd2" />
-    <MetadataFile FileName="Connection.wsdl" MetadataType="Wsdl" ID="cd15e9bc-1ae2-49e7-b86c-d237ee57521f" SourceId="1" SourceUrl="http://172.16.255.216:1337/Connection.xamlx?wsdl" />
-    <MetadataFile FileName="Connection1.xsd" MetadataType="Schema" ID="01fbff60-a2e3-44c4-8d36-c15036954721" SourceId="1" SourceUrl="http://172.16.255.216:1337/Connection.xamlx?xsd=xsd0" />
     <MetadataFile FileName="Connection.disco" MetadataType="Disco" ID="1e61cac1-14d6-409f-afb6-b04abfff9e57" SourceId="1" SourceUrl="http://172.16.255.216:1337/Connection.xamlx?disco" />
+    <MetadataFile FileName="Connection1.xsd" MetadataType="Schema" ID="01fbff60-a2e3-44c4-8d36-c15036954721" SourceId="1" SourceUrl="http://172.16.255.216:1337/Connection.xamlx?xsd=xsd0" />
     <MetadataFile FileName="Connection2.xsd" MetadataType="Schema" ID="457df024-09e5-43bc-a4df-cd1e3c7c8e40" SourceId="1" SourceUrl="http://172.16.255.216:1337/Connection.xamlx?xsd=xsd1" />
+    <MetadataFile FileName="Connection.wsdl" MetadataType="Wsdl" ID="cd15e9bc-1ae2-49e7-b86c-d237ee57521f" SourceId="1" SourceUrl="http://172.16.255.216:1337/Connection.xamlx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

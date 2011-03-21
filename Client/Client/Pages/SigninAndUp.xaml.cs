@@ -19,6 +19,11 @@ using Client.Core;
 
 namespace Client.Pages
 {
+    public enum SignFocus
+    {
+        SIGNIN,
+        SIGNUP
+    }
 
     /// <summary>
     /// Logique d'interaction pour SigninAndUp.xaml
@@ -30,12 +35,17 @@ namespace Client.Pages
         /// <summary>
         /// Constructeur
         /// </summary>
-        public SigninAndUp()
+        public SigninAndUp(SignFocus focus)
         {
             InitializeComponent();
             this.conn = MainWindow.GetMe().Connection;
             this.Loaded += new RoutedEventHandler(SigninAndUp_Loaded);
             this.Unloaded += new RoutedEventHandler(SigninAndUp_Unloaded);
+
+            if (focus == SignFocus.SIGNIN)
+                this.siMail.Focus();
+            else
+                this.suNom.Focus();
         }
 
         /// <summary>
@@ -79,6 +89,8 @@ namespace Client.Pages
                     Properties.Settings.Default.ClientPassword = this.siPassword.Password;
                     MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
                     this.siConnect.IsEnabled = true;
+                    MainWindow.GetMe().menu.MeinFrame.Navigate(new Home());
+                    MainWindow.GetMe().menu.SetCurrentPage(MainWindow.GetMe().home);
                 }));
         }
 

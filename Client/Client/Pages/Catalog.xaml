@@ -6,9 +6,53 @@
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="700"
 	  Title="Catalog"
-      Opacity="0"
       Initialized="Page_Initialized">
     <Page.Resources>
+        <Style x:Key="RawButtonStyle" TargetType="Button">
+            <Setter Property="Opacity" Value="0.5" />
+            <Setter Property="Template" Value="{DynamicResource RawButtonTemplate}" />
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="1" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Opacity" Value="0.5" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <ControlTemplate x:Key="ProdTemplate">
+            <WrapPanel Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" 
+                       FlowDirection="LeftToRight"
+                       IsItemsHost="True" />
+        </ControlTemplate>
+        
+        <DataTemplate x:Key="ProdItemTemplate">
+            <Grid Width="250" Margin="0,0,20,20">
+            	<Grid.RowDefinitions>
+            		<RowDefinition Height="Auto" MinHeight="10.62"/>
+            		<RowDefinition />
+            		<RowDefinition />
+            	</Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.404*" />
+                    <ColumnDefinition Width="0.596*" />
+                </Grid.ColumnDefinitions>
+
+                <Image Grid.Column="0" Margin="0,0,8,0" Grid.RowSpan="3">
+                    <Image.Source>
+                        <BitmapImage UriSource="{Binding Path=IMAGE[0].url, Mode=OneWay}" />
+                    </Image.Source>
+                </Image>
+                <Button Template="{DynamicResource RawButtonTemplate}" Grid.Column="1"  Foreground="{DynamicResource BgColorBrush}" FontFamily="Segoe WP Semibold" FontSize="14" Content="{Binding nom}" Background="Transparent" Grid.RowSpan="1" />
+                <TextBlock Grid.Column="1" Margin="0" Grid.Row="1" TextWrapping="Wrap"><Run Language="fr-fr" Text="{Binding description}"/></TextBlock>
+                <Border Background="{DynamicResource BgColorBrush}" Margin="0,8,0,0" Padding="2" BorderBrush="Transparent" Grid.Column="1" Grid.Row="2" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+					<TextBlock TextWrapping="Wrap" d:LayoutOverrides="GridBox" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="14" Width="Auto"><Run Language="fr-fr" Text="{Binding Path=prix, StringFormat=€{0:F2}}"/></TextBlock>
+            	</Border>
+			</Grid>
+        </DataTemplate>
+        
         <Style x:Key="CatItem" TargetType="{x:Type ListBoxItem}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -57,5 +101,31 @@
                  ItemContainerStyle="{StaticResource CatItem}"
                  ItemTemplate="{StaticResource CatTemplate}" HorizontalContentAlignment="Stretch" 
                  HorizontalAlignment="Left" Margin="8,8,0,8" Width="151"/>
+        
+        <ItemsControl Name="listProducts" Margin="175.5,8,8,47"
+                      Template="{StaticResource ProdTemplate}"
+                      ItemTemplate="{StaticResource ProdItemTemplate}" />
+        
+        <Button Template="{DynamicResource RawButtonTemplate}" Style="{StaticResource RawButtonStyle}" Click="btnNext_Click" Name="btnNext" HorizontalAlignment="Right" Margin="0,0,8,8" VerticalAlignment="Bottom" Height="35" Width="35" Background="Transparent">
+        	<Grid>
+                <Path Data="F1M139.765,392.288L133.095,400.112 139.765,408.137 142.454,408.137 136.627,401.218 149.874,401.218 149.874,399.162 136.673,399.162 142.469,392.274 139.765,392.288z" Height="23" Stretch="Fill" Width="23" Fill="Gray" HorizontalAlignment="Center"  RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center">
+        			<Path.RenderTransform>
+        				<TransformGroup>
+        					<ScaleTransform/>
+        					<SkewTransform/>
+        					<RotateTransform Angle="180"/>
+        					<TranslateTransform/>
+        				</TransformGroup>
+        			</Path.RenderTransform>
+        		</Path>
+                <Ellipse StrokeThickness="1.5" Stroke="Gray"/>  	
+			</Grid>        
+		</Button>
+        <Button Template="{DynamicResource RawButtonTemplate}" Style="{StaticResource RawButtonStyle}" Click="btnPrev_Click" Name="btnPrev" HorizontalAlignment="Right" Margin="0,0,52,8" VerticalAlignment="Bottom" Background="Transparent">
+        	<Grid>
+                <Path Data="F1M139.765,392.288L133.095,400.112 139.765,408.137 142.454,408.137 136.627,401.218 149.874,401.218 149.874,399.162 136.673,399.162 142.469,392.274 139.765,392.288z" Height="23" Stretch="Fill" Width="23" Fill="Gray" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Ellipse Height="35" Stroke="Gray" Width="35" StrokeThickness="1.5"/>
+			</Grid>
+		</Button>
     </Grid>
 </Page>

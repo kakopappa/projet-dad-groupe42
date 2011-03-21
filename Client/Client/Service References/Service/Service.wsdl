@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Service" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_Customer_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <cdp:CompositeDuplex xmlns:cdp="http://schemas.microsoft.com/net/2006/06/duplex" />
+        <ow:OneWay xmlns:ow="http://schemas.microsoft.com/ws/2005/05/routing/policy" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_Administrator_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <cdp:CompositeDuplex xmlns:cdp="http://schemas.microsoft.com/net/2006/06/duplex" />
+        <ow:OneWay xmlns:ow="http://schemas.microsoft.com/ws/2005/05/routing/policy" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSDualHttpBinding_Fournisseur_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <cdp:CompositeDuplex xmlns:cdp="http://schemas.microsoft.com/net/2006/06/duplex" />
+        <ow:OneWay xmlns:ow="http://schemas.microsoft.com/ws/2005/05/routing/policy" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://172.16.255.216:8082/Service.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://172.16.255.216:8082/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://172.16.255.216:8082/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SessionService" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Customer_ActivateClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActivateClient" />
+  </wsdl:message>
+  <wsdl:message name="Customer_ActivateClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActivateClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="Customer_AddItemInCart_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddItemInCart" />
+  </wsdl:message>
+  <wsdl:message name="Customer_AddItemInCart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddItemInCartResponse" />
+  </wsdl:message>
+  <wsdl:message name="Customer_RemoveItemInCart_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveItemInCart" />
+  </wsdl:message>
+  <wsdl:message name="Customer_RemoveItemInCart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveItemInCartResponse" />
+  </wsdl:message>
+  <wsdl:message name="Customer_RemoveCartContentClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCartContentClient" />
+  </wsdl:message>
+  <wsdl:message name="Customer_RemoveCartContentClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCartContentClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="Customer_ChatUpdateClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChatUpdateClient" />
+  </wsdl:message>
+  <wsdl:message name="Customer_ChatUpdateClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChatUpdateClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="Customer_CartNotification_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:CartNotification" />
+  </wsdl:message>
+  <wsdl:message name="Customer_OrderNotification_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OrderNotification" />
+  </wsdl:message>
+  <wsdl:message name="Customer_Disconnected_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:Disconnected" />
+  </wsdl:message>
+  <wsdl:message name="Customer_ChatNotification_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ChatNotification" />
+  </wsdl:message>
+  <wsdl:message name="Administrator_Connect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Connect" />
+  </wsdl:message>
+  <wsdl:message name="Administrator_Connect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectResponse" />
+  </wsdl:message>
+  <wsdl:message name="Administrator_ChatUpdateAdministrator_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChatUpdateAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="Administrator_ChatUpdateAdministrator_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChatUpdateAdministratorResponse" />
+  </wsdl:message>
+  <wsdl:message name="Administrator_CategorieAdded_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:CategorieAdded" />
+  </wsdl:message>
+  <wsdl:message name="Fournisseur_ActivateFournisseur_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActivateFournisseur" />
+  </wsdl:message>
+  <wsdl:message name="Fournisseur_ActivateFournisseur_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActivateFournisseurResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fournisseur_ChatUpdateFournisseur_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChatUpdateFournisseur" />
+  </wsdl:message>
+  <wsdl:message name="Fournisseur_ChatUpdateFournisseur_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChatUpdateFournisseurResponse" />
+  </wsdl:message>
+  <wsdl:message name="Fournisseur_NewOrder_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NewOrder" />
+  </wsdl:message>
+  <wsdl:message name="Fournisseur_CategorieNotification_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:CategorieNotification" />
+  </wsdl:message>
+  <wsdl:message name="Fournisseur_ProductNotification_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ProductNotification" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_CreateSession_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSession" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_CreateSession_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_GetUserID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserID" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_GetUserID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_GetSessionType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSessionType" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_GetSessionType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSessionTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_ChangeItemAvailability_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeItemAvailability" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_ChangeItemAvailability_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeItemAvailabilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_AdminProductModification_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdminProductModification" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_AdminProductModification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdminProductModificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_RemoveCartContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCartContent" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_RemoveCartContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveCartContentResponse" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="Customer">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ActivateClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/Customer/ActivateClient" message="tns:Customer_ActivateClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Customer/ActivateClientResponse" message="tns:Customer_ActivateClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddItemInCart">
+      <wsdl:input wsaw:Action="http://tempuri.org/Customer/AddItemInCart" message="tns:Customer_AddItemInCart_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Customer/AddItemInCartResponse" message="tns:Customer_AddItemInCart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RemoveItemInCart">
+      <wsdl:input wsaw:Action="http://tempuri.org/Customer/RemoveItemInCart" message="tns:Customer_RemoveItemInCart_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Customer/RemoveItemInCartResponse" message="tns:Customer_RemoveItemInCart_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RemoveCartContentClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/Customer/RemoveCartContentClient" message="tns:Customer_RemoveCartContentClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Customer/RemoveCartContentClientResponse" message="tns:Customer_RemoveCartContentClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ChatUpdateClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/Customer/ChatUpdateClient" message="tns:Customer_ChatUpdateClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Customer/ChatUpdateClientResponse" message="tns:Customer_ChatUpdateClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CartNotification">
+      <wsdl:output wsaw:Action="http://tempuri.org/Customer/CartNotification" message="tns:Customer_CartNotification_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="OrderNotification">
+      <wsdl:output wsaw:Action="http://tempuri.org/Customer/OrderNotification" message="tns:Customer_OrderNotification_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Disconnected">
+      <wsdl:output wsaw:Action="http://tempuri.org/Customer/Disconnected" message="tns:Customer_Disconnected_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ChatNotification">
+      <wsdl:output wsaw:Action="http://tempuri.org/Customer/ChatNotification" message="tns:Customer_ChatNotification_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType msc:usingSession="true" name="Administrator">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Connect">
+      <wsdl:input wsaw:Action="http://tempuri.org/Administrator/Connect" message="tns:Administrator_Connect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Administrator/ConnectResponse" message="tns:Administrator_Connect_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ChatUpdateAdministrator">
+      <wsdl:input wsaw:Action="http://tempuri.org/Administrator/ChatUpdateAdministrator" message="tns:Administrator_ChatUpdateAdministrator_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Administrator/ChatUpdateAdministratorResponse" message="tns:Administrator_ChatUpdateAdministrator_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CategorieAdded">
+      <wsdl:output wsaw:Action="http://tempuri.org/Administrator/CategorieAdded" message="tns:Administrator_CategorieAdded_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType msc:usingSession="true" name="Fournisseur">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ActivateFournisseur">
+      <wsdl:input wsaw:Action="http://tempuri.org/Fournisseur/ActivateFournisseur" message="tns:Fournisseur_ActivateFournisseur_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Fournisseur/ActivateFournisseurResponse" message="tns:Fournisseur_ActivateFournisseur_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ChatUpdateFournisseur">
+      <wsdl:input wsaw:Action="http://tempuri.org/Fournisseur/ChatUpdateFournisseur" message="tns:Fournisseur_ChatUpdateFournisseur_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Fournisseur/ChatUpdateFournisseurResponse" message="tns:Fournisseur_ChatUpdateFournisseur_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NewOrder">
+      <wsdl:output wsaw:Action="http://tempuri.org/Fournisseur/NewOrder" message="tns:Fournisseur_NewOrder_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CategorieNotification">
+      <wsdl:output wsaw:Action="http://tempuri.org/Fournisseur/CategorieNotification" message="tns:Fournisseur_CategorieNotification_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ProductNotification">
+      <wsdl:output wsaw:Action="http://tempuri.org/Fournisseur/ProductNotification" message="tns:Fournisseur_ProductNotification_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Workflow">
+    <wsdl:operation name="CreateSession">
+      <wsdl:input wsaw:Action="http://tempuri.org/Workflow/CreateSession" message="tns:Workflow_CreateSession_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Workflow/CreateSessionResponse" message="tns:Workflow_CreateSession_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserID">
+      <wsdl:input wsaw:Action="http://tempuri.org/Workflow/GetUserID" message="tns:Workflow_GetUserID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Workflow/GetUserIDResponse" message="tns:Workflow_GetUserID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSessionType">
+      <wsdl:input wsaw:Action="http://tempuri.org/Workflow/GetSessionType" message="tns:Workflow_GetSessionType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Workflow/GetSessionTypeResponse" message="tns:Workflow_GetSessionType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeItemAvailability">
+      <wsdl:input wsaw:Action="http://tempuri.org/Workflow/ChangeItemAvailability" message="tns:Workflow_ChangeItemAvailability_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Workflow/ChangeItemAvailabilityResponse" message="tns:Workflow_ChangeItemAvailability_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdminProductModification">
+      <wsdl:input wsaw:Action="http://tempuri.org/Workflow/AdminProductModification" message="tns:Workflow_AdminProductModification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Workflow/AdminProductModificationResponse" message="tns:Workflow_AdminProductModification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCartContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/Workflow/RemoveCartContent" message="tns:Workflow_RemoveCartContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Workflow/RemoveCartContentResponse" message="tns:Workflow_RemoveCartContent_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSDualHttpBinding_Customer" type="tns:Customer">
+    <wsp:PolicyReference URI="#WSDualHttpBinding_Customer_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ActivateClient">
+      <soap12:operation soapAction="http://tempuri.org/Customer/ActivateClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddItemInCart">
+      <soap12:operation soapAction="http://tempuri.org/Customer/AddItemInCart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveItemInCart">
+      <soap12:operation soapAction="http://tempuri.org/Customer/RemoveItemInCart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCartContentClient">
+      <soap12:operation soapAction="http://tempuri.org/Customer/RemoveCartContentClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChatUpdateClient">
+      <soap12:operation soapAction="http://tempuri.org/Customer/ChatUpdateClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CartNotification">
+      <soap12:operation soapAction="http://tempuri.org/Customer/CartNotification" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderNotification">
+      <soap12:operation soapAction="http://tempuri.org/Customer/OrderNotification" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Disconnected">
+      <soap12:operation soapAction="http://tempuri.org/Customer/Disconnected" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChatNotification">
+      <soap12:operation soapAction="http://tempuri.org/Customer/ChatNotification" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSDualHttpBinding_Administrator" type="tns:Administrator">
+    <wsp:PolicyReference URI="#WSDualHttpBinding_Administrator_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Connect">
+      <soap12:operation soapAction="http://tempuri.org/Administrator/Connect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChatUpdateAdministrator">
+      <soap12:operation soapAction="http://tempuri.org/Administrator/ChatUpdateAdministrator" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CategorieAdded">
+      <soap12:operation soapAction="http://tempuri.org/Administrator/CategorieAdded" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSDualHttpBinding_Fournisseur" type="tns:Fournisseur">
+    <wsp:PolicyReference URI="#WSDualHttpBinding_Fournisseur_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ActivateFournisseur">
+      <soap12:operation soapAction="http://tempuri.org/Fournisseur/ActivateFournisseur" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChatUpdateFournisseur">
+      <soap12:operation soapAction="http://tempuri.org/Fournisseur/ChatUpdateFournisseur" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewOrder">
+      <soap12:operation soapAction="http://tempuri.org/Fournisseur/NewOrder" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CategorieNotification">
+      <soap12:operation soapAction="http://tempuri.org/Fournisseur/CategorieNotification" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ProductNotification">
+      <soap12:operation soapAction="http://tempuri.org/Fournisseur/ProductNotification" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_Workflow" type="tns:Workflow">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateSession">
+      <soap:operation soapAction="http://tempuri.org/Workflow/CreateSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserID">
+      <soap:operation soapAction="http://tempuri.org/Workflow/GetUserID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSessionType">
+      <soap:operation soapAction="http://tempuri.org/Workflow/GetSessionType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeItemAvailability">
+      <soap:operation soapAction="http://tempuri.org/Workflow/ChangeItemAvailability" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdminProductModification">
+      <soap:operation soapAction="http://tempuri.org/Workflow/AdminProductModification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveCartContent">
+      <soap:operation soapAction="http://tempuri.org/Workflow/RemoveCartContent" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="WSDualHttpBinding_Customer" binding="tns:WSDualHttpBinding_Customer">
+      <soap12:address location="http://172.16.255.216:8082/Service.svc/ServiceClient" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://172.16.255.216:8082/Service.svc/ServiceClient</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="WSDualHttpBinding_Administrator" binding="tns:WSDualHttpBinding_Administrator">
+      <soap12:address location="http://172.16.255.216:8082/Service.svc/ServiceAdministrator" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://172.16.255.216:8082/Service.svc/ServiceAdministrator</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="WSDualHttpBinding_Fournisseur" binding="tns:WSDualHttpBinding_Fournisseur">
+      <soap12:address location="http://172.16.255.216:8082/Service.svc/ServiceFournisseur" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://172.16.255.216:8082/Service.svc/ServiceFournisseur</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_Workflow" binding="tns:BasicHttpBinding_Workflow">
+      <soap:address location="http://172.16.255.216:8082/Service.svc/ServiceWorkflow" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

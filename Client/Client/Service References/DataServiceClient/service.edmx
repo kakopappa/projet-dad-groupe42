@@ -10,6 +10,7 @@
         <Property Name="ville" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="code_postal" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="pays" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
+        <Property Name="supprime" Type="Edm.Boolean" Nullable="false" />
         <NavigationProperty Name="CLIENT" Relationship="DADModel.FK_ADRESSE_CLIENT_CLIENT" FromRole="ADRESSE_CLIENT" ToRole="CLIENT" />
         <NavigationProperty Name="COMMANDE_CLIENT" Relationship="DADModel.FK_COMMANDE_CLIENT_ADRESSE_CLIENT" FromRole="ADRESSE_CLIENT" ToRole="COMMANDE_CLIENT" />
       </EntityType>
@@ -87,6 +88,7 @@
         <Property Name="ville" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="code_postal" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
         <Property Name="pays" Type="Edm.String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
+        <Property Name="supprime" Type="Edm.Boolean" Nullable="false" />
         <NavigationProperty Name="COMMANDE_FOURNISSEUR" Relationship="DADModel.FK_COMMANDE_FOURNISSEUR_FOURNISSEUR" FromRole="FOURNISSEUR" ToRole="COMMANDE_FOURNISSEUR" />
         <NavigationProperty Name="PRODUIT" Relationship="DADModel.FK_PRODUIT_FOURNISSEUR" FromRole="FOURNISSEUR" ToRole="PRODUIT" />
       </EntityType>
@@ -95,9 +97,9 @@
           <PropertyRef Name="id" />
         </Key>
         <Property Name="id" Type="Edm.Guid" Nullable="false" />
-        <Property Name="url" Type="Edm.String" Nullable="true" MaxLength="100" Unicode="true" FixedLength="false" />
-        <Property Name="img_hauteur" Type="Edm.Decimal" Nullable="true" Precision="18" Scale="0" />
-        <Property Name="img_largeur" Type="Edm.Decimal" Nullable="true" Precision="18" Scale="0" />
+        <Property Name="url" Type="Edm.String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+        <Property Name="img_hauteur" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="0" />
+        <Property Name="img_largeur" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="0" />
         <NavigationProperty Name="PRODUIT" Relationship="DADModel.FK_IMAGE_PRODUIT" FromRole="IMAGE" ToRole="PRODUIT" />
       </EntityType>
       <EntityType Name="PRODUIT">
@@ -112,6 +114,7 @@
         <Property Name="stock" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="0" />
         <Property Name="description" Type="Edm.String" Nullable="true" MaxLength="Max" Unicode="true" FixedLength="false" />
         <Property Name="disponible" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="supprime" Type="Edm.Boolean" Nullable="false" />
         <NavigationProperty Name="COMMANDER" Relationship="DADModel.FK_COMMANDER_PRODUIT" FromRole="PRODUIT" ToRole="COMMANDER" />
         <NavigationProperty Name="FOURNISSEUR" Relationship="DADModel.FK_PRODUIT_FOURNISSEUR" FromRole="PRODUIT" ToRole="FOURNISSEUR" />
         <NavigationProperty Name="IMAGE" Relationship="DADModel.FK_IMAGE_PRODUIT" FromRole="PRODUIT" ToRole="IMAGE" />
@@ -170,7 +173,7 @@
         <End Role="PRODUIT" Type="DADModel.PRODUIT" Multiplicity="*" />
       </Association>
       <Association Name="FK_IMAGE_PRODUIT">
-        <End Role="PRODUIT" Type="DADModel.PRODUIT" Multiplicity="0..1" />
+        <End Role="PRODUIT" Type="DADModel.PRODUIT" Multiplicity="1" />
         <End Role="IMAGE" Type="DADModel.IMAGE" Multiplicity="*" />
       </Association>
       <Association Name="APPARTIENT">

@@ -51,11 +51,15 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:ZuneMenu}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <StackPanel Margin="8,0,8,0" IsItemsHost="True" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                    </Border>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        
+                        <StackPanel Grid.Row="0" Margin="8,0,8,0" IsItemsHost="True" Orientation="Horizontal" HorizontalAlignment="Stretch" />
+                        <Frame JournalOwnership="UsesParentJournal" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="frame" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

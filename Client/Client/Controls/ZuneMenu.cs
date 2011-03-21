@@ -68,5 +68,16 @@ namespace Client.Controls
                 }
             }
         }
+
+        /// <summary>
+        /// Retourne la frame du composant
+        /// </summary>
+        public Frame MeinFrame
+        {
+            get
+            {
+                return (Frame)this.Template.FindName("frame", this);
+            }
+        }
     }
 }

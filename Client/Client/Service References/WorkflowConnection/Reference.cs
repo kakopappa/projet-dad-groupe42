@@ -250,18 +250,21 @@ namespace Client.WorkflowConnection {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GuidRequestResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class GuidRequestResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://schemas.microsoft.com/2003/10/Serialization/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public string guid;
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string UserID;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public string SessionID;
         
         public GuidRequestResponse() {
         }
         
-        public GuidRequestResponse(string guid) {
-            this.guid = guid;
+        public GuidRequestResponse(string UserID, string SessionID) {
+            this.UserID = UserID;
+            this.SessionID = SessionID;
         }
     }
     
@@ -321,10 +324,11 @@ namespace Client.WorkflowConnection {
             return base.Channel.GuidRequest(request);
         }
         
-        public string GuidRequest() {
+        public string GuidRequest(out string SessionID) {
             Client.WorkflowConnection.GuidRequestRequest inValue = new Client.WorkflowConnection.GuidRequestRequest();
             Client.WorkflowConnection.GuidRequestResponse retVal = ((Client.WorkflowConnection.IService)(this)).GuidRequest(inValue);
-            return retVal.guid;
+            SessionID = retVal.SessionID;
+            return retVal.UserID;
         }
     }
 }

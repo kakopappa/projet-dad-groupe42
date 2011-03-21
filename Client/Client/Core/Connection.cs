@@ -32,8 +32,12 @@ namespace Client.Core
                         switch (presp.PasswordMatch)
                         {
                             case WorkflowConnection.CheckIfPasswordMatchResult.MATCH:
-                                Guid id = new Guid(svc.GuidRequest());
-                                OnSuccess(new ObjectEventArgs(id));
+                                string sessionIdString = String.Empty;
+                                Guid id = new Guid(svc.GuidRequest(out sessionIdString));
+                                Guid sessionId = new Guid(sessionIdString);
+
+                                Guid[] obj = { id, sessionId};
+                                OnSuccess(new ObjectEventArgs(obj));
                                 break;
 
                             case WorkflowConnection.CheckIfPasswordMatchResult.NOT_MATCH:
