@@ -13,6 +13,6 @@
         <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="358,194,0,0" Name="UserLoginBox" VerticalAlignment="Top" Width="120" />        
         <PasswordBox Height="23" HorizontalAlignment="Left" Margin="358,252,0,0" Name="UserPasswordBox" VerticalAlignment="Top" Width="120" />
         <Button FontFamily="Georgia" Content="Connexion" Height="23" HorizontalAlignment="Left" Margin="378,328,0,0" Name="buttonConnexion" VerticalAlignment="Top" Width="75" Click="LoadConnexion"/>
-        <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="397,381,0,0" Name="LabelError" VerticalAlignment="Top" />
+        <Label Foreground="Red" FontFamily="Georgia" FontSize="16" Content="" Height="28" HorizontalAlignment="Left" Margin="306,381,0,0" Name="LabelError" VerticalAlignment="Top" Width="233" />
     </Grid>
 </Page>

@@ -55,24 +55,24 @@ namespace FournisseurTest
                                 MainWindow.GetInstance().btnNewProduct.IsEnabled = true;
                                 MainWindow.GetInstance().buttonDeconnexion.IsEnabled = true;
                                 MainWindow.GetInstance().Frame.Navigate(new ListeCommande());
-                                
-                                break;
+                                                                break;
 
                             case WorkflowConnection.CheckIfPasswordMatchResult.NOT_MATCH:
-                               
+                                LabelError.Content = "Erreur de password";
                                 break;
 
                             default:
+                                LabelError.Content = "Erreur de service";
                                 break;
                         }
                         break;
 
                     case WorkflowConnection.CheckIfFournisseurExistResult.NOT_EXIST:
-                         
-
+                        LabelError.Content = "L'utilisateur n'existe pas";
                         break;
 
                     default:
+                        LabelError.Content = "Erreur de service";
                         break;
                 }
             }
@@ -90,7 +90,7 @@ namespace FournisseurTest
          }
          else
          {
-             
+             LabelError.Content = "Veuillez remplir les champs";
          }
         }
     }
