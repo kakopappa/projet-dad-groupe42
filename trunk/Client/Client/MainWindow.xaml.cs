@@ -67,9 +67,13 @@ namespace Client
             InitializeComponent();
             MainWindow.instance = this;
             this.Connection = new Connection();
-            this.MeinService = new CustomerClient(new InstanceContext(this));
+
+            this.MeinService = new CustomerClient(new InstanceContext(this), "WSDualHttpBinding_Customer");
+
             this.Loaded += new RoutedEventHandler(MainWindow_Loaded);
+
             this.Connection.Success += new Events.ObjectEventHandler(Connection_Success);
+
             this.SourceInitialized += new EventHandler(InitializeWindowSource);
             this.Closing += new System.ComponentModel.CancelEventHandler(MainWindow_Closing);
         }
@@ -88,6 +92,8 @@ namespace Client
                 this.progressBar.Visibility = Visibility.Visible;
                 ThreadPool.QueueUserWorkItem((state) =>
                     {
+                        this.MeinService.Open();
+
                         this.Connection.Connect(
                             Properties.Settings.Default.ClientMail,
                             Properties.Settings.Default.ClientPassword);
@@ -122,7 +128,6 @@ namespace Client
         /// <param name="e"></param>
         void Connection_Success(object sender, Events.ObjectEventArgs e)
         {
-
             ThreadPool.QueueUserWorkItem((state) =>
                 {
                     DataServiceClient.DADEntities ctx = new DataServiceClient.DADEntities(new Uri(Properties.Settings.Default.DataServiceClient));
@@ -162,6 +167,7 @@ namespace Client
         /// <param name="e"></param>
         void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            this.MeinService.Close();
             Properties.Settings.Default.Save();
         }
 
@@ -367,7 +373,13 @@ namespace Client
 
         public void Disconnected()
         {
-            throw new NotImplementedException();
+            Dispatcher.BeginInvoke(
+                DispatcherPriority.Normal,
+                new Action(() =>
+                    {
+                        MessageBox.Show("Vous avez été déconnecté !");
+                        this.chrome.UnloadUserInfo();
+                    }));
         }
 
         public void ChatNotification(Guid correspondentID, string message, Client.Service.ChatState state)

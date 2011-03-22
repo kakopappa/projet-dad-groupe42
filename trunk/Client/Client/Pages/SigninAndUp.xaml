@@ -35,14 +35,14 @@
     		<Button Style="{DynamicResource MetroButton_large}" Click="siConnect_Click" x:Name="siConnect" Content="connexion" HorizontalAlignment="Right" Margin="0,15,0,0" Width="67.837"/>
     		<TextBlock x:Name="siInfoBox" TextAlignment="Right" TextWrapping="Wrap" Margin="0,15,0,0"/>
     	</StackPanel>
-        <ScrollViewer x:Name="suPanel" Margin="21.667,0,56.333,0" Grid.Column="1">
-    	    <StackPanel Margin="0,0,20,0">
+        <ScrollViewer x:Name="suPanel" Margin="21.667,0,56.333,0" ClipToBounds="True" Grid.Column="1">
+    	    <StackPanel ClipToBounds="True" Margin="0,0,20,0">
                 <TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="nom"/></TextBlock>
     		    <TextBox x:Name="suNom" Margin="0,5,0,0" />
                 <TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0,15,0,0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="prénom"/></TextBlock>
     		    <TextBox x:Name="suPrenom" Margin="0,5,0,0"/>
                 <TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0,15,0,0"><Run Language="fr-fr" Text="email"/></TextBlock>
-                <TextBox TextWrapping="Wrap" Margin="0,5,0,0"/>
+                <TextBox x:Name="suMail" TextWrapping="Wrap" Margin="0,5,0,0" />
                 <TextBlock TextWrapping="Wrap" Margin="0,15,0,0" Style="{DynamicResource MainLabel}"><Run Language="fr-fr" Text="téléphone"/></TextBlock>
                 <TextBox x:Name="suPhone" TextWrapping="Wrap" Margin="0,5,0,0"/>
                 <TextBlock TextWrapping="Wrap" Margin="0,15,0,0" Style="{DynamicResource MainLabel}"><Run Language="fr-fr" Text="mot de passe"/></TextBlock>

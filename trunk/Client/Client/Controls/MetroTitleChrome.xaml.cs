@@ -232,5 +232,10 @@ namespace ChooseForMe
         {
             MainWindow.GetMe().menu.MeinFrame.Navigate(new SigninAndUp(SignFocus.SIGNUP));
         }
+
+        private void cart_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.GetMe().menu.MeinFrame.Navigate(new Cart());
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace Client.Pages
     /// </summary>
     public partial class SigninAndUp : Page
     {
+        public event ObjectEventHandler ConnectionEvent;
         private Connection conn;
 
         /// <summary>
@@ -60,6 +61,34 @@ namespace Client.Pages
             this.conn.Success -= conn_Success;
         }
 
+        void SigninAndUp_ConnectionEvent(object sender, ObjectEventArgs e)
+        {
+            switch ((WorflowCreation.CheckIfUserExistResult)e.Data)
+            {
+                case WorflowCreation.CheckIfUserExistResult.EXIST:
+                    Dispatcher.BeginInvoke(
+                        DispatcherPriority.Normal,
+                        new Action(() =>
+                        {
+                            MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
+                            this.suInfoBox.Foreground = Brushes.Red;
+                            this.suInfoBox.Text = @"Erreur: Un utilisateur avec cet email existe déjà";
+                        }));
+                    break;
+
+                case WorflowCreation.CheckIfUserExistResult.NOT_EXIST:
+                    Dispatcher.BeginInvoke(
+                        DispatcherPriority.Normal,
+                        new Action(() =>
+                        {
+                            MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
+                            this.suInfoBox.Foreground = Brushes.Green;
+                            this.suInfoBox.Text = @"Succès: Votre compte a bien été créé ! Vous pouvez désormais vous connecter";
+                        }));
+                    break;
+            }
+        }
+
         /// <summary>
         /// Chargement de la page
         /// </summary>
@@ -73,6 +102,8 @@ namespace Client.Pages
             this.conn.WrongCredentials += new EventHandler(conn_WrongCredentials);
             this.conn.ServiceErrors += new EventHandler(conn_ServiceErrors);
             this.conn.Success += new ObjectEventHandler(conn_Success);
+
+            this.ConnectionEvent += new ObjectEventHandler(SigninAndUp_ConnectionEvent);
         }
 
         /// <summary>
@@ -156,9 +187,64 @@ namespace Client.Pages
             }
         }
 
+        /// <summary>
+        /// Clic sur le bouton de connexion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void suCreate_Click(object sender, RoutedEventArgs e)
         {
+            if (suNom.Text != "" && suPhone.Text != "" && suPrenom.Text != "" && suPassword.Password != "" && suMail.Text != ""
+                && Tools.Tools.isEmail(suMail.Text))
+            {
+                MainWindow.GetMe().progressBar.Visibility = Visibility.Visible;
 
+                string prenom = this.suPrenom.Text;
+                string nom = this.suNom.Text;
+                string mail = this.suMail.Text;
+                string phone = this.suPhone.Text;
+                string password = Tools.Tools.HashPassword(mail, this.suPassword.Password);
+
+                ThreadPool.QueueUserWorkItem((state) =>
+                    {
+                        WorflowCreation.ServiceClient svc = null;
+                        
+                        try
+                        {
+                            svc = new WorflowCreation.ServiceClient();
+                            WorflowCreation.CheckIfUserExistResult resp = svc.CreateAccount(
+                                prenom,
+                                nom,
+                                mail,
+                                phone,
+                                password
+                            );
+
+                            this.ConnectionEvent(this, new ObjectEventArgs(resp));
+                        }
+                        catch
+                        {
+                            Dispatcher.BeginInvoke(
+                                DispatcherPriority.Normal,
+                                new Action(() =>
+                                    {
+                                        MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
+                                        this.suInfoBox.Foreground = Brushes.Red;
+                                        this.suInfoBox.Text = @"Erreur: Erreur lors de l'accès au service";
+                                    }));
+                        }
+                        finally
+                        {
+                            svc.Close();
+                            svc.ChannelFactory.Close();
+                        }
+                    });
+            }
+            else
+            {
+                this.suInfoBox.Foreground = Brushes.Red;
+                this.suInfoBox.Text = @"Erreur: Veuillez renseigner tous les champs correctement";
+            }
         }
     }
 }
