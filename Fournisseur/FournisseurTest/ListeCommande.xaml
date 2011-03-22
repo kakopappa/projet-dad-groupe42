@@ -71,5 +71,6 @@
         <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_reception, StringFormat='dd/MM/yyyy'}" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="639,165,0,0" Name="textBoxDateReception" VerticalAlignment="Top" Width="120" />
         <Label FontFamily="Georgia" Content="Prix Total : " Height="28" HorizontalAlignment="Left" Margin="468,267,0,0" Name="label1" VerticalAlignment="Top" />
         <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.prix_total,StringFormat=€{0:F2}}" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="639,267,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
+        <Label Content="Sélectionner une commande pour la modifier" Height="28" HorizontalAlignment="Left" Margin="119,-8,0,0" Name="labelInstructionCommande" VerticalAlignment="Top" />
     </Grid>
 </Page>

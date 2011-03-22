@@ -10,9 +10,9 @@
     <Grid>
         <Label FontFamily="Georgia" Content="Email : " Height="28" HorizontalAlignment="Left" Margin="264,194,0,0" Name="UserLogin" VerticalAlignment="Top" />
         <Label FontFamily="Georgia" Content="Mot de passe :" Height="28" HorizontalAlignment="Left" Margin="242,252,0,0" Name="UserPassword" VerticalAlignment="Top" />
-        <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="358,194,0,0" Name="UserLoginBox" VerticalAlignment="Top" Width="120" />
-        <Button FontFamily="Georgia" Content="Connexion" Height="23" HorizontalAlignment="Left" Margin="378,328,0,0" Name="buttonConnexion" VerticalAlignment="Top" Width="75" Click="LoadConnexion"/>
+        <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="358,194,0,0" Name="UserLoginBox" VerticalAlignment="Top" Width="120" />        
         <PasswordBox Height="23" HorizontalAlignment="Left" Margin="358,252,0,0" Name="UserPasswordBox" VerticalAlignment="Top" Width="120" />
+        <Button FontFamily="Georgia" Content="Connexion" Height="23" HorizontalAlignment="Left" Margin="378,328,0,0" Name="buttonConnexion" VerticalAlignment="Top" Width="75" Click="LoadConnexion"/>
         <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="397,381,0,0" Name="LabelError" VerticalAlignment="Top" />
     </Grid>
 </Page>
