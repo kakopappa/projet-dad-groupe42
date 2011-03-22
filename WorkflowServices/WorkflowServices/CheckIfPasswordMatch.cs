@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Activities;
 using WorkflowServices.DataService;
+using WorkflowServices.Service;
 
 namespace WorkflowServices
 {
@@ -21,6 +22,7 @@ namespace WorkflowServices
         // Définir un argument d'entrée d'activité de type string
         public InArgument<string> Password { get; set; }
         public InArgument<Guid> UserGuid { get; set; }
+        public InArgument<UserType> Type { get; set; }
         public OutArgument<CheckIfPasswordMatchResult> Match { set; get; }
 
         // Si votre activité retourne une valeur, dérivez de CodeActivity<TResult>
@@ -30,18 +32,33 @@ namespace WorkflowServices
             // Obtenir la valeur runtime de l'argument d'entrée Text
             string password = context.GetValue(this.Password);
             Guid guid = context.GetValue(this.UserGuid);
+            UserType type = context.GetValue(this.Type);
             CheckIfPasswordMatchResult result = CheckIfPasswordMatchResult.NOT_TESTED;
             try
             {
                 var ctx = new DADEntities(new Uri(Properties.Settings.Default.DataService));
                 ctx.IgnoreResourceNotFoundException = true;
-                var user = (from c in ctx.CLIENT
-                            where c.id == guid
-                            select c).First();
-                if (user != null)
-                    result = user.password == password ? CheckIfPasswordMatchResult.MATCH : CheckIfPasswordMatchResult.NOT_MATCH;
-                else
-                    result = CheckIfPasswordMatchResult.SERVICE_ERROR;
+
+                if (type == UserType.CLIENT)
+                {
+                    var user = (from c in ctx.CLIENT
+                                where c.id == guid
+                                select c).FirstOrDefault<CLIENT>();
+                    if (user != null)
+                        result = user.password == password ? CheckIfPasswordMatchResult.MATCH : CheckIfPasswordMatchResult.NOT_MATCH;
+                    else
+                        result = CheckIfPasswordMatchResult.SERVICE_ERROR;
+                }
+                else if (type == UserType.FOURNISSEUR)
+                {
+                    var user = (from f in ctx.FOURNISSEUR
+                                where f.id == guid
+                                select f).FirstOrDefault<FOURNISSEUR>();
+                    if (user != null)
+                        result = user.password == password ? CheckIfPasswordMatchResult.MATCH : CheckIfPasswordMatchResult.NOT_MATCH;
+                    else
+                        result = CheckIfPasswordMatchResult.SERVICE_ERROR;
+                }
             }
             catch (Exception)
             {

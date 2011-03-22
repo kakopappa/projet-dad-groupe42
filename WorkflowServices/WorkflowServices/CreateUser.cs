@@ -32,6 +32,7 @@ namespace WorkflowServices
             {
                 var ctx = new DADEntities(new Uri(Properties.Settings.Default.DataService));
                 CLIENT client = CLIENT.CreateCLIENT(guid, nom, prenom, phone, email, password);
+                ctx.AddToCLIENT(client);
                 ctx.SaveChanges(System.Data.Services.Client.SaveChangesOptions.Batch);
             }
             catch (Exception)

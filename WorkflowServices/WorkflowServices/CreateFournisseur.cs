@@ -37,7 +37,7 @@ namespace WorkflowServices
             try
             {
                 var ctx = new DADEntities(new Uri(Properties.Settings.Default.DataService));
-                FOURNISSEUR fournisseur = FOURNISSEUR.CreateFOURNISSEUR(guid, nom, email, phone, password, adresse, ville, codePostal, pays);
+                FOURNISSEUR fournisseur = FOURNISSEUR.CreateFOURNISSEUR(guid, nom, email, phone, password, adresse, ville, codePostal, pays, false);
                 ctx.AddToFOURNISSEUR(fournisseur);
                 ctx.SaveChanges(System.Data.Services.Client.SaveChangesOptions.Batch);
             }
