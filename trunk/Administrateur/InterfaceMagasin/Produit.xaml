@@ -1,0 +1,53 @@
+﻿<Page x:Class="InterfaceMagasin.Produit"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="350" d:DesignWidth="525"
+	Title="Produit">
+
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate x:Key="ProduitTemplate">
+                <WrapPanel>
+                    <TextBlock Text="{Binding Path=nom}"/>
+                </WrapPanel>
+            </DataTemplate>
+            <DataTemplate x:Key="CategorieExistTemplate">
+                <WrapPanel>
+                    <TextBlock Text="{Binding Path=nom}"/>
+                </WrapPanel>
+            </DataTemplate>
+            <DataTemplate x:Key="CategorieProduitTemplate">
+                <WrapPanel>
+                    <TextBlock Text="{Binding Path=nom}"/>
+                </WrapPanel>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <ListBox x:Name="ListProduits" HorizontalAlignment="Left" Margin="12,56,0,64" Width="147" ItemTemplate="{StaticResource ProduitTemplate}" SelectionChanged="listProduit_Selection"/>
+        <TextBox x:Name="TextSelection" Height="23" Margin="12,0,0,29.5" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="147"/>
+        <Button Content="Rechercher" Height="23" Margin="163,0,0,29.5"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="79" Click="btnSelectionner_Click"/>
+        <TextBox x:Name="TextNom" Height="23" Margin="225,53,189,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ElementName=ListProduits, Path=SelectedItem.nom}"/>
+        <Label x:Name="LabelNnom" Content="Nom" Height="26" Margin="159,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90" />
+        <TextBox x:Name="TextMarque" Height="23" Margin="0,53,7,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="111" Text="{Binding ElementName=ListProduits, Path=SelectedItem.marque}"/>
+        <Label x:Name="LabelMarque" Content="Marque" Height="26" Margin="0,50,90,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90"/>
+        <TextBox x:Name="TextReference" Height="23" Margin="225,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ElementName=ListProduits, Path=SelectedItem.reference}" HorizontalAlignment="Left" Width="111" />
+        <Label x:Name="LabelReference" Content="Reference" Height="26" Margin="159,77,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="67"/>
+        <TextBox x:Name="TextPrix" Height="23" Margin="0,80,7,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="111" Text="{Binding ElementName=ListProduits, Path=SelectedItem.prix}"/>
+        <Label x:Name="LabelPrix" Content="Prix" Height="26" Margin="0,77,116,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="67"/>
+        <ListBox x:Name="ListCategoriesExiste" Margin="225,107,189,140"  ItemTemplate="{StaticResource CategorieExistTemplate}" SelectionChanged="listDispo_Selection"/>
+        <Button x:Name="ButtonAjout" Content="-&gt;" HorizontalAlignment="Right" Height="30" Margin="0,136,136,0" VerticalAlignment="Top" Width="34" Click="ajoutCategorie"/>
+        <Button x:Name="ButtonEnleve" Content="&lt;-" HorizontalAlignment="Right" Margin="0,170,136,150" Width="34" Click="enleveCategorie"/>
+        <ListBox x:Name="ListCategoriesProduit" Margin="0,107,7,140" HorizontalAlignment="Right" Width="111" ItemTemplate="{StaticResource CategorieProduitTemplate}" SelectionChanged="listCategorie_Selection"/>
+        <Label x:Name="LabelCatDispo" Content="Cat.Dispo" Margin="159,107,0,0" HorizontalAlignment="Left" Width="67" Height="25" VerticalAlignment="Top"/>
+        <Label x:Name="LabelCatProduit" Content="Cat.Produit" Margin="0,107,118,0" HorizontalAlignment="Right" Width="67" Height="25" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextDescription" Margin="225,0,189,64" TextWrapping="Wrap" Height="72" VerticalAlignment="Bottom" Text="{Binding ElementName=ListProduits, Path=SelectedItem.description}"/>
+        <Label x:Name="LabelDescription" Content="Description" Margin="159,0,0,91" Height="45" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="90"/>
+        <TextBox x:Name="TextStock" Margin="0,0,7,113" TextWrapping="Wrap" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="111" Text="{Binding ElementName=ListProduits, Path=SelectedItem.stock}"/>
+        <Label x:Name="LabelStock" Content="Stock" Margin="0,0,90,113" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="90"/>
+        <Button x:Name="ButtonSupprimer" Content="Supprimer" HorizontalAlignment="Right" Height="23" Margin="0,0,46,29.5" VerticalAlignment="Bottom" Width="72"/>
+        <CheckBox x:Name="CheckDispo" Content="Disponible" Height="21" Margin="0,0,11,88" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="107"/>
+    </Grid>
+</Page>
