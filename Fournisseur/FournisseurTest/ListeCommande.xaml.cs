@@ -38,6 +38,7 @@ namespace FournisseurTest
                 string pouet = Properties.Settings.Default.DataServiceClient;
                 var ctx = new DADEntities(new Uri(pouet));
                 var cmdfnr = from cmd in ctx.COMMANDE_FOURNISSEUR
+                             where cmd.FOURNISSEUR.id == MainWindow.GetInstance().UserId
                              select cmd;
 
                 commandeFournisseur = cmdfnr.ToList<COMMANDE_FOURNISSEUR>();

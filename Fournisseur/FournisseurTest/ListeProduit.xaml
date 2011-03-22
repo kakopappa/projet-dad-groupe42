@@ -91,7 +91,6 @@
         <CheckBox FontFamily="Georgia" Content="Disponibilité " Height="26" HorizontalAlignment="Left" Margin="591,27,0,0" Name="checkBoxDisponible" VerticalAlignment="Top" Grid.Column="2" />
         <ListBox FontFamily="Georgia" Height="63" HorizontalAlignment="Left" Margin="395,232,0,0" Name="listBoxCategorie" VerticalAlignment="Top" Width="240" Grid.Column="2" ItemTemplate="{StaticResource dataTemplate}"/>
         <Label FontFamily="Georgia" Content="Pour modifier un produit, sélectionner le et modifier les champs les champs le nécessitant." Height="28" HorizontalAlignment="Left" Margin="99,0,0,0" Name="label9" VerticalAlignment="Top" Grid.Column="2" Width="506" />
-    
     </Grid>
     
 </Page>
