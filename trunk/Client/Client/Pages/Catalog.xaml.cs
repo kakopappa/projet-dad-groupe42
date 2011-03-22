@@ -103,7 +103,6 @@ namespace Client.Pages
                             {
                                 MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
                                 MessageBox.Show(MainWindow.GetMe(), "Impossible de se connecter au service");
-
                             }));
                     }
                 });

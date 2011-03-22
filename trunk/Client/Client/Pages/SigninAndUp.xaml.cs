@@ -44,9 +44,15 @@ namespace Client.Pages
             this.Unloaded += new RoutedEventHandler(SigninAndUp_Unloaded);
 
             if (focus == SignFocus.SIGNIN)
+            {
                 this.siMail.Focus();
+                this.siConnect.IsDefault = true;
+            }
             else
+            {
                 this.suNom.Focus();
+                this.suCreate.IsDefault = true;
+            }
         }
 
         /// <summary>
