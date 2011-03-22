@@ -11,6 +11,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FournisseurTest.DataServiceClient;
+using System.Configuration;
+using System.Windows.Threading;
 
 namespace FournisseurTest
 {
@@ -47,6 +50,10 @@ namespace FournisseurTest
                                 string userId = svc.GuidRequest(out sessionId);
                                 MainWindow.GetInstance().UserId = new Guid(userId);
                                 MainWindow.GetInstance().SessionId = new Guid(sessionId);
+                                MainWindow.GetInstance().btnListProduct.IsEnabled = true;
+                                MainWindow.GetInstance().btnLstCommand.IsEnabled = true;
+                                MainWindow.GetInstance().btnNewProduct.IsEnabled = true;
+                                
                                 break;
 
                             case WorkflowConnection.CheckIfPasswordMatchResult.NOT_MATCH:
@@ -62,6 +69,9 @@ namespace FournisseurTest
                         break;
 
                     case WorkflowConnection.CheckIfFournisseurExistResult.NOT_EXIST:
+                            MainWindow.GetInstance().btnListProduct.IsEnabled = false;
+                            MainWindow.GetInstance().btnLstCommand.IsEnabled = false;
+                            MainWindow.GetInstance().btnNewProduct.IsEnabled = false;
                         break;
 
                     default:
@@ -82,7 +92,9 @@ namespace FournisseurTest
          }
          else
          {
-
+             MainWindow.GetInstance().btnListProduct.IsEnabled = false;
+             MainWindow.GetInstance().btnLstCommand.IsEnabled = false;
+             MainWindow.GetInstance().btnNewProduct.IsEnabled = false;
          }
         }
     }
