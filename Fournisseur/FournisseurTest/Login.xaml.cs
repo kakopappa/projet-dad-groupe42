@@ -23,5 +23,67 @@ namespace FournisseurTest
         {
             InitializeComponent();
         }
+
+        public void LoadConnexion(object sender, RoutedEventArgs args)
+        {
+
+            if (UserLoginBox.Text != "" && UserPasswordBox.Password != "")
+            {
+                WorkflowConnection.ServiceClient svc = null;
+                try
+                {
+                    svc = new WorkflowConnection.ServiceClient();
+                    WorkflowConnection.GetUserIdentifierResponse result = svc.GetUserIdentifier(UserLoginBox.Text);
+
+                    switch (result.UserExist)
+                    {
+                        case WorkflowConnection.CheckIfFournisseurExistResult.EXIST:
+                        WorkflowConnection.GetUserPasswordResponse resp = svc.GetUserPassword(UserPasswordBox.Password);
+
+                        switch (resp.PasswordMatch)
+                        {
+                            case WorkflowConnection.CheckIfPasswordMatchResult.MATCH:
+                                string sessionId;
+                                string userId = svc.GuidRequest(out sessionId);
+                                MainWindow.GetInstance().UserId = new Guid(userId);
+                                MainWindow.GetInstance().SessionId = new Guid(sessionId);
+                                break;
+
+                            case WorkflowConnection.CheckIfPasswordMatchResult.NOT_MATCH:
+                                MainWindow.GetInstance().btnListProduct.IsEnabled = false;
+                                MainWindow.GetInstance().btnLstCommand.IsEnabled = false;
+                                MainWindow.GetInstance().btnNewProduct.IsEnabled = false;
+
+                                break;
+
+                            default:
+                                break;
+                        }
+                        break;
+
+                    case WorkflowConnection.CheckIfFournisseurExistResult.NOT_EXIST:
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            catch
+            {
+            }
+            finally
+            {
+                if (svc != null)
+                {
+                    svc.Close();
+                    svc.ChannelFactory.Close();
+                }
+            }
+         }
+         else
+         {
+
+         }
+        }
     }
 }

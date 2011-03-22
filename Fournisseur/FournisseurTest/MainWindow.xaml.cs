@@ -20,6 +20,9 @@ namespace FournisseurTest
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Guid SessionId { get; set; }
+        public Guid UserId { get; set; }
+
         private static MainWindow instance;
 
         public MainWindow()
