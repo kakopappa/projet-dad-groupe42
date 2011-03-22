@@ -154,8 +154,8 @@ namespace Client
                         DispatcherPriority.Normal,
                         new Action(() =>
                             {
-                                this.progressBar.Visibility = Visibility.Hidden;
                                 this.chrome.LoadUserInfo();
+                                this.progressBar.Visibility = Visibility.Hidden;
                             }));
                 });
         }

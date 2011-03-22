@@ -6,7 +6,7 @@
       xmlns:p="clr-namespace:Client.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="700"
-	Title="SigninAndUp" Background="White">    
+	Title="SigninAndUp" Background="White" Opacity="0">    
     <Page.RenderTransform>
         <TransformGroup>
             <ScaleTransform/>

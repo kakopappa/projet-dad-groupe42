@@ -22,6 +22,13 @@ namespace Client.Pages
         public Profile()
         {
             InitializeComponent();
+            this.Loaded += new RoutedEventHandler(Profile_Loaded);
+        }
+
+        void Profile_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainWindow.GetMe().SetWindowTheme(WindowTheme.Black);
+            MainWindow.GetMe().menu.SetCurrentPage(null);
         }
     }
 }
