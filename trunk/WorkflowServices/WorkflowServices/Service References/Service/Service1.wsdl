@@ -964,6 +964,12 @@
   <wsdl:message name="Workflow_ChangeItemAvailability_OutputMessage">
     <wsdl:part name="parameters" element="tns:ChangeItemAvailabilityResponse" />
   </wsdl:message>
+  <wsdl:message name="Workflow_AdminProductModification_InputMessage">
+    <wsdl:part name="parameters" element="tns:AdminProductModification" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_AdminProductModification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AdminProductModificationResponse" />
+  </wsdl:message>
   <wsdl:message name="Workflow_RemoveCartContent_InputMessage">
     <wsdl:part name="parameters" element="tns:RemoveCartContent" />
   </wsdl:message>
@@ -1046,6 +1052,10 @@
     <wsdl:operation name="ChangeItemAvailability">
       <wsdl:input wsaw:Action="http://tempuri.org/Workflow/ChangeItemAvailability" message="tns:Workflow_ChangeItemAvailability_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/Workflow/ChangeItemAvailabilityResponse" message="tns:Workflow_ChangeItemAvailability_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AdminProductModification">
+      <wsdl:input wsaw:Action="http://tempuri.org/Workflow/AdminProductModification" message="tns:Workflow_AdminProductModification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Workflow/AdminProductModificationResponse" message="tns:Workflow_AdminProductModification_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RemoveCartContent">
       <wsdl:input wsaw:Action="http://tempuri.org/Workflow/RemoveCartContent" message="tns:Workflow_RemoveCartContent_InputMessage" />
@@ -1236,6 +1246,15 @@
     </wsdl:operation>
     <wsdl:operation name="ChangeItemAvailability">
       <soap:operation soapAction="http://tempuri.org/Workflow/ChangeItemAvailability" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AdminProductModification">
+      <soap:operation soapAction="http://tempuri.org/Workflow/AdminProductModification" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -550,21 +550,17 @@ namespace WorkflowServices.Service {
     public partial class CategorieNotification {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.Guid clientID;
+        public System.Guid categorieID;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string message;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
-        public WorkflowServices.Service.ChatState state;
+        public bool deleted;
         
         public CategorieNotification() {
         }
         
-        public CategorieNotification(System.Guid clientID, string message, WorkflowServices.Service.ChatState state) {
-            this.clientID = clientID;
-            this.message = message;
-            this.state = state;
+        public CategorieNotification(System.Guid categorieID, bool deleted) {
+            this.categorieID = categorieID;
+            this.deleted = deleted;
         }
     }
     
@@ -574,21 +570,17 @@ namespace WorkflowServices.Service {
     public partial class ProductNotification {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public System.Guid clientID;
+        public System.Guid itemID;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public string message;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
-        public WorkflowServices.Service.ChatState state;
+        public bool deleted;
         
         public ProductNotification() {
         }
         
-        public ProductNotification(System.Guid clientID, string message, WorkflowServices.Service.ChatState state) {
-            this.clientID = clientID;
-            this.message = message;
-            this.state = state;
+        public ProductNotification(System.Guid itemID, bool deleted) {
+            this.itemID = itemID;
+            this.deleted = deleted;
         }
     }
     
@@ -607,6 +599,9 @@ namespace WorkflowServices.Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Workflow/ChangeItemAvailability", ReplyAction="http://tempuri.org/Workflow/ChangeItemAvailabilityResponse")]
         WorkflowServices.Service.ChangeItemAvailabilityResponse ChangeItemAvailability(WorkflowServices.Service.ChangeItemAvailabilityRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Workflow/AdminProductModification", ReplyAction="http://tempuri.org/Workflow/AdminProductModificationResponse")]
+        WorkflowServices.Service.AdminProductModificationResponse AdminProductModification(WorkflowServices.Service.AdminProductModificationRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Workflow/RemoveCartContent", ReplyAction="http://tempuri.org/Workflow/RemoveCartContentResponse")]
         WorkflowServices.Service.RemoveCartContentResponse RemoveCartContent(WorkflowServices.Service.RemoveCartContentRequest request);
@@ -746,6 +741,39 @@ namespace WorkflowServices.Service {
     public partial class ChangeItemAvailabilityResponse {
         
         public ChangeItemAvailabilityResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AdminProductModification", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AdminProductModificationRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Guid itemID;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public System.Guid fournisseurID;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public bool deleted;
+        
+        public AdminProductModificationRequest() {
+        }
+        
+        public AdminProductModificationRequest(System.Guid itemID, System.Guid fournisseurID, bool deleted) {
+            this.itemID = itemID;
+            this.fournisseurID = fournisseurID;
+            this.deleted = deleted;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AdminProductModificationResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AdminProductModificationResponse {
+        
+        public AdminProductModificationResponse() {
         }
     }
     

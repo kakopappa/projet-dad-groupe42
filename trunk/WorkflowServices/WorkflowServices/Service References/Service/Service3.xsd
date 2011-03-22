@@ -173,68 +173,66 @@
   <xs:element name="CategorieNotification">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="clientID" type="q26:guid" />
-        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/SessionService" minOccurs="0" name="state" type="q27:ChatState" />
+        <xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="categorieID" type="q26:guid" />
+        <xs:element minOccurs="0" name="deleted" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ProductNotification">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="clientID" type="q28:guid" />
-        <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/SessionService" minOccurs="0" name="state" type="q29:ChatState" />
+        <xs:element xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="itemID" type="q27:guid" />
+        <xs:element minOccurs="0" name="deleted" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateSession">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q30:guid" />
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/SessionService" minOccurs="0" name="type" type="q31:UserType" />
+        <xs:element xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="userID" type="q28:guid" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/SessionService" minOccurs="0" name="type" type="q29:UserType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateSessionResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="CreateSessionResult" type="q32:guid" />
+        <xs:element xmlns:q30="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="CreateSessionResult" type="q30:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetUserID">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q33="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sessionID" type="q33:guid" />
+        <xs:element xmlns:q31="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sessionID" type="q31:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetUserIDResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q34="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="GetUserIDResult" type="q34:guid" />
+        <xs:element xmlns:q32="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="GetUserIDResult" type="q32:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetSessionType">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sessionID" type="q35:guid" />
+        <xs:element xmlns:q33="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sessionID" type="q33:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetSessionTypeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/SessionService" minOccurs="0" name="GetSessionTypeResult" type="q36:UserType" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/SessionService" minOccurs="0" name="GetSessionTypeResult" type="q34:UserType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ChangeItemAvailability">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="itemID" type="q37:guid" />
+        <xs:element xmlns:q35="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="itemID" type="q35:guid" />
         <xs:element minOccurs="0" name="quantity" type="xs:int" />
         <xs:element minOccurs="0" name="available" type="xs:boolean" />
         <xs:element minOccurs="0" name="exist" type="xs:boolean" />
@@ -242,6 +240,20 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="ChangeItemAvailabilityResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AdminProductModification">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="itemID" type="q36:guid" />
+        <xs:element xmlns:q37="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="fournisseurID" type="q37:guid" />
+        <xs:element minOccurs="0" name="deleted" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AdminProductModificationResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

@@ -1,5 +1,5 @@
-﻿<WorkflowService mc:Ignorable="sap" ConfigurationName="FournisseurCreation" sap:VirtualizedContainerService.HintSize="538,1112" Name="FournisseurCreation" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://tempuri.org/" xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:ssa="clr-namespace:System.ServiceModel.Activities;assembly=System.ServiceModel.Activities" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:w="clr-namespace:WorkflowServices;assembly=WorkflowServices" xmlns:ws="clr-namespace:WorkflowServices.Service;assembly=WorkflowServices" xmlns:wsa="clr-namespace:WorkflowServices.Service.Activities;assembly=WorkflowServices" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <p1:Sequence DisplayName="Workflow" sad:XamlDebuggerXmlReader.FileName="G:\Projects\projet-dad-groupe42\WorkflowServices\WorkflowServices\FournisseurCreation.xamlx" sap:VirtualizedContainerService.HintSize="637,1880" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+﻿<WorkflowService mc:Ignorable="sap" ConfigurationName="FournisseurCreation" sap:VirtualizedContainerService.HintSize="667,2175" Name="FournisseurCreation" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://tempuri.org/" xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:ssa="clr-namespace:System.ServiceModel.Activities;assembly=System.ServiceModel.Activities" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:w="clr-namespace:WorkflowServices;assembly=WorkflowServices" xmlns:ws="clr-namespace:WorkflowServices.Service;assembly=WorkflowServices" xmlns:wsa="clr-namespace:WorkflowServices.Service.Activities;assembly=WorkflowServices" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p1:Sequence DisplayName="Workflow" sad:XamlDebuggerXmlReader.FileName="G:\Projects\projet-dad-groupe42\WorkflowServices\WorkflowServices\FournisseurCreation.xamlx" sap:VirtualizedContainerService.HintSize="637,2145" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
     <p1:Sequence.Variables>
       <p1:Variable x:TypeArguments="x:Boolean" Default="False" Name="sessionOK" />
     </p1:Sequence.Variables>
@@ -8,7 +8,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg3:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <p1:Sequence DisplayName="SessionID Verification" sap:VirtualizedContainerService.HintSize="615,652">
+    <p1:Sequence DisplayName="SessionID Verification" sap:VirtualizedContainerService.HintSize="615,917">
       <p1:Sequence.Variables>
         <p1:Variable x:TypeArguments="s:Guid" Default="[System.Guid.Empty]" Name="sessionID" />
         <p1:Variable x:TypeArguments="ws:UserType" Default="[Service.UserType.UNKNOW]" Name="userType" />
@@ -23,7 +23,26 @@
           <p1:OutArgument x:TypeArguments="s:Guid" x:Key="SessionID">[sessionID]</p1:OutArgument>
         </ReceiveParametersContent>
       </Receive>
-      <wsa:GetSessionType EndpointConfigurationName="BasicHttpBinding_Workflow" GetSessionTypeResult="[userType]" sap:VirtualizedContainerService.HintSize="464,22" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" sessionID="[sessionID]" />
+      <p1:TryCatch sap:VirtualizedContainerService.HintSize="464,287">
+        <p1:TryCatch.Try>
+          <wsa:GetSessionType EndpointConfigurationName="BasicHttpBinding_Workflow" GetSessionTypeResult="[userType]" sap:VirtualizedContainerService.HintSize="400,100" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" sessionID="[sessionID]" />
+        </p1:TryCatch.Try>
+        <p1:TryCatch.Catches>
+          <p1:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg3:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <p1:ActivityAction x:TypeArguments="s:Exception">
+              <p1:ActivityAction.Argument>
+                <p1:DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </p1:ActivityAction.Argument>
+            </p1:ActivityAction>
+          </p1:Catch>
+        </p1:TryCatch.Catches>
+      </p1:TryCatch>
       <p1:If Condition="[userType = Service.UserType.ADMINISTRATOR]" DisplayName="Session User Type Verification" sap:VirtualizedContainerService.HintSize="464,206">
         <p1:If.Then>
           <p1:Assign sap:VirtualizedContainerService.HintSize="289,100">
