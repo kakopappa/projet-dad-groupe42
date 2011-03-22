@@ -39,7 +39,8 @@ namespace FournisseurTest
             {
               string pouet = Properties.Settings.Default.DataServiceClient;
               var ctx = new DADEntities(new Uri(pouet));
-              var qry = from p in ctx.PRODUIT.Expand("IMAGE,CATEGORIE")
+              var qry = from p in ctx.PRODUIT.Expand("IMAGE,CATEGORIE,FOURNISSEUR")
+              where p.FOURNISSEUR.id == MainWindow.GetInstance().UserId
                         select p;
               produits = qry.ToList<PRODUIT>();
              
