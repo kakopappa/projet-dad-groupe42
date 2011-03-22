@@ -64,7 +64,7 @@ namespace Client.Service {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Customer", CallbackContract=typeof(Client.Service.CustomerCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Customer", CallbackContract=typeof(Client.Service.CustomerCallback))]
     public interface Customer {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Customer/ActivateClient", ReplyAction="http://tempuri.org/Customer/ActivateClientResponse")]
@@ -149,7 +149,7 @@ namespace Client.Service {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Administrator", CallbackContract=typeof(Client.Service.AdministratorCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Administrator", CallbackContract=typeof(Client.Service.AdministratorCallback))]
     public interface Administrator {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Administrator/Connect", ReplyAction="http://tempuri.org/Administrator/ConnectResponse")]
@@ -204,7 +204,7 @@ namespace Client.Service {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Fournisseur", CallbackContract=typeof(Client.Service.FournisseurCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Fournisseur", CallbackContract=typeof(Client.Service.FournisseurCallback))]
     public interface Fournisseur {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Fournisseur/ActivateFournisseur", ReplyAction="http://tempuri.org/Fournisseur/ActivateFournisseurResponse")]

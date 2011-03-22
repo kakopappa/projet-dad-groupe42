@@ -66,6 +66,9 @@
     <Compile Include="Core\Connection.cs" />
     <Compile Include="Events\ObjectEventArgs.cs" />
     <Compile Include="Events\UIEventArgs.cs" />
+    <Compile Include="Pages\Cart.xaml.cs">
+      <DependentUpon>Cart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
     </Compile>
@@ -82,12 +85,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WorflowCreation\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\WorkflowConnection\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Tools\Tools.cs" />
+    <Page Include="Pages\Cart.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Catalog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -231,6 +243,19 @@
     <None Include="Service References\Service\Service2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\WorflowCreation\AccountCreation.wsdl" />
+    <None Include="Service References\WorflowCreation\AccountCreation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorflowCreation\AccountCreation1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorflowCreation\AccountCreation2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorflowCreation\Client.WorflowCreation.CheckIfUserExistResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\WorkflowConnection\Client.WorkflowConnection.GetUserIdentifierResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -264,6 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\Service\" />
+    <WCFMetadataStorage Include="Service References\WorflowCreation\" />
     <WCFMetadataStorage Include="Service References\WorkflowConnection\" />
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +318,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\Service\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorflowCreation\AccountCreation.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorflowCreation\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorflowCreation\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorflowCreation\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
