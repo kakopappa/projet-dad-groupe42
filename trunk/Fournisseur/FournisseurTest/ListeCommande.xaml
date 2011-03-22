@@ -1,0 +1,75 @@
+﻿<Page x:Class="FournisseurTest.ListeCommande"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+	Title="ListeCommande">
+
+    <Grid Height="600" Width="800">
+        <!--<ListBox ItemTemplate="{StaticResource dataTemplate}" Name="list" />-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="357*" />
+            <RowDefinition Height="243*" />
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <DataTemplate x:Key="dataTemplate">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontFamily="Georgia" Text="{Binding date_generation, StringFormat='dd/MM/yyyy'}" />
+                </StackPanel>
+            </DataTemplate>
+        </Grid.Resources>
+
+        <ListBox x:Name="listCommande"
+         HorizontalAlignment="Center"
+         ScrollViewer.IsDeferredScrollingEnabled="True"
+         VerticalAlignment="Top" Width="280"
+         Height="126" ItemTemplate="{StaticResource dataTemplate}" 
+         SelectionChanged="CommandeSelection" Margin="102,15,418,0" />
+
+        <Grid Grid.Row="1">
+            <ListView x:Name="listCommandeDetaille"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Top"
+              Width="646"
+              Height="137" ItemTemplate="{StaticResource dataTemplate}" Margin="84,6,70,0" FontFamily="Georgia" >
+
+                <!--ItemsSource="{Binding ElementName=lbCustomers, Path=SelectedItem.Orders}" >-->
+
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn DisplayMemberBinding="{Binding date_generation, StringFormat='dd/MM/yyyy'}"
+                        Header="Date de génération " />
+                        <GridViewColumn DisplayMemberBinding="{Binding date_validation, StringFormat='dd/MM/yyyy'}"
+                        Header="Date de validation " />
+                        <GridViewColumn DisplayMemberBinding="{Binding date_expedition, StringFormat='dd/MM/yyyy'}"
+                        Header="Date d'expédition " />
+                        <GridViewColumn DisplayMemberBinding="{Binding date_reception, StringFormat='dd/MM/yyyy'}"
+                        Header="Date de réception " />
+                        <GridViewColumn DisplayMemberBinding="{Binding duree_expedition_estimee}"
+                        Header="Date d'expédition estimée " />
+                        <GridViewColumn DisplayMemberBinding="{Binding prix_total, StringFormat=€{0:F2}}"
+                        Header="Prix total" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+        <Button FontFamily="Georgia" Content="Modifier suivi" Height="23" HorizontalAlignment="Left" Margin="558,313,0,0" Name="buttonSuiviCommande" VerticalAlignment="Top" Width="107" />
+        <Label FontFamily="Georgia" Content="Date de génération :" Height="28" HorizontalAlignment="Left" Margin="467,15,0,0" Name="labelDateGeneration" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Date de validation :" Height="28" HorizontalAlignment="Left" Margin="467,66,0,0" Name="labelDateValidation" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Date d'expédition :" Height="28" HorizontalAlignment="Left" Margin="467,117,0,0" Name="labelDateExpedition" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Date de réception :" Height="28" HorizontalAlignment="Left" Margin="468,163,0,0" Name="labelDateReception" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Durée d'expédition estimée :" Height="28" HorizontalAlignment="Left" Margin="467,216,0,0" Name="labelDureeExpedition" VerticalAlignment="Top" />
+        <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_validation, StringFormat='dd/MM/yyyy'}" HorizontalAlignment="Left" Margin="639,67,0,0" Name="textBoxDateValidation" VerticalAlignment="Top" Width="120" />
+        <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_expedition, StringFormat='dd/MM/yyyy'}" Height="23" HorizontalAlignment="Left" Margin="639,121,0,0" Name="textBoxDateExpedition" VerticalAlignment="Top" Width="120" />
+        <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.duree_expedition_estimee}" Height="23" HorizontalAlignment="Left" Margin="639,218,0,0" Name="textBoxDureeExpedition" VerticalAlignment="Top" Width="120" />
+        <Calendar FontFamily="Georgia" Height="173" HorizontalAlignment="Left" Margin="102,163,0,0" Name="calendar1" VerticalAlignment="Top" Width="211" />
+        <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_generation, StringFormat='dd/MM/yyyy'}" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="639,17,0,0" Name="textBoxDateGeneration" VerticalAlignment="Top" Width="120" />
+        <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_reception, StringFormat='dd/MM/yyyy'}" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="639,165,0,0" Name="textBoxDateReception" VerticalAlignment="Top" Width="120" />
+        <Label FontFamily="Georgia" Content="Prix Total : " Height="28" HorizontalAlignment="Left" Margin="468,267,0,0" Name="label1" VerticalAlignment="Top" />
+        <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.prix_total,StringFormat=€{0:F2}}" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="639,267,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
+    </Grid>
+</Page>
