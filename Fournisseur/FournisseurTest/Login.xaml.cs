@@ -53,14 +53,13 @@ namespace FournisseurTest
                                 MainWindow.GetInstance().btnListProduct.IsEnabled = true;
                                 MainWindow.GetInstance().btnLstCommand.IsEnabled = true;
                                 MainWindow.GetInstance().btnNewProduct.IsEnabled = true;
+                                MainWindow.GetInstance().buttonDeconnexion.IsEnabled = true;
+                                MainWindow.GetInstance().Frame.Navigate(new ListeCommande());
                                 
                                 break;
 
                             case WorkflowConnection.CheckIfPasswordMatchResult.NOT_MATCH:
-                                MainWindow.GetInstance().btnListProduct.IsEnabled = false;
-                                MainWindow.GetInstance().btnLstCommand.IsEnabled = false;
-                                MainWindow.GetInstance().btnNewProduct.IsEnabled = false;
-
+                               
                                 break;
 
                             default:
@@ -69,9 +68,8 @@ namespace FournisseurTest
                         break;
 
                     case WorkflowConnection.CheckIfFournisseurExistResult.NOT_EXIST:
-                            MainWindow.GetInstance().btnListProduct.IsEnabled = false;
-                            MainWindow.GetInstance().btnLstCommand.IsEnabled = false;
-                            MainWindow.GetInstance().btnNewProduct.IsEnabled = false;
+                         
+
                         break;
 
                     default:
@@ -92,9 +90,7 @@ namespace FournisseurTest
          }
          else
          {
-             MainWindow.GetInstance().btnListProduct.IsEnabled = false;
-             MainWindow.GetInstance().btnLstCommand.IsEnabled = false;
-             MainWindow.GetInstance().btnNewProduct.IsEnabled = false;
+             
          }
         }
     }

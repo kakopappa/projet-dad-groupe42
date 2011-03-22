@@ -15,7 +15,7 @@
         <Button IsEnabled="False" Content="Liste produits" Height="23" HorizontalAlignment="Left" Margin="23,12,0,0" x:Name="btnListProduct" VerticalAlignment="Top" Width="85" Click="LoadListeProduit" FontFamily="Georgia" />
         <Button IsEnabled="False" Content="Créer produit" Height="23" HorizontalAlignment="Right"  x:Name="btnNewProduct" VerticalAlignment="Top" Width="97" Click=" LoadCreerProduit" Margin="0,12,460,0" FontFamily="Georgia" />
         <Button IsEnabled="False" Content="Liste commandes" Height="23" HorizontalAlignment="Right" Margin="0,12,244,0" x:Name="btnLstCommand" VerticalAlignment="Top" Width="109"  Click=" LoadListeCommande" FontFamily="Georgia"/>
-        <Button Content="Se connecter" Height="23" HorizontalAlignment="Right" Margin="0,12,34,0" x:Name="button1" VerticalAlignment="Top" Width="120"  Click=" LoadLogin" FontFamily="Georgia"/>
+        <Button IsEnabled="False" Content="Se déconnecter" Height="23" HorizontalAlignment="Right" Margin="0,12,34,0" x:Name="buttonDeconnexion" VerticalAlignment="Top" Width="120"  Click=" LoadLogin" FontFamily="Georgia"/>
         <Frame VerticalAlignment="Stretch" x:Name="Frame" JournalOwnership="UsesParentJournal" Margin="0,53,0,0" />
     </Grid>
 </Window>
