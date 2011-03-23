@@ -41,7 +41,7 @@ namespace FournisseurTest
               var ctx = new DADEntities(new Uri(pouet));
               var qry = from p in ctx.PRODUIT.Expand("IMAGE,CATEGORIE,FOURNISSEUR")
               where p.FOURNISSEUR.id == MainWindow.GetInstance().UserId
-                        select p;
+              select p;
               produits = qry.ToList<PRODUIT>();
              
               Dispatcher.BeginInvoke(DispatcherPriority.Normal,
