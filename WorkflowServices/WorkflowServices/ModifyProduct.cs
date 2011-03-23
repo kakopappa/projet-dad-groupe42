@@ -109,15 +109,22 @@ namespace WorkflowServices
                         }
                     }
 
+                    List<CATEGORIE> catToDelete = new List<CATEGORIE>();
+
                     foreach (CATEGORIE cat in product.CATEGORIE)
                     {
                         if (!categories.Contains(cat))
                         {
-                            product.CATEGORIE.Remove(cat);
+                            catToDelete.Add(cat);
                             ctx.DeleteLink(product, "CATEGORIE", cat);
                             cat.PRODUIT.Remove(product);
                             ctx.DeleteLink(cat, "PRODUIT", product);
                         }
+                    }
+
+                    foreach (CATEGORIE cat in catToDelete)
+                    {
+                        product.CATEGORIE.Remove(cat);
                     }
 
                     ctx.UpdateObject(product);
