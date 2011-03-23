@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cadb0cdc-9040-4453-97b8-a4eaeaa12ba5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://172.16.255.216:1337/ProductCreation.xamlx" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ProductCreation.xsd" MetadataType="Schema" ID="018b8d6b-5015-45ee-b154-4fabfaac4cfb" SourceId="1" SourceUrl="http://172.16.255.216:1337/ProductCreation.xamlx?xsd=xsd2" />
+    <MetadataFile FileName="ProductCreation1.xsd" MetadataType="Schema" ID="0c46c2fc-178e-4856-830b-4ec9b28e921e" SourceId="1" SourceUrl="http://172.16.255.216:1337/ProductCreation.xamlx?xsd=xsd1" />
+    <MetadataFile FileName="ProductCreation2.xsd" MetadataType="Schema" ID="fb649646-4494-48dc-aaa2-9a76977d3e75" SourceId="1" SourceUrl="http://172.16.255.216:1337/ProductCreation.xamlx?xsd=xsd0" />
+    <MetadataFile FileName="ProductCreation.wsdl" MetadataType="Wsdl" ID="94b9d540-4cfd-4dec-9431-dd6e6c8ec7e1" SourceId="1" SourceUrl="http://172.16.255.216:1337/ProductCreation.xamlx?wsdl" />
+    <MetadataFile FileName="ProductCreation.disco" MetadataType="Disco" ID="17489926-35ee-4b47-b854-b3c1e77f0a7b" SourceId="1" SourceUrl="http://172.16.255.216:1337/ProductCreation.xamlx?disco" />
+    <MetadataFile FileName="ProductCreation3.xsd" MetadataType="Schema" ID="62dbb6d6-8b14-467c-8a87-e1aa4e7ec8bb" SourceId="1" SourceUrl="http://172.16.255.216:1337/ProductCreation.xamlx?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -95,6 +95,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WorkflowCreationProduit\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ToolPasswrd.cs" />
     <Page Include="CreerProduit.xaml">
       <SubType>Designer</SubType>
@@ -185,6 +190,22 @@
     <None Include="Service References\WorkflowConnection\FournisseurTest.WorkflowConnection.GetUserPasswordResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\WorkflowCreationProduit\FournisseurTest.WorkflowCreationProduit.ModifyProductDataState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WorkflowCreationProduit\ProductCreation.wsdl" />
+    <None Include="Service References\WorkflowCreationProduit\ProductCreation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowCreationProduit\ProductCreation1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowCreationProduit\ProductCreation2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowCreationProduit\ProductCreation3.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -203,6 +224,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\SessionService\" />
     <WCFMetadataStorage Include="Service References\WorkflowConnection\" />
+    <WCFMetadataStorage Include="Service References\WorkflowCreationProduit\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WorkflowConnection\ConnetionFournisseur.disco" />
@@ -230,6 +252,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\SessionService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowCreationProduit\ProductCreation.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowCreationProduit\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowCreationProduit\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowCreationProduit\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
