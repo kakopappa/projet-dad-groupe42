@@ -50,7 +50,7 @@ namespace WorkflowServices
             Guid productGuid = context.GetValue<Guid>(this.ProductGuid);
             UserType type = context.GetValue<UserType>(this.Type);
             Guid[] categorie = context.GetValue<Guid[]>(this.Categorie);
-            ModifyFournisseurDataState state = ModifyFournisseurDataState.NOT_EXECUTED;
+            ModifyProductDataState state = ModifyProductDataState.NOT_EXECUTED;
             try
             {
                 var ctx = new DADEntities(new Uri(Properties.Settings.Default.DataService));
@@ -71,7 +71,7 @@ namespace WorkflowServices
 
                 if (product != null)
                 {
-                    state = ModifyFournisseurDataState.EXIST;
+                    state = ModifyProductDataState.EXIST;
                     ChangeItemAvailability activity1 = new ChangeItemAvailability();
                     AdminProductModification activity2 = new AdminProductModification();
                     Dictionary<string, object> arguments1 = new Dictionary<string, object>();
@@ -114,16 +114,16 @@ namespace WorkflowServices
                         if (!categories.Contains(cat))
                         {
                             product.CATEGORIE.Remove(cat);
-                            ctx.DetachLink(product, "CATEGORIE", cat);
+                            ctx.DeleteLink(product, "CATEGORIE", cat);
                             cat.PRODUIT.Remove(product);
-                            ctx.DetachLink(cat, "PRODUIT", product);
+                            ctx.DeleteLink(cat, "PRODUIT", product);
                         }
                     }
 
                     ctx.UpdateObject(product);
                     ctx.SaveChanges(System.Data.Services.Client.SaveChangesOptions.Batch);
 
-                    state = ModifyFournisseurDataState.EXECUTED;
+                    state = ModifyProductDataState.EXECUTED;
 
                     WorkflowInvoker.Invoke(activity1, arguments1);
 
@@ -134,16 +134,17 @@ namespace WorkflowServices
                 }
                 else
                 {
-                    state = ModifyFournisseurDataState.NOT_EXIST;
+                    state = ModifyProductDataState.NOT_EXIST;
                 }
             }
             catch
             {
-                if(state != ModifyFournisseurDataState.EXECUTED)
-                    state = ModifyFournisseurDataState.DATA_ERROR;
+                if (state != ModifyProductDataState.EXECUTED)
+                    state = ModifyProductDataState.DATA_ERROR;
                 else
-                    state = ModifyFournisseurDataState.SERVICE_ERROR;
+                    state = ModifyProductDataState.SERVICE_ERROR;
             }
+            context.SetValue<ModifyProductDataState>(this.State, state);
         }
     }
 }

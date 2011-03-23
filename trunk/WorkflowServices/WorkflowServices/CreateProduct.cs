@@ -7,6 +7,13 @@ using WorkflowServices.DataService;
 
 namespace WorkflowServices
 {
+    public enum CreateProductState
+    {
+        SERVICE_ERROR,
+        DATA_ERROR,
+        NOT_EXECUTED,
+        EXECUTED
+    }
 
     public sealed class CreateProduct : CodeActivity
     {
@@ -19,7 +26,7 @@ namespace WorkflowServices
         public InArgument<Guid> UserGuid { get; set; }
         public InArgument<Boolean> Disponible { get; set; }
         public InArgument<Guid[]> Categorie { get; set; }
-        public OutArgument<ModifyProductDataState> State { get; set; }
+        public OutArgument<CreateProductState> State { get; set; }
 
         // Si votre activité retourne une valeur, dérivez de CodeActivity<TResult>
         // et retournez la valeur à partir de la méthode Execute.
@@ -34,7 +41,7 @@ namespace WorkflowServices
             bool disponible = context.GetValue<Boolean>(this.Disponible);
             Guid userGuid = context.GetValue<Guid>(this.UserGuid);
             Guid[] categorie = context.GetValue<Guid[]>(this.Categorie);
-
+            CreateProductState state = CreateProductState.NOT_EXECUTED;
             try
             {
                 var ctx = new DADEntities(new Uri(Properties.Settings.Default.DataService));
@@ -54,12 +61,13 @@ namespace WorkflowServices
                 product.FOURNISSEUR = fournisseur;
                 fournisseur.PRODUIT.Add(product);
                 ctx.SaveChanges(System.Data.Services.Client.SaveChangesOptions.Batch);
-
+                state = CreateProductState.EXECUTED;
             }
             catch
             {
-
+                state = CreateProductState.DATA_ERROR;
             }
+            context.SetValue<CreateProductState>(this.State, state);
         }
     }
 }

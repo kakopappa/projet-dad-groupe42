@@ -53,6 +53,7 @@
     <Compile Include="CheckIfFournisseurExist.cs" />
     <Compile Include="CheckIfPasswordMatch.cs" />
     <Compile Include="CheckIfUserExist.cs" />
+    <Compile Include="CreateCategori.cs" />
     <Compile Include="CreateFournisseur.cs" />
     <Compile Include="CreateProduct.cs" />
     <Compile Include="CreateUser.cs" />
@@ -114,6 +115,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="ProductCreation.xamlx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="CateogerieCreation.xamlx">
       <SubType>Designer</SubType>
     </Content>
     <None Include="Properties\Settings.settings">
