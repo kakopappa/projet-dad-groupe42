@@ -50,6 +50,11 @@ namespace FournisseurTest
             {
             }
         }
+
+        private void ValidationCreation(object sender, RoutedEventArgs args)
+        {
+
+        }
        
     }
 }
