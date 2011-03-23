@@ -30,7 +30,6 @@
         <Label x:Name="LabelCP" Content="CP" Height="26" Margin="0,0,157,125" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="90"/>
         <TextBox x:Name="TextPays" Height="23" Margin="0,0,13,94" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="165" Text="{Binding ElementName=ListFournisseurs, Path=SelectedItem.pays}"/>
         <Label x:Name="LabelPays" Content="Pays" Height="26" Margin="0,0,157,94" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="90"/>
-        <TextBox x:Name="TextPassword" Height="23" Margin="0,0,13,64" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="165" Text="{Binding ElementName=ListFournisseurs, Path=SelectedItem.password}"/>
         <Label x:Name="LabelPassword" Content="Password" Height="26" Margin="0,0,157,64" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="90"/>
         <TextBox x:Name="TextSelection" Height="23" Margin="12,0,0,29.5" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="140"/>
         <Button x:Name="ButtonCreer" Content="Créer" HorizontalAlignment="Right" Height="23" Margin="0,0,13,29.5" VerticalAlignment="Bottom" Width="72" Click="btnCreer_Click"/>
@@ -39,5 +38,6 @@
         <Button x:Name="ButtonNouveau" Content="Nouveau" HorizontalAlignment="Right" Height="23" Margin="0,0,95,29.5" VerticalAlignment="Bottom" Width="72" Click="btnNouveau_Click"/>
         <Button x:Name="ButtonSupprimer" Content="Supprimer" HorizontalAlignment="Right" Height="23" Margin="0,0,13,2.5" VerticalAlignment="Bottom" Width="72" Click="btnSupprimer_Click"/>
         <ListBox x:Name="ListFournisseurs" HorizontalAlignment="Left" Margin="12,52,0,64" Width="223" ItemTemplate="{StaticResource FournisseurTemplate}" SelectionChanged="listFournisseur_Selection"/>
+        <PasswordBox x:Name="TextPassword" HorizontalAlignment="Right" Height="21.5" Margin="0,0,13,64" VerticalAlignment="Bottom" Width="165"/>
     </Grid>
 </Page>
