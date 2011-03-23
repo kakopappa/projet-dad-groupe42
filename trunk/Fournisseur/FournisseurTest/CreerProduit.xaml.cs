@@ -53,6 +53,34 @@ namespace FournisseurTest
 
         private void ValidationCreation(object sender, RoutedEventArgs args)
         {
+            string reference, nom, marque, prix, stock, description, url;
+            bool disponibilite;
+            List<CATEGORIE> categ;
+
+            reference = this.textBoxReference.Text;
+            nom = this.textBoxNomProduit.Text;
+            marque = this.textBoxMarque.Text;
+            prix = this.textBoxPrix.Text;
+            stock = this.textBoxStock.Text;
+            description = this.textBoxDescription.Text;
+            url = this.textBoxImage.Text;
+            if (this.checkBoxDispo.IsChecked == true)
+            {
+                disponibilite = true;
+            }
+            else
+            {
+                disponibilite = false;
+            }
+            
+            var maliste = this.listCat.SelectedItems;
+
+
+
+            Guid[] catTab = (from CATEGORIE cat in maliste
+                             select cat.id).ToArray<Guid>();
+
+            Console.WriteLine(nom + " " + reference + " " + marque + " " + prix + " " + stock + " " + description + " " + url + " " + disponibilite + " ");
 
         }
        
