@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3d2aaa65-a4f8-40f3-8d1e-1ef35f3787ec" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://172.16.255.216:1337/CategorieSuppression.xamlx" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CategorieSuppression.xsd" MetadataType="Schema" ID="2b0fdbe5-126d-470d-bb78-930c64070854" SourceId="1" SourceUrl="http://172.16.255.216:1337/CategorieSuppression.xamlx?xsd=xsd1" />
+    <MetadataFile FileName="CategorieSuppression1.xsd" MetadataType="Schema" ID="5bcf9bd5-1888-4968-83fc-e00243109bc8" SourceId="1" SourceUrl="http://172.16.255.216:1337/CategorieSuppression.xamlx?xsd=xsd2" />
+    <MetadataFile FileName="CategorieSuppression.wsdl" MetadataType="Wsdl" ID="82ab1690-37cc-4aad-8804-5e37660076bb" SourceId="1" SourceUrl="http://172.16.255.216:1337/CategorieSuppression.xamlx?wsdl" />
+    <MetadataFile FileName="CategorieSuppression.disco" MetadataType="Disco" ID="0550ebd2-4ccb-4557-854a-70e25923d774" SourceId="1" SourceUrl="http://172.16.255.216:1337/CategorieSuppression.xamlx?disco" />
+    <MetadataFile FileName="CategorieSuppression2.xsd" MetadataType="Schema" ID="a2a4b33a-ffbf-4d1f-85ad-43a5eb14ffa5" SourceId="1" SourceUrl="http://172.16.255.216:1337/CategorieSuppression.xamlx?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
