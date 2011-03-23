@@ -97,7 +97,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\FournisseurSuppression\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ProductModification\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ProductSuppresion\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -150,7 +160,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -183,6 +195,19 @@
     <None Include="Service References\FournisseurModification\InterfaceMagasin.FournisseurModification.ModifyFournisseurDataState.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\FournisseurSuppression\FournisseurSuppression.wsdl" />
+    <None Include="Service References\FournisseurSuppression\FournisseurSuppression.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FournisseurSuppression\FournisseurSuppression1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FournisseurSuppression\FournisseurSuppression2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FournisseurSuppression\InterfaceMagasin.FournisseurSuppression.ModifyFournisseurDataState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ProductModification\InterfaceMagasin.ProductModification.ModifyProductDataState.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -197,6 +222,19 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ProductModification\ProductModification3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductSuppresion\InterfaceMagasin.ProductSuppresion.ModifyProductDataState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ProductSuppresion\ProductSuppresion.wsdl" />
+    <None Include="Service References\ProductSuppresion\ProductSuppresion.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductSuppresion\ProductSuppresion1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProductSuppresion\ProductSuppresion2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceSession\InterfaceMagasin.ServiceSession.ItemState.datasource">
@@ -255,7 +293,9 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\FournisseurCreation\" />
     <WCFMetadataStorage Include="Service References\FournisseurModification\" />
+    <WCFMetadataStorage Include="Service References\FournisseurSuppression\" />
     <WCFMetadataStorage Include="Service References\ProductModification\" />
+    <WCFMetadataStorage Include="Service References\ProductSuppresion\" />
     <WCFMetadataStorage Include="Service References\ServiceSession\" />
   </ItemGroup>
   <ItemGroup>
@@ -314,6 +354,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ProductModification\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProductSuppresion\ProductSuppresion.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProductSuppresion\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProductSuppresion\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProductSuppresion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FournisseurSuppression\FournisseurSuppression.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FournisseurSuppression\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FournisseurSuppression\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FournisseurSuppression\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

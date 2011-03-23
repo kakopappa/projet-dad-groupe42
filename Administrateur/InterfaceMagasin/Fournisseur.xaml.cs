@@ -43,6 +43,7 @@ namespace InterfaceMagasin
 
                 //Par défaut, on sélectionne tout
                 var query = from f in entities.FOURNISSEUR
+                            where f.supprime == false
                             select f; ;
 
                 //On récupère la liste des fournisseurs
@@ -61,6 +62,8 @@ namespace InterfaceMagasin
             this.ButtonModif.IsEnabled = false;
             //Le bouton de Suppression n'est pas actif
             this.ButtonSupprimer.IsEnabled = false;
+            //On active le password
+            this.TextPassword.IsEnabled = true;
         }
 
         static string HashPassword(string email, string password)
@@ -90,7 +93,7 @@ namespace InterfaceMagasin
             ville = this.TextVille.Text;
             cp = this.TextCP.Text;
             pays = this.TextPays.Text;
-            password = HashPassword(mail,this.TextPassword.Text);
+            password = HashPassword(mail,this.TextPassword.Password);
 
             //On prépare la création du fournisseur
             FournisseurCreation.ServiceClient client = null;
@@ -147,30 +150,29 @@ namespace InterfaceMagasin
 
                 //Par défaut, on sélectionne tout
                 var query = from f in entities.FOURNISSEUR
+                            where f.supprime == false
                             select f;
 
                 //Si le champ selectionner est rempli
                 if (selection != "")
                 {
                     query = from f in entities.FOURNISSEUR
-                            where f.nom == selection
+                            where f.nom == selection && f.supprime == false
                             select f;
                 }
 
                 //On récupère la liste des fournisseurs
                 maListFournisseurs = query.ToList<FOURNISSEUR>();
-
                 //Pour chaque fournisseur, on ajoute son nom dans la liste                    
                 this.ListFournisseurs.ItemsSource = maListFournisseurs;
-
                 //On désactive la modif
                 this.ButtonModif.IsEnabled = false;
-
                 //Le bouton de Suppression n'est pas actif
                 this.ButtonSupprimer.IsEnabled = false;
-
                 //On active la création
                 this.ButtonCreer.IsEnabled = true;
+                //On active le password
+                this.TextPassword.IsEnabled = true;
 
             }
             catch (Exception e)
@@ -179,12 +181,15 @@ namespace InterfaceMagasin
             }
         }
 
+
         /////Event pour la sélection d'un fournisseur dans la liste/////
         private void listFournisseur_Selection(object sender, RoutedEventArgs args)
         {
             //On sélectionne le fournisseur
             fournisseur = (FOURNISSEUR)this.ListFournisseurs.SelectedItem;
 
+            //On désactive le password
+            this.TextPassword.IsEnabled = false;
             //On désactive le Bouton de création
             this.ButtonCreer.IsEnabled = false;
             //On active le Bouton de modification
@@ -207,6 +212,9 @@ namespace InterfaceMagasin
 
             //Le bouton de Suppression n'est pas actif
             this.ButtonSupprimer.IsEnabled = false;
+
+            //On active le password
+            this.TextPassword.IsEnabled = true;
         }
 
 
@@ -227,7 +235,6 @@ namespace InterfaceMagasin
                     fournisseur.ville = this.TextVille.Text;
                     fournisseur.code_postal = this.TextCP.Text;
                     fournisseur.pays = this.TextPays.Text;
-                    fournisseur.password = this.TextPassword.Text;
 
                     //Manip de modification
                     client = new FournisseurModification.ServiceClient();
@@ -271,35 +278,34 @@ namespace InterfaceMagasin
             if (this.ListFournisseurs.SelectedItem != null)
             {
 
+                FournisseurSuppression.ServiceClient client = null;
+
                 try
                 {
-                    //On charge le contexte
-                    DADEntities entitiesSupprime = new DADEntities(new Uri(Properties.Settings.Default.DataService));
+                    DADEntities entitiesSupp = new DADEntities(new Uri(Properties.Settings.Default.DataService));
+                    entitiesSupp.IgnoreResourceNotFoundException = true;
 
-                    //On récupère le fournisseur qui correspond au fournisseur sélectionné
-                    var fournisseurSupprime = (from f in entitiesSupprime.FOURNISSEUR
-                                               where f.id == fournisseur.id
-                                               select f).Single<FOURNISSEUR>();
+                    //Manip de modification
+                    client = new FournisseurSuppression.ServiceClient();
 
-                    //On change les valeurs du fournisseur
-                    fournisseurSupprime.nom = this.TextNom.Text;
-                    fournisseurSupprime.email = this.TextMail.Text;
-                    fournisseurSupprime.phone = this.TextPhone.Text;
-                    fournisseurSupprime.adresse = this.TextAdresse.Text;
-                    fournisseurSupprime.ville = this.TextVille.Text;
-                    fournisseurSupprime.code_postal = this.TextCP.Text;
-                    fournisseurSupprime.pays = this.TextPays.Text;
-                    fournisseurSupprime.password = this.TextPassword.Text;
+                    if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
+                    {
+                        FournisseurSuppression.ModifyFournisseurDataState state = client.DeleteFournisseur(fournisseur.id);
 
-                    //Fonction d'de suppression
-                    entitiesSupprime.DeleteObject(fournisseurSupprime);
-                    entitiesSupprime.SaveChanges(SaveChangesOptions.Batch);
+                        //Si ce n'est pas exécuté
+                        if (state != FournisseurSuppression.ModifyFournisseurDataState.EXECUTED)
+                        {
 
+                        }
+                    }
                 }
+
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
                 }
+
+                initiateFormulaire();
             }
 
             //On réinitialise le formulaire
