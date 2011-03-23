@@ -82,6 +82,11 @@
     <Compile Include="Produit.xaml.cs">
       <DependentUpon>Produit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Service References\CategorieModification\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\DataService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -168,6 +173,19 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\CategorieModification\CategorieModification.wsdl" />
+    <None Include="Service References\CategorieModification\CategorieModification.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CategorieModification\CategorieModification1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CategorieModification\CategorieModification2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CategorieModification\InterfaceMagasin.CategorieModification.ModifyCategorieDataState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\DataService\service.edmx" />
     <None Include="Service References\FournisseurCreation\FournisseurCreation.wsdl" />
     <None Include="Service References\FournisseurCreation\FournisseurCreation.xsd">
@@ -291,6 +309,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CategorieModification\" />
     <WCFMetadataStorage Include="Service References\FournisseurCreation\" />
     <WCFMetadataStorage Include="Service References\FournisseurModification\" />
     <WCFMetadataStorage Include="Service References\FournisseurSuppression\" />
@@ -384,6 +403,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\FournisseurSuppression\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CategorieModification\CategorieModification.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CategorieModification\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CategorieModification\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CategorieModification\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8faecad5-2b83-4d81-9aeb-029027db29a3" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://172.16.255.216:1337/CategorieModification.xamlx" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CategorieModification.disco" MetadataType="Disco" ID="b0148a1a-4dfd-437c-84f9-7eac97334e34" SourceId="1" SourceUrl="http://172.16.255.216:1337/CategorieModification.xamlx?disco" />
+    <MetadataFile FileName="CategorieModification.xsd" MetadataType="Schema" ID="ef32e885-b47f-463e-8c61-b672e8bcb87d" SourceId="1" SourceUrl="http://172.16.255.216:1337/CategorieModification.xamlx?xsd=xsd0" />
+    <MetadataFile FileName="CategorieModification.wsdl" MetadataType="Wsdl" ID="dac31aa2-bf00-4b5b-869c-fb120fe15ea8" SourceId="1" SourceUrl="http://172.16.255.216:1337/CategorieModification.xamlx?wsdl" />
+    <MetadataFile FileName="CategorieModification1.xsd" MetadataType="Schema" ID="464c7766-a124-4b4e-9e30-4f039e859599" SourceId="1" SourceUrl="http://172.16.255.216:1337/CategorieModification.xamlx?xsd=xsd1" />
+    <MetadataFile FileName="CategorieModification2.xsd" MetadataType="Schema" ID="6f1513f9-2ee2-42b7-9456-5801ff74dcf6" SourceId="1" SourceUrl="http://172.16.255.216:1337/CategorieModification.xamlx?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
