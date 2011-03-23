@@ -28,6 +28,7 @@
         <xs:element minOccurs="0" name="Stock" type="xs:int" />
         <xs:element minOccurs="0" name="Disponible" type="xs:boolean" />
         <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Categorie" nillable="true" type="q2:ArrayOfguid" />
+        <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
