@@ -50,7 +50,6 @@ namespace FournisseurTest
                                 string userId = svc.GuidRequest(out sessionId);
                                 bool validation = MainWindow.GetInstance().SessionService.ActivateFournisseur(new Guid(sessionId),
                                     new Guid(userId));
-                                Console.WriteLine(validation);
                                 MainWindow.GetInstance().UserId = new Guid(userId);
                                 MainWindow.GetInstance().SessionId = new Guid(sessionId);
                                 MainWindow.GetInstance().btnListProduct.IsEnabled = true;

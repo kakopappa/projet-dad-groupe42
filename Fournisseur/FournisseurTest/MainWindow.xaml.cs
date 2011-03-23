@@ -42,8 +42,7 @@ namespace FournisseurTest
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            this.SessionService = new FournisseurClient(new System.ServiceModel.InstanceContext(this), "WSDualHttpBinding_Fournisseur");
-            this.SessionService.Open();
+            this.SessionService = new FournisseurClient(new System.ServiceModel.InstanceContext(this));
         }
 
         private void LoadListeProduit(object sender, RoutedEventArgs args)
