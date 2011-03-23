@@ -58,6 +58,7 @@ namespace InterfaceMagasin
                 //Par défaut, on sélectionne tout
                 var query = from p in entities.PRODUIT
                             where p.supprime == false
+                            orderby p.nom
                             select p;
                 
                 //On récupère la liste des produits
@@ -240,6 +241,7 @@ namespace InterfaceMagasin
                    //Mise a jour de la liste de produit
                    var mesproduit = from p in entitiesmModif.PRODUIT
                                     where p.supprime == false
+                                    orderby p.nom
                                     select p;
 
                     //On récupère la liste des produits
@@ -409,6 +411,7 @@ namespace InterfaceMagasin
                 //Par défaut, on sélectionne tout
                 var query = from p in entities.PRODUIT
                             where p.supprime == false
+                            orderby p.nom
                             select p;
 
                 //Si le champ selectionner est rempli
@@ -416,6 +419,7 @@ namespace InterfaceMagasin
                 {
                     query = from p in entities.PRODUIT
                             where p.nom == selection && p.supprime == false
+                            orderby p.nom
                             select p;
                 }
 

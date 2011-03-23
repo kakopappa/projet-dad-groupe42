@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Nom du fichier d'origine :
-// Date de génération : 21/03/2011 14:17:38
+// Date de génération : 23/03/2011 16:09:04
 namespace InterfaceMagasin.DataService
 {
     

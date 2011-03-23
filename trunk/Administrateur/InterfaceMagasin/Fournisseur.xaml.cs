@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using InterfaceMagasin.DataService;
 using System.Data.Services.Client;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 
 namespace InterfaceMagasin
 {
@@ -44,7 +45,8 @@ namespace InterfaceMagasin
                 //Par défaut, on sélectionne tout
                 var query = from f in entities.FOURNISSEUR
                             where f.supprime == false
-                            select f; ;
+                            orderby f.nom
+                            select f;
 
                 //On récupère la liste des fournisseurs
                 maListFournisseurs = query.ToList<FOURNISSEUR>();
@@ -64,6 +66,11 @@ namespace InterfaceMagasin
             this.ButtonSupprimer.IsEnabled = false;
             //On active le password
             this.TextPassword.IsEnabled = true;
+            //L'erreur est cachééééeee
+            this.LabelErreur.Visibility = Visibility.Hidden;
+            //Email invalide
+            this.LabelEmail.Visibility = Visibility.Hidden;
+        
         }
 
         static string HashPassword(string email, string password)
@@ -95,46 +102,67 @@ namespace InterfaceMagasin
             pays = this.TextPays.Text;
             password = HashPassword(mail,this.TextPassword.Password);
 
-            //On prépare la création du fournisseur
-            FournisseurCreation.ServiceClient client = null;
-            
-            try
+            //Si un champs est vide, on lance pas la création
+            if (nom == "" || mail == "" || phone == "" || adresse == "" || ville == "" || cp == "" || pays == "" || password == "")
             {
-                //On ajoute le fournisseur à la BDD                
-                client = new FournisseurCreation.ServiceClient();
-                if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
+                //L'erreur est visible !!
+                this.LabelErreur.Visibility = Visibility.Visible;
+                //Email invalide
+                this.LabelEmail.Visibility = Visibility.Hidden;
+            }
+
+            else
+            {
+                if (isEmail(mail) == true)
                 {
-                    FournisseurCreation.CheckIfFournisseurExistResult result = client.CreateFournisseur(nom, mail,
-                        password, adresse, ville, phone, cp, pays);
+                    //On prépare la création du fournisseur
+                    FournisseurCreation.ServiceClient client = null;
 
-                    //Si Le client n'existe pas
-                    if (result == FournisseurCreation.CheckIfFournisseurExistResult.NOT_EXIST)
+                    try
                     {
-                        Guid id = (Guid)client.GuidRequest();
-                    }
-                    else
-                    {
+                        //On ajoute le fournisseur à la BDD                
+                        client = new FournisseurCreation.ServiceClient();
+                        if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
+                        {
+                            FournisseurCreation.CheckIfFournisseurExistResult result = client.CreateFournisseur(nom, mail,
+                                password, adresse, ville, phone, cp, pays);
 
+                            //Si Le client n'existe pas
+                            if (result == FournisseurCreation.CheckIfFournisseurExistResult.NOT_EXIST)
+                            {
+                                Guid id = (Guid)client.GuidRequest();
+                            }
+                            else
+                            {
+
+                            }
+                        }
                     }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+
+                    //On ferme le client
+                    finally
+                    {
+                        if (client != null)
+                        {
+                            client.Close();
+                            client.ChannelFactory.Close();
+                        }
+                    }
+
+                    //On réinitialise le formulaire
+                    initiateFormulaire();
+                }
+
+                else
+                {
+                    //Email invalide
+                    this.LabelEmail.Visibility = Visibility.Visible;
                 }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-
-            //On ferme le client
-            finally
-            {
-                if (client != null)
-                {
-                    client.Close();
-                    client.ChannelFactory.Close();
-                }
-            }
-
-            //On réinitialise le formulaire
-            initiateFormulaire();
         }
 
 
@@ -151,6 +179,7 @@ namespace InterfaceMagasin
                 //Par défaut, on sélectionne tout
                 var query = from f in entities.FOURNISSEUR
                             where f.supprime == false
+                            orderby f.nom
                             select f;
 
                 //Si le champ selectionner est rempli
@@ -158,6 +187,7 @@ namespace InterfaceMagasin
                 {
                     query = from f in entities.FOURNISSEUR
                             where f.nom == selection && f.supprime == false
+                            orderby f.nom
                             select f;
                 }
 
@@ -173,6 +203,10 @@ namespace InterfaceMagasin
                 this.ButtonCreer.IsEnabled = true;
                 //On active le password
                 this.TextPassword.IsEnabled = true;
+                //L'erreur est cachééééeee
+                this.LabelErreur.Visibility = Visibility.Hidden;
+                //Email invalide
+                this.LabelEmail.Visibility = Visibility.Hidden;
 
             }
             catch (Exception e)
@@ -196,6 +230,10 @@ namespace InterfaceMagasin
             this.ButtonModif.IsEnabled = true;
             //Le bouton de Suppression est actif
             this.ButtonSupprimer.IsEnabled = true;
+            //L'erreur est cachééééeee
+            this.LabelErreur.Visibility = Visibility.Hidden;
+            //Email invalide
+            this.LabelEmail.Visibility = Visibility.Hidden;
         }
 
 
@@ -203,18 +241,18 @@ namespace InterfaceMagasin
         private void btnNouveau_Click(object sender, RoutedEventArgs args)
         {
             this.ListFournisseurs.SelectedItem = null;
-
             //On désactive la modif
             this.ButtonModif.IsEnabled = false;
-
             //On active la création
             this.ButtonCreer.IsEnabled = true;
-
             //Le bouton de Suppression n'est pas actif
             this.ButtonSupprimer.IsEnabled = false;
-
             //On active le password
             this.TextPassword.IsEnabled = true;
+            //L'erreur est cachééééeee
+            this.LabelErreur.Visibility = Visibility.Hidden;
+            //Email invalide
+            this.LabelEmail.Visibility = Visibility.Hidden;
         }
 
 
@@ -225,47 +263,70 @@ namespace InterfaceMagasin
             {
                 FournisseurModification.ServiceClient client = null;
 
-                try
+                //On change les valeurs du fournisseur
+                fournisseur.nom = this.TextNom.Text;
+                fournisseur.email = this.TextMail.Text;
+                fournisseur.phone = this.TextPhone.Text;
+                fournisseur.adresse = this.TextAdresse.Text;
+                fournisseur.ville = this.TextVille.Text;
+                fournisseur.code_postal = this.TextCP.Text;
+                fournisseur.pays = this.TextPays.Text;
+
+                //Si un champs est vide, on lance pas la création
+                if (fournisseur.nom == "" || fournisseur.email == "" || fournisseur.phone == "" || fournisseur.adresse == "" || fournisseur.ville == "" || fournisseur.code_postal == "" || fournisseur.pays == "")
                 {
-                    //On change les valeurs du fournisseur
-                    fournisseur.nom = this.TextNom.Text;
-                    fournisseur.email = this.TextMail.Text;
-                    fournisseur.phone = this.TextPhone.Text;
-                    fournisseur.adresse = this.TextAdresse.Text;
-                    fournisseur.ville = this.TextVille.Text;
-                    fournisseur.code_postal = this.TextCP.Text;
-                    fournisseur.pays = this.TextPays.Text;
+                    //L'erreur est visible !!
+                    this.LabelErreur.Visibility = Visibility.Visible;
+                }
 
-                    //Manip de modification
-                    client = new FournisseurModification.ServiceClient();
-
-                    if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
+                else
+                {
+                    if (isEmail(fournisseur.email) == true)
                     {
-                        FournisseurModification.ModifyFournisseurDataState state = client.ModifyFournisseurData(fournisseur.nom,
-                            fournisseur.phone, fournisseur.adresse,
-                            fournisseur.ville, fournisseur.code_postal,
-                            fournisseur.pays, fournisseur.id);
 
-                        //Si ce n'est pas exécuté
-                        if (state != FournisseurModification.ModifyFournisseurDataState.EXECUTED)
+                        try
                         {
+                            //Manip de modification
+                            client = new FournisseurModification.ServiceClient();
 
+                            if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
+                            {
+                                FournisseurModification.ModifyFournisseurDataState state = client.ModifyFournisseurData(fournisseur.nom,
+                                    fournisseur.phone, fournisseur.adresse,
+                                    fournisseur.ville, fournisseur.code_postal,
+                                    fournisseur.pays, fournisseur.id);
+
+                                //Si ce n'est pas exécuté
+                                if (state != FournisseurModification.ModifyFournisseurDataState.EXECUTED)
+                                {
+
+                                }
+                            }
+
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                        }
+
+                        //On ferme le client
+                        finally
+                        {
+                            if (client != null)
+                            {
+                                client.Close();
+                                client.ChannelFactory.Close();
+                            }
                         }
                     }
 
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
-                
-                //On ferme le client
-                finally
-                {
-                    if (client != null)
+                    //Si email non valide
+                    else
                     {
-                        client.Close();
-                        client.ChannelFactory.Close();
+                        //L'erreur est cachéée !!
+                        this.LabelErreur.Visibility = Visibility.Hidden;
+                        //Email invalide
+                        this.LabelEmail.Visibility = Visibility.Visible;
                     }
                 }
             }
@@ -305,11 +366,24 @@ namespace InterfaceMagasin
                     Console.WriteLine(e);
                 }
 
-                initiateFormulaire();
             }
 
             //On réinitialise le formulaire
             initiateFormulaire();
         }
+
+
+        public static bool isEmail(string inputEmail)
+        {
+            string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                  @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                  @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+            Regex re = new Regex(strRegex);
+            if (re.IsMatch(inputEmail))
+                return (true);
+            else
+                return (false);
+        }
+
     }
 }
