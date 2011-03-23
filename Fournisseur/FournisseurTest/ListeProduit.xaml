@@ -71,28 +71,33 @@
             </ListView>
 
         </Grid>
-        <Button FontFamily="Georgia" Content="Modifier produit" Height="23" HorizontalAlignment="Left" Margin="601,303,0,0" Name="buttonModifier" VerticalAlignment="Top" Width="112" Grid.Column="2" />
+        
         <Label FontFamily="Georgia" Content="Référence :" Height="28" HorizontalAlignment="Left" Margin="275,28,0,0" Name="labelReference" VerticalAlignment="Top" Grid.Column="2" />
         <Label FontFamily="Georgia" Content="Nom produit :" Height="28" HorizontalAlignment="Left" Margin="275,66,0,0" Name="labelNomProduit" VerticalAlignment="Top" Grid.Column="2" />
         <Label FontFamily="Georgia" Content="Marque :" Height="28" HorizontalAlignment="Left" Margin="275,102,0,0" Name="labelMarque" VerticalAlignment="Top" Grid.Column="2" />
         <Label FontFamily="Georgia" Content="Prix :" Height="28" HorizontalAlignment="Left" Margin="529,61,0,0" Name="labelPrix" VerticalAlignment="Top" Width="51" Grid.Column="2" />
         <Label FontFamily="Georgia" Content="Stock : " Height="28" HorizontalAlignment="Left" Margin="529,95,0,0" Name="labelStock" VerticalAlignment="Top" Grid.Column="2" />
-        <Label FontFamily="Georgia" Content="Description :" Height="28" HorizontalAlignment="Left" Margin="275,255,0,0" Name="labelDescription" VerticalAlignment="Top" Grid.Column="2" />
-        <Label FontFamily="Georgia" Content="Catégorie :" Height="28" HorizontalAlignment="Left" Margin="275,179,0,0" Name="labelCategorie" VerticalAlignment="Top" Grid.Column="2" />
+        <Label FontFamily="Georgia" Content="Description :" Height="28" HorizontalAlignment="Left" Margin="275,178,0,0" Name="labelDescription" VerticalAlignment="Top" Grid.Column="2" />
+        <Label FontFamily="Georgia" Content="Catégorie actuelle:" Height="28" HorizontalAlignment="Left" Margin="371,254,0,0" Name="labelCategorie" VerticalAlignment="Top" Grid.Column="2" />
         <Label FontFamily="Georgia" Content="Image :" Height="28" HorizontalAlignment="Left" Margin="530,124,0,0" Name="labelImage" VerticalAlignment="Top" Grid.Column="2" />
 
         <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="395,28,0,0" Name="textBoxReference" VerticalAlignment="Top" Width="120" Text="{Binding ElementName= list, Path= SelectedItem.reference}" Grid.Column="2" />
         <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="395,66,0,0" Name="textBoxNomProduit" VerticalAlignment="Top" Width="120" Grid.Column="2" Text="{Binding ElementName= list, Path= SelectedItem.nom}" />
         <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="395,102,0,0" Name="textBoxMarque" VerticalAlignment="Top" Width="120" Grid.Column="2" Text="{Binding ElementName= list, Path= SelectedItem.marque}"/>
+        <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="395,138,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
+        <CheckBox FontFamily="Georgia" Content="Disponibilité " Height="26" HorizontalAlignment="Left" Margin="591,27,0,0" Name="checkBoxDisponible" VerticalAlignment="Top" Grid.Column="2" />
         <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Right" Margin="0,60,36,0" Name="textBoxPrix" VerticalAlignment="Top" Width="120" Grid.Column="2" Text="{Binding ElementName= list, Path= SelectedItem.prix, StringFormat=€{0:F2}}"/>
         <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Right" Margin="0,95,36,0" Name="textBoxStock" VerticalAlignment="Top" Width="120" Grid.Column="2" Text="{Binding ElementName= list, Path= SelectedItem.stock}" />
-        <TextBox FontFamily="Georgia" Height="50" HorizontalAlignment="Left" Margin="395,245,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="240" Grid.Column="2" Text="{Binding ElementName= list, Path= SelectedItem.description}" />
         <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Right" Margin="0,129,36,0" Name="textBoxImage" VerticalAlignment="Top" Width="120" Grid.Column="2" Text="{Binding ElementName= list, Path= SelectedItem.IMAGE[0].url}"/>
-        <CheckBox FontFamily="Georgia" Content="Disponibilité " Height="26" HorizontalAlignment="Left" Margin="591,27,0,0" Name="checkBoxDisponible" VerticalAlignment="Top" Grid.Column="2" />
-        <ListBox x:Name="listBoxCategorie" FontFamily="Georgia" Height="63" HorizontalAlignment="Left" Margin="395,170,0,0" VerticalAlignment="Top" Width="240" Grid.Column="2" ItemTemplate="{StaticResource dataTemplate}"/>
+        <ListBox x:Name="listBoxCategorie" FontFamily="Georgia" Height="53" HorizontalAlignment="Left" Margin="496,240,0,0" VerticalAlignment="Top" Width="217" Grid.Column="2" ItemTemplate="{StaticResource dataTemplate}"/>
+        <TextBox FontFamily="Georgia" Height="50" HorizontalAlignment="Left" Margin="395,178,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="318" Grid.Column="2" Text="{Binding ElementName= list, Path= SelectedItem.description}" />
+        <Button FontFamily="Georgia" Content="Modifier produit" Height="23" HorizontalAlignment="Left" Margin="601,303,0,0" Name="buttonModifier" VerticalAlignment="Top" Width="112" Grid.Column="2" Click="ProduitModification"/>
+        
         <Label FontFamily="Georgia" Content="Pour modifier un produit, sélectionner le et modifier les champs les champs le nécessitant." Height="28" HorizontalAlignment="Left" Margin="99,0,0,0" Name="label9" VerticalAlignment="Top" Grid.Column="2" Width="506" />
-        <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="395,138,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
-        <Label FontFamily="Georgia" Content="Nouvelle catégorie :" Grid.Column="2" Height="25" HorizontalAlignment="Left" Margin="275,136,0,0" Name="label1" VerticalAlignment="Top" Width="125" />
+        
+        <Label FontFamily="Georgia" Content="Nouvelle catégorie :" Grid.Column="2" Height="25" HorizontalAlignment="Left" Margin="275,136,0,0" Name="labelNewCat" VerticalAlignment="Top" Width="125" />
+        <ListBox x:Name="listCat" ItemTemplate="{StaticResource dataTemplate}" SelectionMode="Multiple" FontFamily="Georgia" Grid.Column="2" Height="72" HorizontalAlignment="Left" Margin="34,240,0,0" VerticalAlignment="Top" Width="238" />
+        <Label FontFamily="Georgia" Content="Catégorie :" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="12,254,0,0" Name="label2" VerticalAlignment="Top" Grid.ColumnSpan="2" />
     </Grid>
     
 </Page>

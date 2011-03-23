@@ -39,7 +39,7 @@ namespace FournisseurTest.WorkflowCreationProduit {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreationProductData", ReplyAction="http://tempuri.org/IService/CreationProductDataResponse")]
         [return: System.ServiceModel.MessageParameterAttribute(Name="State")]
-        FournisseurTest.WorkflowCreationProduit.CreateProductState CreationProductData(string Reference, string Nom, string Marque, string Description, decimal Prix, int Stock, bool Disponible, System.Guid[] Categorie);
+        FournisseurTest.WorkflowCreationProduit.CreateProductState CreationProductData(string Reference, string Nom, string Marque, string Description, decimal Prix, int Stock, bool Disponible, System.Guid[] Categorie, string Url);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -73,8 +73,8 @@ namespace FournisseurTest.WorkflowCreationProduit {
             return base.Channel.SessionIDVerification(SessionID);
         }
         
-        public FournisseurTest.WorkflowCreationProduit.CreateProductState CreationProductData(string Reference, string Nom, string Marque, string Description, decimal Prix, int Stock, bool Disponible, System.Guid[] Categorie) {
-            return base.Channel.CreationProductData(Reference, Nom, Marque, Description, Prix, Stock, Disponible, Categorie);
+        public FournisseurTest.WorkflowCreationProduit.CreateProductState CreationProductData(string Reference, string Nom, string Marque, string Description, decimal Prix, int Stock, bool Disponible, System.Guid[] Categorie, string Url) {
+            return base.Channel.CreationProductData(Reference, Nom, Marque, Description, Prix, Stock, Disponible, Categorie, Url);
         }
     }
 }

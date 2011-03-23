@@ -27,7 +27,7 @@
         <TextBox Height="23" HorizontalAlignment="Left" Margin="500,124,0,0" Name="textBoxPrix" VerticalAlignment="Top" Width="120" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="500,167,0,0" Name="textBoxStock" VerticalAlignment="Top" Width="120" />
         <TextBox Height="84" HorizontalAlignment="Left" Margin="227,203,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="391" />
-        <ListBox x:Name="listCat" Height="63" HorizontalAlignment="Left" Margin="227,301,0,0" VerticalAlignment="Top" Width="391" ItemTemplate="{StaticResource dataTemplate}" SelectionMode="Multiple"/>
+        <ListBox x:Name="listCat" Height="63" HorizontalAlignment="Right" Margin="0,301,182,0" VerticalAlignment="Top" Width="391" ItemTemplate="{StaticResource dataTemplate}" SelectionMode="Multiple"/>
         <CheckBox FontFamily="Georgia" Content="Disponibilité " Height="16" HorizontalAlignment="Left" Margin="371,438,0,0" Name="checkBoxDispo" VerticalAlignment="Top" />
         <Label FontFamily="Georgia" Content="Pour créer un nouveau produit, veuillez remplir tous les champs." Height="28" HorizontalAlignment="Left" Margin="217,33,0,0" Name="label9" VerticalAlignment="Top" Width="401" />
         <TextBox Height="23" HorizontalAlignment="Right" Margin="0,381,182,0" Name="textBox1" VerticalAlignment="Top" Width="333" />

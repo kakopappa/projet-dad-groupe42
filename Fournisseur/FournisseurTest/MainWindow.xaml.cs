@@ -61,6 +61,10 @@ namespace FournisseurTest
         {
             Frame.Navigate(new Login());
         }
+        private void LoadDeconnecter(object sender, RoutedEventArgs args)
+        {
+            this.SessionService.DisconnectFournisseur(this.SessionId);
+        }
 
 
         public void NewOrder(Guid orderID)
