@@ -133,7 +133,8 @@ namespace FournisseurTest
             int stockInt = 0;
             decimal prixDecimal = decimal.Zero;
 
-            if (Decimal.TryParse(prix, out prixDecimal) && Int32.TryParse(stock, out stockInt))
+            if (Decimal.TryParse(prix.Substring(1).Replace(".".ToCharArray()[0], ",".ToCharArray()[0]) , out prixDecimal) 
+                && Int32.TryParse(stock, out stockInt))
             {
                 //appel du Workflow
                 WorkflowModificationProduit.ServiceClient client = null;
@@ -144,7 +145,7 @@ namespace FournisseurTest
                     if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
                     {
                         WorkflowModificationProduit.ModifyProductDataState result = client.ModifyProductData(reference, nom, marque, description, prixDecimal, stockInt, prod.id, disponibilite,
-                            catTab);
+                            catTab, url);
                         //WorkflowCreationProduit.CreateProductState result = client.CreationProductData(reference, nom, marque, description, prixDecimal, stockInt, disponibilite,
                         //    catTab);
                         Console.WriteLine(result);
