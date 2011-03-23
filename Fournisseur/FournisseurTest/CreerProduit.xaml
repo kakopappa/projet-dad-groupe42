@@ -16,22 +16,22 @@
         <Label FontFamily="Georgia" Content="Marque :" Height="28" HorizontalAlignment="Left" Margin="137,162,0,0" Name="labelMarque" VerticalAlignment="Top" />
         <Label FontFamily="Georgia" Content="Prix :" Height="28" HorizontalAlignment="Left" Margin="425,124,0,0" Name="labelPrix" VerticalAlignment="Top" Width="51" />
         <Label FontFamily="Georgia" Content="Stock : " Height="28" HorizontalAlignment="Left" Margin="425,158,0,0" Name="labelStock" VerticalAlignment="Top" />
-        <Label FontFamily="Georgia" Content="Description :" Height="28" HorizontalAlignment="Left" Margin="219,225,0,0" Name="labelDescription" VerticalAlignment="Top" />
-        <Label FontFamily="Georgia" Content="Catégorie :" Height="28" HorizontalAlignment="Left" Margin="219,329,0,0" Name="labelCategorie" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Description :" Height="28" HorizontalAlignment="Left" Margin="140,219,0,0" Name="labelDescription" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Catégorie :" Height="28" HorizontalAlignment="Left" Margin="140,320,0,0" Name="labelCategorie" VerticalAlignment="Top" />
         <Label FontFamily="Georgia" Content="Image :" Height="28" HorizontalAlignment="Left" Margin="425,86,0,0" Name="labelImage" VerticalAlignment="Top" />
 
         <TextBox Height="23" HorizontalAlignment="Right" Margin="0,86,453,0" Name="textBoxReference" VerticalAlignment="Top" Width="120" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="227,124,0,0" Name="textBoxNomProduit" VerticalAlignment="Top" Width="120" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="227,162,0,0" Name="textBoxMarque" VerticalAlignment="Top" Width="120" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,83,180,0" Name="textBoxImage" VerticalAlignment="Top" Width="120" />
         <TextBox Height="23" HorizontalAlignment="Left" Margin="500,124,0,0" Name="textBoxPrix" VerticalAlignment="Top" Width="120" />
-        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,83,180,0" Name="textBoxStock" VerticalAlignment="Top" Width="120" />
-        <TextBox Height="90" HorizontalAlignment="Left" Margin="309,215,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="240" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="500,167,0,0" Name="textBoxImage" VerticalAlignment="Top" Width="120" />
-        <CheckBox FontFamily="Georgia" Content="Disponibilité " Height="16" HorizontalAlignment="Left" Margin="372,406,0,0" Name="checkBoxDispo" VerticalAlignment="Top" />
-
-        <ListBox x:Name="listCat" Height="63" HorizontalAlignment="Left" Margin="309,311,0,0" VerticalAlignment="Top" Width="240" ItemTemplate="{StaticResource dataTemplate}" SelectionMode="Multiple"/>
-        
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="500,167,0,0" Name="textBoxStock" VerticalAlignment="Top" Width="120" />
+        <TextBox Height="84" HorizontalAlignment="Left" Margin="227,203,0,0" Name="textBoxDescription" VerticalAlignment="Top" Width="391" />
+        <ListBox x:Name="listCat" Height="63" HorizontalAlignment="Left" Margin="227,301,0,0" VerticalAlignment="Top" Width="391" ItemTemplate="{StaticResource dataTemplate}" SelectionMode="Multiple"/>
+        <CheckBox FontFamily="Georgia" Content="Disponibilité " Height="16" HorizontalAlignment="Left" Margin="371,438,0,0" Name="checkBoxDispo" VerticalAlignment="Top" />
         <Label FontFamily="Georgia" Content="Pour créer un nouveau produit, veuillez remplir tous les champs." Height="28" HorizontalAlignment="Left" Margin="217,33,0,0" Name="label9" VerticalAlignment="Top" Width="401" />
-        <Button FontFamily="Georgia" Content="Valider" Height="23" HorizontalAlignment="Left" Margin="384,462,0,0" Name="buttonValider" VerticalAlignment="Top" Width="75" Click="ValidationCreation"/>
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,381,182,0" Name="textBox1" VerticalAlignment="Top" Width="333" />
+        <Label FontFamily="Georgia" Content="Nouvelle catégorie :" Height="28" HorizontalAlignment="Left" Margin="140,376,0,0" Name="label1" VerticalAlignment="Top" />
+        <Button FontFamily="Georgia" Content="Valider" Height="23" HorizontalAlignment="Left" Margin="385,471,0,0" Name="buttonValider" VerticalAlignment="Top" Width="75" Click="ValidationCreation"/>
     </Grid>
 </Page>

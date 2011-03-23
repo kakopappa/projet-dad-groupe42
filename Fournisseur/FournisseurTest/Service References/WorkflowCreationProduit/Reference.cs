@@ -13,8 +13,8 @@ namespace FournisseurTest.WorkflowCreationProduit {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ModifyProductDataState", Namespace="http://schemas.datacontract.org/2004/07/WorkflowServices")]
-    public enum ModifyProductDataState : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="CreateProductState", Namespace="http://schemas.datacontract.org/2004/07/WorkflowServices")]
+    public enum CreateProductState : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         SERVICE_ERROR = 0,
@@ -23,16 +23,10 @@ namespace FournisseurTest.WorkflowCreationProduit {
         DATA_ERROR = 1,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        EXIST = 2,
+        NOT_EXECUTED = 2,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
-        NOT_EXIST = 3,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        NOT_EXECUTED = 4,
-        
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        EXECUTED = 5,
+        EXECUTED = 3,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -45,7 +39,7 @@ namespace FournisseurTest.WorkflowCreationProduit {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/CreationProductData", ReplyAction="http://tempuri.org/IService/CreationProductDataResponse")]
         [return: System.ServiceModel.MessageParameterAttribute(Name="State")]
-        FournisseurTest.WorkflowCreationProduit.ModifyProductDataState CreationProductData(string Reference, string Nom, string Marque, string Description, decimal Prix, int Stock, bool Disponible, System.Guid[] Categorie);
+        FournisseurTest.WorkflowCreationProduit.CreateProductState CreationProductData(string Reference, string Nom, string Marque, string Description, decimal Prix, int Stock, bool Disponible, System.Guid[] Categorie);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -79,7 +73,7 @@ namespace FournisseurTest.WorkflowCreationProduit {
             return base.Channel.SessionIDVerification(SessionID);
         }
         
-        public FournisseurTest.WorkflowCreationProduit.ModifyProductDataState CreationProductData(string Reference, string Nom, string Marque, string Description, decimal Prix, int Stock, bool Disponible, System.Guid[] Categorie) {
+        public FournisseurTest.WorkflowCreationProduit.CreateProductState CreationProductData(string Reference, string Nom, string Marque, string Description, decimal Prix, int Stock, bool Disponible, System.Guid[] Categorie) {
             return base.Channel.CreationProductData(Reference, Nom, Marque, Description, Prix, Stock, Disponible, Categorie);
         }
     }

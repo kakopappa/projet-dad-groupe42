@@ -65,7 +65,7 @@ namespace FournisseurTest
         public void ProduitSelection(object sender, RoutedEventArgs args)
         {
             prod  = (PRODUIT)this.list.SelectedItem;
-            Console.WriteLine(prod.IMAGE[0].url);
+            //Console.WriteLine(prod.IMAGE[0].url);
             if (prod.disponible == true)
             {
                 this.checkBoxDisponible.IsChecked = true;

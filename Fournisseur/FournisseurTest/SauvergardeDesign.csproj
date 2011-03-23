@@ -190,7 +190,7 @@
     <None Include="Service References\WorkflowConnection\FournisseurTest.WorkflowConnection.GetUserPasswordResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\WorkflowCreationProduit\FournisseurTest.WorkflowCreationProduit.ModifyProductDataState.datasource">
+    <None Include="Service References\WorkflowCreationProduit\FournisseurTest.WorkflowCreationProduit.CreateProductState.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\WorkflowCreationProduit\ProductCreation.wsdl" />
