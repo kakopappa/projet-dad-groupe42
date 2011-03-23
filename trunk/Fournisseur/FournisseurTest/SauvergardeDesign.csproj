@@ -100,6 +100,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WorkflowModificationProduit\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="ToolPasswrd.cs" />
     <Page Include="CreerProduit.xaml">
       <SubType>Designer</SubType>
@@ -206,6 +211,22 @@
     <None Include="Service References\WorkflowCreationProduit\ProductCreation3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\WorkflowModificationProduit\FournisseurTest.WorkflowModificationProduit.ModifyProductDataState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WorkflowModificationProduit\ProductModification.wsdl" />
+    <None Include="Service References\WorkflowModificationProduit\ProductModification.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowModificationProduit\ProductModification1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowModificationProduit\ProductModification2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowModificationProduit\ProductModification3.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -225,6 +246,7 @@
     <WCFMetadataStorage Include="Service References\SessionService\" />
     <WCFMetadataStorage Include="Service References\WorkflowConnection\" />
     <WCFMetadataStorage Include="Service References\WorkflowCreationProduit\" />
+    <WCFMetadataStorage Include="Service References\WorkflowModificationProduit\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WorkflowConnection\ConnetionFournisseur.disco" />
@@ -267,6 +289,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WorkflowCreationProduit\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowModificationProduit\ProductModification.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowModificationProduit\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowModificationProduit\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowModificationProduit\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

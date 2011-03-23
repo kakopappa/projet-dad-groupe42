@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WorkflowServices" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WorkflowServices" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="ModifyProductDataState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SERVICE_ERROR" />
+      <xs:enumeration value="DATA_ERROR" />
+      <xs:enumeration value="EXIST" />
+      <xs:enumeration value="NOT_EXIST" />
+      <xs:enumeration value="NOT_EXECUTED" />
+      <xs:enumeration value="EXECUTED" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ModifyProductDataState" nillable="true" type="tns:ModifyProductDataState" />
+</xs:schema>
