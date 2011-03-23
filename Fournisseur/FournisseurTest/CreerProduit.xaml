@@ -32,6 +32,6 @@
         <ListBox x:Name="listCat" Height="63" HorizontalAlignment="Left" Margin="309,311,0,0" VerticalAlignment="Top" Width="240" ItemTemplate="{StaticResource dataTemplate}" SelectionMode="Multiple"/>
         
         <Label FontFamily="Georgia" Content="Pour créer un nouveau produit, veuillez remplir tous les champs." Height="28" HorizontalAlignment="Left" Margin="217,33,0,0" Name="label9" VerticalAlignment="Top" Width="401" />
-        <Button FontFamily="Georgia" Content="Valider" Height="23" HorizontalAlignment="Left" Margin="384,462,0,0" Name="buttonValider" VerticalAlignment="Top" Width="75" />
+        <Button FontFamily="Georgia" Content="Valider" Height="23" HorizontalAlignment="Left" Margin="384,462,0,0" Name="buttonValider" VerticalAlignment="Top" Width="75" Click="ValidationCreation"/>
     </Grid>
 </Page>
