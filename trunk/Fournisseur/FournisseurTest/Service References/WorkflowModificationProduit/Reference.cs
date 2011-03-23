@@ -45,7 +45,7 @@ namespace FournisseurTest.WorkflowModificationProduit {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ModifyProductData", ReplyAction="http://tempuri.org/IService/ModifyProductDataResponse")]
         [return: System.ServiceModel.MessageParameterAttribute(Name="State")]
-        FournisseurTest.WorkflowModificationProduit.ModifyProductDataState ModifyProductData(string Reference, string Nom, string Marque, string Description, decimal Prix, int Stock, System.Guid Guid, bool Disponible, System.Guid[] Categorie);
+        FournisseurTest.WorkflowModificationProduit.ModifyProductDataState ModifyProductData(string Reference, string Nom, string Marque, string Description, decimal Prix, int Stock, System.Guid Guid, bool Disponible, System.Guid[] Categorie, string Url);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -79,8 +79,8 @@ namespace FournisseurTest.WorkflowModificationProduit {
             return base.Channel.SessionIDVerification(SessionID);
         }
         
-        public FournisseurTest.WorkflowModificationProduit.ModifyProductDataState ModifyProductData(string Reference, string Nom, string Marque, string Description, decimal Prix, int Stock, System.Guid Guid, bool Disponible, System.Guid[] Categorie) {
-            return base.Channel.ModifyProductData(Reference, Nom, Marque, Description, Prix, Stock, Guid, Disponible, Categorie);
+        public FournisseurTest.WorkflowModificationProduit.ModifyProductDataState ModifyProductData(string Reference, string Nom, string Marque, string Description, decimal Prix, int Stock, System.Guid Guid, bool Disponible, System.Guid[] Categorie, string Url) {
+            return base.Channel.ModifyProductData(Reference, Nom, Marque, Description, Prix, Stock, Guid, Disponible, Categorie, Url);
         }
     }
 }

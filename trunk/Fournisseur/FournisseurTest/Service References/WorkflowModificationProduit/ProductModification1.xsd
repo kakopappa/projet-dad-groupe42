@@ -29,6 +29,7 @@
         <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="Guid" type="q2:guid" />
         <xs:element minOccurs="0" name="Disponible" type="xs:boolean" />
         <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Categorie" nillable="true" type="q3:ArrayOfguid" />
+        <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

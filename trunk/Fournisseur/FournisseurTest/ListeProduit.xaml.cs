@@ -104,8 +104,8 @@ namespace FournisseurTest
         }
 
         public void ProduitModification(object sender, RoutedEventArgs args)
-        { 
-            string reference, nom, marque, prix, stock, description, url;
+        {
+            string reference, nom, marque, prix, stock, description, url, labelNewCat;
             bool disponibilite;
             List<CATEGORIE> categ;
 
@@ -116,6 +116,7 @@ namespace FournisseurTest
             stock = this.textBoxStock.Text;
             description = this.textBoxDescription.Text;
             url = this.textBoxImage.Text;
+            labelNewCat = this.textBoxNewCategorie.Text;
             if (this.checkBoxDisponible.IsChecked == true)
             {
                 disponibilite = true;
