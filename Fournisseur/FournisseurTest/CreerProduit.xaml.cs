@@ -25,6 +25,30 @@ namespace FournisseurTest
         public CreerProduit()
         {
             InitializeComponent();
+            InitializeCategorie();
+        }
+
+        public void InitializeCategorie()
+        {
+            List<CATEGORIE> categories = new List<CATEGORIE>();
+            try
+            {
+              string pouet = Properties.Settings.Default.DataServiceClient;
+              var ctg = new DADEntities(new Uri(pouet));
+              var qry = from ct in ctg.CATEGORIE
+              select ct;
+              categories = qry.ToList<CATEGORIE>();
+             
+              Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                    new Action(() =>
+                    {
+                        this.listCat.ItemsSource = categories;
+                       
+                    }));
+            }
+            catch (Exception)
+            {
+            }
         }
        
     }
