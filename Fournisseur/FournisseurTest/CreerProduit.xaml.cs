@@ -92,7 +92,7 @@ namespace FournisseurTest
                     if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
                     {
                         WorkflowCreationProduit.CreateProductState result = client.CreationProductData(reference, nom, marque, description, prixDecimal, stockInt, disponibilite,
-                            catTab);
+                            catTab, url);
                         Console.WriteLine(result);
                     }
                 }

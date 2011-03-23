@@ -84,7 +84,7 @@
         <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="395,28,0,0" Name="textBoxReference" VerticalAlignment="Top" Width="120" Text="{Binding ElementName= list, Path= SelectedItem.reference}" Grid.Column="2" />
         <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="395,66,0,0" Name="textBoxNomProduit" VerticalAlignment="Top" Width="120" Grid.Column="2" Text="{Binding ElementName= list, Path= SelectedItem.nom}" />
         <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="395,102,0,0" Name="textBoxMarque" VerticalAlignment="Top" Width="120" Grid.Column="2" Text="{Binding ElementName= list, Path= SelectedItem.marque}"/>
-        <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="395,138,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
+        <TextBox Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="395,138,0,0" Name="textBoxNewCategorie" VerticalAlignment="Top" Width="120" />
         <CheckBox FontFamily="Georgia" Content="Disponibilité " Height="26" HorizontalAlignment="Left" Margin="591,27,0,0" Name="checkBoxDisponible" VerticalAlignment="Top" Grid.Column="2" />
         <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Right" Margin="0,60,36,0" Name="textBoxPrix" VerticalAlignment="Top" Width="120" Grid.Column="2" Text="{Binding ElementName= list, Path= SelectedItem.prix, StringFormat=€{0:F2}}"/>
         <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Right" Margin="0,95,36,0" Name="textBoxStock" VerticalAlignment="Top" Width="120" Grid.Column="2" Text="{Binding ElementName= list, Path= SelectedItem.stock}" />

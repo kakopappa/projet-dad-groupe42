@@ -125,7 +125,7 @@ namespace FournisseurTest
                 disponibilite = false;
             }
             
-            var maliste = this.list.SelectedItems;
+            var maliste = this.listCat.SelectedItems;
             Guid[] catTab = (from CATEGORIE cat in maliste
                              select cat.id).ToArray<Guid>();
 
