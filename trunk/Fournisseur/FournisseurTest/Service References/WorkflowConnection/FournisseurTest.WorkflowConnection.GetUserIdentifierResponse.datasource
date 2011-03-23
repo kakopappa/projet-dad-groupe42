@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="GetUserIdentifierResponse" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>FournisseurTest.WorkflowConnection.GetUserIdentifierResponse</TypeInfo>
+   <TypeInfo>FournisseurTest.WorkflowConnection.GetUserIdentifierResponse, Service References.WorkflowConnection.Reference.cs, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

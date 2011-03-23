@@ -74,11 +74,43 @@ namespace FournisseurTest
             }
             
             var maliste = this.listCat.SelectedItems;
-
-
-
             Guid[] catTab = (from CATEGORIE cat in maliste
                              select cat.id).ToArray<Guid>();
+
+            int stockInt = 0;
+            decimal prixDecimal = decimal.Zero;
+
+            if (Decimal.TryParse(prix, out prixDecimal) && Int32.TryParse(stock, out stockInt))
+            {
+                //appel du Workflow
+                WorkflowCreationProduit.ServiceClient client = null;
+
+                try
+                {
+                    //On ajoute un produit à la BDD                
+                    client = new WorkflowCreationProduit.ServiceClient();
+                    if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
+                    {
+                        WorkflowCreationProduit.CreateProductState result = client.CreationProductData(reference, nom, marque, description, prixDecimal, stockInt, disponibilite,
+                            catTab);
+                        Console.WriteLine(result);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+                finally
+                {
+                    if (client != null)
+                    {
+                        client.Close();
+                        client.ChannelFactory.Close();
+                    }
+                }
+                MainWindow.GetInstance().Frame.Navigate(new ListeProduit());
+
+            }
 
             Console.WriteLine(nom + " " + reference + " " + marque + " " + prix + " " + stock + " " + description + " " + url + " " + disponibilite + " ");
 
