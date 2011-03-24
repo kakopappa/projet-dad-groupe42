@@ -1,13 +1,15 @@
-﻿<Window x:Class="InterfaceMagasin.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Administration" Height="400" Width="550">
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="InterfaceMagasin.MainWindow"
+        Title="Administration" Height="600" Width="800">
     <Grid>
-        <Button x:Name="ButtonFournisseur" Content="Fournisseurs" HorizontalAlignment="Left" Height="24" Margin="8,8,0,0" VerticalAlignment="Top" Width="88" Click="btnFournisseur_Click"/>
-        <Button x:Name="ButtonProduit" Content="Produits" Margin="100,8,0,0" Click="btnProduit_Click" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="88"/>
-        <Button x:Name="ButtonCategorie" Content="Catégories" Height="24" Margin="192,8,229,0" VerticalAlignment="Top"  Click="btnCategories_Click"/>
+        <Button x:Name="ButtonFournisseur" Content="Fournisseurs" Height="34" Margin="47.038,8,0,0" VerticalAlignment="Top" Click="btnFournisseur_Click" HorizontalAlignment="Left" Width="170.924"/>
+        <Button x:Name="ButtonProduit" Content="Produits" Margin="307.038,8,306.038,0" Click="btnProduit_Click" Height="34" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        <Button x:Name="ButtonCategorie" Content="Catégories" Height="34" Margin="0,8,47.038,0" VerticalAlignment="Top"  Click="btnCategories_Click" HorizontalAlignment="Right" Width="170.924"/>
 
-        <Frame HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="Frame" JournalOwnership="UsesParentJournal"/>
+        <Frame HorizontalAlignment="Right" VerticalAlignment="Stretch" x:Name="Frame" JournalOwnership="UsesParentJournal"/>
+        <TextBlock x:Name="TextCompteur" HorizontalAlignment="Right" Height="27" Margin="0,15,8,0" TextWrapping="Wrap" Text="[ 0 ]" VerticalAlignment="Top" Width="35.038" Foreground="Red" FontWeight="Bold"/>
     </Grid>
 
 </Window>

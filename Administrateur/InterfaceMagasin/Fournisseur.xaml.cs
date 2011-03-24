@@ -70,6 +70,7 @@ namespace InterfaceMagasin
             this.LabelErreur.Visibility = Visibility.Hidden;
             //Email invalide
             this.LabelEmail.Visibility = Visibility.Hidden;
+            MainWindow.GetInstance().modifCompteur();
         
         }
 

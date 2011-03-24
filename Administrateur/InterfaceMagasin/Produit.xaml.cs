@@ -86,6 +86,7 @@ namespace InterfaceMagasin
             this.ButtonAjout.IsEnabled = false;
             this.ButtonEnleve.IsEnabled = false;
             this.ButtonSupprimer.IsEnabled = false;
+            MainWindow.GetInstance().modifCompteur();
         }
 
 
