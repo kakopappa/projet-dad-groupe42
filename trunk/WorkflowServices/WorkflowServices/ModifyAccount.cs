@@ -23,6 +23,10 @@ namespace WorkflowServices
         public InArgument<string> Nom { get; set; }
         public InArgument<string> Prenom { get; set; }
         public InArgument<string> Phone { get; set; }
+        public InArgument<string> Adresse { get; set; }
+        public InArgument<string> Ville { get; set; }
+        public InArgument<string> Pays { get; set; }
+        public InArgument<string> CodePostal { get; set; }
         public InArgument<Guid> UserGuid { get; set; }
         public OutArgument<ModifyAccountDataState> State { get; set; }
 
@@ -33,6 +37,10 @@ namespace WorkflowServices
             string nom = context.GetValue<string>(Nom);
             string prenom = context.GetValue<string>(Prenom);
             string phone = context.GetValue<string>(Phone);
+            string adresse = context.GetValue<string>(Adresse);
+            string ville = context.GetValue<string>(Ville);
+            string pays = context.GetValue<string>(Pays);
+            string codePostal = context.GetValue<string>(CodePostal);
             Guid guid = context.GetValue<Guid>(UserGuid);
             ModifyAccountDataState state = ModifyAccountDataState.NOT_EXECUTED;
             try
@@ -40,7 +48,7 @@ namespace WorkflowServices
                 var ctx = new DADEntities(new Uri(Properties.Settings.Default.DataService));
                 ctx.IgnoreResourceNotFoundException = true;
 
-                var qry = (from c in ctx.CLIENT
+                var qry = (from c in ctx.CLIENT.Expand("ADRESSE_CLIENT")
                            where c.id == guid
                            select c).FirstOrDefault<CLIENT>();
 
@@ -50,6 +58,22 @@ namespace WorkflowServices
                     qry.nom = nom;
                     qry.phone = phone;
                     qry.prenom = prenom;
+
+                    if (qry.ADRESSE_CLIENT.Count == 0)
+                    {
+                        ADRESSE_CLIENT adresseClient = ADRESSE_CLIENT.CreateADRESSE_CLIENT(Guid.NewGuid(), adresse, ville, codePostal, pays, false);
+                        ctx.AddRelatedObject(qry, "ADRESSE_CLIENT", adresseClient);
+                        qry.ADRESSE_CLIENT.Add(adresseClient);
+                    }
+                    else
+                    {
+                        ADRESSE_CLIENT adresseClient = qry.ADRESSE_CLIENT[0];
+                        adresseClient.adresse = adresse;
+                        adresseClient.pays = pays;
+                        adresseClient.ville = ville;
+                        adresseClient.code_postal = codePostal;
+                        ctx.UpdateObject(adresseClient);
+                    }
 
                     ctx.UpdateObject(qry);
                     ctx.SaveChanges(System.Data.Services.Client.SaveChangesOptions.Batch);

@@ -26,6 +26,7 @@ namespace WorkflowServices
         public InArgument<Guid> UserGuid { get; set; }
         public InArgument<Boolean> Disponible { get; set; }
         public InArgument<Guid[]> Categorie { get; set; }
+        public InArgument<String> Url { get; set; }
         public OutArgument<CreateProductState> State { get; set; }
 
         // Si votre activité retourne une valeur, dérivez de CodeActivity<TResult>
@@ -36,6 +37,7 @@ namespace WorkflowServices
             string marque = context.GetValue<String>(this.Marque);
             string reference = context.GetValue<String>(this.Reference);
             string description = context.GetValue<String>(this.Description);
+            string url = context.GetValue<String>(this.Url);
             int stock = context.GetValue<Int32>(this.Stock);
             decimal prix = context.GetValue<Decimal>(this.Prix);
             bool disponible = context.GetValue<Boolean>(this.Disponible);
@@ -51,15 +53,42 @@ namespace WorkflowServices
                                    where f.id == userGuid
                                    select f).FirstOrDefault<FOURNISSEUR>();
 
-                var categories = from c in ctx.CATEGORIE
-                                 where categorie.Contains(c.id)
+                var qry = from c in ctx.CATEGORIE
+                          select c;
+
+                List<CATEGORIE> allCategories = qry.ToList<CATEGORIE>();
+
+                var categories = from CATEGORIE c in allCategories
+                                 where categorie.Contains<Guid>(c.id)
                                  select c;
 
                 PRODUIT product = PRODUIT.CreatePRODUIT(Guid.NewGuid(), reference, nom, marque, prix, stock, disponible, false);
 
+                product.description = description;
                 ctx.AddRelatedObject(fournisseur, "PRODUIT", product);
                 product.FOURNISSEUR = fournisseur;
                 fournisseur.PRODUIT.Add(product);
+
+
+                foreach (CATEGORIE cat in categories)
+                {
+                    product.CATEGORIE.Add(cat);
+                    ctx.AddLink(product, "CATEGORIE", cat);
+                    cat.PRODUIT.Add(product);
+                    ctx.AddLink(cat, "PRODUIT", product);
+                }
+                
+                ctx.SaveChanges(System.Data.Services.Client.SaveChangesOptions.Batch);
+
+                if (!string.IsNullOrWhiteSpace(url))
+                {
+                    IMAGE image = IMAGE.CreateIMAGE(Guid.NewGuid(), url, 0, 0);
+                    image.PRODUIT = product;
+                    ctx.AddRelatedObject(product, "IMAGE", image);
+                    product.IMAGE.Add(image);
+                    ctx.SetLink(image, "PRODUIT", product);
+                }
+
                 ctx.SaveChanges(System.Data.Services.Client.SaveChangesOptions.Batch);
                 state = CreateProductState.EXECUTED;
             }
