@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="700"
+      d:DesignHeight="600" d:DesignWidth="700"
 	Title="Cart" Background="White"
       Loaded="root_Loaded">
 
@@ -99,6 +99,23 @@
     			<ListView x:Name="listCartItems"
     				ItemContainerStyle="{StaticResource CartItem}"
     				Template="{StaticResource CartTemplate}" ItemTemplate="{DynamicResource CartItemTemplate}" Margin="0" d:LayoutOverrides="VerticalAlignment, Width" />
+    			<Button x:Name="btnPaiement" Click="btnPaiement_Click" Style="{DynamicResource MetroButton_large}" IsDefault="True" Content="passer au paiement" Margin="0,5,0,0" HorizontalAlignment="Left" Width="114.83"/>
+    			<StackPanel Name="stackPaiement" Margin="0,16,16,0" Visibility="Hidden">
+    				<TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap"><Run Language="fr-fr" Text="vos informations de paiement"/></TextBlock>
+    				<TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="0,5,0,0"><Run Language="fr-fr" Text="type de carte"/></TextBlock>
+    				<ComboBox SelectedIndex="0" x:Name="cardType" Margin="0,10,350,0">
+    					<ComboBoxItem Content="Visa" />
+						<ComboBoxItem Content="Mastercard" />
+    				</ComboBox>
+    				<TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="0,15,0,0"><Run Language="fr-fr" Text="numéro carte bleue"/></TextBlock>
+    				<TextBox x:Name="blueCard" TextWrapping="Wrap" Margin="0,10,350,0"/>
+    				<TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="0,15,0,0"><Run Language="fr-fr" Text="cryptogramme visuel"/></TextBlock>
+    				<TextBox x:Name="crypto" TextWrapping="Wrap" Margin="0,10,350,0"/>
+    				<TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="0,15,0,0"><Run Language="fr-fr" Text="titulaire (nom + prénom)"/></TextBlock>
+    				<TextBox x:Name="titulaire" TextWrapping="Wrap" Margin="0,10,350,0"/>
+    				<Button Click="validerPaiement_Click" x:Name="validerPaiement" Style="{DynamicResource MetroButton_large}" Content="valider le paiement" Width="117.667" HorizontalAlignment="Left" Margin="0,15,0,0"/>
+                    <TextBlock x:Name="infoBox" TextWrapping="Wrap" TextAlignment="Right" Margin="0,10,350,0"/>
+                </StackPanel>
     		</StackPanel>
     	</ScrollViewer>
         

@@ -15,7 +15,6 @@ namespace Client.Core
             public DataServiceClient.PRODUIT Product { get; set; }
             public int Amount { get; set; }
             public decimal Total { get; set; }
-            public bool IsConnected { get; set; }
 
             public CartItem(
                 DataServiceClient.PRODUIT prod,
@@ -29,6 +28,7 @@ namespace Client.Core
 
         public List<CartItem> CartItems { get; set; }
         private decimal total;
+        public bool IsConnected { get; set; }
 
         /// <summary>
         /// Constructeur
@@ -44,7 +44,7 @@ namespace Client.Core
         /// </summary>
         /// <param name="product"></param>
         /// <param name="quantity"></param>
-        public void Add(DataServiceClient.PRODUIT product, int quantity)
+        public bool Add(DataServiceClient.PRODUIT product, int quantity)
         {
             var qry = from CartItem i in this.CartItems
                       where i.Product.id == product.id
@@ -53,13 +53,30 @@ namespace Client.Core
             if (qry.Count() > 0)
             {
                 CartItem cart = qry.First<CartItem>();
-                this.Update(cart, quantity + cart.Amount);
+                if (this.Update(cart, quantity + cart.Amount))
+                    return true;
+                else
+                    return false;
             }
             else
             {
                 CartItem item = new CartItem(product, quantity);
                 this.CartItems.Add(item);
                 this.total += item.Total;
+
+                if (IsConnected)
+                {
+                    Service.ItemState s = MainWindow.GetMe().MeinService.AddItemInCart(MainWindow.GetMe().SessionId,
+                        product.id,
+                        quantity);
+
+                    if (s == Service.ItemState.OK)
+                        return true;
+                    else
+                        return false;
+                }
+
+                return true;
             }
         }
 
@@ -67,11 +84,22 @@ namespace Client.Core
         /// Supprime complétement un élément du panier
         /// </summary>
         /// <param name="itemToRemove"></param>
-        public void Remove(CartItem itemToRemove)
+        public bool Remove(CartItem itemToRemove)
         {
             decimal toMinus = itemToRemove.Total;
             this.CartItems.Remove(itemToRemove);
             this.total -= toMinus;
+
+            if (IsConnected)
+            {
+                if (MainWindow.GetMe().MeinService.RemoveItemInCart(MainWindow.GetMe().SessionId,
+                    itemToRemove.Product.id))
+                    return true;
+                else
+                    return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -79,14 +107,29 @@ namespace Client.Core
         /// </summary>
         /// <param name="itemToUpdate"></param>
         /// <param name="newQuantity"></param>
-        public void Update(CartItem itemToUpdate, int newQuantity)
+        public bool Update(CartItem itemToUpdate, int newQuantity)
         {
             decimal prevTotal = itemToUpdate.Total;
+            int prevQuantity = itemToUpdate.Amount;
             itemToUpdate.Amount = newQuantity;
             itemToUpdate.Total = itemToUpdate.Amount * itemToUpdate.Product.prix;
 
             decimal d = itemToUpdate.Total - prevTotal;
             this.total += d;
+
+            if (IsConnected)
+            {
+                Service.ItemState state = MainWindow.GetMe().MeinService.AddItemInCart(MainWindow.GetMe().SessionId,
+                        itemToUpdate.Product.id,
+                        itemToUpdate.Amount - prevQuantity);
+
+                if (state == Service.ItemState.OK)
+                    return true;
+                else
+                    return false;
+            }
+
+            return true;
         }
     }
 }

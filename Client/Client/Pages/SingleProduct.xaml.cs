@@ -99,17 +99,31 @@ namespace Client.Pages
 
                 ThreadPool.QueueUserWorkItem((state) =>
                     {
-                        myCart.Add(prod, quant);
-                        string q = myCart.CartItems.Count.ToString();
+                        if (myCart.Add(prod, quant))
+                        {
+                            string q = myCart.CartItems.Count.ToString();
 
-                        Dispatcher.BeginInvoke(
-                            DispatcherPriority.Normal,
-                            new Action(() =>
+                            Dispatcher.BeginInvoke(
+                                DispatcherPriority.Normal,
+                                new Action(() =>
+                                    {
+                                        this.addToCart.IsEnabled = true;
+                                        MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
+                                        MainWindow.GetMe().chrome.lblItems.Text = q;
+                                    }));
+                        }
+                        else
+                        {
+                            Dispatcher.BeginInvoke(
+                                DispatcherPriority.Normal,
+                                new Action(() =>
                                 {
                                     this.addToCart.IsEnabled = true;
+                                    this.infoBox.Foreground = Brushes.Red;
+                                    this.infoBox.Text = @"Impossible d'ajouter l'élément au panier";
                                     MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
-                                    MainWindow.GetMe().chrome.lblItems.Text = q;
                                 }));
+                        }
                     });
             }
         }
