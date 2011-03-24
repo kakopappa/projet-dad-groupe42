@@ -33,23 +33,27 @@ namespace FournisseurTest
         void ListeCommande_Loaded(object sender, RoutedEventArgs e)
         {
             List<COMMANDE_FOURNISSEUR> commandeFournisseur = new List<COMMANDE_FOURNISSEUR>();
-            List<COMMANDE_FOURNISSEUR> commandeFournisseurDetaille = new List<COMMANDE_FOURNISSEUR>();
+            
+          
             try
             {
                 string pouet = Properties.Settings.Default.DataServiceClient;
                 var ctx = new DADEntities(new Uri(pouet));
-                var cmdfnr = from cmd in ctx.COMMANDE_FOURNISSEUR.Expand("COMMANDER/PRODUIT")
+                var cmdfnr = from cmd in ctx.COMMANDE_FOURNISSEUR
                              where cmd.FOURNISSEUR.id == MainWindow.GetInstance().UserId
                              select cmd;
 
                 commandeFournisseur = cmdfnr.ToList<COMMANDE_FOURNISSEUR>();
+                
 
                 Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                       new Action(() =>
                       {
                           this.listCommande.ItemsSource = commandeFournisseur;
-                          this.listCommandeDetaille.ItemsSource = commandeFournisseur;
+                          
+                          
                           Console.WriteLine(cmdfnr);
+                     
                       }));
             }
             catch (Exception)
@@ -83,8 +87,34 @@ namespace FournisseurTest
             else{}
 
             //Requete pour afficher les details de la commande
+            COMMANDE_FOURNISSEUR commandeFournisseurDetaille;
+            COMMANDE_FOURNISSEUR commandeFournisseurClientDetaille;
+            try
+            {
+                string pouet = Properties.Settings.Default.DataServiceClient;
+                var ctx = new DADEntities(new Uri(pouet));
+                var cmdfn = (from cmd in ctx.COMMANDE_FOURNISSEUR.Expand("COMMANDER/PRODUIT,COMMANDE_CLIENT/ADRESSE_CLIENT/CLIENT")
+                             where cmd.FOURNISSEUR.id == MainWindow.GetInstance().UserId
+                             select cmd).FirstOrDefault<COMMANDE_FOURNISSEUR>();
+                commandeFournisseurDetaille = cmdfn;
+                commandeFournisseurClientDetaille = cmdfn;
+                Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                      new Action(() =>
+                      {
+                          this.listCommandeDetaille.ItemsSource = commandeFournisseurDetaille.COMMANDER;
+                          this.listCommandeC.DataContext = commandeFournisseurClientDetaille.COMMANDE_CLIENT.ADRESSE_CLIENT.CLIENT;
+                          this.textBoxPrenom.DataContext = commandeFournisseurClientDetaille.COMMANDE_CLIENT.ADRESSE_CLIENT.CLIENT;
+                          this.textBoxAdresse.DataContext = commandeFournisseurClientDetaille.COMMANDE_CLIENT.ADRESSE_CLIENT;
+                          this.textBoxVille.DataContext = commandeFournisseurClientDetaille.COMMANDE_CLIENT.ADRESSE_CLIENT;
+                          this.textBoxCodePostal.DataContext = commandeFournisseurClientDetaille.COMMANDE_CLIENT.ADRESSE_CLIENT;
+                          this.textBoxPays.DataContext = commandeFournisseurClientDetaille.COMMANDE_CLIENT.ADRESSE_CLIENT;
+                          Console.WriteLine(cmdfn);
 
-           
+                      }));
+            }
+            catch (Exception)
+            {
+            }
 
         }
     }

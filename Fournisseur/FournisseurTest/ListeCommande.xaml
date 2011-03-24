@@ -27,30 +27,29 @@
          ScrollViewer.IsDeferredScrollingEnabled="True"
          VerticalAlignment="Top" Width="280"
          Height="126" ItemTemplate="{StaticResource dataTemplate}" 
-         SelectionChanged="CommandeSelection" Margin="102,15,418,0" />
-
-        <Grid Grid.Row="1" Margin="344,0,12,0">
+         SelectionChanged="CommandeSelection" Margin="102,27,418,0" />        
+        <Grid Grid.Row="1" Margin="379,0,12,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="26*" />
                 <RowDefinition Height="105*" />
                 <RowDefinition Height="112*" />
             </Grid.RowDefinitions>
+            
             <ListView x:Name="listCommandeDetaille"
               HorizontalAlignment="Center"
               VerticalAlignment="Top"
-              Width="315" Height="137" 
-              ItemTemplate="{StaticResource dataTemplate}" Margin="100,6,28,0" FontFamily="Georgia" Grid.RowSpan="3">
+              Width="395" Height="137" 
+              ItemTemplate="{StaticResource dataTemplate}" Margin="6,6,8,0" FontFamily="Georgia" Grid.RowSpan="3">
 
                 <!--ItemsSource="{Binding ElementName=lbCustomers, Path=SelectedItem.Orders}" >-->
 
                 <ListView.View>
                     <GridView>
-                        <!--<GridViewColumn DisplayMemberBinding="{Binding Path=COMMANDE_CLIENT.ADRESSE_CLIENT.CLIENT.nom}"
-                        Header="Nom" />-->
-                        <GridViewColumn DisplayMemberBinding="{Binding COMMANDER.PRODUIT.nom}"
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=PRODUIT.nom}"
                         Header="Produit" />
-                        <GridViewColumn DisplayMemberBinding="{Binding COMMANDER.quantite}"
+                        <GridViewColumn DisplayMemberBinding="{Binding Path=quantite}"
                         Header="Quantité" />
+                        
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -69,8 +68,22 @@
         <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_reception, StringFormat='dd/MM/yyyy'}" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="639,184,0,0" Name="textBoxDateReception" VerticalAlignment="Top" Width="120" />
         <Label FontFamily="Georgia" Content="Prix Total : " Height="28" HorizontalAlignment="Left" Margin="468,267,0,0" Name="label1" VerticalAlignment="Top" />
         <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.prix_total,StringFormat=€{0:F2}}" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="639,267,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
-        <Label FontFamily="Georgia" Content="Sélectionner une commande pour la modifier" Height="28" HorizontalAlignment="Left" Margin="119,-8,0,0" Name="labelInstructionCommande" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Sélectionner une commande pour la modifier" Height="28" HorizontalAlignment="Left" Margin="119,4,0,0" Name="labelInstructionCommande" VerticalAlignment="Top" />
         <CheckBox FontFamily="Georgia" Content="Valider" Height="16" HorizontalAlignment="Left" Margin="585,88,0,0" Name="checkBoxValiderCommande" VerticalAlignment="Top" IsEnabled="False"/>
         <CheckBox FontFamily="Georgia" Content="Expédier" Height="16" HorizontalAlignment="Left" Margin="585,154,0,0" Name="checkBoxExpedierCommande" VerticalAlignment="Top" IsEnabled="False" />
+
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,182,0,0" Name="listCommandeC" Text="{Binding Path=nom, Mode=OneWay}"  VerticalAlignment="Top" Width="120" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,226,0,0" Name="textBoxPrenom" Text="{Binding Path=prenom, Mode=OneWay}" VerticalAlignment="Top" Width="120" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,272,0,0" Name="textBoxAdresse" Text="{Binding Path=adresse, Mode=OneWay}" VerticalAlignment="Top" Width="120" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,313,0,0" Name="textBoxVille" Text="{Binding Path=ville}" VerticalAlignment="Top" Width="120" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,3,0,0" Name="textBoxCodePostal" Text="{Binding Path=code_postal}" VerticalAlignment="Top" Width="120" Grid.Row="1" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,50,0,0" Name="textBoxPays" Text="{Binding Path=pays}" VerticalAlignment="Top" Width="120" Grid.Row="1" />
+        
+        <Label Content="Nom :" Height="28" HorizontalAlignment="Left" Margin="38,184,0,0" Name="labelNom" VerticalAlignment="Top" />
+        <Label Content="Prénom :" Height="28" HorizontalAlignment="Left" Margin="38,226,0,0" Name="labelPrenom" VerticalAlignment="Top" />
+        <Label Content="Adresse :" Height="28" HorizontalAlignment="Left" Margin="38,270,0,0" Name="labelAdresse" VerticalAlignment="Top" />
+        <Label Content="Ville :" Height="28" HorizontalAlignment="Left" Margin="38,311,0,0" Name="labelVille" VerticalAlignment="Top" />
+        <Label Content="Code Postal :" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="38,0,0,0" Name="labelCodePostal" VerticalAlignment="Top" />
+        <Label Content="Pays :" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="38,48,0,0" Name="labelPays" VerticalAlignment="Top" />
     </Grid>
 </Page>
