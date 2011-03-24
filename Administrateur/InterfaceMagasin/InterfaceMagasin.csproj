@@ -79,6 +79,9 @@
     <Compile Include="CommandeClient.xaml.cs">
       <DependentUpon>CommandeClient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DetailCommande.xaml.cs">
+      <DependentUpon>DetailCommande.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Fournisseur.xaml.cs">
       <DependentUpon>Fournisseur.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CommandeClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DetailCommande.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
