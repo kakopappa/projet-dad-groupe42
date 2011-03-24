@@ -27,7 +27,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDER_COMMANDE_FOURNISSEUR", "COMMANDE_FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataService.COMMANDE_FOURNISSEUR), "COMMANDER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.COMMANDER), true)]
 [assembly: EdmRelationshipAttribute("DADModel", "FK_COMMANDER_PRODUIT", "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataService.PRODUIT), "COMMANDER", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.COMMANDER), true)]
 [assembly: EdmRelationshipAttribute("DADModel", "FK_PRODUIT_FOURNISSEUR", "FOURNISSEUR", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataService.FOURNISSEUR), "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.PRODUIT))]
-[assembly: EdmRelationshipAttribute("DADModel", "FK_IMAGE_PRODUIT", "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(DataService.PRODUIT), "IMAGE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.IMAGE))]
+[assembly: EdmRelationshipAttribute("DADModel", "FK_IMAGE_PRODUIT", "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(DataService.PRODUIT), "IMAGE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.IMAGE))]
 [assembly: EdmRelationshipAttribute("DADModel", "APPARTIENT", "CATEGORIE", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.CATEGORIE), "PRODUIT", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(DataService.PRODUIT))]
 
 #endregion
@@ -322,7 +322,8 @@ namespace DataService
         /// <param name="ville">Valeur initiale de la propriété ville.</param>
         /// <param name="code_postal">Valeur initiale de la propriété code_postal.</param>
         /// <param name="pays">Valeur initiale de la propriété pays.</param>
-        public static ADRESSE_CLIENT CreateADRESSE_CLIENT(global::System.Guid id, global::System.String adresse, global::System.String ville, global::System.String code_postal, global::System.String pays)
+        /// <param name="supprime">Valeur initiale de la propriété supprime.</param>
+        public static ADRESSE_CLIENT CreateADRESSE_CLIENT(global::System.Guid id, global::System.String adresse, global::System.String ville, global::System.String code_postal, global::System.String pays, global::System.Boolean supprime)
         {
             ADRESSE_CLIENT aDRESSE_CLIENT = new ADRESSE_CLIENT();
             aDRESSE_CLIENT.id = id;
@@ -330,6 +331,7 @@ namespace DataService
             aDRESSE_CLIENT.ville = ville;
             aDRESSE_CLIENT.code_postal = code_postal;
             aDRESSE_CLIENT.pays = pays;
+            aDRESSE_CLIENT.supprime = supprime;
             return aDRESSE_CLIENT;
         }
 
@@ -458,6 +460,30 @@ namespace DataService
         private global::System.String _pays;
         partial void OnpaysChanging(global::System.String value);
         partial void OnpaysChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean supprime
+        {
+            get
+            {
+                return _supprime;
+            }
+            set
+            {
+                OnsupprimeChanging(value);
+                ReportPropertyChanging("supprime");
+                _supprime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("supprime");
+                OnsupprimeChanged();
+            }
+        }
+        private global::System.Boolean _supprime;
+        partial void OnsupprimeChanging(global::System.Boolean value);
+        partial void OnsupprimeChanged();
 
         #endregion
     
@@ -1673,7 +1699,8 @@ namespace DataService
         /// <param name="ville">Valeur initiale de la propriété ville.</param>
         /// <param name="code_postal">Valeur initiale de la propriété code_postal.</param>
         /// <param name="pays">Valeur initiale de la propriété pays.</param>
-        public static FOURNISSEUR CreateFOURNISSEUR(global::System.Guid id, global::System.String nom, global::System.String email, global::System.String phone, global::System.String password, global::System.String adresse, global::System.String ville, global::System.String code_postal, global::System.String pays)
+        /// <param name="supprime">Valeur initiale de la propriété supprime.</param>
+        public static FOURNISSEUR CreateFOURNISSEUR(global::System.Guid id, global::System.String nom, global::System.String email, global::System.String phone, global::System.String password, global::System.String adresse, global::System.String ville, global::System.String code_postal, global::System.String pays, global::System.Boolean supprime)
         {
             FOURNISSEUR fOURNISSEUR = new FOURNISSEUR();
             fOURNISSEUR.id = id;
@@ -1685,6 +1712,7 @@ namespace DataService
             fOURNISSEUR.ville = ville;
             fOURNISSEUR.code_postal = code_postal;
             fOURNISSEUR.pays = pays;
+            fOURNISSEUR.supprime = supprime;
             return fOURNISSEUR;
         }
 
@@ -1909,6 +1937,30 @@ namespace DataService
         private global::System.String _pays;
         partial void OnpaysChanging(global::System.String value);
         partial void OnpaysChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean supprime
+        {
+            get
+            {
+                return _supprime;
+            }
+            set
+            {
+                OnsupprimeChanging(value);
+                ReportPropertyChanging("supprime");
+                _supprime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("supprime");
+                OnsupprimeChanged();
+            }
+        }
+        private global::System.Boolean _supprime;
+        partial void OnsupprimeChanging(global::System.Boolean value);
+        partial void OnsupprimeChanged();
 
         #endregion
     
@@ -1975,10 +2027,16 @@ namespace DataService
         /// Créez un nouvel objet IMAGE.
         /// </summary>
         /// <param name="id">Valeur initiale de la propriété id.</param>
-        public static IMAGE CreateIMAGE(global::System.Guid id)
+        /// <param name="url">Valeur initiale de la propriété url.</param>
+        /// <param name="img_hauteur">Valeur initiale de la propriété img_hauteur.</param>
+        /// <param name="img_largeur">Valeur initiale de la propriété img_largeur.</param>
+        public static IMAGE CreateIMAGE(global::System.Guid id, global::System.String url, global::System.Decimal img_hauteur, global::System.Decimal img_largeur)
         {
             IMAGE iMAGE = new IMAGE();
             iMAGE.id = id;
+            iMAGE.url = url;
+            iMAGE.img_hauteur = img_hauteur;
+            iMAGE.img_largeur = img_largeur;
             return iMAGE;
         }
 
@@ -2015,7 +2073,7 @@ namespace DataService
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String url
         {
@@ -2027,7 +2085,7 @@ namespace DataService
             {
                 OnurlChanging(value);
                 ReportPropertyChanging("url");
-                _url = StructuralObject.SetValidValue(value, true);
+                _url = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("url");
                 OnurlChanged();
             }
@@ -2039,9 +2097,9 @@ namespace DataService
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> img_hauteur
+        public global::System.Decimal img_hauteur
         {
             get
             {
@@ -2056,16 +2114,16 @@ namespace DataService
                 Onimg_hauteurChanged();
             }
         }
-        private Nullable<global::System.Decimal> _img_hauteur;
-        partial void Onimg_hauteurChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _img_hauteur;
+        partial void Onimg_hauteurChanging(global::System.Decimal value);
         partial void Onimg_hauteurChanged();
     
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> img_largeur
+        public global::System.Decimal img_largeur
         {
             get
             {
@@ -2080,8 +2138,8 @@ namespace DataService
                 Onimg_largeurChanged();
             }
         }
-        private Nullable<global::System.Decimal> _img_largeur;
-        partial void Onimg_largeurChanging(Nullable<global::System.Decimal> value);
+        private global::System.Decimal _img_largeur;
+        partial void Onimg_largeurChanging(global::System.Decimal value);
         partial void Onimg_largeurChanged();
 
         #endregion
@@ -2149,7 +2207,8 @@ namespace DataService
         /// <param name="prix">Valeur initiale de la propriété prix.</param>
         /// <param name="stock">Valeur initiale de la propriété stock.</param>
         /// <param name="disponible">Valeur initiale de la propriété disponible.</param>
-        public static PRODUIT CreatePRODUIT(global::System.Guid id, global::System.String reference, global::System.String nom, global::System.String marque, global::System.Decimal prix, global::System.Decimal stock, global::System.Boolean disponible)
+        /// <param name="supprime">Valeur initiale de la propriété supprime.</param>
+        public static PRODUIT CreatePRODUIT(global::System.Guid id, global::System.String reference, global::System.String nom, global::System.String marque, global::System.Decimal prix, global::System.Decimal stock, global::System.Boolean disponible, global::System.Boolean supprime)
         {
             PRODUIT pRODUIT = new PRODUIT();
             pRODUIT.id = id;
@@ -2159,6 +2218,7 @@ namespace DataService
             pRODUIT.prix = prix;
             pRODUIT.stock = stock;
             pRODUIT.disponible = disponible;
+            pRODUIT.supprime = supprime;
             return pRODUIT;
         }
 
@@ -2359,6 +2419,30 @@ namespace DataService
         private global::System.Boolean _disponible;
         partial void OndisponibleChanging(global::System.Boolean value);
         partial void OndisponibleChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean supprime
+        {
+            get
+            {
+                return _supprime;
+            }
+            set
+            {
+                OnsupprimeChanging(value);
+                ReportPropertyChanging("supprime");
+                _supprime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("supprime");
+                OnsupprimeChanged();
+            }
+        }
+        private global::System.Boolean _supprime;
+        partial void OnsupprimeChanging(global::System.Boolean value);
+        partial void OnsupprimeChanged();
 
         #endregion
     
