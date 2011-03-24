@@ -154,11 +154,11 @@ namespace WorkflowServices
 
                     state = ModifyProductDataState.EXECUTED;
 
-                    WorkflowInvoker.Invoke(activity1, arguments1);
+                    //WorkflowInvoker.Invoke(activity1, arguments1);
 
                     if(type == UserType.ADMINISTRATOR)
                     {
-                        WorkflowInvoker.Invoke(activity2, arguments2);
+                        //WorkflowInvoker.Invoke(activity2, arguments2);
                     }
                 }
                 else
