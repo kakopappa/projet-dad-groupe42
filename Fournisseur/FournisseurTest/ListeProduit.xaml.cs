@@ -79,6 +79,9 @@ namespace FournisseurTest
              List<CATEGORIE> categ = new List<CATEGORIE>();
              categ = prod.CATEGORIE.ToList<CATEGORIE>();
              this.listBoxCategorie.ItemsSource = categ;
+             this.buttonModifier.IsEnabled = true;
+             this.buttonSupprimerProduit.IsEnabled = true;
+
         }
         public void InitializeCategorie()
         {
@@ -105,7 +108,7 @@ namespace FournisseurTest
 
         public void ProduitModification(object sender, RoutedEventArgs args)
         {
-            string reference, nom, marque, prix, stock, description, url, labelNewCat;
+            string reference, nom, marque, prix, stock, description, url;
             bool disponibilite;
             List<CATEGORIE> categ;
 
@@ -116,7 +119,6 @@ namespace FournisseurTest
             stock = this.textBoxStock.Text;
             description = this.textBoxDescription.Text;
             url = this.textBoxImage.Text;
-            labelNewCat = this.textBoxNewCategorie.Text;
             if (this.checkBoxDisponible.IsChecked == true)
             {
                 disponibilite = true;
@@ -166,6 +168,12 @@ namespace FournisseurTest
                 MainWindow.GetInstance().Frame.Navigate(new ListeProduit());
             }
             Console.WriteLine(nom + " " + reference + " " + marque + " " + prix + " " + stock + " " + description + " " + url + " " + disponibilite + " ");
+        }
+
+        public void LoadCreateCat(object sender, RoutedEventArgs args)
+        {
+
+            MainWindow.GetInstance().Frame.Navigate(new CreationCategorie());
         }
     }
 }
