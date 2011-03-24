@@ -48,7 +48,18 @@ namespace SessionService
         {
             try
             {
-                ((IUser)session.User).Disconnected();
+                switch (session.Type)
+                {
+                    case UserType.ADMINISTRATOR:
+                        ((IAdministrator)session.User).DisconnectedAdministrator();
+                        break;
+                    case UserType.CLIENT:
+                        ((IClient)session.User).DisconnectedClient();
+                        break;
+                    case UserType.FOURNISSEUR:
+                        ((IFournisseur)session.User).DisconnectedFournisseur();
+                        break;
+                }
             }
             catch
             {
@@ -61,7 +72,18 @@ namespace SessionService
                                   where s.SessionID == sessionID
                                   select s).FirstOrDefault<Session>();
                     qry.InChatWith.Remove(session.SessionID);
-                    ((IUser)qry.User).ChatNotification(session.UserID, string.Empty, ChatState.DISCONNECTED);
+                    switch (qry.Type)
+                    {
+                        case UserType.ADMINISTRATOR:
+                            ((IAdministrator)qry.User).ChatNotificationAdministrator(session.UserID, string.Empty, ChatState.DISCONNECTED);
+                            break;
+                        case UserType.CLIENT:
+                            ((IClient)qry.User).ChatNotificationClient(session.UserID, string.Empty, ChatState.DISCONNECTED);
+                            break;
+                        case UserType.FOURNISSEUR:
+                            ((IFournisseur)qry.User).ChatNotificationFournisseur(session.UserID, string.Empty, ChatState.DISCONNECTED);
+                            break;
+                    }
                 }
                 catch
                 {
