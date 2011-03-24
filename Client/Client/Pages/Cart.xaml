@@ -52,9 +52,9 @@
         		</StackPanel>
         		<Path Data="M26.666667,57.531667 L68,57.531667" Fill="#4CF4F4F5" HorizontalAlignment="Stretch" Height="1" Stretch="Fill" Stroke="#33000000" VerticalAlignment="Bottom" Width="Auto" Margin="0,0,0,5" Grid.ColumnSpan="2"/>
         		<StackPanel HorizontalAlignment="Stretch" Width="Auto" Grid.Column="1" Margin="0,5,0,10" Orientation="Horizontal">
-                    <TextBox TextWrapping="Wrap" VerticalAlignment="Center" KeyUp="TextBox_KeyUp" Text="{Binding Path=Amount, Mode=OneWay}" Width="45" Margin="0,0,16,0"/>
-                    <TextBlock TextAlignment="Right" Name="total" TextWrapping="Wrap" Text="{Binding Path=Total, Mode=OneWay, StringFormat=€{0:F2}}" Margin="0,0,16,0" VerticalAlignment="Center"/>
-                    <Button Style="{DynamicResource MetroButton_large}" Name="removeItem" Click="removeItem_Click" Content="Supprimer" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Null}" />
+                    <Button Style="{DynamicResource MetroButton_large}" x:Name="removeItem" Click="removeItem_Click" Content="Supprimer" Width="75" HorizontalAlignment="Center" VerticalAlignment="Center" Background="{x:Null}" Margin="0,0,16,0" />
+        			<TextBox TextWrapping="Wrap" VerticalAlignment="Center" KeyUp="TextBox_KeyUp" Text="{Binding Amount, Mode=OneWay}" Width="45" Margin="0,0,16,0"/>
+        			<TextBlock TextAlignment="Right" x:Name="total" TextWrapping="Wrap" Text="{Binding Total, Mode=OneWay, StringFormat=€\{0:F2\}}" Margin="0" VerticalAlignment="Center"/>
                 </StackPanel>
         	</Grid>
         </DataTemplate>
@@ -95,9 +95,11 @@
     		</StackPanel>
     	</Grid>
     	<ScrollViewer HorizontalScrollBarVisibility="Disabled" Margin="0,65.472,0,0">
-    		<ListView x:Name="listCartItems"
-    			ItemContainerStyle="{StaticResource CartItem}"
-    			Template="{StaticResource CartTemplate}" ItemTemplate="{DynamicResource CartItemTemplate}" />
+    		<StackPanel>
+    			<ListView x:Name="listCartItems"
+    				ItemContainerStyle="{StaticResource CartItem}"
+    				Template="{StaticResource CartTemplate}" ItemTemplate="{DynamicResource CartItemTemplate}" Margin="0" d:LayoutOverrides="VerticalAlignment, Width" />
+    		</StackPanel>
     	</ScrollViewer>
         
     </Grid>
