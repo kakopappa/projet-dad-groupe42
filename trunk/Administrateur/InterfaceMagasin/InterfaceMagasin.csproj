@@ -76,6 +76,9 @@
     <Compile Include="Categorie.xaml.cs">
       <DependentUpon>Categorie.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CommandeClient.xaml.cs">
+      <DependentUpon>CommandeClient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Fournisseur.xaml.cs">
       <DependentUpon>Fournisseur.xaml</DependentUpon>
     </Compile>
@@ -133,6 +136,10 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Page Include="Categorie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommandeClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
