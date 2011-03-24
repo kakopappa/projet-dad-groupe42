@@ -8,8 +8,8 @@
 	Title="CreationCategorie">
 
     <Grid>
-        <TextBox Height="35" HorizontalAlignment="Left" Margin="315,295,0,0" Name="textBox1" VerticalAlignment="Top" Width="204" />
+        <TextBox Height="35" HorizontalAlignment="Left" Margin="315,295,0,0" Name="textBoxNewCategorie" VerticalAlignment="Top" Width="204" />
         <Label FontFamily="Georgia" Content="Pour créer une nouvelle catégorie, entrer un nom puis valider" Height="28" HorizontalAlignment="Left" Margin="239,219,0,0" Name="label1" VerticalAlignment="Top" />
-        <Button Content="Valider" Height="23" HorizontalAlignment="Left" Margin="383,397,0,0" Name="buttonCreateCat" VerticalAlignment="Top" Width="75" />
+        <Button Content="Valider" Height="23" HorizontalAlignment="Left" Margin="383,397,0,0" Name="buttonCreateCat" VerticalAlignment="Top" Width="75"  Click="CreateCategorie"/>
     </Grid>
 </Page>

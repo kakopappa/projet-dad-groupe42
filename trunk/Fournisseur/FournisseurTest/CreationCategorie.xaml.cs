@@ -23,5 +23,36 @@ namespace FournisseurTest
         {
             InitializeComponent();
         }
+        
+        private void CreateCategorie(object sender, RoutedEventArgs e)
+        {
+            string nomCat;
+            bool vu = false;
+            nomCat = this.textBoxNewCategorie.Text;
+            WorkflowCreationCategorie.ServiceClient client = null;
+            try
+            {
+                client = new WorkflowCreationCategorie.ServiceClient();
+                if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
+                {
+                    WorkflowCreationCategorie.CreateCategorieState result = client.CreationCategorie(Guid.Empty, nomCat, vu);
+                    Console.WriteLine(result);
+                }
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
+            finally
+            {
+                if (client != null)
+                {
+                    client.Close();
+                    client.ChannelFactory.Close();
+                }
+            }
+            MainWindow.GetInstance().Frame.Navigate(new ListeProduit());
+
+        }
     }
 }
