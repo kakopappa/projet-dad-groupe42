@@ -41,7 +41,7 @@ namespace FournisseurTest
               string pouet = Properties.Settings.Default.DataServiceClient;
               var ctx = new DADEntities(new Uri(pouet));
               var qry = from p in ctx.PRODUIT.Expand("IMAGE,CATEGORIE,FOURNISSEUR")
-              where p.FOURNISSEUR.id == MainWindow.GetInstance().UserId
+              where p.FOURNISSEUR.id == MainWindow.GetInstance().UserId && p.supprime == false
               select p;
               produits = qry.ToList<PRODUIT>();
              
@@ -174,6 +174,34 @@ namespace FournisseurTest
         {
 
             MainWindow.GetInstance().Frame.Navigate(new CreationCategorie());
+        }
+
+        public void ProduitSuppression (object sender, RoutedEventArgs args)
+        {
+            WorkflowSuppressionProduit.ServiceClient client = null;
+            try
+            {
+                client = new WorkflowSuppressionProduit.ServiceClient();
+                if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
+                {
+                    WorkflowSuppressionProduit.ModifyProductDataState result = client.SuppressProduct(prod.id);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            finally
+            {
+                if (client != null)
+                {
+                    client.Close();
+                    client.ChannelFactory.Close();
+                }
+            }
+            MainWindow.GetInstance().Frame.Navigate(new ListeProduit());
+            
         }
     }
 }
