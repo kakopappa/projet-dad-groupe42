@@ -70,8 +70,11 @@
     <Compile Include="Pages\Cart.xaml.cs">
       <DependentUpon>Cart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Commands.xaml.cs">
-      <DependentUpon>Commands.xaml</DependentUpon>
+    <Compile Include="Pages\CommandeClient.xaml.cs">
+      <DependentUpon>CommandeClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DetailCommande.xaml.cs">
+      <DependentUpon>DetailCommande.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
@@ -112,6 +115,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WorkflowOrder\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Tools\Tools.cs" />
     <Page Include="Pages\Cart.xaml">
       <SubType>Designer</SubType>
@@ -121,9 +129,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\Commands.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Pages\CommandeClient.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\DetailCommande.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\Home.xaml">
       <SubType>Designer</SubType>
@@ -327,6 +339,13 @@
     <None Include="Service References\WorkflowModification\Client.WorkflowModification.ModifyAccountDataState.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\WorkflowOrder\OrderValidation.wsdl" />
+    <None Include="Service References\WorkflowOrder\OrderValidation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowOrder\OrderValidation1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -348,6 +367,7 @@
     <WCFMetadataStorage Include="Service References\WorflowCreation\" />
     <WCFMetadataStorage Include="Service References\WorkflowConnection\" />
     <WCFMetadataStorage Include="Service References\WorkflowModification\" />
+    <WCFMetadataStorage Include="Service References\WorkflowOrder\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WorkflowConnection\Connection.disco" />
@@ -420,6 +440,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WorflowChangePassword\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowOrder\OrderValidation.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowOrder\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowOrder\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowOrder\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -149,13 +149,43 @@ namespace Client.Pages
                 ThreadPool.QueueUserWorkItem((state) =>
                     {
 
-                        // TODO valider
-                        Dispatcher.BeginInvoke(
-                            DispatcherPriority.Normal,
-                            new Action(() =>
-                                {
-                                    MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
-                                }));
+                        WorkflowOrder.ServiceClient svc = new WorkflowOrder.ServiceClient();
+                        if (svc.SessionIDVerification(MainWindow.GetMe().SessionId))
+                        {
+                            if (svc.Commander())
+                            {
+                                Dispatcher.BeginInvoke(
+                                    DispatcherPriority.Normal,
+                                    new Action(() =>
+                                    {
+                                        this.infoBox.Foreground = Brushes.Green;
+                                        this.infoBox.Text = "Commande réussie !";
+                                        MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
+                                    }));
+                            }
+                            else
+                            {
+                                Dispatcher.BeginInvoke(
+                                    DispatcherPriority.Normal,
+                                    new Action(() =>
+                                    {
+                                        this.infoBox.Foreground = Brushes.Red;
+                                        this.infoBox.Text = "La commande a échoué !";
+                                        MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
+                                    }));
+                            }
+                        }
+                        else
+                        {
+                            Dispatcher.BeginInvoke(
+                                DispatcherPriority.Normal,
+                                new Action(() =>
+                                    {
+                                        this.infoBox.Foreground = Brushes.Red;
+                                        this.infoBox.Text = "La session n'a pas pu être vérifiée !";
+                                        MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
+                                    }));
+                        }
                     });
             }
             else
