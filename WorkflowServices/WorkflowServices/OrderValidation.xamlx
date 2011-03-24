@@ -1,0 +1,239 @@
+﻿<WorkflowService mc:Ignorable="sap" ConfigurationName="OrderValidation" sap:VirtualizedContainerService.HintSize="1510,3921" Name="OrderValidation" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://tempuri.org/" xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:srs="clr-namespace:System.Runtime.Serialization;assembly=System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:srs1="clr-namespace:System.Runtime.Serialization;assembly=mscorlib" xmlns:srs2="clr-namespace:System.Runtime.Serialization;assembly=System.Runtime.Serialization" xmlns:ssa="clr-namespace:System.ServiceModel.Activities;assembly=System.ServiceModel.Activities" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:w="clr-namespace:WorkflowServices;assembly=WorkflowServices" xmlns:ws="clr-namespace:WorkflowServices.Service;assembly=WorkflowServices" xmlns:wsa="clr-namespace:WorkflowServices.Service.Activities;assembly=WorkflowServices" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p1:Sequence DisplayName="Workflow" sad:XamlDebuggerXmlReader.FileName="G:\Projects\projet-dad-groupe42\WorkflowServices\WorkflowServices\OrderValidation.xamlx" sap:VirtualizedContainerService.HintSize="1480,3891" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+    <p1:Sequence.Variables>
+      <p1:Variable x:TypeArguments="ws:UserType" Default="[Service.UserType.UNKNOW]" Name="userType" />
+      <p1:Variable x:TypeArguments="s:Guid" Default="[System.Guid.Empty]" Name="guid" />
+      <p1:Variable x:TypeArguments="x:Boolean" Default="False" Name="sessionOK" />
+      <p1:Variable x:TypeArguments="x:Boolean" Default="False" Name="commandeOK" />
+      <p1:Variable x:TypeArguments="s:Guid" Default="[System.Guid.Empty]" Name="sessionID" />
+    </p1:Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg3:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <p1:Sequence DisplayName="SessionID Verification" sap:VirtualizedContainerService.HintSize="1458,1244">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Receive x:Name="__ReferenceID0" CanCreateInstance="True" DisplayName="ReceiveSessionID" sap:VirtualizedContainerService.HintSize="464,90" OperationName="SessionIDVerification" ServiceContractName="p:IService">
+        <ReceiveParametersContent>
+          <p1:OutArgument x:TypeArguments="s:Guid" x:Key="SessionID">[sessionID]</p1:OutArgument>
+        </ReceiveParametersContent>
+      </Receive>
+      <p1:TryCatch sap:VirtualizedContainerService.HintSize="464,287">
+        <p1:TryCatch.Try>
+          <wsa:GetSessionType EndpointConfigurationName="BasicHttpBinding_Workflow" GetSessionTypeResult="[userType]" sap:VirtualizedContainerService.HintSize="400,100" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" sessionID="[sessionID]" />
+        </p1:TryCatch.Try>
+        <p1:TryCatch.Catches>
+          <p1:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg3:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <p1:ActivityAction x:TypeArguments="s:Exception">
+              <p1:ActivityAction.Argument>
+                <p1:DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </p1:ActivityAction.Argument>
+            </p1:ActivityAction>
+          </p1:Catch>
+        </p1:TryCatch.Catches>
+      </p1:TryCatch>
+      <p1:If Condition="[userType = Service.UserType.CLIENT]" DisplayName="Session User Type Verification" sap:VirtualizedContainerService.HintSize="464,206">
+        <p1:If.Then>
+          <p1:Assign sap:VirtualizedContainerService.HintSize="289,100">
+            <p1:Assign.To>
+              <p1:OutArgument x:TypeArguments="x:Boolean">[sessionOK]</p1:OutArgument>
+            </p1:Assign.To>
+            <p1:Assign.Value>
+              <p1:InArgument x:TypeArguments="x:Boolean">True</p1:InArgument>
+            </p1:Assign.Value>
+          </p1:Assign>
+        </p1:If.Then>
+      </p1:If>
+      <SendReply Request="{x:Reference __ReferenceID0}" DisplayName="SendResult" sap:VirtualizedContainerService.HintSize="464,90">
+        <SendParametersContent>
+          <p1:InArgument x:TypeArguments="x:Boolean" x:Key="Result">[sessionOK]</p1:InArgument>
+        </SendParametersContent>
+      </SendReply>
+      <p1:TryCatch sap:VirtualizedContainerService.HintSize="464,287">
+        <p1:TryCatch.Try>
+          <wsa:GetUserID EndpointConfigurationName="BasicHttpBinding_Workflow" GetUserIDResult="[guid]" sap:VirtualizedContainerService.HintSize="400,100" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" sessionID="[sessionID]" />
+        </p1:TryCatch.Try>
+        <p1:TryCatch.Catches>
+          <p1:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg3:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <p1:ActivityAction x:TypeArguments="s:Exception">
+              <p1:ActivityAction.Argument>
+                <p1:DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </p1:ActivityAction.Argument>
+            </p1:ActivityAction>
+          </p1:Catch>
+        </p1:TryCatch.Catches>
+      </p1:TryCatch>
+    </p1:Sequence>
+    <p1:If Condition="[sessionOK]" DisplayName="If Session OK" sap:VirtualizedContainerService.HintSize="1458,2483">
+      <p1:If.Then>
+        <p1:Sequence DisplayName="Order Validation" sap:VirtualizedContainerService.HintSize="1329,2377">
+          <p1:Sequence.Variables>
+            <p1:Variable x:TypeArguments="ws:CartEntrie[]" Default="[New CartEntrie(0) {}]" Name="cartEntries" />
+            <p1:Variable x:TypeArguments="s:Guid[]" Default="[New Guid(0) {}]" Name="fournisseurs" />
+            <p1:Variable x:TypeArguments="x:Boolean" Default="True" Name="itemOK" />
+          </p1:Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Receive x:Name="__ReferenceID1" sap:VirtualizedContainerService.HintSize="1307,90" OperationName="Commander" ServiceContractName="p:IService" />
+          <p1:TryCatch sap:VirtualizedContainerService.HintSize="1307,287">
+            <p1:TryCatch.Try>
+              <wsa:GetCart EndpointConfigurationName="BasicHttpBinding_Workflow" GetCartResult="[cartEntries]" sap:VirtualizedContainerService.HintSize="400,100" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" sessionID="[sessionID]" />
+            </p1:TryCatch.Try>
+            <p1:TryCatch.Catches>
+              <p1:Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg3:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <p1:ActivityAction x:TypeArguments="s:Exception">
+                  <p1:ActivityAction.Argument>
+                    <p1:DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </p1:ActivityAction.Argument>
+                </p1:ActivityAction>
+              </p1:Catch>
+            </p1:TryCatch.Catches>
+          </p1:TryCatch>
+          <p1:ForEach x:TypeArguments="ws:CartEntrie" sap:VirtualizedContainerService.HintSize="1307,498" Values="[cartEntries]">
+            <p1:ActivityAction x:TypeArguments="ws:CartEntrie">
+              <p1:ActivityAction.Argument>
+                <p1:DelegateInArgument x:TypeArguments="ws:CartEntrie" Name="item" />
+              </p1:ActivityAction.Argument>
+              <p1:Sequence sap:VirtualizedContainerService.HintSize="486,392">
+                <p1:Sequence.Variables>
+                  <p1:Variable x:TypeArguments="ws:ItemState" Name="result" />
+                </p1:Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg3:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <w:ItemVerification sap:VirtualizedContainerService.HintSize="464,22" ItemID="[item.ObjectID]" Quantity="[item.Quantity]" Result="[result]" />
+                <p1:If Condition="[result = ItemState.OK]" sap:VirtualizedContainerService.HintSize="464,206">
+                  <p1:If.Else>
+                    <p1:Assign sap:VirtualizedContainerService.HintSize="288,100">
+                      <p1:Assign.To>
+                        <p1:OutArgument x:TypeArguments="x:Boolean">[itemOK]</p1:OutArgument>
+                      </p1:Assign.To>
+                      <p1:Assign.Value>
+                        <p1:InArgument x:TypeArguments="x:Boolean">False</p1:InArgument>
+                      </p1:Assign.Value>
+                    </p1:Assign>
+                  </p1:If.Else>
+                </p1:If>
+              </p1:Sequence>
+            </p1:ActivityAction>
+          </p1:ForEach>
+          <p1:If Condition="[itemOK]" sap:VirtualizedContainerService.HintSize="1307,1128">
+            <p1:If.Then>
+              <p1:Sequence DisplayName="Verification Bancaire" sap:VirtualizedContainerService.HintSize="1178,1022">
+                <p1:Sequence.Variables>
+                  <p1:Variable x:TypeArguments="x:Boolean" Default="True" Name="banqueOK" />
+                </p1:Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg3:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <w:GetFournisseur CartEntries="[cartEntries]" FournisseursID="[fournisseurs]" sap:VirtualizedContainerService.HintSize="1156,22" />
+                <p1:Parallel sap:VirtualizedContainerService.HintSize="1156,544">
+                  <p1:Sequence sap:VirtualizedContainerService.HintSize="486,498">
+                    <p1:Sequence.Variables>
+                      <p1:Variable x:TypeArguments="x:Boolean" Default="False" Name="success" />
+                    </p1:Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg3:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <w:VerificationBanque sap:VirtualizedContainerService.HintSize="464,22" Success="[success]" UserID="[guid]" />
+                    <p1:If Condition="[success]" sap:VirtualizedContainerService.HintSize="464,206">
+                      <p1:If.Else>
+                        <p1:Assign sap:VirtualizedContainerService.HintSize="288,100">
+                          <p1:Assign.To>
+                            <p1:OutArgument x:TypeArguments="x:Boolean">[banqueOK]</p1:OutArgument>
+                          </p1:Assign.To>
+                          <p1:Assign.Value>
+                            <p1:InArgument x:TypeArguments="x:Boolean">False</p1:InArgument>
+                          </p1:Assign.Value>
+                        </p1:Assign>
+                      </p1:If.Else>
+                    </p1:If>
+                  </p1:Sequence>
+                  <p1:ForEach x:TypeArguments="s:Guid" DisplayName="ForEach&lt;Guid&gt;" sap:VirtualizedContainerService.HintSize="516,498" Values="[fournisseurs]">
+                    <p1:ActivityAction x:TypeArguments="s:Guid">
+                      <p1:ActivityAction.Argument>
+                        <p1:DelegateInArgument x:TypeArguments="s:Guid" Name="fournisseur" />
+                      </p1:ActivityAction.Argument>
+                      <p1:Sequence sap:VirtualizedContainerService.HintSize="486,392">
+                        <p1:Sequence.Variables>
+                          <p1:Variable x:TypeArguments="x:Boolean" Default="False" Name="success" />
+                        </p1:Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          </scg3:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <w:VerificationBanque sap:VirtualizedContainerService.HintSize="464,22" Success="[success]" UserID="[fournisseur]" />
+                        <p1:If Condition="[success]" sap:VirtualizedContainerService.HintSize="464,206">
+                          <p1:If.Else>
+                            <p1:Assign sap:VirtualizedContainerService.HintSize="288,100">
+                              <p1:Assign.To>
+                                <p1:OutArgument x:TypeArguments="x:Boolean">[banqueOK]</p1:OutArgument>
+                              </p1:Assign.To>
+                              <p1:Assign.Value>
+                                <p1:InArgument x:TypeArguments="x:Boolean">False</p1:InArgument>
+                              </p1:Assign.Value>
+                            </p1:Assign>
+                          </p1:If.Else>
+                        </p1:If>
+                      </p1:Sequence>
+                    </p1:ActivityAction>
+                  </p1:ForEach>
+                </p1:Parallel>
+                <p1:If Condition="[banqueOK And fournisseurs.Count &lt;&gt; 0]" sap:VirtualizedContainerService.HintSize="1156,252">
+                  <p1:If.Then>
+                    <p1:Sequence DisplayName="Creation Commande" sap:VirtualizedContainerService.HintSize="279,146">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg3:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <w:CreationCommande CartEntries="[cartEntries]" CommandeOK="[commandeOK]" FournisseursID="[fournisseurs]" sap:VirtualizedContainerService.HintSize="200,22" UserID="[guid]" />
+                    </p1:Sequence>
+                  </p1:If.Then>
+                </p1:If>
+              </p1:Sequence>
+            </p1:If.Then>
+          </p1:If>
+          <SendReply Request="{x:Reference __ReferenceID1}" DisplayName="SendReplyToReceive" sap:VirtualizedContainerService.HintSize="1307,90">
+            <SendParametersContent>
+              <p1:InArgument x:TypeArguments="x:Boolean" x:Key="CommandeOK">[commandeOK]</p1:InArgument>
+            </SendParametersContent>
+          </SendReply>
+        </p1:Sequence>
+      </p1:If.Then>
+    </p1:If>
+  </p1:Sequence>
+</WorkflowService>

@@ -10,6 +10,7 @@
 
 namespace WorkflowServices.Service {
     using System.Runtime.Serialization;
+    using System;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -63,34 +64,135 @@ namespace WorkflowServices.Service {
         UNKNOW = 3,
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Client", CallbackContract=typeof(WorkflowServices.Service.ClientCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
-    public interface Client {
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CartEntrie", Namespace="http://schemas.datacontract.org/2004/07/SessionService")]
+    [System.SerializableAttribute()]
+    public partial class CartEntrie : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Client/ActivateClient", ReplyAction="http://tempuri.org/Client/ActivateClientResponse")]
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid ObjectIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int QuantityField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ObjectID {
+            get {
+                return this.ObjectIDField;
+            }
+            set {
+                if ((this.ObjectIDField.Equals(value) != true)) {
+                    this.ObjectIDField = value;
+                    this.RaisePropertyChanged("ObjectID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Quantity {
+            get {
+                return this.QuantityField;
+            }
+            set {
+                if ((this.QuantityField.Equals(value) != true)) {
+                    this.QuantityField = value;
+                    this.RaisePropertyChanged("Quantity");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Customer", CallbackContract=typeof(WorkflowServices.Service.CustomerCallback))]
+    public interface Customer {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Customer/DisconnectClient", ReplyAction="http://tempuri.org/Customer/DisconnectClientResponse")]
+        WorkflowServices.Service.DisconnectClientResponse DisconnectClient(WorkflowServices.Service.DisconnectClientRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Customer/ActivateClient", ReplyAction="http://tempuri.org/Customer/ActivateClientResponse")]
         WorkflowServices.Service.ActivateClientResponse ActivateClient(WorkflowServices.Service.ActivateClientRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Client/AddItemInCart", ReplyAction="http://tempuri.org/Client/AddItemInCartResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Customer/AddItemInCart", ReplyAction="http://tempuri.org/Customer/AddItemInCartResponse")]
         WorkflowServices.Service.AddItemInCartResponse AddItemInCart(WorkflowServices.Service.AddItemInCartRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Client/RemoveItemInCart", ReplyAction="http://tempuri.org/Client/RemoveItemInCartResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Customer/RemoveItemInCart", ReplyAction="http://tempuri.org/Customer/RemoveItemInCartResponse")]
         WorkflowServices.Service.RemoveItemInCartResponse RemoveItemInCart(WorkflowServices.Service.RemoveItemInCartRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Client/RemoveCartContentClient", ReplyAction="http://tempuri.org/Client/RemoveCartContentClientResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Customer/RemoveCartContentClient", ReplyAction="http://tempuri.org/Customer/RemoveCartContentClientResponse")]
         WorkflowServices.Service.RemoveCartContentClientResponse RemoveCartContentClient(WorkflowServices.Service.RemoveCartContentClientRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Client/ChatUpdateClient", ReplyAction="http://tempuri.org/Client/ChatUpdateClientResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Customer/ChatUpdateClient", ReplyAction="http://tempuri.org/Customer/ChatUpdateClientResponse")]
         WorkflowServices.Service.ChatUpdateClientResponse ChatUpdateClient(WorkflowServices.Service.ChatUpdateClientRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ClientCallback {
+    public interface CustomerCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Client/CartNotification")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Customer/CartNotification")]
         void CartNotification(WorkflowServices.Service.CartNotification request);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Client/OrderNotification")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Customer/OrderNotification")]
         void OrderNotification(WorkflowServices.Service.OrderNotification request);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Customer/DisconnectedClient")]
+        void DisconnectedClient(WorkflowServices.Service.DisconnectedClient request);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Customer/ChatNotificationClient")]
+        void ChatNotificationClient(WorkflowServices.Service.ChatNotificationClient request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DisconnectClient", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DisconnectClientRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Guid sessionID;
+        
+        public DisconnectClientRequest() {
+        }
+        
+        public DisconnectClientRequest(System.Guid sessionID) {
+            this.sessionID = sessionID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DisconnectClientResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DisconnectClientResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool DisconnectClientResult;
+        
+        public DisconnectClientResponse() {
+        }
+        
+        public DisconnectClientResponse(bool DisconnectClientResult) {
+            this.DisconnectClientResult = DisconnectClientResult;
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -321,9 +423,45 @@ namespace WorkflowServices.Service {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Administrator", CallbackContract=typeof(WorkflowServices.Service.AdministratorCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DisconnectedClient", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DisconnectedClient {
+        
+        public DisconnectedClient() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ChatNotificationClient", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ChatNotificationClient {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Guid correspondentID;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public string message;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public WorkflowServices.Service.ChatState state;
+        
+        public ChatNotificationClient() {
+        }
+        
+        public ChatNotificationClient(System.Guid correspondentID, string message, WorkflowServices.Service.ChatState state) {
+            this.correspondentID = correspondentID;
+            this.message = message;
+            this.state = state;
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Administrator", CallbackContract=typeof(WorkflowServices.Service.AdministratorCallback))]
     public interface Administrator {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Administrator/DisconnectAdministrateur", ReplyAction="http://tempuri.org/Administrator/DisconnectAdministrateurResponse")]
+        WorkflowServices.Service.DisconnectAdministrateurResponse DisconnectAdministrateur(WorkflowServices.Service.DisconnectAdministrateurRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Administrator/Connect", ReplyAction="http://tempuri.org/Administrator/ConnectResponse")]
         WorkflowServices.Service.ConnectResponse Connect(WorkflowServices.Service.ConnectRequest request);
@@ -337,6 +475,44 @@ namespace WorkflowServices.Service {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Administrator/CategorieAdded")]
         void CategorieAdded(WorkflowServices.Service.CategorieAdded request);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Administrator/DisconnectedAdministrator")]
+        void DisconnectedAdministrator(WorkflowServices.Service.DisconnectedAdministrator request);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Administrator/ChatNotificationAdministrator")]
+        void ChatNotificationAdministrator(WorkflowServices.Service.ChatNotificationAdministrator request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DisconnectAdministrateur", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DisconnectAdministrateurRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Guid sessionID;
+        
+        public DisconnectAdministrateurRequest() {
+        }
+        
+        public DisconnectAdministrateurRequest(System.Guid sessionID) {
+            this.sessionID = sessionID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DisconnectAdministrateurResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DisconnectAdministrateurResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool DisconnectAdministrateurResult;
+        
+        public DisconnectAdministrateurResponse() {
+        }
+        
+        public DisconnectAdministrateurResponse(bool DisconnectAdministrateurResult) {
+            this.DisconnectAdministrateurResult = DisconnectAdministrateurResult;
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -424,9 +600,45 @@ namespace WorkflowServices.Service {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Fournisseur", CallbackContract=typeof(WorkflowServices.Service.FournisseurCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DisconnectedAdministrator", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DisconnectedAdministrator {
+        
+        public DisconnectedAdministrator() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ChatNotificationAdministrator", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ChatNotificationAdministrator {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Guid correspondentID;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public string message;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public WorkflowServices.Service.ChatState state;
+        
+        public ChatNotificationAdministrator() {
+        }
+        
+        public ChatNotificationAdministrator(System.Guid correspondentID, string message, WorkflowServices.Service.ChatState state) {
+            this.correspondentID = correspondentID;
+            this.message = message;
+            this.state = state;
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Fournisseur", CallbackContract=typeof(WorkflowServices.Service.FournisseurCallback))]
     public interface Fournisseur {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Fournisseur/DisconnectFournisseur", ReplyAction="http://tempuri.org/Fournisseur/DisconnectFournisseurResponse")]
+        WorkflowServices.Service.DisconnectFournisseurResponse DisconnectFournisseur(WorkflowServices.Service.DisconnectFournisseurRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Fournisseur/ActivateFournisseur", ReplyAction="http://tempuri.org/Fournisseur/ActivateFournisseurResponse")]
         WorkflowServices.Service.ActivateFournisseurResponse ActivateFournisseur(WorkflowServices.Service.ActivateFournisseurRequest request);
@@ -446,6 +658,44 @@ namespace WorkflowServices.Service {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Fournisseur/ProductNotification")]
         void ProductNotification(WorkflowServices.Service.ProductNotification request);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Fournisseur/ChatNotificationFournisseur")]
+        void ChatNotificationFournisseur(WorkflowServices.Service.ChatNotificationFournisseur request);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Fournisseur/DisconnectedFournisseur")]
+        void DisconnectedFournisseur(WorkflowServices.Service.DisconnectedFournisseur request);
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DisconnectFournisseur", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DisconnectFournisseurRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Guid sessionID;
+        
+        public DisconnectFournisseurRequest() {
+        }
+        
+        public DisconnectFournisseurRequest(System.Guid sessionID) {
+            this.sessionID = sessionID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DisconnectFournisseurResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DisconnectFournisseurResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool DisconnectFournisseurResult;
+        
+        public DisconnectFournisseurResponse() {
+        }
+        
+        public DisconnectFournisseurResponse(bool DisconnectFournisseurResult) {
+            this.DisconnectFournisseurResult = DisconnectFournisseurResult;
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -584,12 +834,48 @@ namespace WorkflowServices.Service {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ChatNotificationFournisseur", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ChatNotificationFournisseur {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Guid correspondentID;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public string message;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public WorkflowServices.Service.ChatState state;
+        
+        public ChatNotificationFournisseur() {
+        }
+        
+        public ChatNotificationFournisseur(System.Guid correspondentID, string message, WorkflowServices.Service.ChatState state) {
+            this.correspondentID = correspondentID;
+            this.message = message;
+            this.state = state;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="DisconnectedFournisseur", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class DisconnectedFournisseur {
+        
+        public DisconnectedFournisseur() {
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Workflow")]
     public interface Workflow {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Workflow/CreateSession", ReplyAction="http://tempuri.org/Workflow/CreateSessionResponse")]
         WorkflowServices.Service.CreateSessionResponse CreateSession(WorkflowServices.Service.CreateSessionRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Workflow/GetCart", ReplyAction="http://tempuri.org/Workflow/GetCartResponse")]
+        WorkflowServices.Service.GetCartResponse GetCart(WorkflowServices.Service.GetCartRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Workflow/GetUserID", ReplyAction="http://tempuri.org/Workflow/GetUserIDResponse")]
         WorkflowServices.Service.GetUserIDResponse GetUserID(WorkflowServices.Service.GetUserIDRequest request);
@@ -640,6 +926,38 @@ namespace WorkflowServices.Service {
         
         public CreateSessionResponse(System.Guid CreateSessionResult) {
             this.CreateSessionResult = CreateSessionResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetCart", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetCartRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public System.Guid sessionID;
+        
+        public GetCartRequest() {
+        }
+        
+        public GetCartRequest(System.Guid sessionID) {
+            this.sessionID = sessionID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetCartResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetCartResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public WorkflowServices.Service.CartEntrie[] GetCartResult;
+        
+        public GetCartResponse() {
+        }
+        
+        public GetCartResponse(WorkflowServices.Service.CartEntrie[] GetCartResult) {
+            this.GetCartResult = GetCartResult;
         }
     }
     

@@ -1,0 +1,54 @@
+﻿<Activity x:Class="WorkflowServices.Service.Activities.GetCart" this:GetCart.EndpointConfigurationName="BasicHttpBinding_Workflow" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://tempuri.org/" xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:srs="clr-namespace:System.Runtime.Serialization;assembly=System.Runtime.Serialization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" xmlns:this="clr-namespace:WorkflowServices.Service.Activities" xmlns:ws="clr-namespace:WorkflowServices.Service;assembly=WorkflowServices" xmlns:ws1="clr-namespace:WorkflowServices.Service;assembly=WorkflowServices, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="EndpointConfigurationName" Type="x:String" />
+    <x:Property Name="sessionID" Type="InArgument(s:Guid)" />
+    <x:Property Name="GetCartResult" Type="OutArgument(ws:CartEntrie[])" />
+  </x:Members>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces serialized as XML namespaces</mva:VisualBasic.Settings>
+  <Sequence>
+    <Sequence.Variables>
+      <x:Reference>__ReferenceID1</x:Reference>
+      <x:Reference>__ReferenceID2</x:Reference>
+    </Sequence.Variables>
+    <p1:Send x:Name="__ReferenceID0" Action="http://tempuri.org/Workflow/GetCart" OperationName="GetCart" ServiceContractName="p:Workflow">
+      <p1:Send.CorrelationInitializers>
+        <p1:RequestReplyCorrelationInitializer>
+          <p1:RequestReplyCorrelationInitializer.CorrelationHandle>
+            <InArgument x:TypeArguments="p1:CorrelationHandle">
+              <VariableValue x:TypeArguments="p1:CorrelationHandle">
+                <VariableValue.Variable>
+                  <Variable x:TypeArguments="p1:CorrelationHandle" x:Name="__ReferenceID2" />
+                </VariableValue.Variable>
+              </VariableValue>
+            </InArgument>
+          </p1:RequestReplyCorrelationInitializer.CorrelationHandle>
+        </p1:RequestReplyCorrelationInitializer>
+      </p1:Send.CorrelationInitializers>
+      <p1:Send.EndpointConfigurationName>
+        <PropertyReference x:TypeArguments="x:String" PropertyName="EndpointConfigurationName" />
+      </p1:Send.EndpointConfigurationName>
+      <p1:SendMessageContent>
+        <InArgument x:TypeArguments="ws:GetCartRequest">[New WorkflowServices.Service.GetCartRequest() With { .sessionID = sessionID }]</InArgument>
+      </p1:SendMessageContent>
+    </p1:Send>
+    <p1:ReceiveReply Request="{x:Reference __ReferenceID0}" Action="http://tempuri.org/Workflow/GetCartResponse">
+      <p1:ReceiveMessageContent>
+        <OutArgument x:TypeArguments="ws:GetCartResponse">
+          <VariableReference x:TypeArguments="ws:GetCartResponse">
+            <VariableReference.Variable>
+              <Variable x:TypeArguments="ws:GetCartResponse" x:Name="__ReferenceID1" Name="tempResult" />
+            </VariableReference.Variable>
+          </VariableReference>
+        </OutArgument>
+      </p1:ReceiveMessageContent>
+    </p1:ReceiveReply>
+    <Assign>
+      <Assign.To>
+        <OutArgument x:TypeArguments="ws:CartEntrie[]">[GetCartResult]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="ws:CartEntrie[]">[tempResult.GetCartResult]</InArgument>
+      </Assign.Value>
+    </Assign>
+  </Sequence>
+</Activity>
