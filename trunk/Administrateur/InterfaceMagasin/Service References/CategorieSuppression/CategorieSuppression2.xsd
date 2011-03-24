@@ -19,17 +19,14 @@
   <xs:element name="DeleteCategorie">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ParentGuid" type="q2:guid" />
-        <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="Disponible" type="xs:boolean" />
-        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="CategorieID" type="q3:guid" />
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="CategorieID" type="q2:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteCategorieResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WorkflowServices" minOccurs="0" name="State" type="q4:ModifyCategorieDataState" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WorkflowServices" minOccurs="0" name="State" type="q3:ModifyCategorieDataState" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

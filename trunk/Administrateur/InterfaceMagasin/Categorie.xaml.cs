@@ -320,24 +320,13 @@ namespace InterfaceMagasin
                     client = new CategorieSuppression.ServiceClient();
 
                     //On récupère les infos;
-                    CATEGORIE catParent = (CATEGORIE)this.ComboCategorie.SelectedItem;
-                    string name = this.TextNom.Text;
-                    bool valide;
                     Guid ID = categorie.id;
-
-                    if (this.CheckValide.IsChecked == true)
-                    {
-                        valide = true;
-                    }
-                    else
-                    {
-                        valide = false;
-                    }
 
                     if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
                     {
-                        CategorieSuppression.ModifyCategorieDataState state = client.DeleteCategorie(catParent.id, name, valide, ID);
-
+                        CategorieSuppression.ModifyCategorieDataState state = client.DeleteCategorie(ID);
+                        
+                        
                         //Si ce n'est pas exécuté
                         if (state != CategorieSuppression.ModifyCategorieDataState.EXECUTED)
                         {
