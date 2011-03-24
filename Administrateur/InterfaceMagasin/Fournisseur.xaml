@@ -17,20 +17,20 @@
         </Grid.Resources>
 
         <TextBox x:Name="TextNom" Height="23" Margin="0,128,95,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="289.343" Text="{Binding ElementName=ListFournisseurs, Path=SelectedItem.nom}"/>
-        <Label x:Name="LabelNnom" Content="Nom" Height="26" Margin="352.5,125,341.643,0" VerticalAlignment="Top" />
+        <Label x:Name="LabelNnom" Content="Nom" Height="26" Margin="335.5,125,358.643,0" VerticalAlignment="Top" />
         <TextBox x:Name="TextMail" Height="23" Margin="0,180.5,95,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="289.343" Text="{Binding ElementName=ListFournisseurs, Path=SelectedItem.email}"/>
-        <Label x:Name="LabelMail" Content="Mail" Height="26" Margin="352.5,177.5,341.643,0" VerticalAlignment="Top"/>
+        <Label x:Name="LabelMail" Content="Mail" Height="26" Margin="335.5,177.5,358.643,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TextPhone" Height="23" Margin="0,234.5,95,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="289.343" Text="{Binding ElementName=ListFournisseurs, Path=SelectedItem.phone}"/>
-        <Label x:Name="LabelPhone" Content="Phone" Height="26" Margin="352.5,231.5,341.643,0" VerticalAlignment="Top"/>
+        <Label x:Name="LabelPhone" Content="Phone" Height="26" Margin="335.5,231.5,358.643,0" VerticalAlignment="Top"/>
         <TextBox x:Name="TextAdresse" Margin="0,282.5,95,294.5" TextWrapping="Wrap" HorizontalAlignment="Right" Width="289.343" Text="{Binding ElementName=ListFournisseurs, Path=SelectedItem.adresse}"/>
-        <Label x:Name="LabelAdresse" Content="Adresse" Margin="352.5,279.5,341.643,294.5"/>
+        <Label x:Name="LabelAdresse" Content="Adresse" Margin="335.5,279.5,358.643,294.5"/>
         <TextBox x:Name="TextVille" Margin="0,0,95,242" TextWrapping="Wrap" Text="{Binding ElementName=ListFournisseurs, Path=SelectedItem.ville}" HorizontalAlignment="Right" Width="289.343" Height="23" VerticalAlignment="Bottom"/>
-        <Label x:Name="LabelVille" Content="Ville" Margin="352.5,0,341.643,242" Height="23" VerticalAlignment="Bottom"/>
+        <Label x:Name="LabelVille" Content="Ville" Margin="335.5,0,358.643,242" Height="23" VerticalAlignment="Bottom"/>
         <TextBox x:Name="TextCP" Height="23" Margin="0,0,95,188.5" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="289.343" Text="{Binding ElementName=ListFournisseurs, Path=SelectedItem.code_postal}"/>
-        <Label x:Name="LabelCP" Content="CP" Height="26" Margin="352.5,0,341.643,189.5" VerticalAlignment="Bottom"/>
+        <Label x:Name="LabelCP" Content="CP" Height="26" Margin="335.5,0,358.643,189.5" VerticalAlignment="Bottom"/>
         <TextBox x:Name="TextPays" Height="23" Margin="0,0,95,141" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="289.343" Text="{Binding ElementName=ListFournisseurs, Path=SelectedItem.pays}"/>
-        <Label x:Name="LabelPays" Content="Pays" Height="26" Margin="352.5,0,341.643,141" VerticalAlignment="Bottom"/>
-        <Label x:Name="LabelPassword" Content="Password" Height="26" Margin="352.5,0,341.643,94" VerticalAlignment="Bottom"/>
+        <Label x:Name="LabelPays" Content="Pays" Height="26" Margin="335.5,0,358.643,141" VerticalAlignment="Bottom"/>
+        <Label x:Name="LabelPassword" Content="Password" Height="26" Margin="335.5,0,358.643,94" VerticalAlignment="Bottom"/>
         <TextBox x:Name="TextSelection" Height="23" Margin="51,0,0,18" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="179"/>
         <Button x:Name="ButtonCreer" Content="Créer" HorizontalAlignment="Right" Height="23" Margin="0,0,273.5,52.5" VerticalAlignment="Bottom" Width="72" Click="btnCreer_Click"/>
         <Button x:Name="ButtonModif" Content="Modifier" Height="23" Margin="0,0,174,52.5" VerticalAlignment="Bottom" Click="btnModifier_Click" HorizontalAlignment="Right" Width="72"/>

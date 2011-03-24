@@ -289,6 +289,7 @@ namespace InterfaceMagasin
 
                 //On sélectionne toutes les categories
                 var selectCatExist = from cat in entitiesCategorie.CATEGORIE
+                                     where cat.valide == true
                                      select cat;
 
                 //On  génère la liste des categories non attachées au produit
