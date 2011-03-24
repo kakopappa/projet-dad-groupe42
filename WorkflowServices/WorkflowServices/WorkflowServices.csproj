@@ -57,8 +57,11 @@
     <Compile Include="CreateFournisseur.cs" />
     <Compile Include="CreateProduct.cs" />
     <Compile Include="CreateUser.cs" />
+    <Compile Include="DeleteCategorie.cs" />
+    <Compile Include="DeleteFournisseur.cs" />
     <Compile Include="ItemVerification.cs" />
     <Compile Include="ModifyAccount.cs" />
+    <Compile Include="ModifyCategorie.cs" />
     <Compile Include="ModifyFournisseur.cs" />
     <Compile Include="ModifyProduct.cs" />
     <Compile Include="ModifyUserPassword.cs" />
@@ -118,6 +121,15 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="CateogerieCreation.xamlx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="FournisseurSuppression.xamlx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="CategorieModification.xamlx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="CategorieSuppression.xamlx">
       <SubType>Designer</SubType>
     </Content>
     <None Include="Properties\Settings.settings">

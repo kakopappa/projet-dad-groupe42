@@ -52,6 +52,10 @@
             <p1:Variable x:TypeArguments="x:String" Default="[String.Empty]" Name="prenom" />
             <p1:Variable x:TypeArguments="x:String" Default="[String.Empty]" Name="phone" />
             <p1:Variable x:TypeArguments="w:ModifyAccountDataState" Default="[ModifyAccountDataState.NOT_EXECUTED]" Name="state" />
+            <p1:Variable x:TypeArguments="x:String" Default="[String.Empty]" Name="ville" />
+            <p1:Variable x:TypeArguments="x:String" Default="[String.Empty]" Name="codePostal" />
+            <p1:Variable x:TypeArguments="x:String" Default="[String.Empty]" Name="pays" />
+            <p1:Variable x:TypeArguments="x:String" Default="[String.Empty]" Name="adresse" />
           </p1:Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg3:Dictionary x:TypeArguments="x:String, x:Object">
@@ -63,9 +67,13 @@
               <p1:OutArgument x:TypeArguments="x:String" x:Key="Phone">[phone]</p1:OutArgument>
               <p1:OutArgument x:TypeArguments="x:String" x:Key="Prenom">[prenom]</p1:OutArgument>
               <p1:OutArgument x:TypeArguments="x:String" x:Key="Nom">[nom]</p1:OutArgument>
+              <p1:OutArgument x:TypeArguments="x:String" x:Key="Adresse">[adresse]</p1:OutArgument>
+              <p1:OutArgument x:TypeArguments="x:String" x:Key="Ville">[ville]</p1:OutArgument>
+              <p1:OutArgument x:TypeArguments="x:String" x:Key="CodePostal">[codePostal]</p1:OutArgument>
+              <p1:OutArgument x:TypeArguments="x:String" x:Key="Pays">[pays]</p1:OutArgument>
             </ReceiveParametersContent>
           </Receive>
-          <w:ModifyAccount sap:VirtualizedContainerService.HintSize="255,22" Nom="[nom]" Phone="[phone]" Prenom="[prenom]" State="[state]" UserGuid="[guid]" />
+          <w:ModifyAccount Adresse="[adresse]" CodePostal="[codePostal]" sap:VirtualizedContainerService.HintSize="255,22" Nom="[nom]" Pays="[pays]" Phone="[phone]" Prenom="[prenom]" State="[state]" UserGuid="[guid]" Ville="[ville]" />
           <SendReply Request="{x:Reference __ReferenceID1}" DisplayName="SendResult" sap:VirtualizedContainerService.HintSize="255,90">
             <SendParametersContent>
               <p1:InArgument x:TypeArguments="w:ModifyAccountDataState" x:Key="ModificationState">[state]</p1:InArgument>

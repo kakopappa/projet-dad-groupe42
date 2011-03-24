@@ -33,6 +33,7 @@ namespace WorkflowServices
         public InArgument<UserType> Type { get; set; }
         public InArgument<Boolean> Disponible { get; set; }
         public InArgument<Guid[]> Categorie { get; set; }
+        public InArgument<String> Url { get; set; }
         public OutArgument<ModifyProductDataState> State { get; set; }
 
         // Si votre activité retourne une valeur, dérivez de CodeActivity<TResult>
@@ -50,13 +51,14 @@ namespace WorkflowServices
             Guid productGuid = context.GetValue<Guid>(this.ProductGuid);
             UserType type = context.GetValue<UserType>(this.Type);
             Guid[] categorie = context.GetValue<Guid[]>(this.Categorie);
+            String url = context.GetValue<String>(this.Url);
             ModifyProductDataState state = ModifyProductDataState.NOT_EXECUTED;
             try
             {
                 var ctx = new DADEntities(new Uri(Properties.Settings.Default.DataService));
                 ctx.IgnoreResourceNotFoundException = true;
 
-                var product = (from p in ctx.PRODUIT.Expand("FOURNISSEUR,CATEGORIE")
+                var product = (from p in ctx.PRODUIT.Expand("FOURNISSEUR,CATEGORIE,IMAGE")
                                where p.id == productGuid
                                select p).FirstOrDefault<PRODUIT>();
 
@@ -125,6 +127,26 @@ namespace WorkflowServices
                     foreach (CATEGORIE cat in catToDelete)
                     {
                         product.CATEGORIE.Remove(cat);
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(url)  && product.IMAGE.Count ==  0)
+                    {
+                        IMAGE image = IMAGE.CreateIMAGE(Guid.NewGuid(), url, 0, 0);
+                        image.PRODUIT = product;
+                        ctx.AddRelatedObject(product, "IMAGE", image);
+                        product.IMAGE.Add(image);
+                        ctx.SetLink(image, "PRODUIT", product);
+                    }
+                    else if (!string.IsNullOrWhiteSpace(url) && product.IMAGE.Count > 0)
+                    {
+                        product.IMAGE[0].url = url;
+                        ctx.UpdateObject(product.IMAGE[0]);
+                    }
+                    else if (string.IsNullOrWhiteSpace(url) && product.IMAGE.Count > 0)
+                    {
+                        IMAGE image = product.IMAGE[0];
+                        ctx.DeleteLink(product, "IMAGE", image);
+                        ctx.DeleteObject(image);
                     }
 
                     ctx.UpdateObject(product);

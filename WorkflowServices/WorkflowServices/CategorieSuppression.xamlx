@@ -1,5 +1,5 @@
-﻿<WorkflowService mc:Ignorable="sap" ConfigurationName="CateogerieCreation" sap:VirtualizedContainerService.HintSize="538,1950" Name="CateogerieCreation" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://tempuri.org/" xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:ssa="clr-namespace:System.ServiceModel.Activities;assembly=System.ServiceModel.Activities" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:w="clr-namespace:WorkflowServices;assembly=WorkflowServices" xmlns:ws="clr-namespace:WorkflowServices.Service;assembly=WorkflowServices" xmlns:wsa="clr-namespace:WorkflowServices.Service.Activities;assembly=WorkflowServices" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <p1:Sequence DisplayName="Workflow" sad:XamlDebuggerXmlReader.FileName="G:\Projects\projet-dad-groupe42\WorkflowServices\WorkflowServices\CateogerieCreation.xamlx" sap:VirtualizedContainerService.HintSize="508,1920" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+﻿<WorkflowService mc:Ignorable="sap" ConfigurationName="CategorieSuppression" sap:VirtualizedContainerService.HintSize="538,1950" Name="CategorieSuppression" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://tempuri.org/" xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:ssa="clr-namespace:System.ServiceModel.Activities;assembly=System.ServiceModel.Activities" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:w="clr-namespace:WorkflowServices;assembly=WorkflowServices" xmlns:ws="clr-namespace:WorkflowServices.Service;assembly=WorkflowServices" xmlns:wsa="clr-namespace:WorkflowServices.Service.Activities;assembly=WorkflowServices" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p1:Sequence DisplayName="Workflow" sad:XamlDebuggerXmlReader.FileName="G:\Projects\projet-dad-groupe42\WorkflowServices\WorkflowServices\CategorieSuppression.xamlx" sap:VirtualizedContainerService.HintSize="508,1920" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
     <p1:Sequence.Variables>
       <p1:Variable x:TypeArguments="ws:UserType" Default="[Service.UserType.UNKNOW]" Name="userType" />
       <p1:Variable x:TypeArguments="s:Guid" Default="[System.Guid.Empty]" Name="guid" />
@@ -44,7 +44,7 @@
           </p1:Catch>
         </p1:TryCatch.Catches>
       </p1:TryCatch>
-      <p1:If Condition="[userType = Service.UserType.FOURNISSEUR Or userType = Service.UserType.ADMINISTRATOR]" DisplayName="Session User Type Verification" sap:VirtualizedContainerService.HintSize="464,206">
+      <p1:If Condition="[userType = Service.UserType.ADMINISTRATOR]" DisplayName="Session User Type Verification" sap:VirtualizedContainerService.HintSize="464,206">
         <p1:If.Then>
           <p1:Assign sap:VirtualizedContainerService.HintSize="289,100">
             <p1:Assign.To>
@@ -84,29 +84,28 @@
     </p1:Sequence>
     <p1:If Condition="[sessionOK]" DisplayName="If Session OK" sap:VirtualizedContainerService.HintSize="486,512">
       <p1:If.Then>
-        <p1:Sequence DisplayName="Categorie Creation" sap:VirtualizedContainerService.HintSize="306,406" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+        <p1:Sequence DisplayName="Categorie Suppression" sap:VirtualizedContainerService.HintSize="306,406" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
           <p1:Sequence.Variables>
             <p1:Variable x:TypeArguments="s:Guid" Default="[System.Guid.Empty]" Name="parentGuid" />
-            <p1:Variable x:TypeArguments="w:CreateCategorieState" Default="[CreateCategorieState.NOT_EXECUTED]" Name="state" />
+            <p1:Variable x:TypeArguments="w:ModifyCategorieDataState" Default="[ModifyCategorieDataState.NOT_EXECUTED]" Name="state" />
             <p1:Variable x:TypeArguments="x:String" Default="[String.Empty]" Name="name" />
             <p1:Variable x:TypeArguments="x:Boolean" Default="False" Name="disponible" />
+            <p1:Variable x:TypeArguments="s:Guid" Default="[System.Guid.Empty]" Name="requestID" />
           </p1:Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg3:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg3:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <Receive x:Name="__ReferenceID1" DisplayName="ReceiveCreationData" sap:VirtualizedContainerService.HintSize="255,90" OperationName="CreationCategorie" ServiceContractName="p:IService">
+          <Receive x:Name="__ReferenceID1" DisplayName="ReceiveSuppressionData" sap:VirtualizedContainerService.HintSize="255,90" OperationName="DeleteCategorie" ServiceContractName="p:IService">
             <ReceiveParametersContent>
-              <p1:OutArgument x:TypeArguments="s:Guid" x:Key="ParentGuid">[parentGuid]</p1:OutArgument>
-              <p1:OutArgument x:TypeArguments="x:String" x:Key="Name">[name]</p1:OutArgument>
-              <p1:OutArgument x:TypeArguments="x:Boolean" x:Key="Disponible">[disponible]</p1:OutArgument>
+              <p1:OutArgument x:TypeArguments="s:Guid" x:Key="CategorieID">[requestID]</p1:OutArgument>
             </ReceiveParametersContent>
           </Receive>
-          <w:CreateCategori Disponible="[disponible]" sap:VirtualizedContainerService.HintSize="255,22" Name="[name]" ParentID="[parentGuid]" State="[state]" Type="[userType]" />
+          <w:DeleteCategorie CategorieID="[requestID]" sap:VirtualizedContainerService.HintSize="255,22" State="[state]" />
           <SendReply Request="{x:Reference __ReferenceID1}" DisplayName="SendResult" sap:VirtualizedContainerService.HintSize="255,90">
             <SendParametersContent>
-              <p1:InArgument x:TypeArguments="w:CreateCategorieState" x:Key="State">[state]</p1:InArgument>
+              <p1:InArgument x:TypeArguments="w:ModifyCategorieDataState" x:Key="State">[state]</p1:InArgument>
             </SendParametersContent>
           </SendReply>
         </p1:Sequence>
