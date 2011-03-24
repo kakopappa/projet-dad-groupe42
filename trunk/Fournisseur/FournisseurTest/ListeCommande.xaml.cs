@@ -152,8 +152,7 @@ namespace FournisseurTest
             {
                 Expedition = false;
             }
-            //if (Decimal.TryParse(dureeEstimee.Replace(".".ToCharArray()[0], ",".ToCharArray()[0]), out dureeDecimal))
-            //{
+            
                 //Appel du workflow
                 WorkflowGestionCommande.ServiceClient client = null;
                 try
@@ -162,7 +161,7 @@ namespace FournisseurTest
                     client = new WorkflowGestionCommande.ServiceClient();
                     if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
                     {
-                        WorkflowGestionCommande.UpdateOrderState result = client.UpdateOrder(commande.id, OrderUpdateAction.VALIDATE, dureeDecimal);
+                        WorkflowGestionCommande.UpdateOrderState result = client.UpdateOrder(commande.id, OrderUpdateAction.VALIDATE, decimal.Zero);
                         Console.WriteLine(result);
                     }
                 }
@@ -176,6 +175,34 @@ namespace FournisseurTest
                     {
                         client.Close();
                         client.ChannelFactory.Close();
+                    }
+                }
+                MainWindow.GetInstance().Frame.Navigate(new ListeCommande());
+
+                if (Decimal.TryParse(dureeEstimee.Replace(".".ToCharArray()[0], ",".ToCharArray()[0]), out dureeDecimal))
+                {
+                    WorkflowGestionCommande.ServiceClient client1 = null;
+                    try
+                    {
+                        client1 = new WorkflowGestionCommande.ServiceClient();
+                        if (client1.SessionIDVerification(MainWindow.GetInstance().SessionId))
+                        {
+                            WorkflowGestionCommande.UpdateOrderState result1 = client1.UpdateOrder(commande.id, OrderUpdateAction.SEND, dureeDecimal);
+                            Console.WriteLine(result1);
+                        }
+                    }
+
+                    catch (Exception eroor)
+                    {
+                        Console.WriteLine(eroor);
+                    }
+                    finally
+                    {
+                        if (client1 != null)
+                        {
+                            client1.Close();
+                            client1.ChannelFactory.Close();
+                        }
                     }
                 }
                 MainWindow.GetInstance().Frame.Navigate(new ListeCommande());
