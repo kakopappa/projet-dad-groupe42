@@ -96,7 +96,7 @@
         <Label FontFamily="Georgia" Content="Pour modifier un produit, sélectionner le et modifier les champs les champs le nécessitant." Height="28" HorizontalAlignment="Left" Margin="99,0,0,0" Name="label9" VerticalAlignment="Top" Grid.Column="2" Width="506" />
         <Label FontFamily="Georgia" Content="Catégorie :" Grid.Column="1" Height="28" HorizontalAlignment="Left" Margin="12,227,0,0" Name="label2" VerticalAlignment="Top" Grid.ColumnSpan="2" />
         <Button FontFamily="Georgia" IsEnabled="False" Content="Modifier produit" Height="23" HorizontalAlignment="Left" Margin="295,304,0,0" Name="buttonModifier" VerticalAlignment="Top" Width="112" Grid.Column="2" Click="ProduitModification"/>
-        <Button FontFamily="Georgia" IsEnabled="False" Content="Supprimer produit" Grid.Column="2" Height="23" HorizontalAlignment="Right" Margin="0,304,67,0" Name="buttonSupprimerProduit" VerticalAlignment="Top" Width="126" />
+        <Button FontFamily="Georgia" IsEnabled="False" Content="Supprimer produit" Grid.Column="2" Height="23" HorizontalAlignment="Right" Margin="0,304,67,0" Name="buttonSupprimerProduit" VerticalAlignment="Top" Width="126" Click="ProduitSuppression" />
         <Button FontFamily="Georgia" Content="Créer catégorie" Grid.Column="2" Height="23" HorizontalAlignment="Left" Margin="10,304,0,0" Name="buttonCreerCategorie" VerticalAlignment="Top" Width="121" Click="LoadCreateCat"/>
     </Grid>
     

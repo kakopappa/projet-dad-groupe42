@@ -98,12 +98,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WorkflowCreationCategorie\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\WorkflowCreationProduit\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\WorkflowModificationProduit\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WorkflowSuppressionProduit\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -202,6 +212,19 @@
     <None Include="Service References\WorkflowConnection\FournisseurTest.WorkflowConnection.GetUserPasswordResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\WorkflowCreationCategorie\CateogerieCreation.wsdl" />
+    <None Include="Service References\WorkflowCreationCategorie\CateogerieCreation.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowCreationCategorie\CateogerieCreation1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowCreationCategorie\CateogerieCreation2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowCreationCategorie\FournisseurTest.WorkflowCreationCategorie.CreateCategorieState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\WorkflowCreationProduit\FournisseurTest.WorkflowCreationProduit.CreateProductState.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -234,6 +257,19 @@
     <None Include="Service References\WorkflowModificationProduit\ProductModification3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\WorkflowSuppressionProduit\FournisseurTest.WorkflowSuppressionProduit.ModifyProductDataState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WorkflowSuppressionProduit\ProductSuppresion.wsdl" />
+    <None Include="Service References\WorkflowSuppressionProduit\ProductSuppresion.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowSuppressionProduit\ProductSuppresion1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowSuppressionProduit\ProductSuppresion2.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -252,8 +288,10 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\SessionService\" />
     <WCFMetadataStorage Include="Service References\WorkflowConnection\" />
+    <WCFMetadataStorage Include="Service References\WorkflowCreationCategorie\" />
     <WCFMetadataStorage Include="Service References\WorkflowCreationProduit\" />
     <WCFMetadataStorage Include="Service References\WorkflowModificationProduit\" />
+    <WCFMetadataStorage Include="Service References\WorkflowSuppressionProduit\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WorkflowConnection\ConnetionFournisseur.disco" />
@@ -311,6 +349,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WorkflowModificationProduit\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowSuppressionProduit\ProductSuppresion.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowSuppressionProduit\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowSuppressionProduit\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowSuppressionProduit\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowCreationCategorie\CateogerieCreation.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowCreationCategorie\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowCreationCategorie\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowCreationCategorie\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
