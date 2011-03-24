@@ -84,7 +84,7 @@ namespace Client.Controls
         /// <param name="e"></param>
         void ZuneMenuElement_Click(object sender, RoutedEventArgs e)
         {
-            if (this.frame != null && !this.IsMenuSelected)
+            if (this.frame != null /*&& !this.IsMenuSelected*/)
             {
                 Type t = Type.GetType(NavigateTo);
                 object obj = Activator.CreateInstance(t);

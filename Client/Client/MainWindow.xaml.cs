@@ -41,6 +41,7 @@ namespace Client
         public static MainWindow instance;
 
         public Connection Connection { get; set; }
+        public Client.Core.Cart Cart { get; set; }
         public DataServiceClient.CLIENT Client { get; set; }
         public Guid SessionId { get; set; }
         public CustomerClient MeinService { get; set; }
@@ -67,6 +68,7 @@ namespace Client
             InitializeComponent();
             MainWindow.instance = this;
             this.Connection = new Connection();
+            this.Cart = new Core.Cart();
 
             this.MeinService = new CustomerClient(new InstanceContext(this), "WSDualHttpBinding_Customer");
 
@@ -122,6 +124,37 @@ namespace Client
         }
 
         /// <summary>
+        /// Met à jour l'utilisateur
+        /// </summary>
+        public void RefreshUser()
+        {
+            ThreadPool.QueueUserWorkItem((state) =>
+            {
+                Dispatcher.BeginInvoke(
+                    DispatcherPriority.Normal,
+                    new Action(() =>
+                    {
+                        this.progressBar.Visibility = Visibility.Visible;
+                    }));
+
+                DataServiceClient.DADEntities ctx = new DataServiceClient.DADEntities(new Uri(Properties.Settings.Default.DataServiceClient));
+                ctx.IgnoreResourceNotFoundException = true;
+
+                this.Client = (from c in ctx.CLIENT
+                               where c.id == this.Client.id
+                               select c).Single();
+
+                Dispatcher.BeginInvoke(
+                    DispatcherPriority.Normal,
+                    new Action(() =>
+                    {
+                        this.chrome.LoadUserInfo();
+                        this.progressBar.Visibility = Visibility.Hidden;
+                    }));
+            });
+        }
+
+        /// <summary>
         /// Succès de la connexion
         /// </summary>
         /// <param name="sender"></param>
@@ -154,6 +187,7 @@ namespace Client
                         DispatcherPriority.Normal,
                         new Action(() =>
                             {
+                                this.commandes.Visibility = Visibility.Visible;
                                 this.chrome.LoadUserInfo();
                                 this.progressBar.Visibility = Visibility.Hidden;
                             }));
@@ -371,18 +405,30 @@ namespace Client
             throw new NotImplementedException();
         }
 
-        public void Disconnected()
+        public void ChatNotification(Guid correspondentID, string message, Client.Service.ChatState state)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region CustomerCallback Membres
+
+
+        public void DisconnectedClient()
         {
             Dispatcher.BeginInvoke(
                 DispatcherPriority.Normal,
                 new Action(() =>
-                    {
-                        MessageBox.Show("Vous avez été déconnecté !");
-                        this.chrome.UnloadUserInfo();
-                    }));
+                {
+                    this.progressBar.Visibility = Visibility.Hidden;
+                    this.commandes.Visibility = Visibility.Hidden;
+                    MessageBox.Show("Vous avez été déconnecté !");
+                    this.menu.MeinFrame.Navigate(new Home());
+                }));
         }
 
-        public void ChatNotification(Guid correspondentID, string message, Client.Service.ChatState state)
+        public void ChatNotificationClient(Guid correspondentID, string message, ChatState state)
         {
             throw new NotImplementedException();
         }

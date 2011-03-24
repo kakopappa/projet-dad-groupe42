@@ -76,6 +76,7 @@ namespace Client.Pages
                         DispatcherPriority.Normal,
                         new Action(() =>
                         {
+                            this.suCreate.IsEnabled = true;
                             MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
                             this.suInfoBox.Foreground = Brushes.Red;
                             this.suInfoBox.Text = @"Erreur: Un utilisateur avec cet email existe déjà";
@@ -87,6 +88,7 @@ namespace Client.Pages
                         DispatcherPriority.Normal,
                         new Action(() =>
                         {
+                            this.suCreate.IsEnabled = true;
                             MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
                             this.suInfoBox.Foreground = Brushes.Green;
                             this.suInfoBox.Text = @"Succès: Votre compte a bien été créé ! Vous pouvez désormais vous connecter";
@@ -204,6 +206,7 @@ namespace Client.Pages
                 && Tools.Tools.isEmail(suMail.Text))
             {
                 MainWindow.GetMe().progressBar.Visibility = Visibility.Visible;
+                this.suCreate.IsEnabled = false;
 
                 string prenom = this.suPrenom.Text;
                 string nom = this.suNom.Text;
@@ -237,12 +240,16 @@ namespace Client.Pages
                                         MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
                                         this.suInfoBox.Foreground = Brushes.Red;
                                         this.suInfoBox.Text = @"Erreur: Erreur lors de l'accès au service";
+                                        this.suCreate.IsEnabled = true;
                                     }));
                         }
                         finally
                         {
-                            svc.Close();
-                            svc.ChannelFactory.Close();
+                            if (svc != null)
+                            {
+                                svc.Close();
+                                svc.ChannelFactory.Close();
+                            }
                         }
                     });
             }
@@ -250,6 +257,7 @@ namespace Client.Pages
             {
                 this.suInfoBox.Foreground = Brushes.Red;
                 this.suInfoBox.Text = @"Erreur: Veuillez renseigner tous les champs correctement";
+                this.suCreate.IsEnabled = true;
             }
         }
     }

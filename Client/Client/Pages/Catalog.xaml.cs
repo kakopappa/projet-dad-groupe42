@@ -30,12 +30,26 @@ namespace Client.Pages
 
         private List<DataServiceClient.CATEGORIE> cat;
         private List<DataServiceClient.PRODUIT> prod;
-        private int productsPerPage = 2;
-        private int currentPage = 1;
+        private DataServiceClient.CATEGORIE currentCat = null;
+
+        private int productsPerPage = 6;
+        private int currentPage;
+        private bool isAlready = false;
+        private bool canGoNext = false;
 
         public Catalog()
         {
             InitializeComponent();
+            this.currentPage = 1;
+            this.Unloaded += new RoutedEventHandler(Catalog_Unloaded);
+            this.DataLoaded += new EventHandler(Catalog_DataLoaded);
+        }
+
+        public Catalog(int page, DataServiceClient.CATEGORIE cat)
+        {
+            InitializeComponent();
+            this.currentCat = cat;
+            this.currentPage = page;
             this.Unloaded += new RoutedEventHandler(Catalog_Unloaded);
             this.DataLoaded += new EventHandler(Catalog_DataLoaded);
         }
@@ -48,8 +62,12 @@ namespace Client.Pages
                             {
                                 this.listCat.ItemsSource = this.cat;
                                 this.listProducts.ItemsSource = this.prod;
-                                Storyboard s = (Storyboard) FindResource("MetroFadeSlide");
-                                this.BeginStoryboard(s);
+                                if (!this.isAlready)
+                                {
+                                    Storyboard s = (Storyboard)FindResource("MetroFadeSlide");
+                                    this.BeginStoryboard(s);
+                                    this.isAlready = true;
+                                }
                                 MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
                             }));
         }
@@ -77,9 +95,9 @@ namespace Client.Pages
         /// <param name="e"></param>
         private void Page_Initialized(object sender, EventArgs e)
         {
-            MainWindow.GetMe().SetWindowTheme(WindowTheme.Black);
             MainWindow.GetMe().progressBar.Visibility = Visibility.Visible;
-            this.btnPrev.IsEnabled = false;
+            if(this.currentPage < 1)
+                this.btnPrev.IsEnabled = false;
 
             ThreadPool.QueueUserWorkItem(state =>
                 {
@@ -91,7 +109,17 @@ namespace Client.Pages
                                     select c).ToList<DataServiceClient.CATEGORIE>();
 
                         // Récupération des produits
-                        this.prod = GetProducts();
+                        if (this.currentPage > 1)
+                        {
+                            Dispatcher.BeginInvoke(
+                                DispatcherPriority.Normal,
+                                new Action(() =>
+                                    {
+                                        this.btnPrev.IsEnabled = true;
+                                    }));
+                        }
+
+                        this.prod = GetProducts(this.currentCat, this.currentPage);
 
                         DataLoaded(this, null);
                     }
@@ -113,15 +141,45 @@ namespace Client.Pages
         /// </summary>
         /// <param name="pageNumber"></param>
         /// <returns></returns>
-        private List<DataServiceClient.PRODUIT> GetProducts(int pageNumber = 1)
+        private List<DataServiceClient.PRODUIT> GetProducts(DataServiceClient.CATEGORIE cat = null, int pageNumber = 1)
         {
             DataServiceClient.DADEntities ent = new DataServiceClient.DADEntities(new Uri(Properties.Settings.Default.DataServiceClient));
 
-            var qry = (from p in ent.PRODUIT.Expand("IMAGE")
-                       select p)
-                       .Skip((pageNumber - 1) * this.productsPerPage).Take(this.productsPerPage);
-            
-            return qry.ToList<DataServiceClient.PRODUIT>();
+            if (cat != null)
+            {
+
+                var qry = (from c in ent.CATEGORIE.Expand("PRODUIT/IMAGE")
+                          where c.id == cat.id
+                          select c)
+                          .Single<DataServiceClient.CATEGORIE>();
+                
+                var page = (from DataServiceClient.PRODUIT p in qry.PRODUIT
+                            where p.disponible == true && p.supprime == false
+                            select p)
+                            .Skip((pageNumber - 1) * this.productsPerPage).Take(this.productsPerPage);
+
+                if (page.Count() == 0)
+                    this.canGoNext = false;
+                else
+                    this.canGoNext = true;
+
+                return page.ToList<DataServiceClient.PRODUIT>();
+            }
+            else
+            {
+                var qry = (from p in ent.PRODUIT.Expand("IMAGE")
+                           where p.disponible == true && p.supprime == false
+                           select p)
+                           .Skip((pageNumber - 1) * this.productsPerPage).Take(this.productsPerPage);
+
+
+                if (qry.Count() == 0)
+                    this.canGoNext = false;
+                else
+                    this.canGoNext = true;
+
+                return qry.ToList<DataServiceClient.PRODUIT>();
+            }
         }
 
         /// <summary>
@@ -149,17 +207,23 @@ namespace Client.Pages
 
             ThreadPool.QueueUserWorkItem((state) => 
                 {
-                    this.prod = GetProducts(++this.currentPage);
+                    this.prod = GetProducts(this.currentCat, ++this.currentPage);
 
                     Dispatcher.BeginInvoke(
                         DispatcherPriority.Normal,
                         new Action(() =>
                             {
-                                this.listProducts.ItemsSource = this.prod;
+                                if (canGoNext)
+                                    this.listProducts.ItemsSource = this.prod;
                                 if (this.currentPage > 1)
                                 {
                                     this.btnNext.IsEnabled = true;
                                     this.btnPrev.IsEnabled = true;
+                                }
+                                if (!canGoNext)
+                                {
+                                    currentPage--;
+                                    this.btnNext.IsEnabled = false;
                                 }
 
                                 MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
@@ -179,7 +243,7 @@ namespace Client.Pages
 
             ThreadPool.QueueUserWorkItem((state) =>
             {
-                this.prod = GetProducts(--this.currentPage);
+                this.prod = GetProducts(this.currentCat, --this.currentPage);
 
                 Dispatcher.BeginInvoke(
                     DispatcherPriority.Normal,
@@ -195,6 +259,56 @@ namespace Client.Pages
                         MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
                     }));
             });
+        }
+
+        /// <summary>
+        /// Lorsque la selection change
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataServiceClient.PRODUIT prod = (DataServiceClient.PRODUIT)this.listProducts.SelectedItem;
+            if (prod != null)
+                MainWindow.GetMe().menu.MeinFrame.Navigate(new SingleProduct(prod, this.currentPage, this.currentCat));
+        }
+
+        /// <summary>
+        /// Lorsqu'on choisit la catégorie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listCat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataServiceClient.CATEGORIE cat = (DataServiceClient.CATEGORIE)this.listCat.SelectedItem;
+            this.currentCat = cat;
+            this.currentPage = 1;
+
+            this.btnPrev.IsEnabled = false;
+            this.btnNext.IsEnabled = true;
+
+            MainWindow.GetMe().progressBar.Visibility = Visibility.Visible;
+
+            ThreadPool.QueueUserWorkItem((state) =>
+                {
+                    this.prod = GetProducts(
+                        cat,
+                        this.currentPage);
+
+                    DataLoaded(this, null);
+                });
+        }
+
+        /// <summary>
+        /// Lorsque la page est chargée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            MainWindow.GetMe().SetWindowTheme(WindowTheme.Black);
+            MainWindow.GetMe().menu.SetCurrentPage(MainWindow.GetMe().catalog);
         }
     }
 }

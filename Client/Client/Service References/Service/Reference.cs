@@ -67,6 +67,9 @@ namespace Client.Service {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Customer", CallbackContract=typeof(Client.Service.CustomerCallback))]
     public interface Customer {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Customer/DisconnectClient", ReplyAction="http://tempuri.org/Customer/DisconnectClientResponse")]
+        bool DisconnectClient(System.Guid sessionID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Customer/ActivateClient", ReplyAction="http://tempuri.org/Customer/ActivateClientResponse")]
         bool ActivateClient(System.Guid sessionID, System.Guid userID);
         
@@ -92,11 +95,11 @@ namespace Client.Service {
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Customer/OrderNotification")]
         void OrderNotification(System.Guid orderID);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Customer/Disconnected")]
-        void Disconnected();
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Customer/DisconnectedClient")]
+        void DisconnectedClient();
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Customer/ChatNotification")]
-        void ChatNotification(System.Guid correspondentID, string message, Client.Service.ChatState state);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Customer/ChatNotificationClient")]
+        void ChatNotificationClient(System.Guid correspondentID, string message, Client.Service.ChatState state);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -127,6 +130,10 @@ namespace Client.Service {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
+        public bool DisconnectClient(System.Guid sessionID) {
+            return base.Channel.DisconnectClient(sessionID);
+        }
+        
         public bool ActivateClient(System.Guid sessionID, System.Guid userID) {
             return base.Channel.ActivateClient(sessionID, userID);
         }
@@ -152,6 +159,9 @@ namespace Client.Service {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Administrator", CallbackContract=typeof(Client.Service.AdministratorCallback))]
     public interface Administrator {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Administrator/DisconnectAdministrateur", ReplyAction="http://tempuri.org/Administrator/DisconnectAdministrateurResponse")]
+        bool DisconnectAdministrateur(System.Guid sessionID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Administrator/Connect", ReplyAction="http://tempuri.org/Administrator/ConnectResponse")]
         System.Guid Connect();
         
@@ -164,6 +174,12 @@ namespace Client.Service {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Administrator/CategorieAdded")]
         void CategorieAdded(System.Guid categorieID);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Administrator/DisconnectedAdministrator")]
+        void DisconnectedAdministrator();
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Administrator/ChatNotificationAdministrator")]
+        void ChatNotificationAdministrator(System.Guid correspondentID, string message, Client.Service.ChatState state);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -194,6 +210,10 @@ namespace Client.Service {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
+        public bool DisconnectAdministrateur(System.Guid sessionID) {
+            return base.Channel.DisconnectAdministrateur(sessionID);
+        }
+        
         public System.Guid Connect() {
             return base.Channel.Connect();
         }
@@ -206,6 +226,9 @@ namespace Client.Service {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Service.Fournisseur", CallbackContract=typeof(Client.Service.FournisseurCallback))]
     public interface Fournisseur {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Fournisseur/DisconnectFournisseur", ReplyAction="http://tempuri.org/Fournisseur/DisconnectFournisseurResponse")]
+        bool DisconnectFournisseur(System.Guid sessionID);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Fournisseur/ActivateFournisseur", ReplyAction="http://tempuri.org/Fournisseur/ActivateFournisseurResponse")]
         bool ActivateFournisseur(System.Guid sessionID, System.Guid userID);
@@ -225,6 +248,12 @@ namespace Client.Service {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Fournisseur/ProductNotification")]
         void ProductNotification(System.Guid itemID, bool deleted);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Fournisseur/ChatNotificationFournisseur")]
+        void ChatNotificationFournisseur(System.Guid correspondentID, string message, Client.Service.ChatState state);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/Fournisseur/DisconnectedFournisseur")]
+        void DisconnectedFournisseur();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -253,6 +282,10 @@ namespace Client.Service {
         
         public FournisseurClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(callbackInstance, binding, remoteAddress) {
+        }
+        
+        public bool DisconnectFournisseur(System.Guid sessionID) {
+            return base.Channel.DisconnectFournisseur(sessionID);
         }
         
         public bool ActivateFournisseur(System.Guid sessionID, System.Guid userID) {

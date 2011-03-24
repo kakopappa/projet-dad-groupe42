@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8ff444eb-6980-4fdc-9ced-d9de9d68024c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://172.16.255.216:1337/ChangeAccountPassword.xamlx" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ChangeAccountPassword.wsdl" MetadataType="Wsdl" ID="c21676af-ccb4-401b-8a6b-7d2082b176d6" SourceId="1" SourceUrl="http://172.16.255.216:1337/ChangeAccountPassword.xamlx?wsdl" />
+    <MetadataFile FileName="ChangeAccountPassword.xsd" MetadataType="Schema" ID="9a98e41f-3045-4a04-9bdb-f89f88f331ef" SourceId="1" SourceUrl="http://172.16.255.216:1337/ChangeAccountPassword.xamlx?xsd=xsd2" />
+    <MetadataFile FileName="ChangeAccountPassword.disco" MetadataType="Disco" ID="0c815c06-6856-4be0-aeae-a308a093393c" SourceId="1" SourceUrl="http://172.16.255.216:1337/ChangeAccountPassword.xamlx?disco" />
+    <MetadataFile FileName="ChangeAccountPassword1.xsd" MetadataType="Schema" ID="93b3d140-0de8-48bd-8895-1e156496bd88" SourceId="1" SourceUrl="http://172.16.255.216:1337/ChangeAccountPassword.xamlx?xsd=xsd0" />
+    <MetadataFile FileName="ChangeAccountPassword2.xsd" MetadataType="Schema" ID="9161d3f9-7c0b-49ea-8366-d0a5ca81aad9" SourceId="1" SourceUrl="http://172.16.255.216:1337/ChangeAccountPassword.xamlx?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
