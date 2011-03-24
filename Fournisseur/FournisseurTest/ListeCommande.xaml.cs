@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using FournisseurTest.DataServiceClient;
 using System.Configuration;
 using System.Windows.Threading;
+using FournisseurTest.WorkflowGestionCommande;
 
 namespace FournisseurTest
 {
@@ -23,6 +24,7 @@ namespace FournisseurTest
     public partial class ListeCommande : Page
     {
         COMMANDE_FOURNISSEUR commande = new COMMANDE_FOURNISSEUR();
+
 
         public ListeCommande()
         {
@@ -80,11 +82,20 @@ namespace FournisseurTest
             }
             else{}
 
-            if (string.IsNullOrWhiteSpace(Exped))
+            if (string.IsNullOrWhiteSpace(Exped) && !string.IsNullOrWhiteSpace(Valid))
             {
                 this.checkBoxExpedierCommande.IsEnabled = true;
             }
             else{}
+
+            if (!string.IsNullOrWhiteSpace(Valid))
+            {
+                this.textBoxDureeExpedition.IsEnabled = true;
+            }
+            else
+            {
+                this.textBoxDureeExpedition.IsEnabled = false;
+            }
 
             //Requete pour afficher les details de la commande
             COMMANDE_FOURNISSEUR commandeFournisseurDetaille;
@@ -117,5 +128,59 @@ namespace FournisseurTest
             }
 
         }
+
+        public void GestionCommande(object sender, RoutedEventArgs args)
+        {
+            //Récupération des données
+            string dureeEstimee;
+            bool Validation, Expedition;
+            decimal dureeDecimal = decimal.Zero;
+            dureeEstimee = this.textBoxDureeExpedition.Text;
+            if (this.checkBoxValiderCommande.IsChecked == true)
+            {
+                Validation = true;
+            }
+            else
+            {
+                Validation = false;
+            }
+            if (this.checkBoxExpedierCommande.IsChecked == true)
+            {
+                Expedition = true;
+            }
+            else
+            {
+                Expedition = false;
+            }
+            //if (Decimal.TryParse(dureeEstimee.Replace(".".ToCharArray()[0], ",".ToCharArray()[0]), out dureeDecimal))
+            //{
+                //Appel du workflow
+                WorkflowGestionCommande.ServiceClient client = null;
+                try
+                {
+                    //On ajoute un produit à la BDD                
+                    client = new WorkflowGestionCommande.ServiceClient();
+                    if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
+                    {
+                        WorkflowGestionCommande.UpdateOrderState result = client.UpdateOrder(commande.id, OrderUpdateAction.VALIDATE, dureeDecimal);
+                        Console.WriteLine(result);
+                    }
+                }
+                catch (Exception er)
+                {
+                    Console.WriteLine(er);
+                }
+                finally
+                {
+                    if (client != null)
+                    {
+                        client.Close();
+                        client.ChannelFactory.Close();
+                    }
+                }
+                MainWindow.GetInstance().Frame.Navigate(new ListeCommande());
+            //}
+        }
+
     }
 }

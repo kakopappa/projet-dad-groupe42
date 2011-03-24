@@ -108,6 +108,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WorkflowGestionCommande\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\WorkflowModificationProduit\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -241,6 +246,19 @@
     <None Include="Service References\WorkflowCreationProduit\ProductCreation3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\WorkflowGestionCommande\FournisseurTest.WorkflowGestionCommande.UpdateOrderState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WorkflowGestionCommande\GestionCommande.wsdl" />
+    <None Include="Service References\WorkflowGestionCommande\GestionCommande.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowGestionCommande\GestionCommande1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowGestionCommande\GestionCommande2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\WorkflowModificationProduit\FournisseurTest.WorkflowModificationProduit.ModifyProductDataState.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -290,6 +308,7 @@
     <WCFMetadataStorage Include="Service References\WorkflowConnection\" />
     <WCFMetadataStorage Include="Service References\WorkflowCreationCategorie\" />
     <WCFMetadataStorage Include="Service References\WorkflowCreationProduit\" />
+    <WCFMetadataStorage Include="Service References\WorkflowGestionCommande\" />
     <WCFMetadataStorage Include="Service References\WorkflowModificationProduit\" />
     <WCFMetadataStorage Include="Service References\WorkflowSuppressionProduit\" />
   </ItemGroup>
@@ -379,6 +398,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WorkflowCreationCategorie\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowGestionCommande\GestionCommande.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowGestionCommande\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowGestionCommande\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowGestionCommande\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

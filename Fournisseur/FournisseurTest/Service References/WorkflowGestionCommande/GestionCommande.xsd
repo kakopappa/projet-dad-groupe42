@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WorkflowServices" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WorkflowServices" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="OrderUpdateAction">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="VALIDATE" />
+      <xs:enumeration value="SEND" />
+      <xs:enumeration value="RECEIVE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="OrderUpdateAction" nillable="true" type="tns:OrderUpdateAction" />
+  <xs:simpleType name="UpdateOrderState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SERVICE_ERROR" />
+      <xs:enumeration value="DATA_ERROR" />
+      <xs:enumeration value="EXIST" />
+      <xs:enumeration value="NOT_EXIST" />
+      <xs:enumeration value="NOT_EXECUTED" />
+      <xs:enumeration value="EXECUTED" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="UpdateOrderState" nillable="true" type="tns:UpdateOrderState" />
+</xs:schema>

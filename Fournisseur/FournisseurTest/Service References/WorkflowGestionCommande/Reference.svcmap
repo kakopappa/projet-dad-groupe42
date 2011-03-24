@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="9adc5a6a-b3a5-4ab1-b5c5-0a8f1da7fd9b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://172.16.255.216:1337/GestionCommande.xamlx" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GestionCommande.xsd" MetadataType="Schema" ID="8b5d56fe-42d3-41a5-840f-6165a988e611" SourceId="1" SourceUrl="http://172.16.255.216:1337/GestionCommande.xamlx?xsd=xsd2" />
+    <MetadataFile FileName="GestionCommande.disco" MetadataType="Disco" ID="36539e5d-7a5d-48e6-9e72-c148cf81816f" SourceId="1" SourceUrl="http://172.16.255.216:1337/GestionCommande.xamlx?disco" />
+    <MetadataFile FileName="GestionCommande.wsdl" MetadataType="Wsdl" ID="df9546c3-86f8-4b1e-add8-a114d86ffda7" SourceId="1" SourceUrl="http://172.16.255.216:1337/GestionCommande.xamlx?wsdl" />
+    <MetadataFile FileName="GestionCommande1.xsd" MetadataType="Schema" ID="c9853532-606d-4e92-830b-3ea488765096" SourceId="1" SourceUrl="http://172.16.255.216:1337/GestionCommande.xamlx?xsd=xsd1" />
+    <MetadataFile FileName="GestionCommande2.xsd" MetadataType="Schema" ID="c622c64b-bb4e-40c8-be84-d252e8dadab7" SourceId="1" SourceUrl="http://172.16.255.216:1337/GestionCommande.xamlx?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
