@@ -45,7 +45,7 @@ namespace InterfaceMagasin.CategorieSuppression {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/DeleteCategorie", ReplyAction="http://tempuri.org/IService/DeleteCategorieResponse")]
         [return: System.ServiceModel.MessageParameterAttribute(Name="State")]
-        InterfaceMagasin.CategorieSuppression.ModifyCategorieDataState DeleteCategorie(System.Guid ParentGuid, string Name, bool Disponible, System.Guid CategorieID);
+        InterfaceMagasin.CategorieSuppression.ModifyCategorieDataState DeleteCategorie(System.Guid CategorieID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -79,8 +79,8 @@ namespace InterfaceMagasin.CategorieSuppression {
             return base.Channel.SessionIDVerification(SessionID);
         }
         
-        public InterfaceMagasin.CategorieSuppression.ModifyCategorieDataState DeleteCategorie(System.Guid ParentGuid, string Name, bool Disponible, System.Guid CategorieID) {
-            return base.Channel.DeleteCategorie(ParentGuid, Name, Disponible, CategorieID);
+        public InterfaceMagasin.CategorieSuppression.ModifyCategorieDataState DeleteCategorie(System.Guid CategorieID) {
+            return base.Channel.DeleteCategorie(CategorieID);
         }
     }
 }
