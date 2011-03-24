@@ -8,9 +8,12 @@ using System.Text;
 
 namespace SessionService
 {
-    [ServiceContract(Name = "Client", SessionMode = SessionMode.Required, CallbackContract = typeof(IClient))]
+    [ServiceContract(Name = "Customer", SessionMode = SessionMode.Allowed, CallbackContract = typeof(IClient))]
     public interface IServiceClient
     {
+        [OperationContract]
+        bool DisconnectClient(Guid sessionID);
+
         [OperationContract]
         bool ActivateClient(Guid sessionID, Guid userID);
 
@@ -27,9 +30,12 @@ namespace SessionService
         bool ChatUpdateClient(Guid sessionID, Guid correspondentID, ChatState state, string message);
     }
 
-    [ServiceContract(Name = "Fournisseur", SessionMode = SessionMode.Required, CallbackContract = typeof(IFournisseur))]
+    [ServiceContract(Name = "Fournisseur", SessionMode = SessionMode.Allowed, CallbackContract = typeof(IFournisseur))]
     public interface IServiceFournisseur
     {
+        [OperationContract]
+        bool DisconnectFournisseur(Guid sessionID);
+
         [OperationContract]
         bool ActivateFournisseur(Guid sessionID, Guid userID);
 
@@ -37,9 +43,12 @@ namespace SessionService
         bool ChatUpdateFournisseur(Guid sessionID, Guid correspondentID, ChatState state, string message);
     }
 
-    [ServiceContract(Name = "Administrator", SessionMode = SessionMode.Required, CallbackContract = typeof(IAdministrator))]
+    [ServiceContract(Name = "Administrator", SessionMode = SessionMode.Allowed, CallbackContract = typeof(IAdministrator))]
     public interface IServiceAdministrator
     {
+        [OperationContract]
+        bool DisconnectAdministrateur(Guid sessionID);
+
         [OperationContract]
         Guid Connect();
 
@@ -53,6 +62,9 @@ namespace SessionService
     {
         [OperationContract]
         Guid CreateSession(Guid userID, UserType type);
+
+        [OperationContract]
+        CartEntrie[] GetCart(Guid sessionID);
         
         [OperationContract]
         Guid GetUserID(Guid sessionID);
@@ -64,43 +76,55 @@ namespace SessionService
         void ChangeItemAvailability(Guid itemID, int quantity, bool available, bool exist);
 
         [OperationContract]
+        void AdminProductModification(Guid itemID, Guid fournisseurID, bool deleted);
+
+        [OperationContract]
         bool RemoveCartContent(Guid sessionID);
     }
 
-    public interface IClient : IUser
+    public interface IClient
     {
         [OperationContract(IsOneWay = true)]
         void CartNotification(Guid itemID, int newQuantity, ItemState state);
 
         [OperationContract(IsOneWay = true)]
         void OrderNotification(Guid orderID);
+
+        [OperationContract(IsOneWay = true)]
+        void DisconnectedClient();
+
+        [OperationContract(IsOneWay = true)]
+        void ChatNotificationClient(Guid correspondentID, string message, ChatState state);
     }
 
-    public interface IAdministrator : IUser
+    public interface IAdministrator
     {
         [OperationContract(IsOneWay = true)]
         void CategorieAdded(Guid categorieID);
+
+        [OperationContract(IsOneWay = true)]
+        void DisconnectedAdministrator();
+
+        [OperationContract(IsOneWay = true)]
+        void ChatNotificationAdministrator(Guid correspondentID, string message, ChatState state);
     }
 
-    public interface IFournisseur : IUser
+    public interface IFournisseur
     {
         [OperationContract(IsOneWay = true)]
         void NewOrder(Guid orderID);
 
         [OperationContract(IsOneWay = true)]
-        void CategorieNotification(Guid clientID, string message, ChatState state);
+        void CategorieNotification(Guid categorieID, bool deleted);
 
         [OperationContract(IsOneWay = true)]
-        void ProductNotification(Guid clientID, string message, ChatState state);
-    }
-
-    public interface IUser
-    {
-        [OperationContract(IsOneWay = true)]
-        void Disconnected();
+        void ProductNotification(Guid itemID, bool deleted);
 
         [OperationContract(IsOneWay = true)]
-        void ChatNotification(Guid correspondentID, string message, ChatState state);
+        void ChatNotificationFournisseur(Guid correspondentID, string message, ChatState state);
+
+        [OperationContract(IsOneWay = true)]
+        void DisconnectedFournisseur();
     }
 
     public enum UserType
