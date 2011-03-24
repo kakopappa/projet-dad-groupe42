@@ -58,7 +58,19 @@
         	<Button Name="pseudo" Click="pseudo_Click" Style="{StaticResource RawButtonStyle}" Foreground="{DynamicResource ThemeWhiteColorBrush}" Content="" Margin="0,5.364,0,15.127" Background="{x:Null}" HorizontalAlignment="Right" FontFamily="Segoe WP Semibold" d:LayoutOverrides="Height" Visibility="Hidden" />
             <Button Name="signup" Click="signup_Click"  Style="{StaticResource RawButtonStyle}" Foreground="{DynamicResource ThemeWhiteColorBrush}" Content="S'ENREGISTRER" Background="{x:Null}" HorizontalAlignment="Right" FontFamily="Segoe WP" FontSize="10" VerticalAlignment="Bottom" Margin="0,0,0,6.5"/>
         	<Button Name="logout" Click="logout_Click" Style="{StaticResource RawButtonStyle}" Foreground="{DynamicResource ThemeWhiteColorBrush}" Content="DECONNEXION" Background="{x:Null}" HorizontalAlignment="Right" FontFamily="Segoe WP" FontSize="10" VerticalAlignment="Bottom" Margin="0,0,0,6.5" Visibility="Hidden"/>
-        	<Button Name="cart" Click="cart_Click" Style="{StaticResource RawButtonOpaqueStyle}" VerticalContentAlignment="Center" Content="" Grid.Column="1" Background="{DynamicResource BgColorBrush}" Height="41" VerticalAlignment="Bottom" Width="40" HorizontalAlignment="Right" />
+        	<Button Name="cart" Click="cart_Click" Style="{StaticResource RawButtonOpaqueStyle}" VerticalContentAlignment="Center" Grid.Column="1" Background="{DynamicResource BgColorBrush}" Height="41" VerticalAlignment="Bottom" Width="40" HorizontalAlignment="Right">
+        		<Grid>
+					<Path Data="M8.8300001,4.415 C8.8300001,6.8533372 6.8533372,8.8300001 4.415,8.8300001 C1.9766628,8.8300001 0,6.8533372 0,4.415 C0,1.9766628 1.9766628,0 4.415,0 C6.8533372,0 8.8300001,1.9766628 8.8300001,4.415 z M27.497,4.415 C27.497,6.8533372 25.520337,8.8300001 23.082,8.8300001 C20.643663,8.8300001 18.667,6.8533372 18.667,4.415 C18.667,1.9766628 20.643663,0 23.082,0 C25.520337,0 27.497,1.9766628 27.497,4.415 z" Fill="White" Margin="13.2,0,10.322,10.149" Stretch="Fill" StrokeThickness="3" Height="4.881" VerticalAlignment="Bottom" d:LayoutOverrides="GridBox" Opacity="0.7"/>
+        			<Path Data="M1.5,1.5 L9.6046512,3.8412698 19.616279,31 42.5,31 M15.500995,21.333 L38.60107,21.333 44.334008,7.9989998" Fill="{x:Null}" Margin="4.309,8,9.308,11.897" Stretch="Fill" Stroke="White" StrokeThickness="2.5" d:LayoutOverrides="GridBox" Opacity="0.7"/>
+        			<Path Data="M2.7579969,5.5830002 L19.923991,5.5830002 M0.75000002,0.75000018 L22.590984,0.75000018" Margin="14.096,15.234,13.564,0" Stretch="Fill" Stroke="White" Height="3.501" VerticalAlignment="Top" d:LayoutOverrides="GridBox" Opacity="0.7"/>
+        			<Rectangle Height="14" Margin="0,0,0,1.282" StrokeThickness="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="17.042">
+        				<Rectangle.Fill>
+        					<SolidColorBrush Color="{DynamicResource BgColor}"/>
+        				</Rectangle.Fill>
+        			</Rectangle>
+        			<TextBlock x:Name="lblItems" TextAlignment="Right" Margin="19.402,0,2.5,1.282" TextWrapping="Wrap" VerticalAlignment="Bottom" FontFamily="Segoe WP Semibold" FontSize="13.333" Foreground="White" Height="18.483" Text="0" />
+				</Grid>
+			</Button>
         </Grid>
             
     </Grid>
