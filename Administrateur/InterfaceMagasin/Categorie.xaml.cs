@@ -43,7 +43,7 @@ namespace InterfaceMagasin
                 entities.IgnoreResourceNotFoundException = true;
 
                 //Par défaut, on sélectionne les categories valides
-                var query = from c in entities.CATEGORIE
+                var query = from c in entities.CATEGORIE.Expand("CATEGORIE2/CATEGORIE1")
                             where c.valide
                             select c;
 
@@ -51,7 +51,7 @@ namespace InterfaceMagasin
                 maListCategorie = query.ToList<CATEGORIE>();
 
                 //Par défaut, on sélectionne les categories valides
-                var queryAttente = from cat in entities.CATEGORIE
+                var queryAttente = from cat in entities.CATEGORIE.Expand("CATEGORIE2/CATEGORIE1")
                             where !cat.valide
                             select cat;
 
@@ -73,6 +73,7 @@ namespace InterfaceMagasin
                 //Boutons inactifs
                 this.ButtonSupprimer.IsEnabled = false;
                 this.ButtonModif.IsEnabled = false;
+                this.LabelErreur.Visibility = Visibility.Hidden;
 
             }
             catch (Exception e)
@@ -94,14 +95,14 @@ namespace InterfaceMagasin
                 entities.IgnoreResourceNotFoundException = true;
 
                 //Par défaut, on sélectionne tout
-                var query = from c in entities.CATEGORIE.Expand("CATEGORIE2")
+                var query = from c in entities.CATEGORIE.Expand("CATEGORIE2/CATEGORIE1")
                             where c.valide
                             select c;
 
                 //Si le champ selectionner est rempli
                 if (selection != "")
                 {
-                    query = from c in entities.CATEGORIE.Expand("CATEGORIE2")
+                    query = from c in entities.CATEGORIE.Expand("CATEGORIE2/CATEGORIE1")
                             where c.valide && c.nom == selection
                             select c;
                 }
@@ -114,6 +115,7 @@ namespace InterfaceMagasin
                 this.TextNom.Text = null;
                 this.ComboCategorie.SelectedItem = null;
                 this.CheckValide.IsChecked = false;
+                this.LabelErreur.Visibility = Visibility.Hidden;
 
 
             }
@@ -145,6 +147,7 @@ namespace InterfaceMagasin
                 this.ButtonNouveau.IsEnabled = true;
                 this.ButtonSupprimer.IsEnabled = true;
                 this.ButtonModif.IsEnabled = true;
+                this.LabelErreur.Visibility = Visibility.Hidden;
             }
         }
 
@@ -172,6 +175,7 @@ namespace InterfaceMagasin
                 this.ButtonNouveau.IsEnabled = true;
                 this.ButtonSupprimer.IsEnabled = true;
                 this.ButtonModif.IsEnabled = true;
+                this.LabelErreur.Visibility = Visibility.Hidden;
 
             }
 
@@ -187,6 +191,21 @@ namespace InterfaceMagasin
             this.TextNom.Text = "";
             this.ComboCategorie.SelectedItem = null;
             this.CheckValide.IsChecked = false;
+            this.ButtonCreer.IsEnabled = true;
+            this.ButtonModif.IsEnabled = false;
+            this.ButtonSupprimer.IsEnabled = false;
+            this.LabelErreur.Visibility = Visibility.Hidden;
+        }
+
+        //////////////////////////////////////
+        /////Event pour le bouton Vide   /////
+        //////////////////////////////////////
+        private void click_Vide(object sender, RoutedEventArgs args)
+        {
+
+            this.ComboCategorie.SelectedItem = null;
+            this.LabelErreur.Visibility = Visibility.Hidden;
+
         }
 
         ////////////////////////////////////
@@ -194,6 +213,8 @@ namespace InterfaceMagasin
         ////////////////////////////////////
         private void click_Creer(object sender, RoutedEventArgs args)
         {
+            if (this.TextNom.Text != "")
+            {
                 CategorieCreation.ServiceClient client = null;
 
                 try
@@ -220,12 +241,26 @@ namespace InterfaceMagasin
 
                     if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
                     {
-                        CategorieCreation.CreateCategorieState state = client.CreationCategorie(catParent.id, name, valide);
-
-                        //Si ce n'est pas exécuté
-                        if (state != CategorieCreation.CreateCategorieState.EXECUTED)
+                        if (catParent == null)
                         {
+                            CategorieCreation.CreateCategorieState state = client.CreationCategorie(Guid.Empty, name, valide);
 
+                            //Si ce n'est pas exécuté
+                            if (state != CategorieCreation.CreateCategorieState.EXECUTED)
+                            {
+
+                            }
+                        }
+                        else
+                        {
+                            Guid IDparent = catParent.id;
+                            CategorieCreation.CreateCategorieState state = client.CreationCategorie(IDparent, name, valide);
+
+                            //Si ce n'est pas exécuté
+                            if (state != CategorieCreation.CreateCategorieState.EXECUTED)
+                            {
+
+                            }
                         }
                     }
                 }
@@ -239,7 +274,11 @@ namespace InterfaceMagasin
                 this.TextNom.Text = null;
                 this.ComboCategorie.SelectedItem = null;
                 this.CheckValide.IsChecked = false;
-
+            }
+            else
+            {
+                this.LabelErreur.Visibility = Visibility.Visible;
+            }
         }
             
 
@@ -249,57 +288,83 @@ namespace InterfaceMagasin
         ///////////////////////////////////////
         private void click_Modifier(object sender, RoutedEventArgs args)
         {
-            if (this.ListCategories.SelectedItem != null || this.ListEnAttente.SelectedItem != null)
+            if (this.TextNom.Text != "")
             {
 
-                CategorieModification.ServiceClient client = null;
-
-                try
+                if (this.ListCategories.SelectedItem != null || this.ListEnAttente.SelectedItem != null)
                 {
-                    DADEntities entitiesModif = new DADEntities(new Uri(Properties.Settings.Default.DataService));
-                    entitiesModif.IgnoreResourceNotFoundException = true;
 
-                    //Manip de modification
-                    client = new CategorieModification.ServiceClient();
 
-                    //On récupère les infos;
-                    CATEGORIE catParent = (CATEGORIE)this.ComboCategorie.SelectedItem;
-                    string name = this.TextNom.Text;
-                    bool valide;
-                    Guid ID = categorie.id;
+                    CategorieModification.ServiceClient client = null;
 
-                    if(this.CheckValide.IsChecked == true)
+                    try
                     {
-                        valide = true;
-                    }
-                    else
-                    {
-                        valide = false;
-                    }
+                        DADEntities entitiesModif = new DADEntities(new Uri(Properties.Settings.Default.DataService));
+                        entitiesModif.IgnoreResourceNotFoundException = true;
 
-                    if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
-                    {
-                        CategorieModification.ModifyCategorieDataState state = client.ModificationCategorie(catParent.id,name,valide,ID);
+                        //Manip de modification
+                        client = new CategorieModification.ServiceClient();
 
-                        //Si ce n'est pas exécuté
-                        if (state != CategorieModification.ModifyCategorieDataState.EXECUTED)
+                        //On récupère les infos;
+                        CATEGORIE catParent = (CATEGORIE)this.ComboCategorie.SelectedItem;
+                        string name = this.TextNom.Text;
+                        bool valide;
+                        Guid ID = categorie.id;
+
+                        if (this.CheckValide.IsChecked == true)
+                        {
+                            valide = true;
+                        }
+                        else
+                        {
+                            valide = false;
+                        }
+
+                        if (client.SessionIDVerification(MainWindow.GetInstance().SessionId))
                         {
 
+                            if (catParent == null)
+                            {
+                                CategorieModification.ModifyCategorieDataState state = client.ModificationCategorie(Guid.Empty, name, valide, ID);
+
+                                //Si ce n'est pas exécuté
+                                if (state != CategorieModification.ModifyCategorieDataState.EXECUTED)
+                                {
+
+                                }
+                            }
+                            else
+                            {
+                                Guid IDparent = catParent.id;
+                                CategorieModification.ModifyCategorieDataState state = client.ModificationCategorie(IDparent, name, valide, ID);
+
+                                //Si ce n'est pas exécuté
+                                if (state != CategorieModification.ModifyCategorieDataState.EXECUTED)
+                                {
+
+                                }
+                            }
                         }
                     }
+
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+
                 }
 
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
+                initiateFormulaire();
+                this.TextNom.Text = null;
+                this.ComboCategorie.SelectedItem = null;
+                this.CheckValide.IsChecked = false;
 
             }
 
-            initiateFormulaire();
-            this.TextNom.Text = null;
-            this.ComboCategorie.SelectedItem = null;
-            this.CheckValide.IsChecked = false;
+            else
+            {
+                this.LabelErreur.Visibility = Visibility.Visible;
+            }
         }
 
 
@@ -346,6 +411,7 @@ namespace InterfaceMagasin
             this.TextNom.Text = null;
             this.ComboCategorie.SelectedItem = null;
             this.CheckValide.IsChecked = false;
+            this.LabelErreur.Visibility = Visibility.Hidden;
         }
 
     }
