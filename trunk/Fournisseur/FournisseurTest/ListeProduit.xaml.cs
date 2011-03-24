@@ -167,7 +167,7 @@ namespace FournisseurTest
                 }
                 MainWindow.GetInstance().Frame.Navigate(new ListeProduit());
             }
-            Console.WriteLine(nom + " " + reference + " " + marque + " " + prix + " " + stock + " " + description + " " + url + " " + disponibilite + " ");
+            //Console.WriteLine(nom + " " + reference + " " + marque + " " + prix + " " + stock + " " + description + " " + url + " " + disponibilite + " ");
         }
 
         public void LoadCreateCat(object sender, RoutedEventArgs args)

@@ -55,7 +55,7 @@
             </ListView>
 
         </Grid>
-        <Button FontFamily="Georgia" Content="Modifier suivi" Height="23" HorizontalAlignment="Left" Margin="558,313,0,0" Name="buttonSuiviCommande" VerticalAlignment="Top" Width="107" />
+        <Button FontFamily="Georgia" Content="Modifier suivi" Height="23" HorizontalAlignment="Left" Margin="558,313,0,0" Name="buttonSuiviCommande" VerticalAlignment="Top" Width="107" Click="GestionCommande"/>
         <Label FontFamily="Georgia" Content="Date de génération :" Height="28" HorizontalAlignment="Left" Margin="467,15,0,0" Name="labelDateGeneration" VerticalAlignment="Top" />
         <Label FontFamily="Georgia" Content="Date de validation :" Height="28" HorizontalAlignment="Left" Margin="467,52,0,0" Name="labelDateValidation" VerticalAlignment="Top" />
         <Label FontFamily="Georgia" Content="Date d'expédition :" Height="28" HorizontalAlignment="Left" Margin="467,112,0,0" Name="labelDateExpedition" VerticalAlignment="Top" />
@@ -63,7 +63,7 @@
         <Label FontFamily="Georgia" Content="Durée d'expédition estimée :" Height="28" HorizontalAlignment="Left" Margin="467,224,0,0" Name="labelDureeExpedition" VerticalAlignment="Top" />
         <TextBox IsEnabled="False" FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_validation, StringFormat='dd/MM/yyyy'}" HorizontalAlignment="Left" Margin="639,53,0,0" Name="textBoxDateValidation" VerticalAlignment="Top" Width="120" />
         <TextBox IsEnabled="False" FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_expedition, StringFormat='dd/MM/yyyy'}" Height="23" HorizontalAlignment="Left" Margin="639,116,0,0" Name="textBoxDateExpedition" VerticalAlignment="Top" Width="120" />
-        <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.duree_expedition_estimee}" Height="23" HorizontalAlignment="Left" Margin="639,226,0,0" Name="textBoxDureeExpedition" VerticalAlignment="Top" Width="120" />
+        <TextBox IsEnabled="False" FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.duree_expedition_estimee}" Height="23" HorizontalAlignment="Left" Margin="639,226,0,0" Name="textBoxDureeExpedition" VerticalAlignment="Top" Width="120" />
         <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_generation, StringFormat='dd/MM/yyyy'}" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="639,17,0,0" Name="textBoxDateGeneration" VerticalAlignment="Top" Width="120" />
         <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_reception, StringFormat='dd/MM/yyyy'}" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="639,184,0,0" Name="textBoxDateReception" VerticalAlignment="Top" Width="120" />
         <Label FontFamily="Georgia" Content="Prix Total : " Height="28" HorizontalAlignment="Left" Margin="468,267,0,0" Name="label1" VerticalAlignment="Top" />
