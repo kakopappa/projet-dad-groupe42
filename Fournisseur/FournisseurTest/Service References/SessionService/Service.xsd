@@ -285,38 +285,52 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetUserID">
+  <xs:element name="GetCart">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q40="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sessionID" type="q40:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetUserIDResponse">
+  <xs:element name="GetCartResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q41="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="GetUserIDResult" type="q41:guid" />
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/SessionService" minOccurs="0" name="GetCartResult" nillable="true" type="q41:ArrayOfCartEntrie" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetSessionType">
+  <xs:element name="GetUserID">
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q42="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sessionID" type="q42:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetUserIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="GetUserIDResult" type="q43:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSessionType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q44="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sessionID" type="q44:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetSessionTypeResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/SessionService" minOccurs="0" name="GetSessionTypeResult" type="q43:UserType" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/SessionService" minOccurs="0" name="GetSessionTypeResult" type="q45:UserType" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ChangeItemAvailability">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q44="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="itemID" type="q44:guid" />
+        <xs:element xmlns:q46="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="itemID" type="q46:guid" />
         <xs:element minOccurs="0" name="quantity" type="xs:int" />
         <xs:element minOccurs="0" name="available" type="xs:boolean" />
         <xs:element minOccurs="0" name="exist" type="xs:boolean" />
@@ -331,8 +345,8 @@
   <xs:element name="AdminProductModification">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q45="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="itemID" type="q45:guid" />
-        <xs:element xmlns:q46="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="fournisseurID" type="q46:guid" />
+        <xs:element xmlns:q47="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="itemID" type="q47:guid" />
+        <xs:element xmlns:q48="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="fournisseurID" type="q48:guid" />
         <xs:element minOccurs="0" name="deleted" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
@@ -345,7 +359,7 @@
   <xs:element name="RemoveCartContent">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q47="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sessionID" type="q47:guid" />
+        <xs:element xmlns:q49="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="sessionID" type="q49:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

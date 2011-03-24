@@ -185,6 +185,9 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="Service References\DataServiceClient\service.edmx" />
+    <None Include="Service References\SessionService\FournisseurTest.SessionService.CartEntrie.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\SessionService\FournisseurTest.SessionService.ItemState.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
