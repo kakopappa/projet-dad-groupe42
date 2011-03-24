@@ -27,10 +27,11 @@
         <Button x:Name="ButtonModif" Content="Modifier" HorizontalAlignment="Right" Height="23" Margin="0,0,127,53" VerticalAlignment="Bottom" Width="72" Click="click_Modifier"/>
         <TextBox x:Name="TextSelection" Height="23" Margin="12,0,0,18.5" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="179"/>
         <Button x:Name="ButtonSupprimer" Content="Supprimer" HorizontalAlignment="Right" Height="23" Margin="0,0,38,53" VerticalAlignment="Bottom" Width="72" Click="click_Supprimer"/>        
-        <CheckBox x:Name="CheckValide" Content="Valider" HorizontalAlignment="Right" Margin="0,161,68,157" Width="135"/>
+        <CheckBox x:Name="CheckValide" Content="Valider" HorizontalAlignment="Right" Margin="0,161,68,166" Width="135"/>
         <ComboBox x:Name="ComboCategorie"  HorizontalAlignment="Right" Height="23" Margin="0,134,38,0" VerticalAlignment="Top" Width="165" ItemTemplate="{StaticResource CategorieTemplate}"/>
         <Button Content="Rechercher" Height="23" Margin="195,0,251,18.5"  VerticalAlignment="Bottom" Click="btnSelectionner_Click"/>
         <Button x:Name="ButtonNouveau" Content="Nouveau" HorizontalAlignment="Left" Height="23" Margin="326,0,0,91" VerticalAlignment="Bottom" Width="72" Click="click_Nouveau" />
-        <Button x:Name="ButtonVide" Content="X" HorizontalAlignment="Right" Height="23" Margin="0,134,7.444,0" VerticalAlignment="Top" Width="25.556"/>
+        <Button x:Name="ButtonVide" Content="X" HorizontalAlignment="Right" Height="23" Margin="0,134,7.444,0" VerticalAlignment="Top" Width="25.556" Click="click_Vide"/>
+        <Label x:Name="LabelErreur" Content="Erreur ! Il manque le nom !" HorizontalAlignment="Right" Height="27" Margin="0,0,34,135" VerticalAlignment="Bottom" Width="169" Background="#00000000" FontWeight="Bold" Foreground="Red"/>
     </Grid>
 </Page>
