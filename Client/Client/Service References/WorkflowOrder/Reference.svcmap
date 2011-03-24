@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a3574b88-692a-4e60-a62c-43ea11719e7d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://172.16.255.216:1337/OrderValidation.xamlx" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="OrderValidation.wsdl" MetadataType="Wsdl" ID="fbf8a538-750b-457f-95c7-ccf8c02a41df" SourceId="1" SourceUrl="http://172.16.255.216:1337/OrderValidation.xamlx?wsdl" />
+    <MetadataFile FileName="OrderValidation.xsd" MetadataType="Schema" ID="2ba42608-0c6b-4e11-b6a3-41f42fc113fa" SourceId="1" SourceUrl="http://172.16.255.216:1337/OrderValidation.xamlx?xsd=xsd0" />
+    <MetadataFile FileName="OrderValidation1.xsd" MetadataType="Schema" ID="94961d57-8be9-428f-ba62-a5fd1c775790" SourceId="1" SourceUrl="http://172.16.255.216:1337/OrderValidation.xamlx?xsd=xsd1" />
+    <MetadataFile FileName="OrderValidation.disco" MetadataType="Disco" ID="6114fa8e-4dc9-456d-a0c2-921b60d02053" SourceId="1" SourceUrl="http://172.16.255.216:1337/OrderValidation.xamlx?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

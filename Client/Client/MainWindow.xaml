@@ -23,7 +23,7 @@
     	<local:ZuneMenu x:Name="menu" Margin="6,36,0,0">
             <local:ZuneMenuElement x:Name="home" Foreground="White" Content="accueil" NavigateTo="Client.Pages.Home" />
             <local:ZuneMenuElement x:Name="catalog" Foreground="White" Content="catalogue" NavigateTo="Client.Pages.Catalog" />
-            <local:ZuneMenuElement x:Name="commandes" Visibility="Hidden" Foreground="White" Content="commandes" NavigateTo="Client.Pages.Commands" />
+            <local:ZuneMenuElement x:Name="commandes" Visibility="Hidden" Foreground="White" Content="commandes" NavigateTo="Client.Pages.CommandeClient" />
         </local:ZuneMenu>
         <ChooseForMe:MetroTitleChrome x:Name="chrome" Foreground="White" WindowTitle="APPLICATION" Margin="-0.5,1,0,0" VerticalAlignment="Top" d:LayoutOverrides="Width, Height"/>
     	<Rectangle PreviewMouseDown="Resize" MouseMove="DisplayResizeCursor" x:Name="bottom" Fill="Transparent" Height="2" Margin="5,0" VerticalAlignment="Bottom"/>
