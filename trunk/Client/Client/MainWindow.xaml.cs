@@ -69,6 +69,7 @@ namespace Client
             MainWindow.instance = this;
             this.Connection = new Connection();
             this.Cart = new Core.Cart();
+            this.Cart.IsConnected = false;
 
             this.MeinService = new CustomerClient(new InstanceContext(this), "WSDualHttpBinding_Customer");
 
@@ -177,6 +178,14 @@ namespace Client
                     try
                     {
                         bool activateProperlyDone = this.MeinService.ActivateClient(this.SessionId, this.Client.id);
+                        this.Cart.IsConnected = true;
+
+                        foreach (Client.Core.Cart.CartItem item in Cart.CartItems)
+                        {
+                            this.MeinService.AddItemInCart(this.SessionId,
+                                item.Product.id,
+                                item.Amount);
+                        }
                     }
                     catch
                     {
@@ -397,17 +406,17 @@ namespace Client
 
         public void CartNotification(Guid itemID, int newQuantity, Client.Service.ItemState state)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void OrderNotification(Guid orderID)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void ChatNotification(Guid correspondentID, string message, Client.Service.ChatState state)
         {
-            throw new NotImplementedException();
+            
         }
 
         #endregion
@@ -417,6 +426,8 @@ namespace Client
 
         public void DisconnectedClient()
         {
+            this.Cart.IsConnected = false;
+
             Dispatcher.BeginInvoke(
                 DispatcherPriority.Normal,
                 new Action(() =>
@@ -430,7 +441,7 @@ namespace Client
 
         public void ChatNotificationClient(Guid correspondentID, string message, ChatState state)
         {
-            throw new NotImplementedException();
+            
         }
 
         #endregion
