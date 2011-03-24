@@ -58,32 +58,32 @@
         <Button FontFamily="Georgia" Content="Modifier suivi" Height="23" HorizontalAlignment="Left" Margin="558,313,0,0" Name="buttonSuiviCommande" VerticalAlignment="Top" Width="107" Click="GestionCommande"/>
         <Label FontFamily="Georgia" Content="Date de génération :" Height="28" HorizontalAlignment="Left" Margin="467,15,0,0" Name="labelDateGeneration" VerticalAlignment="Top" />
         <Label FontFamily="Georgia" Content="Date de validation :" Height="28" HorizontalAlignment="Left" Margin="467,52,0,0" Name="labelDateValidation" VerticalAlignment="Top" />
-        <Label FontFamily="Georgia" Content="Date d'expédition :" Height="28" HorizontalAlignment="Left" Margin="467,112,0,0" Name="labelDateExpedition" VerticalAlignment="Top" />
-        <Label FontFamily="Georgia" Content="Date de réception :" Height="28" HorizontalAlignment="Left" Margin="468,182,0,0" Name="labelDateReception" VerticalAlignment="Top" />
-        <Label FontFamily="Georgia" Content="Durée d'expédition estimée :" Height="28" HorizontalAlignment="Left" Margin="467,224,0,0" Name="labelDureeExpedition" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Date d'expédition :" Height="28" HorizontalAlignment="Left" Margin="467,140,0,0" Name="labelDateExpedition" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Date de réception :" Height="28" HorizontalAlignment="Left" Margin="467,226,0,0" Name="labelDateReception" VerticalAlignment="Top" />
         <TextBox IsEnabled="False" FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_validation, StringFormat='dd/MM/yyyy'}" HorizontalAlignment="Left" Margin="639,53,0,0" Name="textBoxDateValidation" VerticalAlignment="Top" Width="120" />
-        <TextBox IsEnabled="False" FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_expedition, StringFormat='dd/MM/yyyy'}" Height="23" HorizontalAlignment="Left" Margin="639,116,0,0" Name="textBoxDateExpedition" VerticalAlignment="Top" Width="120" />
-        <TextBox IsEnabled="False" FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.duree_expedition_estimee}" Height="23" HorizontalAlignment="Left" Margin="639,226,0,0" Name="textBoxDureeExpedition" VerticalAlignment="Top" Width="120" />
+        <TextBox IsEnabled="False" FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_expedition, StringFormat='dd/MM/yyyy'}" Height="23" HorizontalAlignment="Left" Margin="639,140,0,0" Name="textBoxDateExpedition" VerticalAlignment="Top" Width="120" />
         <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_generation, StringFormat='dd/MM/yyyy'}" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="639,17,0,0" Name="textBoxDateGeneration" VerticalAlignment="Top" Width="120" />
-        <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_reception, StringFormat='dd/MM/yyyy'}" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="639,184,0,0" Name="textBoxDateReception" VerticalAlignment="Top" Width="120" />
+        <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.date_reception, StringFormat='dd/MM/yyyy'}" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="639,228,0,0" Name="textBoxDateReception" VerticalAlignment="Top" Width="120" />
         <Label FontFamily="Georgia" Content="Prix Total : " Height="28" HorizontalAlignment="Left" Margin="468,267,0,0" Name="label1" VerticalAlignment="Top" />
         <TextBox FontFamily="Georgia" Text="{Binding ElementName= listCommande, Path= SelectedItem.prix_total,StringFormat=€{0:F2}}" Height="23" HorizontalAlignment="Left" IsEnabled="False" Margin="639,267,0,0" Name="textBox1" VerticalAlignment="Top" Width="120" />
-        <Label FontFamily="Georgia" Content="Sélectionner une commande pour la modifier" Height="28" HorizontalAlignment="Left" Margin="119,4,0,0" Name="labelInstructionCommande" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Sélectionner une commande pour la gérer" Height="28" HorizontalAlignment="Left" Margin="38,0,0,0" Name="labelInstructionCommande" VerticalAlignment="Top" />
         <CheckBox FontFamily="Georgia" Content="Valider" Height="16" HorizontalAlignment="Left" Margin="585,88,0,0" Name="checkBoxValiderCommande" VerticalAlignment="Top" IsEnabled="False"/>
-        <CheckBox FontFamily="Georgia" Content="Expédier" Height="16" HorizontalAlignment="Left" Margin="585,154,0,0" Name="checkBoxExpedierCommande" VerticalAlignment="Top" IsEnabled="False" />
+        <CheckBox FontFamily="Georgia" Content="Expédier" Height="16" HorizontalAlignment="Left" Margin="585,164,0,0" Name="checkBoxExpedierCommande" VerticalAlignment="Top" IsEnabled="False" />
 
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,182,0,0" Name="listCommandeC" Text="{Binding Path=nom, Mode=OneWay}"  VerticalAlignment="Top" Width="120" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,226,0,0" Name="textBoxPrenom" Text="{Binding Path=prenom, Mode=OneWay}" VerticalAlignment="Top" Width="120" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,272,0,0" Name="textBoxAdresse" Text="{Binding Path=adresse, Mode=OneWay}" VerticalAlignment="Top" Width="120" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,313,0,0" Name="textBoxVille" Text="{Binding Path=ville}" VerticalAlignment="Top" Width="120" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,3,0,0" Name="textBoxCodePostal" Text="{Binding Path=code_postal}" VerticalAlignment="Top" Width="120" Grid.Row="1" />
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="134,50,0,0" Name="textBoxPays" Text="{Binding Path=pays}" VerticalAlignment="Top" Width="120" Grid.Row="1" />
-        
-        <Label Content="Nom :" Height="28" HorizontalAlignment="Left" Margin="38,184,0,0" Name="labelNom" VerticalAlignment="Top" />
-        <Label Content="Prénom :" Height="28" HorizontalAlignment="Left" Margin="38,226,0,0" Name="labelPrenom" VerticalAlignment="Top" />
-        <Label Content="Adresse :" Height="28" HorizontalAlignment="Left" Margin="38,270,0,0" Name="labelAdresse" VerticalAlignment="Top" />
-        <Label Content="Ville :" Height="28" HorizontalAlignment="Left" Margin="38,311,0,0" Name="labelVille" VerticalAlignment="Top" />
-        <Label Content="Code Postal :" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="38,0,0,0" Name="labelCodePostal" VerticalAlignment="Top" />
-        <Label Content="Pays :" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="38,48,0,0" Name="labelPays" VerticalAlignment="Top" />
+        <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="134,182,0,0" Name="listCommandeC" Text="{Binding Path=nom, Mode=OneWay}"  VerticalAlignment="Top" Width="120" />
+        <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="134,226,0,0" Name="textBoxPrenom" Text="{Binding Path=prenom, Mode=OneWay}" VerticalAlignment="Top" Width="120" />
+        <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="134,272,0,0" Name="textBoxAdresse" Text="{Binding Path=adresse, Mode=OneWay}" VerticalAlignment="Top" Width="120" />
+        <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="134,313,0,0" Name="textBoxVille" Text="{Binding Path=ville}" VerticalAlignment="Top" Width="120" />
+        <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="134,3,0,0" Name="textBoxCodePostal" Text="{Binding Path=code_postal}" VerticalAlignment="Top" Width="120" Grid.Row="1" />
+        <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Left" Margin="134,50,0,0" Name="textBoxPays" Text="{Binding Path=pays}" VerticalAlignment="Top" Width="120" Grid.Row="1" />
+        <Label FontFamily="Georgia" Content="Nom :" Height="28" HorizontalAlignment="Left" Margin="38,184,0,0" Name="labelNom" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Prénom :" Height="28" HorizontalAlignment="Left" Margin="38,226,0,0" Name="labelPrenom" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Adresse :" Height="28" HorizontalAlignment="Left" Margin="38,270,0,0" Name="labelAdresse" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Ville :" Height="28" HorizontalAlignment="Left" Margin="38,311,0,0" Name="labelVille" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Code Postal :" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="38,0,0,0" Name="labelCodePostal" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Pays :" Grid.Row="1" Height="28" HorizontalAlignment="Left" Margin="38,48,0,0" Name="labelPays" VerticalAlignment="Top" />
+        <Label FontFamily="Georgia" Content="Durée d'expédition estimée :" Height="28" HorizontalAlignment="Left" Margin="467,186,0,0" Name="labelDureeExpedition" VerticalAlignment="Top" />
+        <TextBox FontFamily="Georgia" Height="23" HorizontalAlignment="Right" IsEnabled="False" Margin="0,188,41,0" Name="textBoxDureeExpedition" Text="{Binding ElementName=listCommande, Path=SelectedItem.duree_expedition_estimee}" VerticalAlignment="Top" Width="120" />
+        <Label Foreground="Red" FontFamily="Georgia" Content="Lorsque vous expédier la commande il vous faut indiquer une durée !" Height="28" HorizontalAlignment="Left" Margin="410,108,0,0" Name="label2" VerticalAlignment="Top" />
     </Grid>
 </Page>
