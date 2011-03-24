@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SessionService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SessionService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/SessionService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SessionService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://172.16.255.216:8082/Service.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:simpleType name="ItemState">
     <xs:restriction base="xs:string">
       <xs:enumeration value="OK" />
@@ -27,4 +28,17 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="UserType" nillable="true" type="tns:UserType" />
+  <xs:complexType name="ArrayOfCartEntrie">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CartEntrie" nillable="true" type="tns:CartEntrie" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCartEntrie" nillable="true" type="tns:ArrayOfCartEntrie" />
+  <xs:complexType name="CartEntrie">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ObjectID" type="ser:guid" />
+      <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CartEntrie" nillable="true" type="tns:CartEntrie" />
 </xs:schema>

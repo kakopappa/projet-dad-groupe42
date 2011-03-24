@@ -69,27 +69,27 @@ namespace FournisseurTest
 
         public void NewOrder(Guid orderID)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void CategorieNotification(Guid categorieID, bool deleted)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void ProductNotification(Guid itemID, bool deleted)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void ChatNotificationFournisseur(Guid correspondentID, string message, ChatState state)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void DisconnectedFournisseur()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

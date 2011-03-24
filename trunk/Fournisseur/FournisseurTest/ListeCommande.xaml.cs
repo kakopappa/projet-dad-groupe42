@@ -105,7 +105,7 @@ namespace FournisseurTest
                 string pouet = Properties.Settings.Default.DataServiceClient;
                 var ctx = new DADEntities(new Uri(pouet));
                 var cmdfn = (from cmd in ctx.COMMANDE_FOURNISSEUR.Expand("COMMANDER/PRODUIT,COMMANDE_CLIENT/ADRESSE_CLIENT/CLIENT")
-                             where cmd.FOURNISSEUR.id == MainWindow.GetInstance().UserId
+                             where cmd.FOURNISSEUR.id == MainWindow.GetInstance().UserId && cmd.id == commande.id
                              select cmd).FirstOrDefault<COMMANDE_FOURNISSEUR>();
                 commandeFournisseurDetaille = cmdfn;
                 commandeFournisseurClientDetaille = cmdfn;

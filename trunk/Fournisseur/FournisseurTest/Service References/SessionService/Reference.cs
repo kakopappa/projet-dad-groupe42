@@ -10,6 +10,7 @@
 
 namespace FournisseurTest.SessionService {
     using System.Runtime.Serialization;
+    using System;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -61,6 +62,67 @@ namespace FournisseurTest.SessionService {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         UNKNOW = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CartEntrie", Namespace="http://schemas.datacontract.org/2004/07/SessionService")]
+    [System.SerializableAttribute()]
+    public partial class CartEntrie : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid ObjectIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int QuantityField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ObjectID {
+            get {
+                return this.ObjectIDField;
+            }
+            set {
+                if ((this.ObjectIDField.Equals(value) != true)) {
+                    this.ObjectIDField = value;
+                    this.RaisePropertyChanged("ObjectID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Quantity {
+            get {
+                return this.QuantityField;
+            }
+            set {
+                if ((this.QuantityField.Equals(value) != true)) {
+                    this.QuantityField = value;
+                    this.RaisePropertyChanged("Quantity");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -304,6 +366,9 @@ namespace FournisseurTest.SessionService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Workflow/CreateSession", ReplyAction="http://tempuri.org/Workflow/CreateSessionResponse")]
         System.Guid CreateSession(System.Guid userID, FournisseurTest.SessionService.UserType type);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Workflow/GetCart", ReplyAction="http://tempuri.org/Workflow/GetCartResponse")]
+        FournisseurTest.SessionService.CartEntrie[] GetCart(System.Guid sessionID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Workflow/GetUserID", ReplyAction="http://tempuri.org/Workflow/GetUserIDResponse")]
         System.Guid GetUserID(System.Guid sessionID);
         
@@ -349,6 +414,10 @@ namespace FournisseurTest.SessionService {
         
         public System.Guid CreateSession(System.Guid userID, FournisseurTest.SessionService.UserType type) {
             return base.Channel.CreateSession(userID, type);
+        }
+        
+        public FournisseurTest.SessionService.CartEntrie[] GetCart(System.Guid sessionID) {
+            return base.Channel.GetCart(sessionID);
         }
         
         public System.Guid GetUserID(System.Guid sessionID) {

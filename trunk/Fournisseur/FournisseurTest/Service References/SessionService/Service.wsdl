@@ -160,6 +160,12 @@
   <wsdl:message name="Workflow_CreateSession_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateSessionResponse" />
   </wsdl:message>
+  <wsdl:message name="Workflow_GetCart_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCart" />
+  </wsdl:message>
+  <wsdl:message name="Workflow_GetCart_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCartResponse" />
+  </wsdl:message>
   <wsdl:message name="Workflow_GetUserID_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserID" />
   </wsdl:message>
@@ -284,6 +290,10 @@
     <wsdl:operation name="CreateSession">
       <wsdl:input wsaw:Action="http://tempuri.org/Workflow/CreateSession" message="tns:Workflow_CreateSession_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/Workflow/CreateSessionResponse" message="tns:Workflow_CreateSession_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCart">
+      <wsdl:input wsaw:Action="http://tempuri.org/Workflow/GetCart" message="tns:Workflow_GetCart_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Workflow/GetCartResponse" message="tns:Workflow_GetCart_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetUserID">
       <wsdl:input wsaw:Action="http://tempuri.org/Workflow/GetUserID" message="tns:Workflow_GetUserID_InputMessage" />
@@ -502,6 +512,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="CreateSession">
       <soap:operation soapAction="http://tempuri.org/Workflow/CreateSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCart">
+      <soap:operation soapAction="http://tempuri.org/Workflow/GetCart" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
