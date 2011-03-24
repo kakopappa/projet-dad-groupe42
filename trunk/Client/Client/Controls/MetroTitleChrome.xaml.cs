@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using Client;
 using System.Windows.Threading;
 using Client.Pages;
+using System.Threading;
 
 namespace ChooseForMe
 {
@@ -209,8 +210,15 @@ namespace ChooseForMe
         /// <param name="e"></param>
         private void logout_Click(object sender, RoutedEventArgs e)
         {
-            this.UnloadUserInfo();
-            MainWindow.GetMe().Client = null;
+            Client.Properties.Settings.Default.AutoConnect = false;
+            MainWindow.GetMe().progressBar.Visibility = Visibility.Visible;
+
+            ThreadPool.QueueUserWorkItem((state) =>
+                {
+                    this.UnloadUserInfo();
+                    MainWindow.GetMe().Client = null;
+                    MainWindow.GetMe().MeinService.DisconnectClient(MainWindow.GetMe().SessionId);
+                });
         }
 
         /// <summary>

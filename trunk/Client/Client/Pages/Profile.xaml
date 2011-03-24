@@ -1,11 +1,13 @@
-﻿<Page x:Class="Client.Pages.Profile"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:p="clr-namespace:Client.Properties" x:Class="Client.Pages.Profile" 
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="700"
-	Title="Profile" Background="White">
+	Title="Profile" Background="White" Opacity="0"
+    Name="root">
      
     <Page.Resources>
         <Style x:Key="{x:Type TabItem}" TargetType="{x:Type TabItem}">
@@ -45,20 +47,53 @@
         </EventTrigger>
     </Page.Triggers>
     
-    <Grid>
+    <Grid Margin="0,0,8,0">
         <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="8">
-            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical">
-                <TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="vos informations"/></TextBlock>
-                
-                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <!-- Nom et prénom cote à cote -->
-                </StackPanel>
-                <TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="0,15,0,0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="téléphone"/></TextBlock>
-                <TextBox x:Name="phone" Margin="0,5,0,0" />
-                <TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="0,15,0,0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="nouveau mot de passe"/></TextBlock>
-                <TextBox x:Name="password" Margin="0,5,0,0" />
-            
-            </StackPanel>
+        	<StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Orientation="Vertical" Margin="0,0,300,25">
+        		<TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="vos informations"/></TextBlock>
+        		<Grid Margin="0,10,0,0" Height="55.947">
+        			<Grid.RowDefinitions>
+        				<RowDefinition Height="0.457*"/>
+        				<RowDefinition Height="0.543*"/>
+        			</Grid.RowDefinitions>
+        			<Grid.ColumnDefinitions>
+        				<ColumnDefinition Width="0.5*"/>
+        				<ColumnDefinition Width="0.5*"/>
+        			</Grid.ColumnDefinitions>
+        			<TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="0" VerticalAlignment="Top" Grid.RowSpan="2"><Run Language="fr-fr" Text="nom"/></TextBlock>
+        			<TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="8,0,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.RowSpan="2"><Run Language="fr-fr" Text="prénom"/></TextBlock>
+        			<TextBox x:Name="nom" Text="{Binding ElementName=root, Path=Client.nom, Mode=OneWay}" Margin="0,0,20,0" d:LayoutOverrides="Height" Grid.Row="1" VerticalAlignment="Top"/>
+                    <TextBox x:Name="prenom" Text="{Binding ElementName=root, Path=Client.prenom, Mode=OneWay}" Margin="8,-0.002,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.Column="1"/>
+        		</Grid>
+        		<TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="0,5,0,0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="téléphone"/></TextBlock>
+                <TextBox x:Name="phone" Text="{Binding ElementName=root, Path=Client.phone, Mode=OneWay}" Margin="0,5,0,0" />
+        		<TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="0,15,0,0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="nouveau mot de passe"/></TextBlock>
+        		<PasswordBox x:Name="password" Margin="0,5,0,0" />
+        		<CheckBox x:Name="autoConnect" IsChecked="{Binding AutoConnect, Mode=TwoWay, Source={x:Static p:Settings.Default}}" Content="me connecter automatiquement" HorizontalAlignment="Left" BorderThickness="1" Margin="0,15,0,0"/>
+
+        		<TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0,20,0,0" d:LayoutOverrides="Width"><Run Language="fr-fr" Text="votre adresse"/></TextBlock>
+        		<TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="0,10,0,0"><Run Language="fr-fr" Text="adresse"/></TextBlock>
+        		<TextBox x:Name="adresse" Margin="0,5,0,0"/>
+        		<Grid Margin="0,10,0,0" Height="55.947">
+        			<Grid.RowDefinitions>
+        				<RowDefinition Height="0.457*"/>
+        				<RowDefinition Height="0.543*"/>
+        			</Grid.RowDefinitions>
+        			<Grid.ColumnDefinitions>
+        				<ColumnDefinition Width="0.3*"/>
+        				<ColumnDefinition Width="0.5*"/>
+        			</Grid.ColumnDefinitions>
+        			<TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="0" VerticalAlignment="Top" Grid.RowSpan="2"><Run Language="fr-fr" Text="code postal"/></TextBlock>
+        			<TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="8,0,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.RowSpan="2"><Run Language="fr-fr" Text="ville"/></TextBlock>
+        			<TextBox x:Name="codePostal" Margin="0,0,20,0" d:LayoutOverrides="Height" Grid.Row="1" VerticalAlignment="Top"/>
+        			<TextBox x:Name="ville" Margin="8,-0.002,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.Column="1"/>
+        		</Grid>
+        		<TextBlock Style="{DynamicResource SecondLabel}" TextWrapping="Wrap" Margin="0,5,0,0"><Run Language="fr-fr" Text="pays"/></TextBlock>
+        		<TextBox x:Name="pays" Margin="0,5,0,0"/>
+        		<Button Name="save" Click="save_Click" IsDefault="True" Style="{DynamicResource MetroButton_large}" Content="sauvegarder les modifications" Margin="0,15,0,0" HorizontalAlignment="Left" Width="172.457"/>
+        		<TextBlock x:Name="infoBox" TextWrapping="Wrap" Margin="0,15,0,0"/>
+
+        	</StackPanel>
         </ScrollViewer>
     	<!--<TabControl Margin="8" TabStripPlacement="Left">
     		<TabItem Header="Mon profil">                

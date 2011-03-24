@@ -1,0 +1,103 @@
+﻿<Page x:Class="Client.Pages.SingleProduct"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="700"
+	Title="SingleProduct"
+      Loaded="Page_Loaded" Background="White"
+	  ClipToBounds="True"
+      Name="root" Opacity="0">
+	
+	<Page.Resources>
+        <Style x:Key="RawButtonStyle" TargetType="Button">
+            <Setter Property="Opacity" Value="0.5" />
+            <Setter Property="Template" Value="{DynamicResource RawButtonTemplate}" />
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="1" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Opacity" Value="0.5" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+	</Page.Resources>
+	
+    <Page.RenderTransform>
+        <TransformGroup>
+            <ScaleTransform/>
+            <SkewTransform/>
+            <RotateTransform/>
+            <TranslateTransform/>
+        </TransformGroup>
+    </Page.RenderTransform>
+    <Page.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource MetroFadeSlide}"/>
+        </EventTrigger>
+    </Page.Triggers>
+    
+    <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,0,8,0">
+    
+		<Grid Width="684" HorizontalAlignment="Left" VerticalAlignment="Top">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="0.08*"/>
+				<ColumnDefinition Width="0.52*"/>
+				<ColumnDefinition Width="0.4*"/>
+			</Grid.ColumnDefinitions>
+			<Button Click="btnPrev_Click" Template="{DynamicResource RawButtonTemplate}" Style="{StaticResource RawButtonStyle}" x:Name="btnPrev" Margin="0,8,0,0" VerticalAlignment="Top" Background="Transparent" HorizontalAlignment="Left">
+				<Grid>
+					<Path Data="F1M139.765,392.288L133.095,400.112 139.765,408.137 142.454,408.137 136.627,401.218 149.874,401.218 149.874,399.162 136.673,399.162 142.469,392.274 139.765,392.288z" Height="23" Stretch="Fill" Width="23" Fill="Gray" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+					<Ellipse Height="35" Stroke="Gray" Width="35" StrokeThickness="1.5"/>
+				</Grid>
+			</Button>
+
+			<StackPanel VerticalAlignment="Top" Grid.Column="1" Margin="8,0" d:LayoutOverrides="GridBox">
+				<TextBlock Margin="0,5,0,0" TextWrapping="Wrap" FontFamily="Segoe WP Semibold" FontSize="24" VerticalAlignment="Bottom"><TextBlock.Foreground>
+						<SolidColorBrush Color="{DynamicResource BgColor}"/>
+					</TextBlock.Foreground><Run Language="fr-fr" Text="{Binding Product.nom, ElementName=root, Mode=OneWay}"/></TextBlock>
+				<TextBlock TextWrapping="Wrap" VerticalAlignment="Bottom" FontStyle="Italic" FontFamily="Segoe UI Light" FontSize="14.667" Margin="0" Text="{Binding Product.marque, ElementName=root, Mode=OneWay}">
+					<TextBlock.Foreground>
+						<SolidColorBrush Color="{DynamicResource MetroColorFeatureFade}"/>
+					</TextBlock.Foreground>
+				</TextBlock>
+				<Image x:Name="image" Source="{Binding Product.IMAGE[0].url, ElementName=root, Mode=OneWay}" Margin="0" Width="200" Height="200" d:LayoutOverrides="Height" />
+				<TextBlock TextWrapping="Wrap" FontSize="14.667" FontFamily="Segoe WP" Margin="0,10,0,0" Height="546.187" Text="{Binding Product.description, ElementName=root, Mode=OneWay}" />
+			</StackPanel>
+			<StackPanel Grid.Column="2" Margin="0,15,0,0">
+				<Border Background="{DynamicResource BgColorBrush}" Padding="5" BorderBrush="Transparent" Width="Auto" HorizontalAlignment="Center">
+					<TextBlock Text="{Binding Product.prix, ElementName=root, Mode=OneWay, StringFormat=€\{0:F2\}}" Foreground="White" FontFamily="Segoe WP Semibold" FontSize="21.333" />
+				</Border>
+				<TextBlock TextAlignment="Right" Foreground="Red" x:Name="lblQuantite" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="0,15,0,0"><Run Language="fr-fr" Text="quantité restante"/></TextBlock>
+				<TextBlock TextAlignment="Right" Foreground="Red" x:Name="lblStock" TextWrapping="Wrap" HorizontalAlignment="Center" FontFamily="Segoe WP Black" FontSize="16" Text="{Binding Product.stock, ElementName=root, Mode=OneWay}"/>
+				<Grid Margin="0,15,0,0">
+					<TextBox x:Name="tbQuantite" Margin="71.8,0,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="30" d:LayoutOverrides="GridBox"/>
+					<Button Grid.Column="2" HorizontalAlignment="Center" Margin="35,0,0,-15.312" VerticalAlignment="Bottom" Width="45.168" Height="39.272" d:LayoutOverrides="GridBox" Visibility="Hidden">
+						<Grid>
+							<Path Data="M8.8300001,4.415 C8.8300001,6.8533372 6.8533372,8.8300001 4.415,8.8300001 C1.9766628,8.8300001 0,6.8533372 0,4.415 C0,1.9766628 1.9766628,0 4.415,0 C6.8533372,0 8.8300001,1.9766628 8.8300001,4.415 z M27.497,4.415 C27.497,6.8533372 25.520337,8.8300001 23.082,8.8300001 C20.643663,8.8300001 18.667,6.8533372 18.667,4.415 C18.667,1.9766628 20.643663,0 23.082,0 C25.520337,0 27.497,1.9766628 27.497,4.415 z" Margin="9.404,0,0,1.953" Stretch="Fill" StrokeThickness="3" Height="4.881" Opacity="1" HorizontalAlignment="Left" Width="16.478" Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" d:LayoutOverrides="GridBox">
+								<Path.Fill>
+									<SolidColorBrush Color="{DynamicResource MetroColorFeatureFade}"/>
+								</Path.Fill>
+							</Path>
+							<Path Data="M1.5,1.5 L9.6046512,3.8412698 19.616279,31 42.5,31 M15.500995,21.333 L38.60107,21.333 44.334008,7.9989998" Fill="{x:Null}" Margin="0,0,0,3.501" Stretch="Fill" StrokeThickness="2.5" Opacity="1" HorizontalAlignment="Left" Width="26.383" Grid.Column="0" Grid.Row="0" Height="20.933" VerticalAlignment="Bottom" d:LayoutOverrides="GridBox">
+								<Path.Stroke>
+									<SolidColorBrush Color="{DynamicResource MetroColorFeatureFade}"/>
+								</Path.Stroke>
+							</Path>
+							<Path Data="M2.7579969,5.5830002 L19.923991,5.5830002 M0.75000002,0.75000018 L22.590984,0.75000018" Margin="9.738,7.491,4.305,0" Stretch="Fill" Height="3.734" Opacity="1" Width="11.291" Grid.Column="0" Grid.Row="0" d:LayoutOverrides="VerticalAlignment, GridBox" VerticalAlignment="Top" HorizontalAlignment="Center">
+								<Path.Stroke>
+									<SolidColorBrush Color="{DynamicResource MetroColorFeatureFade}"/>
+								</Path.Stroke>
+							</Path>
+						</Grid>
+					</Button>
+					<Button Click="addToCart_Click" Style="{DynamicResource MetroButton_large}" x:Name="addToCart" IsDefault="True" Content="ajouter au panier" Margin="105.8,9,66.673,0.05" d:LayoutOverrides="Height" Background="{x:Null}"/>
+				</Grid>
+				<TextBlock TextAlignment="Center" x:Name="infoBox" TextWrapping="Wrap" Margin="40,15,40,0"/>
+			</StackPanel>
+		</Grid>
+	</ScrollViewer>
+</Page>

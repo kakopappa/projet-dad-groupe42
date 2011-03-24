@@ -46,6 +46,12 @@
       <xsd:import schemaLocation="http://172.16.255.216:8082/Service.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SessionService" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="Customer_DisconnectClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectClient" />
+  </wsdl:message>
+  <wsdl:message name="Customer_DisconnectClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectClientResponse" />
+  </wsdl:message>
   <wsdl:message name="Customer_ActivateClient_InputMessage">
     <wsdl:part name="parameters" element="tns:ActivateClient" />
   </wsdl:message>
@@ -82,11 +88,17 @@
   <wsdl:message name="Customer_OrderNotification_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OrderNotification" />
   </wsdl:message>
-  <wsdl:message name="Customer_Disconnected_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:Disconnected" />
+  <wsdl:message name="Customer_DisconnectedClient_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectedClient" />
   </wsdl:message>
-  <wsdl:message name="Customer_ChatNotification_OutputCallbackMessage">
-    <wsdl:part name="parameters" element="tns:ChatNotification" />
+  <wsdl:message name="Customer_ChatNotificationClient_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ChatNotificationClient" />
+  </wsdl:message>
+  <wsdl:message name="Administrator_DisconnectAdministrateur_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectAdministrateur" />
+  </wsdl:message>
+  <wsdl:message name="Administrator_DisconnectAdministrateur_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectAdministrateurResponse" />
   </wsdl:message>
   <wsdl:message name="Administrator_Connect_InputMessage">
     <wsdl:part name="parameters" element="tns:Connect" />
@@ -102,6 +114,18 @@
   </wsdl:message>
   <wsdl:message name="Administrator_CategorieAdded_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:CategorieAdded" />
+  </wsdl:message>
+  <wsdl:message name="Administrator_DisconnectedAdministrator_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectedAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="Administrator_ChatNotificationAdministrator_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ChatNotificationAdministrator" />
+  </wsdl:message>
+  <wsdl:message name="Fournisseur_DisconnectFournisseur_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectFournisseur" />
+  </wsdl:message>
+  <wsdl:message name="Fournisseur_DisconnectFournisseur_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectFournisseurResponse" />
   </wsdl:message>
   <wsdl:message name="Fournisseur_ActivateFournisseur_InputMessage">
     <wsdl:part name="parameters" element="tns:ActivateFournisseur" />
@@ -123,6 +147,12 @@
   </wsdl:message>
   <wsdl:message name="Fournisseur_ProductNotification_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:ProductNotification" />
+  </wsdl:message>
+  <wsdl:message name="Fournisseur_ChatNotificationFournisseur_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:ChatNotificationFournisseur" />
+  </wsdl:message>
+  <wsdl:message name="Fournisseur_DisconnectedFournisseur_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectedFournisseur" />
   </wsdl:message>
   <wsdl:message name="Workflow_CreateSession_InputMessage">
     <wsdl:part name="parameters" element="tns:CreateSession" />
@@ -161,6 +191,10 @@
     <wsdl:part name="parameters" element="tns:RemoveCartContentResponse" />
   </wsdl:message>
   <wsdl:portType name="Customer">
+    <wsdl:operation name="DisconnectClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/Customer/DisconnectClient" message="tns:Customer_DisconnectClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Customer/DisconnectClientResponse" message="tns:Customer_DisconnectClient_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ActivateClient">
       <wsdl:input wsaw:Action="http://tempuri.org/Customer/ActivateClient" message="tns:Customer_ActivateClient_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/Customer/ActivateClientResponse" message="tns:Customer_ActivateClient_OutputMessage" />
@@ -187,14 +221,18 @@
     <wsdl:operation name="OrderNotification">
       <wsdl:output wsaw:Action="http://tempuri.org/Customer/OrderNotification" message="tns:Customer_OrderNotification_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Disconnected">
-      <wsdl:output wsaw:Action="http://tempuri.org/Customer/Disconnected" message="tns:Customer_Disconnected_OutputCallbackMessage" />
+    <wsdl:operation name="DisconnectedClient">
+      <wsdl:output wsaw:Action="http://tempuri.org/Customer/DisconnectedClient" message="tns:Customer_DisconnectedClient_OutputCallbackMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ChatNotification">
-      <wsdl:output wsaw:Action="http://tempuri.org/Customer/ChatNotification" message="tns:Customer_ChatNotification_OutputCallbackMessage" />
+    <wsdl:operation name="ChatNotificationClient">
+      <wsdl:output wsaw:Action="http://tempuri.org/Customer/ChatNotificationClient" message="tns:Customer_ChatNotificationClient_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="Administrator">
+    <wsdl:operation name="DisconnectAdministrateur">
+      <wsdl:input wsaw:Action="http://tempuri.org/Administrator/DisconnectAdministrateur" message="tns:Administrator_DisconnectAdministrateur_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Administrator/DisconnectAdministrateurResponse" message="tns:Administrator_DisconnectAdministrateur_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="Connect">
       <wsdl:input wsaw:Action="http://tempuri.org/Administrator/Connect" message="tns:Administrator_Connect_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/Administrator/ConnectResponse" message="tns:Administrator_Connect_OutputMessage" />
@@ -206,8 +244,18 @@
     <wsdl:operation name="CategorieAdded">
       <wsdl:output wsaw:Action="http://tempuri.org/Administrator/CategorieAdded" message="tns:Administrator_CategorieAdded_OutputCallbackMessage" />
     </wsdl:operation>
+    <wsdl:operation name="DisconnectedAdministrator">
+      <wsdl:output wsaw:Action="http://tempuri.org/Administrator/DisconnectedAdministrator" message="tns:Administrator_DisconnectedAdministrator_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChatNotificationAdministrator">
+      <wsdl:output wsaw:Action="http://tempuri.org/Administrator/ChatNotificationAdministrator" message="tns:Administrator_ChatNotificationAdministrator_OutputCallbackMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="Fournisseur">
+    <wsdl:operation name="DisconnectFournisseur">
+      <wsdl:input wsaw:Action="http://tempuri.org/Fournisseur/DisconnectFournisseur" message="tns:Fournisseur_DisconnectFournisseur_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Fournisseur/DisconnectFournisseurResponse" message="tns:Fournisseur_DisconnectFournisseur_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ActivateFournisseur">
       <wsdl:input wsaw:Action="http://tempuri.org/Fournisseur/ActivateFournisseur" message="tns:Fournisseur_ActivateFournisseur_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/Fournisseur/ActivateFournisseurResponse" message="tns:Fournisseur_ActivateFournisseur_OutputMessage" />
@@ -224,6 +272,12 @@
     </wsdl:operation>
     <wsdl:operation name="ProductNotification">
       <wsdl:output wsaw:Action="http://tempuri.org/Fournisseur/ProductNotification" message="tns:Fournisseur_ProductNotification_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChatNotificationFournisseur">
+      <wsdl:output wsaw:Action="http://tempuri.org/Fournisseur/ChatNotificationFournisseur" message="tns:Fournisseur_ChatNotificationFournisseur_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DisconnectedFournisseur">
+      <wsdl:output wsaw:Action="http://tempuri.org/Fournisseur/DisconnectedFournisseur" message="tns:Fournisseur_DisconnectedFournisseur_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="Workflow">
@@ -255,6 +309,15 @@
   <wsdl:binding name="WSDualHttpBinding_Customer" type="tns:Customer">
     <wsp:PolicyReference URI="#WSDualHttpBinding_Customer_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DisconnectClient">
+      <soap12:operation soapAction="http://tempuri.org/Customer/DisconnectClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ActivateClient">
       <soap12:operation soapAction="http://tempuri.org/Customer/ActivateClient" style="document" />
       <wsdl:input>
@@ -312,14 +375,14 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Disconnected">
-      <soap12:operation soapAction="http://tempuri.org/Customer/Disconnected" style="document" />
+    <wsdl:operation name="DisconnectedClient">
+      <soap12:operation soapAction="http://tempuri.org/Customer/DisconnectedClient" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ChatNotification">
-      <soap12:operation soapAction="http://tempuri.org/Customer/ChatNotification" style="document" />
+    <wsdl:operation name="ChatNotificationClient">
+      <soap12:operation soapAction="http://tempuri.org/Customer/ChatNotificationClient" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
@@ -328,6 +391,15 @@
   <wsdl:binding name="WSDualHttpBinding_Administrator" type="tns:Administrator">
     <wsp:PolicyReference URI="#WSDualHttpBinding_Administrator_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DisconnectAdministrateur">
+      <soap12:operation soapAction="http://tempuri.org/Administrator/DisconnectAdministrateur" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="Connect">
       <soap12:operation soapAction="http://tempuri.org/Administrator/Connect" style="document" />
       <wsdl:input>
@@ -352,10 +424,31 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="DisconnectedAdministrator">
+      <soap12:operation soapAction="http://tempuri.org/Administrator/DisconnectedAdministrator" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChatNotificationAdministrator">
+      <soap12:operation soapAction="http://tempuri.org/Administrator/ChatNotificationAdministrator" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WSDualHttpBinding_Fournisseur" type="tns:Fournisseur">
     <wsp:PolicyReference URI="#WSDualHttpBinding_Fournisseur_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DisconnectFournisseur">
+      <soap12:operation soapAction="http://tempuri.org/Fournisseur/DisconnectFournisseur" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ActivateFournisseur">
       <soap12:operation soapAction="http://tempuri.org/Fournisseur/ActivateFournisseur" style="document" />
       <wsdl:input>
@@ -388,6 +481,18 @@
     </wsdl:operation>
     <wsdl:operation name="ProductNotification">
       <soap12:operation soapAction="http://tempuri.org/Fournisseur/ProductNotification" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChatNotificationFournisseur">
+      <soap12:operation soapAction="http://tempuri.org/Fournisseur/ChatNotificationFournisseur" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisconnectedFournisseur">
+      <soap12:operation soapAction="http://tempuri.org/Fournisseur/DisconnectedFournisseur" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

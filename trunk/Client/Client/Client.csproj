@@ -63,11 +63,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Cart.cs" />
     <Compile Include="Core\Connection.cs" />
     <Compile Include="Events\ObjectEventArgs.cs" />
     <Compile Include="Events\UIEventArgs.cs" />
     <Compile Include="Pages\Cart.xaml.cs">
       <DependentUpon>Cart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Commands.xaml.cs">
+      <DependentUpon>Commands.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Profile.xaml.cs">
       <DependentUpon>Profile.xaml</DependentUpon>
@@ -75,12 +79,20 @@
     <Compile Include="Pages\SigninAndUp.xaml.cs">
       <DependentUpon>SigninAndUp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SingleProduct.xaml.cs">
+      <DependentUpon>SingleProduct.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Service References\DataServiceClient\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.datasvcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\Service\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WorflowChangePassword\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -95,12 +107,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Service References\WorkflowModification\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Tools\Tools.cs" />
     <Page Include="Pages\Cart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Catalog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Commands.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SigninAndUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SingleProduct.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +246,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="Properties\DataSources\Client.DataServiceClient.DADEntities.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -242,6 +268,22 @@
     </None>
     <None Include="Service References\Service\Service2.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorflowChangePassword\ChangeAccountPassword.wsdl" />
+    <None Include="Service References\WorflowChangePassword\ChangeAccountPassword.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorflowChangePassword\ChangeAccountPassword1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorflowChangePassword\ChangeAccountPassword2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorflowChangePassword\Client.WorflowChangePassword.CheckIfPasswordMatchResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\WorflowChangePassword\Client.WorflowChangePassword.ModifyPasswordState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\WorflowCreation\AccountCreation.wsdl" />
     <None Include="Service References\WorflowCreation\AccountCreation.xsd">
@@ -272,6 +314,19 @@
     <None Include="Service References\WorkflowConnection\Connection2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\WorkflowModification\AccountModification.wsdl" />
+    <None Include="Service References\WorkflowModification\AccountModification.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowModification\AccountModification1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowModification\AccountModification2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WorkflowModification\Client.WorkflowModification.ModifyAccountDataState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -289,8 +344,10 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\Service\" />
+    <WCFMetadataStorage Include="Service References\WorflowChangePassword\" />
     <WCFMetadataStorage Include="Service References\WorflowCreation\" />
     <WCFMetadataStorage Include="Service References\WorkflowConnection\" />
+    <WCFMetadataStorage Include="Service References\WorkflowModification\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WorkflowConnection\Connection.disco" />
@@ -333,6 +390,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\WorflowCreation\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowModification\AccountModification.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowModification\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowModification\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorkflowModification\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorflowChangePassword\ChangeAccountPassword.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorflowChangePassword\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorflowChangePassword\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\WorflowChangePassword\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
