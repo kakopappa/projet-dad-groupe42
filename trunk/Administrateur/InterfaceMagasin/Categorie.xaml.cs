@@ -45,14 +45,16 @@ namespace InterfaceMagasin
                 //Par défaut, on sélectionne les categories valides
                 var query = from c in entities.CATEGORIE.Expand("CATEGORIE2/CATEGORIE1")
                             where c.valide
+                            orderby c.nom
                             select c;
 
                 //On récupère la liste des categories
                 maListCategorie = query.ToList<CATEGORIE>();
 
-                //Par défaut, on sélectionne les categories valides
+                //Par défaut, on sélectionne les categories
                 var queryAttente = from cat in entities.CATEGORIE.Expand("CATEGORIE2/CATEGORIE1")
                             where !cat.valide
+                            orderby cat.nom
                             select cat;
 
                 //On récupère la liste des categories
@@ -74,7 +76,7 @@ namespace InterfaceMagasin
                 this.ButtonSupprimer.IsEnabled = false;
                 this.ButtonModif.IsEnabled = false;
                 this.LabelErreur.Visibility = Visibility.Hidden;
-
+                MainWindow.GetInstance().modifCompteur();
             }
             catch (Exception e)
             {
@@ -97,6 +99,7 @@ namespace InterfaceMagasin
                 //Par défaut, on sélectionne tout
                 var query = from c in entities.CATEGORIE.Expand("CATEGORIE2/CATEGORIE1")
                             where c.valide
+                            orderby c.nom
                             select c;
 
                 //Si le champ selectionner est rempli
@@ -104,6 +107,7 @@ namespace InterfaceMagasin
                 {
                     query = from c in entities.CATEGORIE.Expand("CATEGORIE2/CATEGORIE1")
                             where c.valide && c.nom == selection
+                            orderby c.nom
                             select c;
                 }
 

@@ -31,11 +31,37 @@ namespace InterfaceMagasin
             InitializeComponent();
             instance = this;
             initiateAppli();
+            modifCompteur();
         }
 
         public static MainWindow GetInstance()
         {
             return instance;
+        }
+
+        public void modifCompteur()
+        {
+            //On remplit la liste à l'ouverture
+            try
+            {
+                DADEntities entities = new DADEntities(new Uri(Properties.Settings.Default.DataService));
+                entities.IgnoreResourceNotFoundException = true;
+
+                //Par défaut, on sélectionne les categories
+                int compteur = (from cat in entities.CATEGORIE
+                                   where !cat.valide
+                                   select cat).Count();
+
+
+
+                this.TextCompteur.Text = "[ " + compteur + " ]";
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
         }
 
         private void initiateAppli()

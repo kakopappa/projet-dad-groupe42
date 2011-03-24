@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="350" d:DesignWidth="525"
+      d:DesignHeight="600" d:DesignWidth="800"
 	Title="Categorie">
 
     <Grid>
@@ -16,22 +16,22 @@
             </DataTemplate>
         </Grid.Resources>
 
-        <ListBox x:Name="ListEnAttente" Margin="12,63,0,53" HorizontalAlignment="Left" Width="127" ItemTemplate="{StaticResource CategorieTemplate}" SelectionChanged="listAttente_Selection"/>
-        <Label x:Name="LabelAttente" Content="En attente" Height="26" Margin="12,37,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="135"/>
-        <ListBox x:Name="ListCategories" Margin="147,63,0,53" ItemTemplate="{StaticResource CategorieTemplate}" SelectionChanged="listCatExist_Selection" HorizontalAlignment="Left" Width="127" />
-        <Label x:Name="LabelCategorie" Content="Catégories existantes" Height="26" Margin="147,37,251,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TextNom" Height="23" Margin="0,104,38,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="165"/>
-        <Label x:Name="LabelNnom" Content="Nom" Height="26" Margin="274,101,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90" />
-        <Label x:Name="LabelParent" Content="Parent" Height="26" Margin="0,131,161,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90"/>
-        <Button x:Name="ButtonCreer" Content="Créer" HorizontalAlignment="Right" Height="23" Margin="0,0,38,91" VerticalAlignment="Bottom" Width="72" Click="click_Creer"/>
-        <Button x:Name="ButtonModif" Content="Modifier" HorizontalAlignment="Right" Height="23" Margin="0,0,127,53" VerticalAlignment="Bottom" Width="72" Click="click_Modifier"/>
-        <TextBox x:Name="TextSelection" Height="23" Margin="12,0,0,18.5" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="179"/>
-        <Button x:Name="ButtonSupprimer" Content="Supprimer" HorizontalAlignment="Right" Height="23" Margin="0,0,38,53" VerticalAlignment="Bottom" Width="72" Click="click_Supprimer"/>        
-        <CheckBox x:Name="CheckValide" Content="Valider" HorizontalAlignment="Right" Margin="0,161,68,166" Width="135"/>
-        <ComboBox x:Name="ComboCategorie"  HorizontalAlignment="Right" Height="23" Margin="0,134,38,0" VerticalAlignment="Top" Width="165" ItemTemplate="{StaticResource CategorieTemplate}"/>
-        <Button Content="Rechercher" Height="23" Margin="195,0,251,18.5"  VerticalAlignment="Bottom" Click="btnSelectionner_Click"/>
-        <Button x:Name="ButtonNouveau" Content="Nouveau" HorizontalAlignment="Left" Height="23" Margin="326,0,0,91" VerticalAlignment="Bottom" Width="72" Click="click_Nouveau" />
-        <Button x:Name="ButtonVide" Content="X" HorizontalAlignment="Right" Height="23" Margin="0,134,7.444,0" VerticalAlignment="Top" Width="25.556" Click="click_Vide"/>
-        <Label x:Name="LabelErreur" Content="Erreur ! Il manque le nom !" HorizontalAlignment="Right" Height="27" Margin="0,0,34,135" VerticalAlignment="Bottom" Width="169" Background="#00000000" FontWeight="Bold" Foreground="Red"/>
+        <ListBox x:Name="ListEnAttente" Margin="34.5,113,0,65" HorizontalAlignment="Left" Width="203.5" ItemTemplate="{StaticResource CategorieTemplate}" SelectionChanged="listAttente_Selection"/>
+        <Label x:Name="LabelAttente" Content="En attente" Height="26" Margin="34.5,83,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="135"/>
+        <ListBox x:Name="ListCategories" Margin="260.5,113,336,65" ItemTemplate="{StaticResource CategorieTemplate}" SelectionChanged="listCatExist_Selection" />
+        <Label x:Name="LabelCategorie" Content="Catégories existantes" Height="26" Margin="260.5,83,383.5,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TextNom" Height="23" Margin="0,183.5,34,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="199.556"/>
+        <Label x:Name="LabelNnom" Content="Nom" Height="26" Margin="0,180.5,191.556,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90" />
+        <Label x:Name="LabelParent" Content="Parent" Height="26" Margin="0,257.02,191.556,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90"/>
+        <Button x:Name="ButtonCreer" Content="Créer" HorizontalAlignment="Right" Height="23" Margin="0,0,34,116.5" VerticalAlignment="Bottom" Width="106" Click="click_Creer"/>
+        <Button x:Name="ButtonModif" Content="Modifier" HorizontalAlignment="Right" Height="23" Margin="0,0,175.556,53" VerticalAlignment="Bottom" Width="106" Click="click_Modifier"/>
+        <TextBox x:Name="TextSelection" Height="23" Margin="34.5,0,0,18.5" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="309.5"/>
+        <Button x:Name="ButtonSupprimer" Content="Supprimer" HorizontalAlignment="Right" Height="23" Margin="0,0,34,53" VerticalAlignment="Bottom" Width="106" Click="click_Supprimer"/>        
+        <CheckBox x:Name="CheckValide" Content="Valider" HorizontalAlignment="Right" Margin="0,0,157.556,163.5" Width="76" Height="22.5" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment"/>
+        <ComboBox x:Name="ComboCategorie"  HorizontalAlignment="Right" Height="23" Margin="0,258.5,68.556,0" VerticalAlignment="Top" Width="165" ItemTemplate="{StaticResource CategorieTemplate}"/>
+        <Button Content="Rechercher" Height="23" Margin="348,0,336,18.5"  VerticalAlignment="Bottom" Click="btnSelectionner_Click"/>
+        <Button x:Name="ButtonNouveau" Content="Nouveau" HorizontalAlignment="Right" Height="23" Margin="0,0,175.556,116.5" VerticalAlignment="Bottom" Width="106" Click="click_Nouveau" />
+        <Button x:Name="ButtonVide" Content="X" HorizontalAlignment="Right" Height="23" Margin="0,257.02,34,0" VerticalAlignment="Top" Width="25.556" Click="click_Vide"/>
+        <Label x:Name="LabelErreur" Content="Erreur ! Il manque le nom !" HorizontalAlignment="Right" Height="27" Margin="0,210.5,64.556,0" VerticalAlignment="Top" Width="169" Background="#00000000" FontWeight="Bold" Foreground="Red"/>
     </Grid>
 </Page>
