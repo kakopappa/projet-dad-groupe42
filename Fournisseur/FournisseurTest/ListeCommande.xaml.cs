@@ -33,11 +33,12 @@ namespace FournisseurTest
         void ListeCommande_Loaded(object sender, RoutedEventArgs e)
         {
             List<COMMANDE_FOURNISSEUR> commandeFournisseur = new List<COMMANDE_FOURNISSEUR>();
+            List<COMMANDE_FOURNISSEUR> commandeFournisseurDetaille = new List<COMMANDE_FOURNISSEUR>();
             try
             {
                 string pouet = Properties.Settings.Default.DataServiceClient;
                 var ctx = new DADEntities(new Uri(pouet));
-                var cmdfnr = from cmd in ctx.COMMANDE_FOURNISSEUR
+                var cmdfnr = from cmd in ctx.COMMANDE_FOURNISSEUR.Expand("COMMANDER/PRODUIT")
                              where cmd.FOURNISSEUR.id == MainWindow.GetInstance().UserId
                              select cmd;
 
@@ -48,6 +49,7 @@ namespace FournisseurTest
                       {
                           this.listCommande.ItemsSource = commandeFournisseur;
                           this.listCommandeDetaille.ItemsSource = commandeFournisseur;
+                          Console.WriteLine(cmdfnr);
                       }));
             }
             catch (Exception)
@@ -62,6 +64,28 @@ namespace FournisseurTest
         public void CommandeSelection(object sender, RoutedEventArgs args)
         {
             commande = (COMMANDE_FOURNISSEUR)this.listCommande.SelectedItem;
+
+            // Detail commande à gauche :
+            string Valid, Exped;
+            Valid = this.textBoxDateValidation.Text;
+            Exped = this.textBoxDateExpedition.Text;
+
+            if (string.IsNullOrWhiteSpace(Valid))
+            {
+                this.checkBoxValiderCommande.IsEnabled = true;
+            }
+            else{}
+
+            if (string.IsNullOrWhiteSpace(Exped))
+            {
+                this.checkBoxExpedierCommande.IsEnabled = true;
+            }
+            else{}
+
+            //Requete pour afficher les details de la commande
+
+           
+
         }
     }
 }
