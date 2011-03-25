@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Nom du fichier d'origine :
-// Date de génération : 24/03/2011 09:41:07
+// Date de génération : 25/03/2011 08:28:35
 namespace FournisseurTest.DataServiceClient
 {
     
