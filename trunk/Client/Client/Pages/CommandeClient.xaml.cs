@@ -55,16 +55,15 @@ namespace Client.Pages
             this.ButtonDetail.IsEnabled = false;
         }
 
-        private void ListSlection(object sender, RoutedEventArgs e)
-        {
-            commande_client = (COMMANDE_CLIENT)this.ListCommande.SelectedItem;
-            this.ButtonDetail.IsEnabled = true;
-        }
-
-
         private void clickDetail(object sender, RoutedEventArgs e)
         {
             MainWindow.GetMe().menu.MeinFrame.Navigate(new DetailCommande(commande_client));
+        }
+
+        private void ListCommande_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            commande_client = (COMMANDE_CLIENT)this.ListCommande.SelectedItem;
+            this.ButtonDetail.IsEnabled = true;
         }
     }
 }

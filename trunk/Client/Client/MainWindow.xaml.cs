@@ -434,7 +434,11 @@ namespace Client
                 {
                     this.progressBar.Visibility = Visibility.Hidden;
                     this.commandes.Visibility = Visibility.Hidden;
-                    MessageBox.Show("Vous avez été déconnecté !");
+                    MessageBox.Show("Vous avez été déconnecté !\n"+
+                                    "raisons possibles:\n" +
+                                    "- une personne avec ce même compte s'est connectée\n" +
+                                    "- vous avez changé votre mot de passe",
+                                    "Déconnecté", MessageBoxButton.OK, MessageBoxImage.Hand);
                     this.menu.MeinFrame.Navigate(new Home());
                 }));
         }

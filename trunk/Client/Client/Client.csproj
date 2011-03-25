@@ -65,6 +65,7 @@
     </ApplicationDefinition>
     <Compile Include="Core\Cart.cs" />
     <Compile Include="Core\Connection.cs" />
+    <Compile Include="Core\DateToState.cs" />
     <Compile Include="Events\ObjectEventArgs.cs" />
     <Compile Include="Events\UIEventArgs.cs" />
     <Compile Include="Pages\Cart.xaml.cs">
