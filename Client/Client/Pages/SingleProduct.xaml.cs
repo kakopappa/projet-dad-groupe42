@@ -110,6 +110,8 @@ namespace Client.Pages
                                         this.addToCart.IsEnabled = true;
                                         MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
                                         MainWindow.GetMe().chrome.lblItems.Text = q;
+                                        this.infoBox.Foreground = Brushes.Green;
+                                        this.infoBox.Text = @"L'élément a bien été ajouté au panier";
                                     }));
                         }
                         else

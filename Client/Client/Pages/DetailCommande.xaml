@@ -6,7 +6,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
 	Title="DetailCommande"
-      Name="root">
+      Loaded="DetailCommande_Loaded"
+      Name="root" Background="White">
     <Page.RenderTransform>
         <TransformGroup>
             <ScaleTransform/>
@@ -44,34 +45,60 @@
         </ControlTemplate>
 		
 		<!-- Pour chaque item -->
+        <DataTemplate x:Key="ProductItemTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.6*" />
+                    <ColumnDefinition Width="0.1*" />
+                    <ColumnDefinition Width="0.3*" />
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" Margin="5" FontSize="16" Text="{Binding Path=nom}" />
+                <TextBlock Grid.Column="1" Margin="5" TextAlignment="Right" FontSize="16" Text="{Binding Path=quantite, StringFormat=x{0}}" />
+                <TextBlock Grid.Column="2" Margin="5" TextAlignment="Right" FontSize="16" Text="{Binding Path=prix, StringFormat=prix unitaire €{0:F2}}" />
+            </Grid>
+        	<!--<StackPanel Margin="0" Height="Auto" Orientation="Vertical">
+                <TextBlock Margin="5" FontSize="16" Text="{Binding Path=nom}" />
+            </StackPanel>-->
+        </DataTemplate>	
+		
+		<!-- Pour chaque item -->
         <DataTemplate x:Key="CommandeItemTemplate">
-        	<Grid Margin="0" Width="Auto">
-        		<TextBlock x:Name="TextFournisseur" Margin="0,6,-222.54,-9" TextWrapping="Wrap" Text="&lt;NOM&gt;" HorizontalAlignment="Right" Width="151.54"/>
-        		<TextBlock x:Name="TextEtat" Margin="0,5,-459,-8" TextWrapping="Wrap" Text="&lt;ETAT&gt;" HorizontalAlignment="Right" Width="137"/>
-        		<Label x:Name="LabelFournisseur" Content="Fournisseur :" Margin="15,0,-109,5.96"/>
-        		<ListView HorizontalAlignment="Right" Height="138" Margin="0,0,-459,-147" VerticalAlignment="Bottom" Width="464">
-        			<ListView.View>
-        				<GridView>
-        					<GridViewColumn DisplayMemberBinding=""
-                        Header="Produit" />
-                    <GridViewColumn DisplayMemberBinding=""
-                        Header="Quantité" />
-        				</GridView>
-        			</ListView.View>
-        		</ListView>
-        		<Label x:Name="LabelEtat" Content="Etat :" Margin="304,0,-322,5.96"/>
-        	</Grid>
-        </DataTemplate>		
+        	<StackPanel Margin="0" Height="Auto" Orientation="Vertical">
+        		<Grid Margin="0" Width="Auto" Height="Auto">
+        			<Grid.ColumnDefinitions>
+        				<ColumnDefinition Width="0.511*"/>
+        				<ColumnDefinition Width="0.489*"/>
+        			</Grid.ColumnDefinitions>
+        			<Grid.Background>
+        				<SolidColorBrush Color="{DynamicResource BgColor}"/>
+        			</Grid.Background>
+                    <TextBlock HorizontalAlignment="Stretch" Margin="5,5,19.959,5" TextWrapping="Wrap" d:LayoutOverrides="Width" FontWeight="Bold" VerticalAlignment="Top" Foreground="White" Text="{Binding Path=NomFournisseur}"></TextBlock>
+        			<TextBlock HorizontalAlignment="Right" Margin="0,5,5,0" TextWrapping="Wrap" d:LayoutOverrides="VerticalAlignment" FontWeight="Bold" VerticalAlignment="Top" Foreground="White" Grid.Column="1" Text="{Binding Path=Etat}"></TextBlock>
+        		
+        		</Grid>
+        		<ListView ItemsSource="{Binding Path=Products}"
+					ItemContainerStyle="{StaticResource CommandeItem}"
+					Template="{StaticResource CommandeTemplate}" 
+					ItemTemplate="{StaticResource ProductItemTemplate}"
+				/>
+        	</StackPanel>
+        </DataTemplate>	
+			
 	</Page.Resources>
-	
-	<Grid>	
-		<ListView x:Name="listCartItems"
-    				ItemContainerStyle="{StaticResource CommandeItem}"
-    				Template="{StaticResource CommandeTemplate}" ItemTemplate="{DynamicResource CommandeItemTemplate}" Margin="0" d:LayoutOverrides="VerticalAlignment, Width" />
-		<Label x:Name="LabelCommande" Content="Numéro de commande :" HorizontalAlignment="Left" Height="40.5" Margin="76.5,63,0,0" VerticalAlignment="Top" Width="139"/>
-		<Label x:Name="LabelTotal" Content="TOTAL :" HorizontalAlignment="Right" Height="40.5" Margin="0,0,173,24" VerticalAlignment="Bottom" Width="54"/>
-		<TextBlock x:Name="TextNumCommande" Height="40.5" Margin="215.5,68,338.5,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-		<TextBlock x:Name="TextPrixTotal" Height="40.5" Margin="0,0,-73,19" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="246"/>
-
-    </Grid>
+	<StackPanel Margin="8">
+        <TextBlock Style="{DynamicResource MainLabel}" x:Name="numCommande" TextWrapping="Wrap" Text="{Binding Commande.id, ElementName=root, Mode=OneWay, StringFormat=commande numero \{0\}}"/>
+		<ListView Margin="0,16,16,0" x:Name="listCommandes"
+			ItemContainerStyle="{StaticResource CommandeItem}"
+			Template="{StaticResource CommandeTemplate}" 
+            ItemTemplate="{DynamicResource CommandeItemTemplate}" d:LayoutOverrides="VerticalAlignment, Width" />
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,16,0">
+			<TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Margin="0,16,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"><Run Language="fr-fr" Text="Total de la commande"/></TextBlock>
+            <TextBlock Style="{DynamicResource MainLabel}" TextWrapping="Wrap" Text="{Binding Commande.prix_total, ElementName=root, Mode=OneWay, StringFormat=€{0:F2}}" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="16,0,0,0">
+				<TextBlock.Foreground>
+					<SolidColorBrush Color="{DynamicResource BgColor}"/>
+				</TextBlock.Foreground>
+			</TextBlock>
+		</StackPanel>
+	</StackPanel>
 </Page>

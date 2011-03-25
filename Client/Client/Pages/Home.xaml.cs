@@ -76,6 +76,7 @@ namespace Client.Pages
                 DataServiceClient.DADEntities ent = new DataServiceClient.DADEntities(new Uri(Properties.Settings.Default.DataServiceClient));
 
                 var news = (from p in ent.PRODUIT.Expand("IMAGE")
+                            where p.disponible == true && p.supprime == false
                             select p)
                           .Take(6);
 

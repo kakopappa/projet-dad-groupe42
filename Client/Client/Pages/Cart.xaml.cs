@@ -144,7 +144,7 @@ namespace Client.Pages
             this.infoBox.Text = "";
 
             if (this.blueCard.Text != "" && (this.blueCard.Text).Length == 16 && this.crypto.Text != "" && (this.crypto.Text).Length == 3
-                && this.titulaire.Text != "")
+                && this.titulaire.Text != "" && this.date.Text != "")
             {
                 ThreadPool.QueueUserWorkItem((state) =>
                     {
@@ -161,6 +161,15 @@ namespace Client.Pages
                                         this.infoBox.Foreground = Brushes.Green;
                                         this.infoBox.Text = "Commande réussie !";
                                         MainWindow.GetMe().progressBar.Visibility = Visibility.Hidden;
+                                        MainWindow.GetMe().Cart.Clear();
+                                        MainWindow.GetMe().chrome.lblItems.Text = "0";
+                                        this.listCartItems.ItemsSource = null;
+                                        this.listCartItems.ItemsSource = MainWindow.GetMe().Cart.CartItems;
+                                        this.stackPaiement.Visibility = Visibility.Hidden;
+                                        this.scroll.ScrollToTop();
+                                        MessageBox.Show("La commande a bien été prise en compte", "Commande réussie", 
+                                            MessageBoxButton.OK, MessageBoxImage.Information);
+                                        MainWindow.GetMe().menu.MeinFrame.Navigate(new Catalog());
                                     }));
                             }
                             else

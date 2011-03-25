@@ -39,6 +39,16 @@ namespace Client.Core
             this.CartItems = new List<CartItem>();
         }
 
+        public void Clear()
+        {
+            this.CartItems.Clear();
+
+            if (IsConnected)
+            {
+                MainWindow.GetMe().MeinService.RemoveCartContentClient(MainWindow.GetMe().SessionId);
+            }
+        }
+
         /// <summary>
         /// Ajoute un élement dans le panier
         /// </summary>
