@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using FournisseurTest.DataServiceClient;
 using System.Configuration;
 using System.Windows.Threading;
+using System.Security.Cryptography;
 
 namespace FournisseurTest
 {
@@ -25,6 +26,19 @@ namespace FournisseurTest
         public Login()
         {
             InitializeComponent();
+        }
+
+        static string HashPassword(string email, string password)
+        {
+            Byte[] originalBytes;
+            Byte[] encodedBytes;
+            SHA1 sha1;
+
+            sha1 = new SHA1CryptoServiceProvider();
+            originalBytes = Encoding.Unicode.GetBytes(email + "alligator21" + password);
+            encodedBytes = sha1.ComputeHash(originalBytes);
+
+            return BitConverter.ToString(encodedBytes).Replace("-", String.Empty);
         }
 
         public void LoadConnexion(object sender, RoutedEventArgs args)
@@ -41,7 +55,8 @@ namespace FournisseurTest
                     switch (result.UserExist)
                     {
                         case WorkflowConnection.CheckIfFournisseurExistResult.EXIST:
-                        WorkflowConnection.GetUserPasswordResponse resp = svc.GetUserPassword(UserPasswordBox.Password);
+                            string password = Login.HashPassword(UserLoginBox.Text, UserPasswordBox.Password);
+                            WorkflowConnection.GetUserPasswordResponse resp = svc.GetUserPassword(password);
 
                         switch (resp.PasswordMatch)
                         {
@@ -59,6 +74,8 @@ namespace FournisseurTest
                                 MainWindow.GetInstance().buttonDeconnexion.IsEnabled = true;
                                 MainWindow.GetInstance().Frame.Navigate(new ListeCommande());
                                                                 break;
+
+
 
                             case WorkflowConnection.CheckIfPasswordMatchResult.NOT_MATCH:
                                 LabelError.Content = "Erreur de password";

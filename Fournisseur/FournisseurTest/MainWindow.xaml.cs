@@ -64,6 +64,7 @@ namespace FournisseurTest
         private void LoadDeconnecter(object sender, RoutedEventArgs args)
         {
             this.SessionService.DisconnectFournisseur(this.SessionId);
+            
         }
 
 
@@ -89,7 +90,7 @@ namespace FournisseurTest
 
         public void DisconnectedFournisseur()
         {
-            
+            Frame.Navigate(new Login());
         }
     }
 }
