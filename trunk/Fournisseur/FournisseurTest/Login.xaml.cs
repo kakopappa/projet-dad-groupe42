@@ -70,7 +70,6 @@ namespace FournisseurTest
                                 MainWindow.GetInstance().btnListProduct.IsEnabled = true;
                                 MainWindow.GetInstance().btnLstCommand.IsEnabled = true;
                                 MainWindow.GetInstance().btnNewProduct.IsEnabled = true;
-                                MainWindow.GetInstance().buttonConnexion.IsEnabled = false;
                                 MainWindow.GetInstance().buttonDeconnexion.IsEnabled = true;
                                 MainWindow.GetInstance().Frame.Navigate(new ListeCommande());
                                                                 break;

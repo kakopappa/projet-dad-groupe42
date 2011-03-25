@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using FournisseurTest.SessionService;
+using System.Threading;
 
 
 
@@ -63,8 +64,7 @@ namespace FournisseurTest
         }
         private void LoadDeconnecter(object sender, RoutedEventArgs args)
         {
-            this.SessionService.DisconnectFournisseur(this.SessionId);
-            
+            ThreadPool.QueueUserWorkItem(x => this.SessionService.DisconnectFournisseur(this.SessionId));            
         }
 
 
@@ -91,6 +91,12 @@ namespace FournisseurTest
         public void DisconnectedFournisseur()
         {
             Frame.Navigate(new Login());
+            this.btnListProduct.IsEnabled = false;
+            this.btnLstCommand.IsEnabled = false;
+            this.btnNewProduct.IsEnabled = false;
+            this.buttonDeconnexion.IsEnabled = false;
+            
+
         }
     }
 }
