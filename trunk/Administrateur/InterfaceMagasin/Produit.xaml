@@ -26,29 +26,74 @@
             </DataTemplate>
         </Grid.Resources>
 
-        <ListBox x:Name="ListProduits" HorizontalAlignment="Left" Margin="12,107,0,64" Width="230" ItemTemplate="{StaticResource ProduitTemplate}" SelectionChanged="listProduit_Selection"/>
-        <TextBox x:Name="TextSelection" Height="23" Margin="12,0,0,29.5" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="147"/>
-        <Button Content="Rechercher" Height="23" Margin="163,0,0,29.5"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="79" Click="btnSelectionner_Click"/>
-        <TextBox x:Name="TextNom" Height="23" Margin="324.5,99,295,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ElementName=ListProduits, Path=SelectedItem.nom}"/>
+        <ListBox x:Name="ListProduits" HorizontalAlignment="Left" Margin="12,107,0,64" Width="230" ItemTemplate="{StaticResource ProduitTemplate}" SelectionChanged="listProduit_Selection" BorderBrush="Black"/>
+        <TextBox x:Name="TextSelection" Height="23" Margin="12,0,0,29.5" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="147" BorderBrush="Black"/>
+        <Button Content="Rechercher" Height="23" Margin="163,0,0,29.5"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="79" Click="btnSelectionner_Click" BorderBrush="Black">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+        <TextBox x:Name="TextNom" Height="23" Margin="324.5,99,295,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ElementName=ListProduits, Path=SelectedItem.nom}" BorderBrush="Black"/>
         <Label x:Name="LabelNnom" Content="Nom" Height="26" Margin="253.5,96,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90" />
-        <TextBox x:Name="TextMarque" Height="23" Margin="0,99,17,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="177" Text="{Binding ElementName=ListProduits, Path=SelectedItem.marque}"/>
+        <TextBox x:Name="TextMarque" Height="23" Margin="0,99,17,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="177" Text="{Binding ElementName=ListProduits, Path=SelectedItem.marque}" BorderBrush="Black"/>
         <Label x:Name="LabelMarque" Content="Marque" Height="26" Margin="0,96,175,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90"/>
-        <TextBox x:Name="TextReference" Height="23" Margin="324.5,126,295,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ElementName=ListProduits, Path=SelectedItem.reference}" />
+        <TextBox x:Name="TextReference" Height="23" Margin="324.5,126,295,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding ElementName=ListProduits, Path=SelectedItem.reference}" BorderBrush="Black" />
         <Label x:Name="LabelReference" Content="Reference" Height="26" Margin="253.5,126,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="67"/>
-        <TextBox x:Name="TextPrix" Height="23" Margin="0,126,17,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="177" Text="{Binding ElementName=ListProduits, Path=SelectedItem.prix}"/>
+        <TextBox x:Name="TextPrix" Height="23" Margin="0,126,17,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="177" Text="{Binding ElementName=ListProduits, Path=SelectedItem.prix}" BorderBrush="Black"/>
         <Label x:Name="LabelPrix" Content="Prix" Height="26" Margin="0,126,198,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="67"/>
-        <ListBox x:Name="ListCategoriesExiste" Margin="324.5,178,295,152"  ItemTemplate="{StaticResource CategorieExistTemplate}" SelectionChanged="listDispo_Selection"/>
-        <Button x:Name="ButtonAjout" Content="-&gt;" HorizontalAlignment="Right" Height="40" Margin="0,251,224.5,0" VerticalAlignment="Top" Width="40.5" Click="ajoutCategorie" d:LayoutOverrides="VerticalAlignment"/>
-        <Button x:Name="ButtonEnleve" Content="&lt;-" HorizontalAlignment="Right" Margin="0,0,224.5,213" Width="40.5" Click="enleveCategorie" Height="40" VerticalAlignment="Bottom"/>
-        <ListBox x:Name="ListCategoriesProduit" Margin="0,178,17,152" ItemTemplate="{StaticResource CategorieProduitTemplate}" SelectionChanged="listCategorie_Selection" HorizontalAlignment="Right" Width="177"/>
+        <ListBox x:Name="ListCategoriesExiste" Margin="324.5,178,295,152"  ItemTemplate="{StaticResource CategorieExistTemplate}" SelectionChanged="listDispo_Selection" BorderBrush="Black"/>
+        <Button x:Name="ButtonAjout" Content="-&gt;" HorizontalAlignment="Right" Height="40" Margin="0,251,224.5,0" VerticalAlignment="Top" Width="40.5" Click="ajoutCategorie" d:LayoutOverrides="VerticalAlignment" BorderBrush="Black">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+        <Button x:Name="ButtonEnleve" Content="&lt;-" HorizontalAlignment="Right" Margin="0,0,224.5,213" Width="40.5" Click="enleveCategorie" Height="40" VerticalAlignment="Bottom" BorderBrush="Black">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+        <ListBox x:Name="ListCategoriesProduit" Margin="0,178,17,152" ItemTemplate="{StaticResource CategorieProduitTemplate}" SelectionChanged="listCategorie_Selection" HorizontalAlignment="Right" Width="177" BorderBrush="Black"/>
         <Label x:Name="LabelCatDispo" Content="Cat.Dispo" Margin="253.5,178,0,0" HorizontalAlignment="Left" Width="67" Height="25" VerticalAlignment="Top"/>
         <Label x:Name="LabelCatProduit" Content="Cat.Produit" Margin="0,178,198,0" HorizontalAlignment="Right" Width="67" Height="25" VerticalAlignment="Top"/>
-        <TextBox x:Name="TextDescription" Margin="324.5,0,295,39" TextWrapping="Wrap" Height="72" VerticalAlignment="Bottom" Text="{Binding ElementName=ListProduits, Path=SelectedItem.description}"/>
+        <TextBox x:Name="TextDescription" Margin="324.5,0,295,39" TextWrapping="Wrap" Height="72" VerticalAlignment="Bottom" Text="{Binding ElementName=ListProduits, Path=SelectedItem.description}" BorderBrush="Black"/>
         <Label x:Name="LabelDescription" Content="Description" Margin="324.5,0,385.5,90" Height="45" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="TextStock" Margin="0,0,17,109" TextWrapping="Wrap" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="177" Text="{Binding ElementName=ListProduits, Path=SelectedItem.stock}"/>
+        <TextBox x:Name="TextStock" Margin="0,0,17,109" TextWrapping="Wrap" Height="23" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="177" Text="{Binding ElementName=ListProduits, Path=SelectedItem.stock}" BorderBrush="Black"/>
         <Label x:Name="LabelStock" Content="Stock" Margin="0,0,147.5,109" Height="26" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="90"/>
-        <Button x:Name="ButtonSupprimer" Content="Supprimer" HorizontalAlignment="Right" Height="23" Margin="0,0,17,29.5" VerticalAlignment="Bottom" Width="72" Click="btnSupprimer_Click"/>
+        <Button x:Name="ButtonSupprimer" Content="Supprimer" HorizontalAlignment="Right" Height="23" Margin="0,0,17,29.5" VerticalAlignment="Bottom" Width="72" Click="btnSupprimer_Click" BorderBrush="Black">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
         <CheckBox x:Name="CheckDispo" Content="Disponible" Height="21" Margin="0,0,73,64" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="107" RenderTransformOrigin="-0.402,1.19"/>
-        <Button x:Name="ButtonModifer" Content="Modifier" HorizontalAlignment="Right" Height="23" Margin="0,0,17,65.52" VerticalAlignment="Bottom" Width="72" Click="modifDispo"/>
+        <Button x:Name="ButtonModifer" Content="Modifier" HorizontalAlignment="Right" Height="23" Margin="0,0,17,65.52" VerticalAlignment="Bottom" Width="72" Click="modifDispo" BorderBrush="Black">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
     </Grid>
 </Page>

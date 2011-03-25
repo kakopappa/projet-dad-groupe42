@@ -4,12 +4,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="InterfaceMagasin.MainWindow"
         Title="Administration" Height="600" Width="800">
     <Grid>
-        <Button x:Name="ButtonFournisseur" Content="Fournisseurs" Height="34" Margin="47.038,8,0,0" VerticalAlignment="Top" Click="btnFournisseur_Click" HorizontalAlignment="Left" Width="170.924"/>
-        <Button x:Name="ButtonProduit" Content="Produits" Margin="307.038,8,306.038,0" Click="btnProduit_Click" Height="34" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
-        <Button x:Name="ButtonCategorie" Content="Catégories" Height="34" Margin="0,8,47.038,0" VerticalAlignment="Top"  Click="btnCategories_Click" HorizontalAlignment="Right" Width="170.924"/>
+        <Path Data="M-92.500007,-28.999571 C-92.500007,-28.999571 552.5,-192.5 819.5,-33.5 1086.5,125.5 876.5,517 876.5,517 L935,659.5 -59.5,622 z" Fill="#FF0084FF" Margin="-92.5,-103.019,-171.988,-98.5" Stretch="Fill" Stroke="Black"/>
+        <Ellipse Fill="Black" Margin="-106,-610.5,-259.5,23" Stroke="Black" Opacity="0.12"/>
+        <Ellipse Fill="White" Margin="-236.5,-610.5,-95.488,56.512" Stroke="Black" Opacity="0.075"/>
+        <Button x:Name="ButtonFournisseur" Content="Fournisseurs" Height="34" Margin="38.538,23,0,0" VerticalAlignment="Top" Click="btnFournisseur_Click" BorderBrush="Black" HorizontalAlignment="Left" Width="170.924">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+        <Button x:Name="ButtonProduit" Content="Produits" Margin="312.327,23,306.327,0" Click="btnProduit_Click" Height="34" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" BorderBrush="Black" d:LayoutOverrides="VerticalMargin">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+        <Button x:Name="ButtonCategorie" Content="Catégories" Margin="0,23,47.038,0"  Click="btnCategories_Click" Height="34" VerticalAlignment="Top" BorderBrush="Black" HorizontalAlignment="Right" Width="170.924">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+        <Ellipse Fill="Red" HorizontalAlignment="Right" Margin="0,14.5,39,0" Width="27.038" Height="27.038" VerticalAlignment="Top"/>
 
         <Frame HorizontalAlignment="Right" VerticalAlignment="Stretch" x:Name="Frame" JournalOwnership="UsesParentJournal"/>
-        <TextBlock x:Name="TextCompteur" HorizontalAlignment="Right" Height="27" Margin="0,15,8,0" TextWrapping="Wrap" Text="[ 0 ]" VerticalAlignment="Top" Width="35.038" Foreground="Red" FontWeight="Bold"/>
+        <TextBlock x:Name="TextCompteur" TextAlignment="Center" HorizontalAlignment="Right" Height="27" Margin="0,16.538,35,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="35.038" Foreground="White" FontWeight="Bold" FontSize="16"/>
     </Grid>
 
 </Window>

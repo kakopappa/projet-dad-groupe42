@@ -16,22 +16,85 @@
             </DataTemplate>
         </Grid.Resources>
 
-        <ListBox x:Name="ListEnAttente" Margin="34.5,113,0,65" HorizontalAlignment="Left" Width="203.5" ItemTemplate="{StaticResource CategorieTemplate}" SelectionChanged="listAttente_Selection"/>
+        <ListBox x:Name="ListEnAttente" Margin="34.5,113,0,65" HorizontalAlignment="Left" Width="203.5" ItemTemplate="{StaticResource CategorieTemplate}" SelectionChanged="listAttente_Selection" BorderBrush="Black"/>
         <Label x:Name="LabelAttente" Content="En attente" Height="26" Margin="34.5,83,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="135"/>
-        <ListBox x:Name="ListCategories" Margin="260.5,113,336,65" ItemTemplate="{StaticResource CategorieTemplate}" SelectionChanged="listCatExist_Selection" />
+        <ListBox x:Name="ListCategories" Margin="260.5,113,336,65" ItemTemplate="{StaticResource CategorieTemplate}" SelectionChanged="listCatExist_Selection" BorderBrush="Black" />
         <Label x:Name="LabelCategorie" Content="Catégories existantes" Height="26" Margin="260.5,83,383.5,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TextNom" Height="23" Margin="0,183.5,34,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="199.556"/>
+        <TextBox x:Name="TextNom" Height="23" Margin="0,183.5,34,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="199.556" BorderBrush="Black"/>
         <Label x:Name="LabelNnom" Content="Nom" Height="26" Margin="0,180.5,191.556,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90" />
         <Label x:Name="LabelParent" Content="Parent" Height="26" Margin="0,257.02,191.556,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90"/>
-        <Button x:Name="ButtonCreer" Content="Créer" HorizontalAlignment="Right" Height="23" Margin="0,0,34,116.5" VerticalAlignment="Bottom" Width="106" Click="click_Creer"/>
-        <Button x:Name="ButtonModif" Content="Modifier" HorizontalAlignment="Right" Height="23" Margin="0,0,175.556,53" VerticalAlignment="Bottom" Width="106" Click="click_Modifier"/>
-        <TextBox x:Name="TextSelection" Height="23" Margin="34.5,0,0,18.5" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="309.5"/>
-        <Button x:Name="ButtonSupprimer" Content="Supprimer" HorizontalAlignment="Right" Height="23" Margin="0,0,34,53" VerticalAlignment="Bottom" Width="106" Click="click_Supprimer"/>        
+        <Button x:Name="ButtonCreer" Content="Créer" HorizontalAlignment="Right" Height="23" Margin="0,0,34,116.5" VerticalAlignment="Bottom" Width="106" Click="click_Creer" BorderBrush="Black">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+        <Button x:Name="ButtonModif" Content="Modifier" HorizontalAlignment="Right" Height="23" Margin="0,0,175.556,53" VerticalAlignment="Bottom" Width="106" Click="click_Modifier" BorderBrush="Black">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+        <TextBox x:Name="TextSelection" Height="23" Margin="34.5,0,0,18.5" TextWrapping="Wrap" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="309.5" BorderBrush="Black"/>
+        <Button x:Name="ButtonSupprimer" Content="Supprimer" HorizontalAlignment="Right" Height="23" Margin="0,0,34,53" VerticalAlignment="Bottom" Width="106" Click="click_Supprimer" BorderBrush="Black">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>        
         <CheckBox x:Name="CheckValide" Content="Valider" HorizontalAlignment="Right" Margin="0,0,157.556,163.5" Width="76" Height="22.5" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment"/>
-        <ComboBox x:Name="ComboCategorie"  HorizontalAlignment="Right" Height="23" Margin="0,258.5,68.556,0" VerticalAlignment="Top" Width="165" ItemTemplate="{StaticResource CategorieTemplate}"/>
-        <Button Content="Rechercher" Height="23" Margin="348,0,336,18.5"  VerticalAlignment="Bottom" Click="btnSelectionner_Click"/>
-        <Button x:Name="ButtonNouveau" Content="Nouveau" HorizontalAlignment="Right" Height="23" Margin="0,0,175.556,116.5" VerticalAlignment="Bottom" Width="106" Click="click_Nouveau" />
-        <Button x:Name="ButtonVide" Content="X" HorizontalAlignment="Right" Height="23" Margin="0,257.02,34,0" VerticalAlignment="Top" Width="25.556" Click="click_Vide"/>
+        <ComboBox x:Name="ComboCategorie"  HorizontalAlignment="Right" Height="23" Margin="0,258.5,68.556,0" VerticalAlignment="Top" Width="165" ItemTemplate="{StaticResource CategorieTemplate}">
+        	<ComboBox.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</ComboBox.Background>
+        </ComboBox>
+        <Button Content="Rechercher" Height="23" Margin="348,0,336,18.5"  VerticalAlignment="Bottom" Click="btnSelectionner_Click" BorderBrush="Black">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+        <Button x:Name="ButtonNouveau" Content="Nouveau" HorizontalAlignment="Right" Height="23" Margin="0,0,175.556,116.5" VerticalAlignment="Bottom" Width="106" Click="click_Nouveau" BorderBrush="Black" >
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
+        <Button x:Name="ButtonVide" Content="X" HorizontalAlignment="Right" Height="23" Margin="0,258.5,34,0" VerticalAlignment="Top" Width="25.556" Click="click_Vide" BorderBrush="Black">
+        	<Button.Background>
+        		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+        			<GradientStop Color="#FFF3F3F3" Offset="0"/>
+        			<GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+        			<GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+        			<GradientStop Color="#FF60B3FF" Offset="1"/>
+        		</LinearGradientBrush>
+        	</Button.Background>
+        </Button>
         <Label x:Name="LabelErreur" Content="Erreur ! Il manque le nom !" HorizontalAlignment="Right" Height="27" Margin="0,210.5,64.556,0" VerticalAlignment="Top" Width="169" Background="#00000000" FontWeight="Bold" Foreground="Red"/>
     </Grid>
 </Page>

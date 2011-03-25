@@ -54,7 +54,7 @@ namespace InterfaceMagasin
 
 
 
-                this.TextCompteur.Text = "[ " + compteur + " ]";
+                this.TextCompteur.Text = ""+compteur;
             }
 
             catch (Exception e)
