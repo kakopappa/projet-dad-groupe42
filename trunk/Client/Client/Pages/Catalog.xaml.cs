@@ -106,6 +106,7 @@ namespace Client.Pages
                     try
                     {
                         this.cat = (from c in ent.CATEGORIE
+                                    where c.valide
                                     select c).ToList<DataServiceClient.CATEGORIE>();
 
                         // Récupération des produits
