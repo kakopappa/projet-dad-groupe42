@@ -1,0 +1,1 @@
+Dans le cadre du projet DAD 2011. Utilisation de WCF Data Services, WF, WPF et Silverlight.
